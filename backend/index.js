@@ -70,7 +70,25 @@ async function prepararBaseDeDatos() {
   console.log(`Cargados ${restaurantes.length} restaurantes iniciales.`);
 }
 
-async function construirRestaurante(fila, soloPublico) {
+function extraerBarrio(direccion) {
+  if (!direccion) return null;
+  const partes = direccion.split(',').map(p => p.trim()).filter(Boolean);
+  const posible = partes.find((p, i) => i > 0 && !/\d/.test(p) && !/valencia|españa|valència/i.test(p));
+  return posible || null;
+}
+
+async function migrarBarrios() {
+  const { rows } = await db.execute(`SELECT id, direccion FROM restaurantes WHERE (barrio IS NULL OR barrio = '') AND direccion IS NOT NULL`);
+  let actualizados = 0;
+  for (const fila of rows) {
+    const barrio = extraerBarrio(fila.direccion);
+    if (barrio) {
+      await db.execute({ sql: 'UPDATE restaurantes SET barrio = ? WHERE id = ?', args: [barrio, fila.id] });
+      actualizados++;
+    }
+  }
+  if (actualizados) console.log(`Barrio extraído automáticamente para ${actualizados} restaurantes.`);
+}
   const { rows: categorias } = await db.execute({
     sql: 'SELECT * FROM categorias WHERE restaurante_id = ?', args: [fila.id]
   });
@@ -193,5 +211,6 @@ app.delete('/api/categorias/:catId', requiereAuth, async (req, res) => {
 
 const PORT = process.env.PORT || 3001;
 prepararBaseDeDatos()
+  .then(() => migrarBarrios())
   .then(() => app.listen(PORT, () => console.log(`Backend escuchando en el puerto ${PORT}`)))
   .catch(err => { console.error('Error preparando la base de datos:', err); process.exit(1); });

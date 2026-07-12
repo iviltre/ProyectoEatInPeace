@@ -56,12 +56,12 @@
   /* Bottom sheet on mobile */
   #mobile-tabs { display: none; }
 
-  #detail-overlay { position: fixed; inset: 0; background: rgba(30,28,22,0.4); display: none; align-items: flex-end; justify-content: center; z-index: 800; }
+  #detail-overlay { position: fixed; inset: 0; background: rgba(30,28,22,0.15); display: none; align-items: flex-end; justify-content: center; z-index: 800; pointer-events: none; }
   #detail-overlay.open { display: flex; }
-  #detail { background: var(--panel); width: 480px; max-width: 100%; max-height: 85vh; border-radius: 20px 20px 0 0; overflow-y: auto; padding-bottom: 20px; }
+  #detail { background: var(--panel); width: 480px; max-width: 100%; max-height: 85vh; border-radius: 20px 20px 0 0; overflow-y: auto; padding-bottom: 20px; pointer-events: auto; box-shadow: 0 -4px 24px rgba(0,0,0,0.15); }
   @media (min-width: 640px) {
-    #detail-overlay { align-items: center; }
-    #detail { border-radius: 20px; width: 720px; max-height: 80vh; }
+    #detail-overlay { align-items: stretch; justify-content: flex-end; background: transparent; }
+    #detail { width: 440px; max-height: 100vh; border-radius: 0; box-shadow: -6px 0 24px rgba(0,0,0,0.1); }
   }
   #detail-close { float: right; background: none; border: none; font-size: 20px; color: var(--text-muted); cursor: pointer; padding: 16px; }
   #detail-body { padding: 4px 24px 20px; }
@@ -137,6 +137,7 @@ let filtroCategorias = new Set();
 let filtroPrecios = new Set();
 let filtroValoraciones = new Set();
 let filtroBarrios = new Set();
+let filtroSubcategorias = new Set();
 let selectedId = null;
 const PRECIOS_FIJOS = ['0-5€', '5-10€', '10-20€', '20-35€', '35-50€', '50-80€', '>80€'];
 let map, cluster;
@@ -207,6 +208,26 @@ function pintarFiltros() {
   });
   el.appendChild(grupoCat);
 
+  const subs = new Set();
+  restaurantes.forEach(r => r.categorias.forEach(c => c.subcategoria && subs.add(c.subcategoria)));
+  if (subs.size) {
+    const labelSub = document.createElement('div');
+    labelSub.className = 'filtro-label';
+    labelSub.textContent = 'Subcategoría';
+    el.appendChild(labelSub);
+
+    const grupoSub = document.createElement('div');
+    grupoSub.style.cssText = 'display:flex; flex-wrap:wrap; gap:6px; margin-bottom:6px;';
+    [...subs].sort().forEach(s => {
+      const chip = document.createElement('div');
+      chip.className = 'chip' + (filtroSubcategorias.has(s) ? ' active' : '');
+      chip.textContent = s;
+      chip.onclick = () => { filtroSubcategorias.has(s) ? filtroSubcategorias.delete(s) : filtroSubcategorias.add(s); pintarFiltros(); renderList(); pintarMarcadores(); };
+      grupoSub.appendChild(chip);
+    });
+    el.appendChild(grupoSub);
+  }
+
   const labelPrecio = document.createElement('div');
   labelPrecio.className = 'filtro-label';
   labelPrecio.textContent = 'Precio';
@@ -266,7 +287,8 @@ function coincide(r) {
   const coincidePrecio = filtroPrecios.size === 0 || r.categorias.some(c => filtroPrecios.has(c.precio));
   const coincideVal = filtroValoraciones.size === 0 || r.categorias.some(c => [...filtroValoraciones].some(min => (c.valoracion || 0) >= min));
   const coincideBarrio = filtroBarrios.size === 0 || filtroBarrios.has(r.barrio);
-  return coincideNombre && coincideCat && coincidePrecio && coincideVal && coincideBarrio;
+  const coincideSub = filtroSubcategorias.size === 0 || r.categorias.some(c => filtroSubcategorias.has(c.subcategoria));
+  return coincideNombre && coincideCat && coincidePrecio && coincideVal && coincideBarrio && coincideSub;
 }
 
 function pintarMarcadores() {
@@ -342,6 +364,7 @@ function abrirDetalle(id) {
   selectedId = id;
   pintarMarcadores();
   map.panTo([r.lat, r.lng]);
+  setTimeout(() => map.panBy([170, 0]), 0);
   document.getElementById('detail-body').innerHTML = `
     <h2>${r.nombre}</h2>
     <div class="direccion">${r.direccion || ''}</div>

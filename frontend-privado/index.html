@@ -149,11 +149,15 @@
 <div id="cat-overlay" style="display:none; position:fixed; inset:0; background:rgba(35,36,31,0.35); z-index:900; align-items:center; justify-content:center;">
   <div style="background:white; border-radius:12px; width:340px; max-height:70vh; overflow-y:auto; padding:20px;">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-      <strong style="font-size:14px;">Gestionar categorías</strong>
+      <strong style="font-size:14px;">Gestionar categorías y subcategorías</strong>
       <button onclick="cerrarGestionCategorias()" style="border:none; background:none; font-size:16px; cursor:pointer; color:var(--text-muted);">✕</button>
     </div>
+    <div style="display:flex; gap:8px; margin-bottom:12px; border-bottom:1px solid var(--border);">
+      <button id="tab-gestion-cat" onclick="cambiarTabGestion('categorias')" style="border:none; background:none; padding:6px 0; font-size:12.5px; color:var(--accent); border-bottom:2px solid var(--accent); cursor:pointer;">Categorías</button>
+      <button id="tab-gestion-sub" onclick="cambiarTabGestion('subcategorias')" style="border:none; background:none; padding:6px 0; font-size:12.5px; color:var(--text-muted); cursor:pointer;">Subcategorías</button>
+    </div>
     <div style="display:flex; gap:6px; margin-bottom:14px;">
-      <input id="nueva-categoria-input" type="text" placeholder="Nombre de categoría nueva" onkeydown="if(event.key==='Enter') confirmarAñadirCategoria()" style="flex:1; padding:7px 9px; border:1px solid var(--border); border-radius:6px; font-size:13px;">
+      <input id="nueva-categoria-input" type="text" placeholder="Nombre nuevo" onkeydown="if(event.key==='Enter') confirmarAñadirCategoria()" style="flex:1; padding:7px 9px; border:1px solid var(--border); border-radius:6px; font-size:13px;">
       <button onclick="confirmarAñadirCategoria()" style="padding:7px 12px; background:var(--text); color:white; border:none; border-radius:6px; font-size:13px; cursor:pointer;">+</button>
     </div>
     <div id="lista-categorias-maestro"></div>
@@ -173,6 +177,8 @@ let filtroCategorias = new Set();
 let filtroPrecios = new Set();
 let filtroValoraciones = new Set();
 let filtroProbado = null;
+let filtroBarrios = new Set();
+let filtroSubcategorias = new Set();
 const PRECIOS_FIJOS = ['0-5€', '5-10€', '10-20€', '20-35€', '35-50€', '50-80€', '>80€'];
 
 function categoriasMaestro() {
@@ -199,6 +205,33 @@ function añadirCategoriaMaestro(nombre) {
 function quitarCategoriaMaestro(nombre) {
   const lista = categoriasMaestro().filter(c => c !== nombre);
   localStorage.setItem('categoriasMaestro', JSON.stringify(lista));
+  pintarFiltros();
+}
+
+function subcategoriasMaestro() {
+  const guardadas = JSON.parse(localStorage.getItem('subcategoriasMaestro') || 'null');
+  if (guardadas) return guardadas;
+  const subs = new Set();
+  restaurantes.forEach(r => r.categorias.forEach(c => c.subcategoria && subs.add(c.subcategoria)));
+  const lista = [...subs].sort();
+  localStorage.setItem('subcategoriasMaestro', JSON.stringify(lista));
+  return lista;
+}
+
+function añadirSubcategoriaMaestro(nombre) {
+  nombre = nombre.trim();
+  if (!nombre) return;
+  const lista = subcategoriasMaestro();
+  if (!lista.includes(nombre)) {
+    lista.push(nombre);
+    lista.sort();
+    localStorage.setItem('subcategoriasMaestro', JSON.stringify(lista));
+  }
+}
+
+function quitarSubcategoriaMaestro(nombre) {
+  const lista = subcategoriasMaestro().filter(c => c !== nombre);
+  localStorage.setItem('subcategoriasMaestro', JSON.stringify(lista));
   pintarFiltros();
 }
 
@@ -252,12 +285,15 @@ function valoracionMostrada(r) {
 }
 
 function iconoPara(r) {
+  const seleccionado = r.id === selectedId;
   const color = colorParaValoracion(valoracionMostrada(r));
   const borde = r.pendiente_revisar ? '3px solid #C77D2E' : '2px solid white';
+  const tamaño = seleccionado ? 30 : 20;
+  const anillo = seleccionado ? 'box-shadow: 0 0 0 3px var(--text), 0 1px 4px rgba(0,0,0,0.4);' : 'box-shadow: 0 1px 3px rgba(0,0,0,0.3);';
   return L.divIcon({
     className: '',
-    html: `<div style="width:20px;height:20px;background:${color};border:${borde};border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 1px 3px rgba(0,0,0,0.3);"></div>`,
-    iconSize: [20, 20], iconAnchor: [10, 20]
+    html: `<div style="width:${tamaño}px;height:${tamaño}px;background:${color};border:${borde};border-radius:50% 50% 50% 0;transform:rotate(-45deg);${anillo}"></div>`,
+    iconSize: [tamaño, tamaño], iconAnchor: [tamaño/2, tamaño]
   });
 }
 
@@ -323,6 +359,24 @@ function pintarFiltros() {
   });
   el.appendChild(grupoCat);
 
+  if (subcategoriasMaestro().length) {
+    const labelSub = document.createElement('div');
+    labelSub.className = 'filtro-label';
+    labelSub.textContent = 'Subcategoría';
+    el.appendChild(labelSub);
+
+    const grupoSub = document.createElement('div');
+    grupoSub.style.cssText = 'display:flex; flex-wrap:wrap; gap:6px; margin-bottom:6px;';
+    subcategoriasMaestro().forEach(s => {
+      const chip = document.createElement('div');
+      chip.className = 'chip' + (filtroSubcategorias.has(s) ? ' active' : '');
+      chip.textContent = s;
+      chip.onclick = () => { filtroSubcategorias.has(s) ? filtroSubcategorias.delete(s) : filtroSubcategorias.add(s); pintarFiltros(); renderList(); pintarMarcadores(); };
+      grupoSub.appendChild(chip);
+    });
+    el.appendChild(grupoSub);
+  }
+
   const labelPrecio = document.createElement('div');
   labelPrecio.className = 'filtro-label';
   labelPrecio.textContent = 'Precio';
@@ -370,25 +424,59 @@ function pintarFiltros() {
     grupoProbado.appendChild(chip);
   });
   el.appendChild(grupoProbado);
+
+  const barrios = new Set(restaurantes.map(r => r.barrio).filter(Boolean));
+  if (barrios.size) {
+    const labelBarrio = document.createElement('div');
+    labelBarrio.className = 'filtro-label';
+    labelBarrio.textContent = 'Barrio';
+    el.appendChild(labelBarrio);
+
+    const grupoBarrio = document.createElement('div');
+    grupoBarrio.style.cssText = 'display:flex; flex-wrap:wrap; gap:6px;';
+    [...barrios].sort().forEach(b => {
+      const chip = document.createElement('div');
+      chip.className = 'chip' + (filtroBarrios.has(b) ? ' active' : '');
+      chip.textContent = b;
+      chip.onclick = () => { filtroBarrios.has(b) ? filtroBarrios.delete(b) : filtroBarrios.add(b); pintarFiltros(); renderList(); pintarMarcadores(); };
+      grupoBarrio.appendChild(chip);
+    });
+    el.appendChild(grupoBarrio);
+  }
 }
+
+let tabGestionActual = 'categorias';
 
 function abrirGestionCategorias() {
   document.getElementById('cat-overlay').style.display = 'flex';
   document.getElementById('nueva-categoria-input').value = '';
-  renderListaCategoriasMaestro();
+  cambiarTabGestion('categorias');
 }
 
 function cerrarGestionCategorias() {
   document.getElementById('cat-overlay').style.display = 'none';
 }
 
+function cambiarTabGestion(tab) {
+  tabGestionActual = tab;
+  document.getElementById('tab-gestion-cat').style.cssText = tab === 'categorias'
+    ? 'border:none; background:none; padding:6px 0; font-size:12.5px; color:var(--accent); border-bottom:2px solid var(--accent); cursor:pointer;'
+    : 'border:none; background:none; padding:6px 0; font-size:12.5px; color:var(--text-muted); cursor:pointer;';
+  document.getElementById('tab-gestion-sub').style.cssText = tab === 'subcategorias'
+    ? 'border:none; background:none; padding:6px 0; font-size:12.5px; color:var(--accent); border-bottom:2px solid var(--accent); cursor:pointer;'
+    : 'border:none; background:none; padding:6px 0; font-size:12.5px; color:var(--text-muted); cursor:pointer;';
+  document.getElementById('nueva-categoria-input').placeholder = tab === 'categorias' ? 'Nombre de categoría nuevo' : 'Nombre de subcategoría nuevo';
+  renderListaCategoriasMaestro();
+}
+
 function renderListaCategoriasMaestro() {
   const el = document.getElementById('lista-categorias-maestro');
   el.innerHTML = '';
-  categoriasMaestro().forEach(cat => {
+  const lista = tabGestionActual === 'categorias' ? categoriasMaestro() : subcategoriasMaestro();
+  lista.forEach(item => {
     const fila = document.createElement('div');
     fila.style.cssText = 'display:flex; justify-content:space-between; align-items:center; padding:7px 0; border-bottom:1px solid var(--border); font-size:13px;';
-    fila.innerHTML = `<span>${cat}</span><button onclick="confirmarQuitarCategoria('${cat.replace(/'/g, "\\'")}')" style="border:none; background:none; color:var(--danger); cursor:pointer; font-size:12px;">Eliminar</button>`;
+    fila.innerHTML = `<span>${item}</span><button onclick="confirmarQuitarCategoria('${item.replace(/'/g, "\\'")}')" style="border:none; background:none; color:var(--danger); cursor:pointer; font-size:12px;">Eliminar</button>`;
     el.appendChild(fila);
   });
 }
@@ -396,15 +484,17 @@ function renderListaCategoriasMaestro() {
 function confirmarAñadirCategoria() {
   const input = document.getElementById('nueva-categoria-input');
   if (!input.value.trim()) return;
-  añadirCategoriaMaestro(input.value);
+  if (tabGestionActual === 'categorias') añadirCategoriaMaestro(input.value);
+  else añadirSubcategoriaMaestro(input.value);
   input.value = '';
   renderListaCategoriasMaestro();
   pintarFiltros();
 }
 
 function confirmarQuitarCategoria(nombre) {
-  if (!confirm(`¿Quitar "${nombre}" de la lista de categorías? (los restaurantes que ya la tengan la conservan, pero no podrás volver a elegirla)`)) return;
-  quitarCategoriaMaestro(nombre);
+  if (!confirm(`¿Quitar "${nombre}" de la lista? (los restaurantes que ya la tengan la conservan, pero no podrás volver a elegirla)`)) return;
+  if (tabGestionActual === 'categorias') quitarCategoriaMaestro(nombre);
+  else quitarSubcategoriaMaestro(nombre);
   renderListaCategoriasMaestro();
 }
 
@@ -416,7 +506,9 @@ function restaurantesFiltrados() {
     const coincidePrecio = filtroPrecios.size === 0 || r.categorias.some(c => filtroPrecios.has(c.precio));
     const coincideVal = filtroValoraciones.size === 0 || r.categorias.some(c => [...filtroValoraciones].some(min => (c.valoracion || 0) >= min));
     const coincideProbado = !filtroProbado || (filtroProbado === 'si' ? r.probado : !r.probado);
-    return coincideNombre && coincideCat && coincidePrecio && coincideVal && coincideProbado;
+    const coincideBarrio = filtroBarrios.size === 0 || filtroBarrios.has(r.barrio);
+    const coincideSub = filtroSubcategorias.size === 0 || r.categorias.some(c => filtroSubcategorias.has(c.subcategoria));
+    return coincideNombre && coincideCat && coincidePrecio && coincideVal && coincideProbado && coincideBarrio && coincideSub;
   });
 }
 
@@ -493,7 +585,9 @@ function abrirDetalle(id) {
   const r = restaurantes.find(x => x.id === id);
   if (!r) return;
   renderList();
+  pintarMarcadores();
   map.setView([r.lat, r.lng], Math.max(map.getZoom(), 17));
+  setTimeout(() => map.panBy([160, 0]), 0);
 
   const sedes = restaurantes.filter(x => x.grupo_id && x.grupo_id === r.grupo_id && x.id !== r.id);
 
@@ -502,6 +596,7 @@ function abrirDetalle(id) {
       <button id="detail-close" onclick="cerrarDetalle()">✕</button>
       <div id="detail-nombre" class="editable" contenteditable oninput="marcarCambio()" onblur="guardarCampo('nombre', this.textContent)">${r.nombre || ''}</div>
       <div id="detail-direccion" class="editable" contenteditable onblur="guardarDireccionYReubicar(this.textContent)">${r.direccion || 'Añadir dirección'}</div>
+      <input type="text" class="editable" value="${r.barrio || ''}" placeholder="Barrio (ej: Ruzafa, El Carmen...)" style="width:100%; font-size:12px; margin-top:4px;" onblur="guardarCampo('barrio', this.value)">
       <input type="text" class="editable" value="${r.google_maps_url || ''}" placeholder="Pegar enlace de Google Maps..." style="width:100%; font-size:12px; margin-top:4px; color:var(--accent);" onblur="guardarCampo('google_maps_url', this.value)">
       ${r.google_maps_url ? `<a class="maps-link" href="${r.google_maps_url}" target="_blank">Abrir en Google Maps →</a>` : ''}
       ${sedes.length ? `<div style="margin-top:8px; font-size:12px; color:var(--text-muted);">Otras sedes: ${sedes.map(s => `<a href="#" onclick="abrirDetalle('${s.id}'); return false;" style="color:var(--accent);">${s.nombre}</a>`).join(', ')}</div>` : ''}
@@ -557,7 +652,10 @@ function renderCategorias(r) {
         </select>
         <button class="del-cat" onclick="borrarCategoria('${cat.id}')">Quitar</button>
       </div>
-      <input type="text" value="${cat.subcategoria || ''}" placeholder="Subcategoría (ej: Smash, Normal...)" style="width:100%; margin-top:6px; font-size:12px;" onblur="guardarCategoria('${cat.id}', 'subcategoria', this.value)">
+      <select onchange="guardarCategoria('${cat.id}', 'subcategoria', this.value)" style="width:100%; margin-top:6px; font-size:12px;">
+        <option value="">Subcategoría (opcional)...</option>
+        ${subcategoriasMaestro().map(s => `<option value="${s}" ${s === cat.subcategoria ? 'selected' : ''}>${s}</option>`).join('')}
+      </select>
       <div class="stars" data-cat="${cat.id}">${[1,2,3,4,5].map(n => `<span class="${n <= (cat.valoracion||0) ? 'filled' : ''}" onclick="guardarCategoria('${cat.id}', 'valoracion', ${n})">★</span>`).join('')}</div>
       <textarea placeholder="Tu reseña..." onblur="guardarCategoria('${cat.id}', 'resena', this.value)">${cat.resena || ''}</textarea>
       <input type="text" value="${cat.instagram_url || ''}" placeholder="Enlace al reel de Instagram (opcional)" style="width:100%; margin-top:6px; font-size:12px;" onblur="guardarCategoria('${cat.id}', 'instagram_url', this.value)">
@@ -570,6 +668,7 @@ function cerrarDetalle() {
   document.getElementById('detail').classList.remove('open');
   selectedId = null;
   renderList();
+  pintarMarcadores();
 }
 
 // ---------- GUARDAR CAMBIOS ----------
@@ -645,10 +744,19 @@ async function guardarDireccionYReubicar(nuevaDireccion) {
   const r = restaurantes.find(x => x.id === selectedId);
   if (!r || nuevaDireccion === r.direccion) return;
   r.direccion = nuevaDireccion;
+  const cuerpo = { direccion: nuevaDireccion };
+
+  if (!r.barrio) {
+    const partes = nuevaDireccion.split(',').map(p => p.trim());
+    const posible = partes.find(p => p && !/\d/.test(p) && !/valencia|españa|valència/i.test(p) && p !== partes[0]);
+    if (posible) { r.barrio = posible; cuerpo.barrio = posible; }
+  }
+
   await fetch(`${API}/restaurantes/${r.id}`, {
-    method: 'PUT', headers: authHeaders(), body: JSON.stringify({ direccion: nuevaDireccion })
+    method: 'PUT', headers: authHeaders(), body: JSON.stringify(cuerpo)
   });
   renderList();
+  if (cuerpo.barrio) abrirDetalle(r.id);
 
   try {
     const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=es&q=${encodeURIComponent(nuevaDireccion)}`);
