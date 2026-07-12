@@ -90,6 +90,17 @@
   .add-cat-btn { font-size: 12.5px; color: var(--accent); background: none; border: none; cursor: pointer; padding: 4px 0; }
   #delete-restaurante { width: 100%; padding: 10px; background: none; border: 1px solid var(--danger); color: var(--danger); border-radius: 6px; font-size: 13px; cursor: pointer; margin: 16px 18px; width: calc(100% - 36px); }
   .maps-link { font-size: 12.5px; color: var(--accent); text-decoration: none; }
+
+  @media (max-width: 860px) {
+    #app { flex-direction: column; height: calc(100vh - 0px); }
+    #sidebar { width: 100%; min-width: 0; border-right: none; }
+    #map { display: none; }
+    #map.mobile-visible { display: block; height: 100%; }
+    #sidebar.mobile-hidden { display: none; }
+    #mobile-tabs { display: flex !important; border-bottom: 1px solid var(--border); }
+    #mobile-tabs button { flex: 1; padding: 10px; border: none; background: white; font-family: inherit; font-size: 13.5px; color: var(--text-muted); cursor: pointer; }
+    #mobile-tabs button.active { color: var(--accent); font-weight: 600; border-bottom: 2px solid var(--accent); }
+  }
 </style>
 </head>
 <body>
@@ -105,13 +116,17 @@
 </div>
 
 <div id="app" style="display:none;">
+  <div id="mobile-tabs" style="display:none;">
+    <button id="tab-lista" class="active" onclick="mostrarTabMovil('lista')">Lista</button>
+    <button id="tab-mapa" onclick="mostrarTabMovil('mapa')">Mapa</button>
+  </div>
   <div id="sidebar">
     <div id="sidebar-header">
       <h1>Restaurantes <span class="count" id="count-label">0</span></h1>
       <input id="search" placeholder="Buscar por nombre..." oninput="renderList(); pintarMarcadores();" />
-      <div id="filters"></div>
+      <button onclick="toggleFiltros()" style="width:100%; text-align:left; background:none; border:none; padding:6px 0; font-size:12.5px; color:var(--text-muted); cursor:pointer; display:flex; justify-content:space-between;">Filtros <span id="filtros-flecha">▾</span></button>
+      <div id="filters" style="display:none;"></div>
       <button class="add-cat-btn" onclick="abrirGestionCategorias()" style="margin-top:4px;">⚙ Gestionar categorías</button>
-      <button id="add-btn" onclick="activarModoAñadir()">+ Añadir restaurante en el mapa</button>
       <button class="add-cat-btn" onclick="añadirPorDireccion()" style="width:100%; text-align:center; border:1px solid var(--border); border-radius:6px; padding:7px; margin-top:6px;">📍 Añadir escribiendo la dirección</button>
       <select id="orden" onchange="renderList()" style="width:100%; margin-top:8px; padding:7px; border:1px solid var(--border); border-radius:6px; font-size:12.5px;">
         <option value="nombre">Ordenar por nombre</option>
@@ -124,7 +139,9 @@
     <div id="list"></div>
   </div>
   <div id="map"></div>
-  <div id="add-hint">Haz clic en el mapa para colocar el nuevo restaurante</div>
+  <label id="toggle-agrupar" style="position:absolute; bottom:16px; right:16px; background:white; padding:7px 12px; border-radius:20px; box-shadow:0 1px 4px rgba(0,0,0,0.15); font-size:12.5px; display:flex; align-items:center; gap:6px; cursor:pointer; z-index:500;">
+    <input type="checkbox" id="agrupar-checkbox" onchange="cambiarAgrupado(this.checked)"> Agrupar pines cercanos
+  </label>
 </div>
 
 <div id="detail"></div>
@@ -155,7 +172,8 @@ let modoAñadir = false;
 let filtroCategorias = new Set();
 let filtroPrecios = new Set();
 let filtroValoraciones = new Set();
-const PRECIOS_FIJOS = ['0-5€', '0-10€', '10-20€', '20-35€', '35-50€', '50-80€', '>100€'];
+let filtroProbado = null;
+const PRECIOS_FIJOS = ['0-5€', '5-10€', '10-20€', '20-35€', '35-50€', '50-80€', '>80€'];
 
 function categoriasMaestro() {
   const guardadas = JSON.parse(localStorage.getItem('categoriasMaestro') || 'null');
@@ -216,16 +234,38 @@ function initMap() {
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
     attribution: '© OpenStreetMap © CARTO', subdomains: 'abcd', maxZoom: 20
   }).addTo(map);
-  cluster = L.markerClusterGroup({ maxClusterRadius: 40 });
+  cluster = L.layerGroup();
   map.addLayer(cluster);
+}
 
-  map.on('click', (e) => {
-    if (modoAñadir) crearRestauranteEnMapa(e.latlng);
-  });
+function colorParaValoracion(v) {
+  const escala = ['#D8D4C4', '#F0B98A', '#DB8F5C', '#C06A3E', '#9A4B2E', '#7A2E22'];
+  return escala[Math.round(v)] || escala[0];
+}
+
+function valoracionMostrada(r) {
+  const relevantes = filtroCategorias.size === 0
+    ? r.categorias
+    : r.categorias.filter(c => filtroCategorias.has(c.nombre));
+  const lista = relevantes.length ? relevantes : r.categorias;
+  return Math.max(...lista.map(c => c.valoracion || 0), 0);
 }
 
 function iconoPara(r) {
-  return L.divIcon({ className: 'leaflet-div-icon' + (r.pendiente_revisar ? ' revisar' : '') });
+  const color = colorParaValoracion(valoracionMostrada(r));
+  const borde = r.pendiente_revisar ? '3px solid #C77D2E' : '2px solid white';
+  return L.divIcon({
+    className: '',
+    html: `<div style="width:20px;height:20px;background:${color};border:${borde};border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 1px 3px rgba(0,0,0,0.3);"></div>`,
+    iconSize: [20, 20], iconAnchor: [10, 20]
+  });
+}
+
+function cambiarAgrupado(agrupar) {
+  map.removeLayer(cluster);
+  cluster = agrupar ? L.markerClusterGroup({ maxClusterRadius: 40 }) : L.layerGroup();
+  map.addLayer(cluster);
+  pintarMarcadores();
 }
 
 function pintarMarcadores() {
@@ -246,6 +286,21 @@ async function cargarRestaurantes() {
   pintarFiltros();
   pintarMarcadores();
   renderList();
+}
+
+function mostrarTabMovil(tab) {
+  document.getElementById('tab-lista').classList.toggle('active', tab === 'lista');
+  document.getElementById('tab-mapa').classList.toggle('active', tab === 'mapa');
+  document.getElementById('sidebar').classList.toggle('mobile-hidden', tab === 'mapa');
+  document.getElementById('map').classList.toggle('mobile-visible', tab === 'mapa');
+  if (tab === 'mapa') setTimeout(() => map.invalidateSize(), 50);
+}
+
+function toggleFiltros() {
+  const el = document.getElementById('filters');
+  const abierto = el.style.display !== 'none';
+  el.style.display = abierto ? 'none' : 'block';
+  document.getElementById('filtros-flecha').textContent = abierto ? '▾' : '▴';
 }
 
 function pintarFiltros() {
@@ -299,6 +354,22 @@ function pintarFiltros() {
     grupoVal.appendChild(chip);
   });
   el.appendChild(grupoVal);
+
+  const labelProbado = document.createElement('div');
+  labelProbado.className = 'filtro-label';
+  labelProbado.textContent = 'Probado';
+  el.appendChild(labelProbado);
+
+  const grupoProbado = document.createElement('div');
+  grupoProbado.style.cssText = 'display:flex; flex-wrap:wrap; gap:6px;';
+  [['si','Probado'], ['no','No probado']].forEach(([val, texto]) => {
+    const chip = document.createElement('div');
+    chip.className = 'chip' + (filtroProbado === val ? ' active' : '');
+    chip.textContent = texto;
+    chip.onclick = () => { filtroProbado = (filtroProbado === val) ? null : val; pintarFiltros(); renderList(); pintarMarcadores(); };
+    grupoProbado.appendChild(chip);
+  });
+  el.appendChild(grupoProbado);
 }
 
 function abrirGestionCategorias() {
@@ -344,7 +415,8 @@ function restaurantesFiltrados() {
     const coincideCat = filtroCategorias.size === 0 || r.categorias.some(c => filtroCategorias.has(c.nombre));
     const coincidePrecio = filtroPrecios.size === 0 || r.categorias.some(c => filtroPrecios.has(c.precio));
     const coincideVal = filtroValoraciones.size === 0 || r.categorias.some(c => [...filtroValoraciones].some(min => (c.valoracion || 0) >= min));
-    return coincideNombre && coincideCat && coincidePrecio && coincideVal;
+    const coincideProbado = !filtroProbado || (filtroProbado === 'si' ? r.probado : !r.probado);
+    return coincideNombre && coincideCat && coincidePrecio && coincideVal && coincideProbado;
   });
 }
 
@@ -421,7 +493,7 @@ function abrirDetalle(id) {
   const r = restaurantes.find(x => x.id === id);
   if (!r) return;
   renderList();
-  map.panTo([r.lat, r.lng]);
+  map.setView([r.lat, r.lng], Math.max(map.getZoom(), 17));
 
   const sedes = restaurantes.filter(x => x.grupo_id && x.grupo_id === r.grupo_id && x.id !== r.id);
 
@@ -429,7 +501,7 @@ function abrirDetalle(id) {
     <div id="detail-header">
       <button id="detail-close" onclick="cerrarDetalle()">✕</button>
       <div id="detail-nombre" class="editable" contenteditable oninput="marcarCambio()" onblur="guardarCampo('nombre', this.textContent)">${r.nombre || ''}</div>
-      <div id="detail-direccion" class="editable" contenteditable onblur="guardarCampo('direccion', this.textContent)">${r.direccion || 'Añadir dirección'}</div>
+      <div id="detail-direccion" class="editable" contenteditable onblur="guardarDireccionYReubicar(this.textContent)">${r.direccion || 'Añadir dirección'}</div>
       <input type="text" class="editable" value="${r.google_maps_url || ''}" placeholder="Pegar enlace de Google Maps..." style="width:100%; font-size:12px; margin-top:4px; color:var(--accent);" onblur="guardarCampo('google_maps_url', this.value)">
       ${r.google_maps_url ? `<a class="maps-link" href="${r.google_maps_url}" target="_blank">Abrir en Google Maps →</a>` : ''}
       ${sedes.length ? `<div style="margin-top:8px; font-size:12px; color:var(--text-muted);">Otras sedes: ${sedes.map(s => `<a href="#" onclick="abrirDetalle('${s.id}'); return false;" style="color:var(--accent);">${s.nombre}</a>`).join(', ')}</div>` : ''}
@@ -461,10 +533,6 @@ function abrirDetalle(id) {
       <textarea class="editable" style="width:100%; min-height:60px;" onblur="guardarCampo('notas_generales', this.value)" placeholder="Notas que solo tú ves...">${r.notas_generales || ''}</textarea>
     </div>
 
-    <div class="section" style="border:none;">
-      <button class="add-cat-btn" onclick="activarMoverMarcador()">📍 Mover ubicación en el mapa</button>
-    </div>
-
     <button id="delete-restaurante" onclick="borrarRestaurante()">Eliminar restaurante</button>
   `;
   renderCategorias(r);
@@ -489,6 +557,7 @@ function renderCategorias(r) {
         </select>
         <button class="del-cat" onclick="borrarCategoria('${cat.id}')">Quitar</button>
       </div>
+      <input type="text" value="${cat.subcategoria || ''}" placeholder="Subcategoría (ej: Smash, Normal...)" style="width:100%; margin-top:6px; font-size:12px;" onblur="guardarCategoria('${cat.id}', 'subcategoria', this.value)">
       <div class="stars" data-cat="${cat.id}">${[1,2,3,4,5].map(n => `<span class="${n <= (cat.valoracion||0) ? 'filled' : ''}" onclick="guardarCategoria('${cat.id}', 'valoracion', ${n})">★</span>`).join('')}</div>
       <textarea placeholder="Tu reseña..." onblur="guardarCategoria('${cat.id}', 'resena', this.value)">${cat.resena || ''}</textarea>
       <input type="text" value="${cat.instagram_url || ''}" placeholder="Enlace al reel de Instagram (opcional)" style="width:100%; margin-top:6px; font-size:12px;" onblur="guardarCategoria('${cat.id}', 'instagram_url', this.value)">
@@ -521,7 +590,7 @@ async function guardarCategoria(catId, campo, valor) {
   cat[campo] = valor;
   await fetch(`${API}/categorias/${catId}`, {
     method: 'PUT', headers: authHeaders(),
-    body: JSON.stringify({ nombre: cat.nombre, precio: cat.precio, valoracion: cat.valoracion, resena: cat.resena, instagram_url: cat.instagram_url })
+    body: JSON.stringify({ nombre: cat.nombre, precio: cat.precio, valoracion: cat.valoracion, resena: cat.resena, instagram_url: cat.instagram_url, subcategoria: cat.subcategoria })
   });
 
   // Si es una valoración y el restaurante pertenece a una cadena, la igualamos en las demás sedes
@@ -533,7 +602,7 @@ async function guardarCategoria(catId, campo, valor) {
         catHermana.valoracion = valor;
         await fetch(`${API}/categorias/${catHermana.id}`, {
           method: 'PUT', headers: authHeaders(),
-          body: JSON.stringify({ nombre: catHermana.nombre, precio: catHermana.precio, valoracion: valor, resena: catHermana.resena, instagram_url: catHermana.instagram_url })
+          body: JSON.stringify({ nombre: catHermana.nombre, precio: catHermana.precio, valoracion: valor, resena: catHermana.resena, instagram_url: catHermana.instagram_url, subcategoria: catHermana.subcategoria })
         });
       }
     }
@@ -547,7 +616,7 @@ async function añadirCategoria() {
   const r = restaurantes.find(x => x.id === selectedId);
   const res = await fetch(`${API}/restaurantes/${r.id}/categorias`, {
     method: 'POST', headers: authHeaders(),
-    body: JSON.stringify({ nombre: '', precio: '', valoracion: null, resena: '', instagram_url: '' })
+    body: JSON.stringify({ nombre: '', precio: '', valoracion: null, resena: '', instagram_url: '', subcategoria: '' })
   });
   const nueva = await res.json();
   r.categorias.push(nueva);
@@ -571,44 +640,29 @@ async function borrarRestaurante() {
   renderList();
 }
 
-// ---------- AÑADIR NUEVO ----------
-function activarModoAñadir() {
-  modoAñadir = true;
-  document.getElementById('add-hint').style.display = 'block';
-}
-
-async function crearRestauranteEnMapa(latlng) {
-  modoAñadir = false;
-  document.getElementById('add-hint').style.display = 'none';
-  const res = await fetch(`${API}/restaurantes`, {
-    method: 'POST', headers: authHeaders(),
-    body: JSON.stringify({ nombre: 'Nuevo restaurante', lat: latlng.lat, lng: latlng.lng })
+// ---------- CAMBIAR DIRECCIÓN → REUBICAR EN EL MAPA ----------
+async function guardarDireccionYReubicar(nuevaDireccion) {
+  const r = restaurantes.find(x => x.id === selectedId);
+  if (!r || nuevaDireccion === r.direccion) return;
+  r.direccion = nuevaDireccion;
+  await fetch(`${API}/restaurantes/${r.id}`, {
+    method: 'PUT', headers: authHeaders(), body: JSON.stringify({ direccion: nuevaDireccion })
   });
-  const nuevo = await res.json();
-  restaurantes.push(nuevo);
-  pintarMarcadores();
   renderList();
-  abrirDetalle(nuevo.id);
-}
 
-// ---------- MOVER MARCADOR ----------
-function activarMoverMarcador() {
-  alert('Haz clic en el nuevo punto del mapa para mover este restaurante.');
-  const handler = async (e) => {
-    await guardarCampoDirecto(selectedId, 'lat', e.latlng.lat);
-    await guardarCampoDirecto(selectedId, 'lng', e.latlng.lng);
-    const r = restaurantes.find(x => x.id === selectedId);
-    r.lat = e.latlng.lat; r.lng = e.latlng.lng;
-    pintarMarcadores();
-    map.off('click', handler);
-  };
-  map.on('click', handler);
-}
-
-async function guardarCampoDirecto(id, campo, valor) {
-  await fetch(`${API}/restaurantes/${id}`, {
-    method: 'PUT', headers: authHeaders(), body: JSON.stringify({ [campo]: valor })
-  });
+  try {
+    const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=es&q=${encodeURIComponent(nuevaDireccion)}`);
+    const resultados = await res.json();
+    if (resultados.length) {
+      const { lat, lon } = resultados[0];
+      r.lat = parseFloat(lat); r.lng = parseFloat(lon);
+      await fetch(`${API}/restaurantes/${r.id}`, {
+        method: 'PUT', headers: authHeaders(), body: JSON.stringify({ lat: r.lat, lng: r.lng })
+      });
+      pintarMarcadores();
+      map.panTo([r.lat, r.lng]);
+    }
+  } catch (e) { /* si falla la geolocalización, al menos la dirección de texto ya se guardó */ }
 }
 
 // ---------- PUBLICAR PARA SEGUIDORES ----------
@@ -619,7 +673,7 @@ function publicarCambios() {
       id: r.id, nombre: r.nombre, lat: r.lat, lng: r.lng,
       direccion: r.direccion, google_maps_url: r.google_maps_url,
       grupo_id: r.grupo_id,
-      categorias: r.categorias.map(c => ({ nombre: c.nombre, precio: c.precio, valoracion: c.valoracion, resena: c.resena, instagram_url: c.instagram_url }))
+      categorias: r.categorias.map(c => ({ nombre: c.nombre, precio: c.precio, valoracion: c.valoracion, resena: c.resena, instagram_url: c.instagram_url, subcategoria: c.subcategoria }))
     }));
   const blob = new Blob([JSON.stringify(publicos, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);

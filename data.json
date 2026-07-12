@@ -1121,24 +1121,6 @@
     ]
   },
   {
-    "id": "175965c3-1bf1-405a-be55-8ec3b5b0a331",
-    "nombre": "Puto Café",
-    "lat": 39.4712174,
-    "lng": -0.4896,
-    "direccion": "Centro comercial Bonaire, calle N III, salida 345, 46960 Valencia, España",
-    "google_maps_url": "http://maps.google.com/?cid=18221415454154200709",
-    "grupo_id": "b92a93f4-7191-4b2d-8bfe-3fc5b76cd0b6",
-    "categorias": [
-      {
-        "nombre": "Café",
-        "precio": "0-10€",
-        "valoracion": 4,
-        "resena": null,
-        "instagram_url": null
-      }
-    ]
-  },
-  {
     "id": "2b990fcc-9611-44ff-a417-d1a6b6bc0c7d",
     "nombre": "Puto Café",
     "lat": 39.4843555,
@@ -4335,7 +4317,7 @@
         "nombre": "Pasta",
         "precio": "25-40€",
         "valoracion": 5,
-        "resena": null,
+        "resena": "Hemos vuelto a Alquimista. Ya hemos ido unas cuantas veces y, a día de hoy, sigue siendo el sitio donde más nos gusta comer pasta en Valencia. De hecho, ya hemos probado casi toda la carta y todavía no hemos encontrado un plato que no merezca la pena.\n\nEl local es muy pequeñito, así que os recomendamos reservar con tiempo.\n\n🍝 Esta vez probamos:\n\n🥓 Carbonara – 10/10\nDe las mejores carbonaras que hemos tomado.\n\n🍖 Ragú – 10/10\nUn clásico que nunca falla. Muchísimo sabor.\n\n🥪 Piadina de pastrami – 10/10\nEspectacular. Si os apetece algo diferente a la pasta, es una apuesta segura.\n\n🧀 Crema de parmesano – 9,75/10\nMuy intensa y perfecta para compartir.\n\n🍰 Tarta de queso gorgonzola – 9,5/10\nSi os gustan el gorgonzola, está muy rica, aunque tampoco sabe mucho a gorgonzola.\n\n🍽️ Y de otras visitas:\n\n🎃 Pasta rellena de calabaza – 10/10\n🍠 Pasta rellena de boniato – 9,5/10\n🧀 Cacio e pepe – 10/10\n🍳 Pasta de trufa y huevo – 10/10\n🥑 Tartar de aguacate – 9/10\n🐷 Piadina de porchetta – 10/10\n🥪 Piadina de mortadela – 9/10\n🌶️ Piadina picante – 9/10\n🧀 Flan de parmesano – 9,5/10\n\nLa verdad es que después de tantas visitas seguimos pensando lo mismo: es de esos restaurantes donde pidas lo que pidas sabes que vas a comer muy bien.\n",
         "instagram_url": null
       }
     ]
@@ -5241,16 +5223,6 @@
     ]
   },
   {
-    "id": "f769684b-0c18-4376-b998-fe42f6873351",
-    "nombre": "Nuevo restaurante",
-    "lat": 39.47396795279269,
-    "lng": -0.4246902465820313,
-    "direccion": null,
-    "google_maps_url": null,
-    "grupo_id": null,
-    "categorias": []
-  },
-  {
     "id": "a59e0f86-49d7-4f6e-9ba4-ab6e1e55919f",
     "nombre": "PRUEBA",
     "lat": 39.4828081,
@@ -5264,7 +5236,7 @@
         "precio": "0-10€",
         "valoracion": 2,
         "resena": "",
-        "instagram_url": ""
+        "instagram_url": null
       }
     ]
   }

@@ -103,7 +103,8 @@
   <div id="panel">
     <div id="search-wrap">
       <input id="search" placeholder="Buscar un restaurante..." oninput="renderList(); pintarMarcadores();" />
-      <div id="filters"></div>
+      <button onclick="toggleFiltros()" style="width:100%; text-align:left; background:none; border:none; padding:6px 0; font-size:12.5px; color:var(--text-muted); cursor:pointer; display:flex; justify-content:space-between; font-family:inherit;">Filtros <span id="filtros-flecha">▾</span></button>
+      <div id="filters" style="display:none;"></div>
       <select id="orden" onchange="renderList()" style="width:100%; margin-top:8px; padding:8px; border:1px solid var(--border); border-radius:20px; font-size:12.5px; font-family:inherit;">
         <option value="nombre">Ordenar por nombre</option>
         <option value="precio">Ordenar por precio</option>
@@ -114,6 +115,9 @@
     <div id="list"></div>
   </div>
   <div id="map"></div>
+  <label style="position:absolute; bottom:16px; right:16px; background:white; padding:7px 12px; border-radius:20px; box-shadow:0 1px 4px rgba(0,0,0,0.15); font-size:12.5px; display:flex; align-items:center; gap:6px; cursor:pointer; z-index:500;">
+    <input type="checkbox" onchange="cambiarAgrupado(this.checked)"> Agrupar pines cercanos
+  </label>
 </div>
 
 <div id="detail-overlay" onclick="if(event.target===this) cerrarDetalle()">
@@ -130,7 +134,7 @@ let restaurantes = [];
 let filtroCategorias = new Set();
 let filtroPrecios = new Set();
 let filtroValoraciones = new Set();
-const PRECIOS_FIJOS = ['0-5€', '0-10€', '10-20€', '20-35€', '35-50€', '50-80€', '>100€'];
+const PRECIOS_FIJOS = ['0-5€', '5-10€', '10-20€', '20-35€', '35-50€', '50-80€', '>80€'];
 let map, cluster;
 
 function initMap() {
@@ -138,8 +142,28 @@ function initMap() {
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
     attribution: '© OpenStreetMap © CARTO', subdomains: 'abcd', maxZoom: 20
   }).addTo(map);
-  cluster = L.markerClusterGroup({ maxClusterRadius: 40 });
+  cluster = L.layerGroup();
   map.addLayer(cluster);
+}
+
+function cambiarAgrupado(agrupar) {
+  map.removeLayer(cluster);
+  cluster = agrupar ? L.markerClusterGroup({ maxClusterRadius: 40 }) : L.layerGroup();
+  map.addLayer(cluster);
+  pintarMarcadores();
+}
+
+function colorParaValoracion(v) {
+  const escala = ['#D8D4C4', '#F0B98A', '#DB8F5C', '#C06A3E', '#9A4B2E', '#7A2E22'];
+  return escala[Math.round(v)] || escala[0];
+}
+
+function valoracionMostrada(r) {
+  const relevantes = filtroCategorias.size === 0
+    ? r.categorias
+    : r.categorias.filter(c => filtroCategorias.has(c.nombre));
+  const lista = relevantes.length ? relevantes : r.categorias;
+  return Math.max(...lista.map(c => c.valoracion || 0), 0);
 }
 
 async function cargar() {
@@ -148,6 +172,13 @@ async function cargar() {
   pintarFiltros();
   pintarMarcadores();
   renderList();
+}
+
+function toggleFiltros() {
+  const el = document.getElementById('filters');
+  const abierto = el.style.display !== 'none';
+  el.style.display = abierto ? 'none' : 'block';
+  document.getElementById('filtros-flecha').textContent = abierto ? '▾' : '▴';
 }
 
 function pintarFiltros() {
@@ -217,7 +248,11 @@ function coincide(r) {
 function pintarMarcadores() {
   cluster.clearLayers();
   restaurantes.filter(coincide).forEach(r => {
-    const m = L.marker([r.lat, r.lng], { icon: L.divIcon({ className: 'leaflet-div-icon' }) });
+    const m = L.marker([r.lat, r.lng], { icon: L.divIcon({
+      className: '',
+      html: `<div style="width:20px;height:20px;background:${colorParaValoracion(valoracionMostrada(r))};border:2px solid white;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 1px 3px rgba(0,0,0,0.3);"></div>`,
+      iconSize: [20, 20], iconAnchor: [10, 20]
+    }) });
     m.on('click', () => abrirDetalle(r.id));
     cluster.addLayer(m);
   });
@@ -249,6 +284,11 @@ function ordenar(lista) {
   return copia;
 }
 
+function direccionCorta(direccion) {
+  if (!direccion) return '';
+  return direccion.replace(/,?\s*\d{5}\s*[^,]*,\s*Valencia,\s*España\s*$/i, '').replace(/,\s*España\s*$/i, '');
+}
+
 function renderList() {
   const lista = ordenar(restaurantes.filter(coincide));
   document.getElementById('results-count').textContent = `${lista.length} sitios`;
@@ -258,10 +298,10 @@ function renderList() {
     const div = document.createElement('div');
     div.className = 'card';
     div.onclick = () => abrirDetalle(r.id);
-    const mejorValoracion = Math.max(...r.categorias.map(c => c.valoracion || 0), 0);
+    const mejorValoracion = valoracionMostrada(r);
     div.innerHTML = `
       <div class="nombre">${r.nombre}</div>
-      <div style="color:var(--text-muted); font-size:11.5px; margin-top:2px;">${r.direccion || ''}</div>
+      <div style="color:var(--text-muted); font-size:11.5px; margin-top:2px;">${direccionCorta(r.direccion)}</div>
       <div class="tags">${r.categorias.map(c => `<span class="tag">${c.nombre || ''}${c.precio ? ' · ' + c.precio : ''}</span>`).join('')}</div>
       ${mejorValoracion ? `<div class="stars-mini">${estrellas(mejorValoracion)}</div>` : ''}
     `;
@@ -272,7 +312,7 @@ function renderList() {
 function abrirDetalle(id) {
   const r = restaurantes.find(x => x.id === id);
   if (!r) return;
-  map.panTo([r.lat, r.lng]);
+  map.setView([r.lat, r.lng], Math.max(map.getZoom(), 17));
   document.getElementById('detail-body').innerHTML = `
     <h2>${r.nombre}</h2>
     <div class="direccion">${r.direccion || ''}</div>
@@ -280,7 +320,7 @@ function abrirDetalle(id) {
     ${r.categorias.map(c => `
       <div class="cat-block">
         <div class="cat-top">
-          <span class="cat-nombre">${c.nombre || ''}</span>
+          <span class="cat-nombre">${c.nombre || ''}${c.subcategoria ? ` <span style="font-weight:400; font-size:12.5px; color:var(--text-muted);">(${c.subcategoria})</span>` : ''}</span>
           <span class="cat-precio">${c.precio || ''}</span>
         </div>
         ${c.valoracion ? `<div class="stars">${estrellas(c.valoracion)}</div>` : ''}
