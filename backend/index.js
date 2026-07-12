@@ -24,9 +24,10 @@ async function prepararBaseDeDatos() {
       id TEXT PRIMARY KEY, nombre TEXT NOT NULL, lat REAL NOT NULL, lng REAL NOT NULL,
       direccion TEXT, google_maps_url TEXT, notas_generales TEXT, grupo_id TEXT,
       probado INTEGER DEFAULT 0, pendiente_revisar INTEGER DEFAULT 0,
-      visible_publico INTEGER DEFAULT 1, etiquetas_extra TEXT
+      visible_publico INTEGER DEFAULT 1, etiquetas_extra TEXT, barrio TEXT
     )
   `);
+  try { await db.execute(`ALTER TABLE restaurantes ADD COLUMN barrio TEXT`); } catch (e) {}
   await db.execute(`
     CREATE TABLE IF NOT EXISTS categorias (
       id TEXT PRIMARY KEY, restaurante_id TEXT NOT NULL, nombre TEXT, precio TEXT,
@@ -76,6 +77,7 @@ async function construirRestaurante(fila, soloPublico) {
   const obj = {
     id: fila.id, nombre: fila.nombre, lat: fila.lat, lng: fila.lng,
     direccion: fila.direccion, google_maps_url: fila.google_maps_url, grupo_id: fila.grupo_id,
+    barrio: fila.barrio,
     probado: !!fila.probado, etiquetas_extra: JSON.parse(fila.etiquetas_extra || '[]'),
     categorias: categorias.map(c => ({
       id: c.id, nombre: c.nombre, precio: c.precio, valoracion: c.valoracion,
@@ -123,20 +125,20 @@ app.get('/api/restaurantes', async (req, res) => {
 });
 
 app.post('/api/restaurantes', requiereAuth, async (req, res) => {
-  const { nombre, lat, lng, direccion, google_maps_url } = req.body;
+  const { nombre, lat, lng, direccion, google_maps_url, barrio } = req.body;
   const id = randomUUID();
   await db.execute({
     sql: `INSERT INTO restaurantes (id, nombre, lat, lng, direccion, google_maps_url,
-            notas_generales, grupo_id, probado, pendiente_revisar, visible_publico, etiquetas_extra)
-          VALUES (?, ?, ?, ?, ?, ?, NULL, NULL, 0, 0, 1, '[]')`,
-    args: [id, nombre || 'Nuevo restaurante', lat, lng, direccion || null, google_maps_url || null]
+            notas_generales, grupo_id, probado, pendiente_revisar, visible_publico, etiquetas_extra, barrio)
+          VALUES (?, ?, ?, ?, ?, ?, NULL, NULL, 0, 0, 1, '[]', ?)`,
+    args: [id, nombre || 'Nuevo restaurante', lat, lng, direccion || null, google_maps_url || null, barrio || null]
   });
   const { rows } = await db.execute({ sql: 'SELECT * FROM restaurantes WHERE id = ?', args: [id] });
   res.status(201).json(await construirRestaurante(rows[0], false));
 });
 
 app.put('/api/restaurantes/:id', requiereAuth, async (req, res) => {
-  const campos = ['nombre', 'lat', 'lng', 'direccion', 'google_maps_url',
+  const campos = ['nombre', 'lat', 'lng', 'direccion', 'google_maps_url', 'barrio',
     'notas_generales', 'probado', 'pendiente_revisar', 'visible_publico'];
   const { rows } = await db.execute({ sql: 'SELECT * FROM restaurantes WHERE id = ?', args: [req.params.id] });
   if (!rows[0]) return res.status(404).json({ error: 'No encontrado' });
@@ -147,12 +149,12 @@ app.put('/api/restaurantes/:id', requiereAuth, async (req, res) => {
 
   await db.execute({
     sql: `UPDATE restaurantes SET nombre=?, lat=?, lng=?, direccion=?, google_maps_url=?,
-            notas_generales=?, probado=?, pendiente_revisar=?, visible_publico=?, etiquetas_extra=?
+            notas_generales=?, probado=?, pendiente_revisar=?, visible_publico=?, etiquetas_extra=?, barrio=?
           WHERE id=?`,
     args: [actualizados.nombre, actualizados.lat, actualizados.lng, actualizados.direccion,
       actualizados.google_maps_url, actualizados.notas_generales,
       actualizados.probado ? 1 : 0, actualizados.pendiente_revisar ? 1 : 0,
-      actualizados.visible_publico ? 1 : 0, actualizados.etiquetas_extra, req.params.id]
+      actualizados.visible_publico ? 1 : 0, actualizados.etiquetas_extra, actualizados.barrio, req.params.id]
   });
   const { rows: nuevaFila } = await db.execute({ sql: 'SELECT * FROM restaurantes WHERE id = ?', args: [req.params.id] });
   res.json(await construirRestaurante(nuevaFila[0], false));

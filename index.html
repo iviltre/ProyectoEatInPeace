@@ -61,7 +61,7 @@
   #detail { background: var(--panel); width: 480px; max-width: 100%; max-height: 85vh; border-radius: 20px 20px 0 0; overflow-y: auto; padding-bottom: 20px; }
   @media (min-width: 640px) {
     #detail-overlay { align-items: center; }
-    #detail { border-radius: 20px; }
+    #detail { border-radius: 20px; width: 720px; max-height: 80vh; }
   }
   #detail-close { float: right; background: none; border: none; font-size: 20px; color: var(--text-muted); cursor: pointer; padding: 16px; }
   #detail-body { padding: 4px 24px 20px; }
@@ -84,6 +84,8 @@
     #mobile-tabs { display: flex; border-bottom: 1px solid var(--border); }
     #mobile-tabs button { flex: 1; padding: 10px; border: none; background: white; font-family: inherit; font-size: 13.5px; color: var(--text-muted); cursor: pointer; }
     #mobile-tabs button.active { color: var(--clay); font-weight: 600; border-bottom: 2px solid var(--clay); }
+    #toggle-agrupar-publico { display: none; }
+    #map.mobile-visible ~ #toggle-agrupar-publico { display: flex; }
   }
 </style>
 </head>
@@ -115,7 +117,7 @@
     <div id="list"></div>
   </div>
   <div id="map"></div>
-  <label style="position:absolute; bottom:16px; right:16px; background:white; padding:7px 12px; border-radius:20px; box-shadow:0 1px 4px rgba(0,0,0,0.15); font-size:12.5px; display:flex; align-items:center; gap:6px; cursor:pointer; z-index:500;">
+  <label id="toggle-agrupar-publico" style="position:fixed; bottom:16px; right:16px; background:white; padding:7px 12px; border-radius:20px; box-shadow:0 1px 4px rgba(0,0,0,0.15); font-size:12.5px; display:flex; align-items:center; gap:6px; cursor:pointer; z-index:500;">
     <input type="checkbox" onchange="cambiarAgrupado(this.checked)"> Agrupar pines cercanos
   </label>
 </div>
@@ -134,6 +136,8 @@ let restaurantes = [];
 let filtroCategorias = new Set();
 let filtroPrecios = new Set();
 let filtroValoraciones = new Set();
+let filtroBarrios = new Set();
+let selectedId = null;
 const PRECIOS_FIJOS = ['0-5€', '5-10€', '10-20€', '20-35€', '35-50€', '50-80€', '>80€'];
 let map, cluster;
 
@@ -234,6 +238,25 @@ function pintarFiltros() {
     grupoVal.appendChild(chip);
   });
   el.appendChild(grupoVal);
+
+  const barrios = new Set(restaurantes.map(r => r.barrio).filter(Boolean));
+  if (barrios.size) {
+    const labelBarrio = document.createElement('div');
+    labelBarrio.className = 'filtro-label';
+    labelBarrio.textContent = 'Barrio';
+    el.appendChild(labelBarrio);
+
+    const grupoBarrio = document.createElement('div');
+    grupoBarrio.style.cssText = 'display:flex; flex-wrap:wrap; gap:6px;';
+    [...barrios].sort().forEach(b => {
+      const chip = document.createElement('div');
+      chip.className = 'chip' + (filtroBarrios.has(b) ? ' active' : '');
+      chip.textContent = b;
+      chip.onclick = () => { filtroBarrios.has(b) ? filtroBarrios.delete(b) : filtroBarrios.add(b); pintarFiltros(); renderList(); pintarMarcadores(); };
+      grupoBarrio.appendChild(chip);
+    });
+    el.appendChild(grupoBarrio);
+  }
 }
 
 function coincide(r) {
@@ -242,16 +265,20 @@ function coincide(r) {
   const coincideCat = filtroCategorias.size === 0 || r.categorias.some(c => filtroCategorias.has(c.nombre));
   const coincidePrecio = filtroPrecios.size === 0 || r.categorias.some(c => filtroPrecios.has(c.precio));
   const coincideVal = filtroValoraciones.size === 0 || r.categorias.some(c => [...filtroValoraciones].some(min => (c.valoracion || 0) >= min));
-  return coincideNombre && coincideCat && coincidePrecio && coincideVal;
+  const coincideBarrio = filtroBarrios.size === 0 || filtroBarrios.has(r.barrio);
+  return coincideNombre && coincideCat && coincidePrecio && coincideVal && coincideBarrio;
 }
 
 function pintarMarcadores() {
   cluster.clearLayers();
   restaurantes.filter(coincide).forEach(r => {
+    const seleccionado = r.id === selectedId;
+    const tamaño = seleccionado ? 30 : 20;
+    const anillo = seleccionado ? 'box-shadow: 0 0 0 3px var(--text), 0 1px 4px rgba(0,0,0,0.4);' : 'box-shadow: 0 1px 3px rgba(0,0,0,0.3);';
     const m = L.marker([r.lat, r.lng], { icon: L.divIcon({
       className: '',
-      html: `<div style="width:20px;height:20px;background:${colorParaValoracion(valoracionMostrada(r))};border:2px solid white;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 1px 3px rgba(0,0,0,0.3);"></div>`,
-      iconSize: [20, 20], iconAnchor: [10, 20]
+      html: `<div style="width:${tamaño}px;height:${tamaño}px;background:${colorParaValoracion(valoracionMostrada(r))};border:2px solid white;border-radius:50% 50% 50% 0;transform:rotate(-45deg);${anillo}"></div>`,
+      iconSize: [tamaño, tamaño], iconAnchor: [tamaño/2, tamaño]
     }) });
     m.on('click', () => abrirDetalle(r.id));
     cluster.addLayer(m);
@@ -312,7 +339,9 @@ function renderList() {
 function abrirDetalle(id) {
   const r = restaurantes.find(x => x.id === id);
   if (!r) return;
-  map.setView([r.lat, r.lng], Math.max(map.getZoom(), 17));
+  selectedId = id;
+  pintarMarcadores();
+  map.panTo([r.lat, r.lng]);
   document.getElementById('detail-body').innerHTML = `
     <h2>${r.nombre}</h2>
     <div class="direccion">${r.direccion || ''}</div>
@@ -334,6 +363,8 @@ function abrirDetalle(id) {
 
 function cerrarDetalle() {
   document.getElementById('detail-overlay').classList.remove('open');
+  selectedId = null;
+  pintarMarcadores();
 }
 
 function mostrarTab(tab) {
