@@ -432,7 +432,7 @@ function publicarCambios() {
   a.href = url; a.download = 'data.json';
   a.click();
   URL.revokeObjectURL(url);
-  alert(`Descargado data.json con ${publicos.length} restaurantes visibles.\n\nAhora sustituye el archivo data.json dentro de la carpeta frontend-publico de tu proyecto por este, y haz git add . / git commit / git push para publicarlo.`);
+  alert(`Descargado data.json con ${publicos.length} restaurantes visibles.\n\nAhora sustituye el archivo data.json que está en la RAÍZ de tu proyecto (junto a backend y frontend-privado) por este, y haz git add . / git commit / git push para publicarlo.`);
 }
 
 // ---------- ARRANQUE ----------
