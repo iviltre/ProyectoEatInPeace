@@ -108,8 +108,10 @@
       <h1>Restaurantes <span class="count" id="count-label">0</span></h1>
       <input id="search" placeholder="Buscar por nombre..." oninput="renderList()" />
       <div id="filters"></div>
+      <button class="add-cat-btn" onclick="abrirGestionCategorias()" style="margin-top:4px;">⚙ Gestionar categorías</button>
       <button id="add-btn" onclick="activarModoAñadir()">+ Añadir restaurante en el mapa</button>
       <button id="publish-btn" onclick="publicarCambios()">📤 Publicar cambios para seguidores</button>
+      <button id="backup-btn" onclick="descargarBackup()" style="margin-top:6px; width:100%; padding:9px; background:none; border:1px solid var(--border); color:var(--text-muted); border-radius:6px; font-size:12.5px; cursor:pointer;">💾 Descargar copia de seguridad completa</button>
     </div>
     <div id="list"></div>
   </div>
@@ -129,6 +131,36 @@ let markers = {};
 let selectedId = null;
 let modoAñadir = false;
 let filtroCategorias = new Set();
+let filtroPrecios = new Set();
+let filtroValoraciones = new Set();
+const PRECIOS_FIJOS = ['0-5€', '0-10€', '10-20€', '20-35€', '35-50€', '50-80€', '>100€'];
+
+function categoriasMaestro() {
+  const guardadas = JSON.parse(localStorage.getItem('categoriasMaestro') || 'null');
+  if (guardadas) return guardadas;
+  const cats = new Set();
+  restaurantes.forEach(r => r.categorias.forEach(c => c.nombre && cats.add(c.nombre)));
+  const lista = [...cats].sort();
+  localStorage.setItem('categoriasMaestro', JSON.stringify(lista));
+  return lista;
+}
+
+function añadirCategoriaMaestro(nombre) {
+  nombre = nombre.trim();
+  if (!nombre) return;
+  const lista = categoriasMaestro();
+  if (!lista.includes(nombre)) {
+    lista.push(nombre);
+    lista.sort();
+    localStorage.setItem('categoriasMaestro', JSON.stringify(lista));
+  }
+}
+
+function quitarCategoriaMaestro(nombre) {
+  const lista = categoriasMaestro().filter(c => c !== nombre);
+  localStorage.setItem('categoriasMaestro', JSON.stringify(lista));
+  pintarFiltros();
+}
 
 // ---------- LOGIN ----------
 async function login() {
@@ -159,8 +191,8 @@ async function arrancar() {
 let map, cluster;
 function initMap() {
   map = L.map('map').setView([39.4699, -0.3763], 14); // Valencia
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap'
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '© OpenStreetMap © CARTO', subdomains: 'abcd', maxZoom: 20
   }).addTo(map);
   cluster = L.markerClusterGroup({ maxClusterRadius: 40 });
   map.addLayer(cluster);
@@ -195,30 +227,61 @@ async function cargarRestaurantes() {
 }
 
 function pintarFiltros() {
-  const cats = new Set();
-  restaurantes.forEach(r => r.categorias.forEach(c => c.nombre && cats.add(c.nombre)));
   const el = document.getElementById('filters');
   el.innerHTML = '';
-  [...cats].sort().forEach(cat => {
+
+  const grupoCat = document.createElement('div');
+  grupoCat.style.cssText = 'display:flex; flex-wrap:wrap; gap:6px; margin-bottom:6px;';
+  categoriasMaestro().forEach(cat => {
     const chip = document.createElement('div');
     chip.className = 'chip' + (filtroCategorias.has(cat) ? ' active' : '');
     chip.textContent = cat;
-    chip.onclick = () => {
-      filtroCategorias.has(cat) ? filtroCategorias.delete(cat) : filtroCategorias.add(cat);
-      pintarFiltros();
-      renderList();
-    };
-    el.appendChild(chip);
+    chip.onclick = () => { filtroCategorias.has(cat) ? filtroCategorias.delete(cat) : filtroCategorias.add(cat); pintarFiltros(); renderList(); };
+    grupoCat.appendChild(chip);
   });
+  el.appendChild(grupoCat);
+
+  const grupoPrecio = document.createElement('div');
+  grupoPrecio.style.cssText = 'display:flex; flex-wrap:wrap; gap:6px; margin-bottom:6px;';
+  PRECIOS_FIJOS.forEach(p => {
+    const chip = document.createElement('div');
+    chip.className = 'chip' + (filtroPrecios.has(p) ? ' active' : '');
+    chip.textContent = p;
+    chip.onclick = () => { filtroPrecios.has(p) ? filtroPrecios.delete(p) : filtroPrecios.add(p); pintarFiltros(); renderList(); };
+    grupoPrecio.appendChild(chip);
+  });
+  el.appendChild(grupoPrecio);
+
+  const grupoVal = document.createElement('div');
+  grupoVal.style.cssText = 'display:flex; flex-wrap:wrap; gap:6px;';
+  [5,4,3,2,1].forEach(n => {
+    const chip = document.createElement('div');
+    chip.className = 'chip' + (filtroValoraciones.has(n) ? ' active' : '');
+    chip.textContent = '★'.repeat(n) + '+';
+    chip.onclick = () => { filtroValoraciones.has(n) ? filtroValoraciones.delete(n) : filtroValoraciones.add(n); pintarFiltros(); renderList(); };
+    grupoVal.appendChild(chip);
+  });
+  el.appendChild(grupoVal);
+}
+
+function abrirGestionCategorias() {
+  const actuales = categoriasMaestro();
+  const nueva = prompt('Categorías actuales:\n' + actuales.join(', ') + '\n\nEscribe el nombre de una categoría nueva para añadirla (o deja vacío y cancela para no añadir ninguna):');
+  if (nueva && nueva.trim()) {
+    añadirCategoriaMaestro(nueva);
+    pintarFiltros();
+    alert('Categoría "' + nueva.trim() + '" añadida. Ya aparece en los desplegables.');
+  }
 }
 
 function restaurantesFiltrados() {
   const q = document.getElementById('search').value.toLowerCase();
   return restaurantes.filter(r => {
     const coincideNombre = r.nombre.toLowerCase().includes(q);
-    const coincideCat = filtroCategorias.size === 0 ||
-      r.categorias.some(c => filtroCategorias.has(c.nombre));
-    return coincideNombre && coincideCat;
+    const coincideCat = filtroCategorias.size === 0 || r.categorias.some(c => filtroCategorias.has(c.nombre));
+    const coincidePrecio = filtroPrecios.size === 0 || r.categorias.some(c => filtroPrecios.has(c.precio));
+    const coincideVal = filtroValoraciones.size === 0 || r.categorias.some(c => [...filtroValoraciones].some(min => (c.valoracion || 0) >= min));
+    return coincideNombre && coincideCat && coincidePrecio && coincideVal;
   });
 }
 
@@ -255,7 +318,8 @@ function abrirDetalle(id) {
       <button id="detail-close" onclick="cerrarDetalle()">✕</button>
       <div id="detail-nombre" class="editable" contenteditable oninput="marcarCambio()" onblur="guardarCampo('nombre', this.textContent)">${r.nombre || ''}</div>
       <div id="detail-direccion" class="editable" contenteditable onblur="guardarCampo('direccion', this.textContent)">${r.direccion || 'Añadir dirección'}</div>
-      ${r.google_maps_url ? `<a class="maps-link" href="${r.google_maps_url}" target="_blank">Ver en Google Maps →</a>` : ''}
+      <input type="text" class="editable" value="${r.google_maps_url || ''}" placeholder="Pegar enlace de Google Maps..." style="width:100%; font-size:12px; margin-top:4px; color:var(--accent);" onblur="guardarCampo('google_maps_url', this.value)">
+      ${r.google_maps_url ? `<a class="maps-link" href="${r.google_maps_url}" target="_blank">Abrir en Google Maps →</a>` : ''}
       ${sedes.length ? `<div style="margin-top:8px; font-size:12px; color:var(--text-muted);">Otras sedes: ${sedes.map(s => `<a href="#" onclick="abrirDetalle('${s.id}'); return false;" style="color:var(--accent);">${s.nombre}</a>`).join(', ')}</div>` : ''}
     </div>
 
@@ -303,8 +367,14 @@ function renderCategorias(r) {
     div.className = 'cat-card';
     div.innerHTML = `
       <div class="cat-card-top">
-        <input type="text" value="${cat.nombre || ''}" placeholder="Categoría" style="flex:1;" onblur="guardarCategoria('${cat.id}', 'nombre', this.value)">
-        <input type="text" value="${cat.precio || ''}" placeholder="Precio" list="precios-sugeridos" style="width:90px;" onblur="guardarCategoria('${cat.id}', 'precio', this.value)">
+        <select onchange="guardarCategoria('${cat.id}', 'nombre', this.value)" style="flex:1;">
+          <option value="">Elegir categoría...</option>
+          ${categoriasMaestro().map(c => `<option value="${c}" ${c === cat.nombre ? 'selected' : ''}>${c}</option>`).join('')}
+        </select>
+        <select onchange="guardarCategoria('${cat.id}', 'precio', this.value)" style="width:100px;">
+          <option value="">Precio...</option>
+          ${PRECIOS_FIJOS.map(p => `<option value="${p}" ${p === cat.precio ? 'selected' : ''}>${p}</option>`).join('')}
+        </select>
         <button class="del-cat" onclick="borrarCategoria('${cat.id}')">Quitar</button>
       </div>
       <div class="stars" data-cat="${cat.id}">${[1,2,3,4,5].map(n => `<span class="${n <= (cat.valoracion||0) ? 'filled' : ''}" onclick="guardarCategoria('${cat.id}', 'valoracion', ${n})">★</span>`).join('')}</div>
@@ -313,10 +383,6 @@ function renderCategorias(r) {
     el.appendChild(div);
   });
 }
-
-document.body.insertAdjacentHTML('beforeend', `<datalist id="precios-sugeridos">
-  <option value="0-10€"><option value="10-25€"><option value="25-40€"><option value="40€+">
-</datalist>`);
 
 function cerrarDetalle() {
   document.getElementById('detail').classList.remove('open');
@@ -344,6 +410,22 @@ async function guardarCategoria(catId, campo, valor) {
     method: 'PUT', headers: authHeaders(),
     body: JSON.stringify({ nombre: cat.nombre, precio: cat.precio, valoracion: cat.valoracion, resena: cat.resena })
   });
+
+  // Si es una valoración y el restaurante pertenece a una cadena, la igualamos en las demás sedes
+  if (campo === 'valoracion' && r.grupo_id) {
+    const sedes = restaurantes.filter(x => x.grupo_id === r.grupo_id && x.id !== r.id);
+    for (const sede of sedes) {
+      const catHermana = sede.categorias.find(c => c.nombre === cat.nombre);
+      if (catHermana && catHermana.valoracion !== valor) {
+        catHermana.valoracion = valor;
+        await fetch(`${API}/categorias/${catHermana.id}`, {
+          method: 'PUT', headers: authHeaders(),
+          body: JSON.stringify({ nombre: catHermana.nombre, precio: catHermana.precio, valoracion: valor, resena: catHermana.resena })
+        });
+      }
+    }
+  }
+
   renderCategorias(r);
   renderList();
 }
@@ -437,6 +519,15 @@ function publicarCambios() {
 
 // ---------- ARRANQUE ----------
 if (token) arrancar();
+
+function descargarBackup() {
+  const blob = new Blob([JSON.stringify(restaurantes, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'backup-completo.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
 </script>
 </body>
 </html>
