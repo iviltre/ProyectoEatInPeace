@@ -49,6 +49,7 @@
   .chip { padding: 5px 10px; border: 1px solid var(--border); border-radius: 20px; font-size: 12px; cursor: pointer; background: white; color: var(--text-muted); user-select: none; }
   .chip.active { background: var(--accent); border-color: var(--accent); color: white; }
   #add-btn { margin-top: 10px; width: 100%; padding: 9px; background: var(--text); color: white; border: none; border-radius: 6px; font-size: 13px; cursor: pointer; }
+  #publish-btn { margin-top: 8px; width: 100%; padding: 9px; background: var(--ok); color: white; border: none; border-radius: 6px; font-size: 13px; cursor: pointer; }
   #list { flex: 1; overflow-y: auto; }
   .card { padding: 12px 16px; border-bottom: 1px solid var(--border); cursor: pointer; }
   .card:hover { background: #F5F4EF; }
@@ -108,6 +109,7 @@
       <input id="search" placeholder="Buscar por nombre..." oninput="renderList()" />
       <div id="filters"></div>
       <button id="add-btn" onclick="activarModoAñadir()">+ Añadir restaurante en el mapa</button>
+      <button id="publish-btn" onclick="publicarCambios()">📤 Publicar cambios para seguidores</button>
     </div>
     <div id="list"></div>
   </div>
@@ -412,6 +414,25 @@ async function guardarCampoDirecto(id, campo, valor) {
   await fetch(`${API}/restaurantes/${id}`, {
     method: 'PUT', headers: authHeaders(), body: JSON.stringify({ [campo]: valor })
   });
+}
+
+// ---------- PUBLICAR PARA SEGUIDORES ----------
+function publicarCambios() {
+  const publicos = restaurantes
+    .filter(r => r.visible_publico)
+    .map(r => ({
+      id: r.id, nombre: r.nombre, lat: r.lat, lng: r.lng,
+      direccion: r.direccion, google_maps_url: r.google_maps_url,
+      grupo_id: r.grupo_id,
+      categorias: r.categorias.map(c => ({ nombre: c.nombre, precio: c.precio, valoracion: c.valoracion, resena: c.resena }))
+    }));
+  const blob = new Blob([JSON.stringify(publicos, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'data.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  alert(`Descargado data.json con ${publicos.length} restaurantes visibles.\n\nAhora sustituye el archivo data.json dentro de la carpeta frontend-publico de tu proyecto por este, y haz git add . / git commit / git push para publicarlo.`);
 }
 
 // ---------- ARRANQUE ----------
