@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eat in peace · Restaurantes en Valencia</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAF7F2;
+    --panel: #FFFFFF;
+    --border: #E9E3D8;
+    --text: #2B2823;
+    --text-muted: #837C6E;
+    --sage: #6E7A52;
+    --clay: #BD6B4C;
+    --clay-soft: #F4E3D9;
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Work Sans', sans-serif; color: var(--text); background: var(--bg); }
+  h1, h2, .serif { font-family: 'Fraunces', serif; }
+
+  #topbar { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid var(--border); background: var(--panel); position: sticky; top: 0; z-index: 200; }
+  #topbar .brand { display: flex; align-items: center; gap: 8px; }
+  #topbar h1 { font-size: 19px; margin: 0; font-weight: 600; letter-spacing: -0.01em; }
+  #topbar a.ig { color: var(--text-muted); text-decoration: none; font-size: 13px; border: 1px solid var(--border); padding: 5px 12px; border-radius: 20px; }
+  #topbar a.ig:hover { border-color: var(--clay); color: var(--clay); }
+
+  #layout { display: flex; height: calc(100vh - 57px); }
+  #panel { width: 400px; min-width: 400px; background: var(--panel); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
+  #search-wrap { padding: 16px; border-bottom: 1px solid var(--border); }
+  #search { width: 100%; padding: 11px 14px; border: 1px solid var(--border); border-radius: 20px; font-size: 14px; font-family: inherit; }
+  #filters { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .chip { padding: 6px 12px; border: 1px solid var(--border); border-radius: 20px; font-size: 12.5px; cursor: pointer; background: white; color: var(--text-muted); user-select: none; }
+  .chip.active { background: var(--sage); border-color: var(--sage); color: white; }
+  #results-count { font-size: 12px; color: var(--text-muted); padding: 10px 16px 0; }
+  #list { flex: 1; overflow-y: auto; padding: 8px; }
+
+  .card { padding: 14px; border-radius: var(--radius); cursor: pointer; margin-bottom: 6px; }
+  .card:hover { background: #F5F1E9; }
+  .card .nombre { font-size: 15px; font-weight: 600; font-family: 'Fraunces', serif; }
+  .card .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+  .tag { font-size: 11.5px; background: var(--clay-soft); color: var(--clay); padding: 3px 9px; border-radius: 20px; }
+  .stars-mini { color: var(--clay); font-size: 12px; margin-top: 5px; }
+
+  #map { flex: 1; }
+  .leaflet-div-icon { background: var(--clay); border: 2px solid white; border-radius: 50% 50% 50% 0; width: 22px !important; height: 22px !important; transform: rotate(-45deg); box-shadow: 0 1px 3px rgba(0,0,0,0.25); }
+
+  /* Bottom sheet on mobile */
+  #mobile-tabs { display: none; }
+
+  #detail-overlay { position: fixed; inset: 0; background: rgba(30,28,22,0.4); display: none; align-items: flex-end; justify-content: center; z-index: 800; }
+  #detail-overlay.open { display: flex; }
+  #detail { background: var(--panel); width: 480px; max-width: 100%; max-height: 85vh; border-radius: 20px 20px 0 0; overflow-y: auto; padding-bottom: 20px; }
+  @media (min-width: 640px) {
+    #detail-overlay { align-items: center; }
+    #detail { border-radius: 20px; }
+  }
+  #detail-close { float: right; background: none; border: none; font-size: 20px; color: var(--text-muted); cursor: pointer; padding: 16px; }
+  #detail-body { padding: 4px 24px 20px; }
+  #detail-body h2 { font-size: 22px; margin: 0 0 4px; }
+  #detail-body .direccion { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; }
+  #detail-body a.maps { font-size: 13px; color: var(--sage); text-decoration: none; font-weight: 500; }
+  .cat-block { border-top: 1px solid var(--border); padding: 14px 0; }
+  .cat-block .cat-top { display: flex; align-items: center; justify-content: space-between; }
+  .cat-block .cat-nombre { font-family: 'Fraunces', serif; font-size: 15.5px; font-weight: 600; }
+  .cat-block .cat-precio { font-size: 13px; color: var(--clay); font-weight: 500; }
+  .cat-block .stars { color: var(--clay); font-size: 14px; margin-top: 4px; }
+  .cat-block .resena { font-size: 13.5px; color: var(--text); margin-top: 6px; line-height: 1.5; }
+
+  @media (max-width: 860px) {
+    #layout { flex-direction: column; height: calc(100vh - 57px); }
+    #panel { width: 100%; min-width: 0; border-right: none; }
+    #map { display: none; }
+    #map.mobile-visible { display: block; height: 100%; }
+    #panel.mobile-hidden { display: none; }
+    #mobile-tabs { display: flex; border-bottom: 1px solid var(--border); }
+    #mobile-tabs button { flex: 1; padding: 10px; border: none; background: white; font-family: inherit; font-size: 13.5px; color: var(--text-muted); cursor: pointer; }
+    #mobile-tabs button.active { color: var(--clay); font-weight: 600; border-bottom: 2px solid var(--clay); }
+  }
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <div class="brand"><h1>eat in peace</h1></div>
+  <a class="ig" href="https://www.instagram.com/eatinpeace_" target="_blank">@eatinpeace_</a>
+</div>
+
+<div id="mobile-tabs">
+  <button id="tab-lista" class="active" onclick="mostrarTab('lista')">Lista</button>
+  <button id="tab-mapa" onclick="mostrarTab('mapa')">Mapa</button>
+</div>
+
+<div id="layout">
+  <div id="panel">
+    <div id="search-wrap">
+      <input id="search" placeholder="Buscar un restaurante..." oninput="renderList()" />
+      <div id="filters"></div>
+    </div>
+    <div id="results-count"></div>
+    <div id="list"></div>
+  </div>
+  <div id="map"></div>
+</div>
+
+<div id="detail-overlay" onclick="if(event.target===this) cerrarDetalle()">
+  <div id="detail">
+    <button id="detail-close" onclick="cerrarDetalle()">✕</button>
+    <div id="detail-body"></div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+<script>
+const API = 'http://localhost:3001/api';
+let restaurantes = [];
+let filtroCategorias = new Set();
+let map, cluster;
+
+function initMap() {
+  map = L.map('map').setView([39.4699, -0.3763], 14);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
+  cluster = L.markerClusterGroup({ maxClusterRadius: 40 });
+  map.addLayer(cluster);
+}
+
+async function cargar() {
+  const res = await fetch(`${API}/restaurantes`);
+  restaurantes = await res.json();
+  pintarFiltros();
+  pintarMarcadores();
+  renderList();
+}
+
+function pintarFiltros() {
+  const cats = new Set();
+  restaurantes.forEach(r => r.categorias.forEach(c => c.nombre && cats.add(c.nombre)));
+  const el = document.getElementById('filters');
+  el.innerHTML = '';
+  [...cats].sort().forEach(cat => {
+    const chip = document.createElement('div');
+    chip.className = 'chip' + (filtroCategorias.has(cat) ? ' active' : '');
+    chip.textContent = cat;
+    chip.onclick = () => {
+      filtroCategorias.has(cat) ? filtroCategorias.delete(cat) : filtroCategorias.add(cat);
+      pintarFiltros();
+      renderList();
+      pintarMarcadores();
+    };
+    el.appendChild(chip);
+  });
+}
+
+function coincide(r) {
+  const q = document.getElementById('search').value.toLowerCase();
+  const coincideNombre = r.nombre.toLowerCase().includes(q);
+  const coincideCat = filtroCategorias.size === 0 || r.categorias.some(c => filtroCategorias.has(c.nombre));
+  return coincideNombre && coincideCat;
+}
+
+function pintarMarcadores() {
+  cluster.clearLayers();
+  restaurantes.filter(coincide).forEach(r => {
+    const m = L.marker([r.lat, r.lng], { icon: L.divIcon({ className: 'leaflet-div-icon' }) });
+    m.on('click', () => abrirDetalle(r.id));
+    cluster.addLayer(m);
+  });
+}
+
+function estrellas(n) {
+  n = Math.round(n || 0);
+  return '★'.repeat(n) + '☆'.repeat(5 - n);
+}
+
+function renderList() {
+  const lista = restaurantes.filter(coincide);
+  document.getElementById('results-count').textContent = `${lista.length} sitios`;
+  const el = document.getElementById('list');
+  el.innerHTML = '';
+  lista.forEach(r => {
+    const div = document.createElement('div');
+    div.className = 'card';
+    div.onclick = () => abrirDetalle(r.id);
+    const mejorValoracion = Math.max(...r.categorias.map(c => c.valoracion || 0), 0);
+    div.innerHTML = `
+      <div class="nombre">${r.nombre}</div>
+      <div class="tags">${r.categorias.map(c => `<span class="tag">${c.nombre || ''}${c.precio ? ' · ' + c.precio : ''}</span>`).join('')}</div>
+      ${mejorValoracion ? `<div class="stars-mini">${estrellas(mejorValoracion)}</div>` : ''}
+    `;
+    el.appendChild(div);
+  });
+}
+
+function abrirDetalle(id) {
+  const r = restaurantes.find(x => x.id === id);
+  if (!r) return;
+  map.panTo([r.lat, r.lng]);
+  document.getElementById('detail-body').innerHTML = `
+    <h2>${r.nombre}</h2>
+    <div class="direccion">${r.direccion || ''}</div>
+    ${r.google_maps_url ? `<a class="maps" href="${r.google_maps_url}" target="_blank">Ver en Google Maps →</a>` : ''}
+    ${r.categorias.map(c => `
+      <div class="cat-block">
+        <div class="cat-top">
+          <span class="cat-nombre">${c.nombre || ''}</span>
+          <span class="cat-precio">${c.precio || ''}</span>
+        </div>
+        ${c.valoracion ? `<div class="stars">${estrellas(c.valoracion)}</div>` : ''}
+        ${c.resena ? `<div class="resena">${c.resena}</div>` : ''}
+      </div>
+    `).join('')}
+  `;
+  document.getElementById('detail-overlay').classList.add('open');
+}
+
+function cerrarDetalle() {
+  document.getElementById('detail-overlay').classList.remove('open');
+}
+
+function mostrarTab(tab) {
+  document.getElementById('tab-lista').classList.toggle('active', tab === 'lista');
+  document.getElementById('tab-mapa').classList.toggle('active', tab === 'mapa');
+  document.getElementById('panel').classList.toggle('mobile-hidden', tab === 'mapa');
+  document.getElementById('map').classList.toggle('mobile-visible', tab === 'mapa');
+  if (tab === 'mapa') setTimeout(() => map.invalidateSize(), 50);
+}
+
+initMap();
+cargar();
+</script>
+</body>
+</html>
