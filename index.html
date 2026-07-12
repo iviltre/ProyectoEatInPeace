@@ -102,6 +102,11 @@
     <div id="search-wrap">
       <input id="search" placeholder="Buscar un restaurante..." oninput="renderList()" />
       <div id="filters"></div>
+      <select id="orden" onchange="renderList()" style="width:100%; margin-top:8px; padding:8px; border:1px solid var(--border); border-radius:20px; font-size:12.5px; font-family:inherit;">
+        <option value="nombre">Ordenar por nombre</option>
+        <option value="precio">Ordenar por precio</option>
+        <option value="valoracion">Ordenar por valoración</option>
+      </select>
     </div>
     <div id="results-count"></div>
     <div id="list"></div>
@@ -121,11 +126,16 @@
 <script>
 let restaurantes = [];
 let filtroCategorias = new Set();
+let filtroPrecios = new Set();
+let filtroValoraciones = new Set();
+const PRECIOS_FIJOS = ['0-5€', '0-10€', '10-20€', '20-35€', '35-50€', '50-80€', '>100€'];
 let map, cluster;
 
 function initMap() {
   map = L.map('map').setView([39.4699, -0.3763], 14);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap' }).addTo(map);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '© OpenStreetMap © CARTO', subdomains: 'abcd', maxZoom: 20
+  }).addTo(map);
   cluster = L.markerClusterGroup({ maxClusterRadius: 40 });
   map.addLayer(cluster);
 }
@@ -143,18 +153,39 @@ function pintarFiltros() {
   restaurantes.forEach(r => r.categorias.forEach(c => c.nombre && cats.add(c.nombre)));
   const el = document.getElementById('filters');
   el.innerHTML = '';
+
+  const grupoCat = document.createElement('div');
+  grupoCat.style.cssText = 'display:flex; flex-wrap:wrap; gap:6px; margin-bottom:6px;';
   [...cats].sort().forEach(cat => {
     const chip = document.createElement('div');
     chip.className = 'chip' + (filtroCategorias.has(cat) ? ' active' : '');
     chip.textContent = cat;
-    chip.onclick = () => {
-      filtroCategorias.has(cat) ? filtroCategorias.delete(cat) : filtroCategorias.add(cat);
-      pintarFiltros();
-      renderList();
-      pintarMarcadores();
-    };
-    el.appendChild(chip);
+    chip.onclick = () => { filtroCategorias.has(cat) ? filtroCategorias.delete(cat) : filtroCategorias.add(cat); pintarFiltros(); renderList(); pintarMarcadores(); };
+    grupoCat.appendChild(chip);
   });
+  el.appendChild(grupoCat);
+
+  const grupoPrecio = document.createElement('div');
+  grupoPrecio.style.cssText = 'display:flex; flex-wrap:wrap; gap:6px; margin-bottom:6px;';
+  PRECIOS_FIJOS.forEach(p => {
+    const chip = document.createElement('div');
+    chip.className = 'chip' + (filtroPrecios.has(p) ? ' active' : '');
+    chip.textContent = p;
+    chip.onclick = () => { filtroPrecios.has(p) ? filtroPrecios.delete(p) : filtroPrecios.add(p); pintarFiltros(); renderList(); pintarMarcadores(); };
+    grupoPrecio.appendChild(chip);
+  });
+  el.appendChild(grupoPrecio);
+
+  const grupoVal = document.createElement('div');
+  grupoVal.style.cssText = 'display:flex; flex-wrap:wrap; gap:6px;';
+  [5,4,3,2,1].forEach(n => {
+    const chip = document.createElement('div');
+    chip.className = 'chip' + (filtroValoraciones.has(n) ? ' active' : '');
+    chip.textContent = '★'.repeat(n) + '+';
+    chip.onclick = () => { filtroValoraciones.has(n) ? filtroValoraciones.delete(n) : filtroValoraciones.add(n); pintarFiltros(); renderList(); pintarMarcadores(); };
+    grupoVal.appendChild(chip);
+  });
+  el.appendChild(grupoVal);
 }
 
 function coincide(r) {
@@ -178,8 +209,29 @@ function estrellas(n) {
   return '★'.repeat(n) + '☆'.repeat(5 - n);
 }
 
+function ordenar(lista) {
+  const criterio = document.getElementById('orden').value;
+  const copia = [...lista];
+  if (criterio === 'nombre') {
+    copia.sort((a, b) => a.nombre.localeCompare(b.nombre));
+  } else if (criterio === 'precio') {
+    copia.sort((a, b) => {
+      const ia = PRECIOS_FIJOS.indexOf((a.categorias[0] || {}).precio);
+      const ib = PRECIOS_FIJOS.indexOf((b.categorias[0] || {}).precio);
+      return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
+    });
+  } else if (criterio === 'valoracion') {
+    copia.sort((a, b) => {
+      const va = Math.max(...a.categorias.map(c => c.valoracion || 0), 0);
+      const vb = Math.max(...b.categorias.map(c => c.valoracion || 0), 0);
+      return vb - va;
+    });
+  }
+  return copia;
+}
+
 function renderList() {
-  const lista = restaurantes.filter(coincide);
+  const lista = ordenar(restaurantes.filter(coincide));
   document.getElementById('results-count').textContent = `${lista.length} sitios`;
   const el = document.getElementById('list');
   el.innerHTML = '';
@@ -190,6 +242,7 @@ function renderList() {
     const mejorValoracion = Math.max(...r.categorias.map(c => c.valoracion || 0), 0);
     div.innerHTML = `
       <div class="nombre">${r.nombre}</div>
+      <div style="color:var(--text-muted); font-size:11.5px; margin-top:2px;">${r.direccion || ''}</div>
       <div class="tags">${r.categorias.map(c => `<span class="tag">${c.nombre || ''}${c.precio ? ' · ' + c.precio : ''}</span>`).join('')}</div>
       ${mejorValoracion ? `<div class="stars-mini">${estrellas(mejorValoracion)}</div>` : ''}
     `;
@@ -212,7 +265,8 @@ function abrirDetalle(id) {
           <span class="cat-precio">${c.precio || ''}</span>
         </div>
         ${c.valoracion ? `<div class="stars">${estrellas(c.valoracion)}</div>` : ''}
-        ${c.resena ? `<div class="resena">${c.resena}</div>` : ''}
+        ${c.resena ? `<div class="resena">${c.resena.replace(/\n/g, '<br>')}</div>` : ''}
+        ${c.instagram_url ? `<a class="maps" href="${c.instagram_url}" target="_blank" style="display:inline-block; margin-top:6px;">Ver reel en Instagram →</a>` : ''}
       </div>
     `).join('')}
   `;

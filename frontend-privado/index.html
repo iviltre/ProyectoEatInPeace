@@ -110,6 +110,12 @@
       <div id="filters"></div>
       <button class="add-cat-btn" onclick="abrirGestionCategorias()" style="margin-top:4px;">⚙ Gestionar categorías</button>
       <button id="add-btn" onclick="activarModoAñadir()">+ Añadir restaurante en el mapa</button>
+      <button class="add-cat-btn" onclick="añadirPorDireccion()" style="width:100%; text-align:center; border:1px solid var(--border); border-radius:6px; padding:7px; margin-top:6px;">📍 Añadir escribiendo la dirección</button>
+      <select id="orden" onchange="renderList()" style="width:100%; margin-top:8px; padding:7px; border:1px solid var(--border); border-radius:6px; font-size:12.5px;">
+        <option value="nombre">Ordenar por nombre</option>
+        <option value="precio">Ordenar por precio</option>
+        <option value="valoracion">Ordenar por valoración</option>
+      </select>
       <button id="publish-btn" onclick="publicarCambios()">📤 Publicar cambios para seguidores</button>
       <button id="backup-btn" onclick="descargarBackup()" style="margin-top:6px; width:100%; padding:9px; background:none; border:1px solid var(--border); color:var(--text-muted); border-radius:6px; font-size:12.5px; cursor:pointer;">💾 Descargar copia de seguridad completa</button>
     </div>
@@ -286,7 +292,7 @@ function restaurantesFiltrados() {
 }
 
 function renderList() {
-  const lista = restaurantesFiltrados();
+  const lista = ordenar(restaurantesFiltrados());
   document.getElementById('count-label').textContent = `${lista.length} / ${restaurantes.length}`;
   const el = document.getElementById('list');
   el.innerHTML = '';
@@ -297,10 +303,59 @@ function renderList() {
     div.onclick = () => abrirDetalle(r.id);
     div.innerHTML = `
       <div class="nombre">${r.nombre || '(sin nombre)'} ${r.pendiente_revisar ? '<span class="badge revisar">revisar</span>' : ''}</div>
+      <div class="meta" style="color:var(--text-muted); font-size:11.5px;">${r.direccion || ''}</div>
       <div class="meta">${cat.nombre || 'sin categoría'} ${cat.precio ? '· ' + cat.precio : ''} ${r.categorias.length > 1 ? `· +${r.categorias.length - 1} más` : ''}</div>
     `;
     el.appendChild(div);
   });
+}
+
+function ordenar(lista) {
+  const criterio = document.getElementById('orden').value;
+  const copia = [...lista];
+  if (criterio === 'nombre') {
+    copia.sort((a, b) => a.nombre.localeCompare(b.nombre));
+  } else if (criterio === 'precio') {
+    copia.sort((a, b) => {
+      const ia = PRECIOS_FIJOS.indexOf((a.categorias[0] || {}).precio);
+      const ib = PRECIOS_FIJOS.indexOf((b.categorias[0] || {}).precio);
+      return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
+    });
+  } else if (criterio === 'valoracion') {
+    copia.sort((a, b) => {
+      const va = Math.max(...a.categorias.map(c => c.valoracion || 0), 0);
+      const vb = Math.max(...b.categorias.map(c => c.valoracion || 0), 0);
+      return vb - va;
+    });
+  }
+  return copia;
+}
+
+async function añadirPorDireccion() {
+  const direccion = prompt('Escribe la dirección del restaurante (cuanto más completa, mejor):');
+  if (!direccion || !direccion.trim()) return;
+  const nombre = prompt('¿Nombre del restaurante?') || 'Nuevo restaurante';
+
+  try {
+    const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=es&q=${encodeURIComponent(direccion)}`);
+    const resultados = await res.json();
+    if (!resultados.length) {
+      alert('No he encontrado esa dirección. Prueba a escribirla de forma más completa, o créalo haciendo clic en el mapa.');
+      return;
+    }
+    const { lat, lon } = resultados[0];
+    const r = await fetch(`${API}/restaurantes`, {
+      method: 'POST', headers: authHeaders(),
+      body: JSON.stringify({ nombre, lat: parseFloat(lat), lng: parseFloat(lon), direccion })
+    });
+    const nuevo = await r.json();
+    restaurantes.push(nuevo);
+    pintarMarcadores();
+    renderList();
+    abrirDetalle(nuevo.id);
+  } catch (e) {
+    alert('Hubo un problema buscando esa dirección. Prueba de nuevo o créalo desde el mapa.');
+  }
 }
 
 // ---------- DETALLE ----------
@@ -379,6 +434,7 @@ function renderCategorias(r) {
       </div>
       <div class="stars" data-cat="${cat.id}">${[1,2,3,4,5].map(n => `<span class="${n <= (cat.valoracion||0) ? 'filled' : ''}" onclick="guardarCategoria('${cat.id}', 'valoracion', ${n})">★</span>`).join('')}</div>
       <textarea placeholder="Tu reseña..." onblur="guardarCategoria('${cat.id}', 'resena', this.value)">${cat.resena || ''}</textarea>
+      <input type="text" value="${cat.instagram_url || ''}" placeholder="Enlace al reel de Instagram (opcional)" style="width:100%; margin-top:6px; font-size:12px;" onblur="guardarCategoria('${cat.id}', 'instagram_url', this.value)">
     `;
     el.appendChild(div);
   });
@@ -408,7 +464,7 @@ async function guardarCategoria(catId, campo, valor) {
   cat[campo] = valor;
   await fetch(`${API}/categorias/${catId}`, {
     method: 'PUT', headers: authHeaders(),
-    body: JSON.stringify({ nombre: cat.nombre, precio: cat.precio, valoracion: cat.valoracion, resena: cat.resena })
+    body: JSON.stringify({ nombre: cat.nombre, precio: cat.precio, valoracion: cat.valoracion, resena: cat.resena, instagram_url: cat.instagram_url })
   });
 
   // Si es una valoración y el restaurante pertenece a una cadena, la igualamos en las demás sedes
@@ -420,7 +476,7 @@ async function guardarCategoria(catId, campo, valor) {
         catHermana.valoracion = valor;
         await fetch(`${API}/categorias/${catHermana.id}`, {
           method: 'PUT', headers: authHeaders(),
-          body: JSON.stringify({ nombre: catHermana.nombre, precio: catHermana.precio, valoracion: valor, resena: catHermana.resena })
+          body: JSON.stringify({ nombre: catHermana.nombre, precio: catHermana.precio, valoracion: valor, resena: catHermana.resena, instagram_url: catHermana.instagram_url })
         });
       }
     }
@@ -434,7 +490,7 @@ async function añadirCategoria() {
   const r = restaurantes.find(x => x.id === selectedId);
   const res = await fetch(`${API}/restaurantes/${r.id}/categorias`, {
     method: 'POST', headers: authHeaders(),
-    body: JSON.stringify({ nombre: '', precio: '', valoracion: null, resena: '' })
+    body: JSON.stringify({ nombre: '', precio: '', valoracion: null, resena: '', instagram_url: '' })
   });
   const nueva = await res.json();
   r.categorias.push(nueva);
@@ -506,7 +562,7 @@ function publicarCambios() {
       id: r.id, nombre: r.nombre, lat: r.lat, lng: r.lng,
       direccion: r.direccion, google_maps_url: r.google_maps_url,
       grupo_id: r.grupo_id,
-      categorias: r.categorias.map(c => ({ nombre: c.nombre, precio: c.precio, valoracion: c.valoracion, resena: c.resena }))
+      categorias: r.categorias.map(c => ({ nombre: c.nombre, precio: c.precio, valoracion: c.valoracion, resena: c.resena, instagram_url: c.instagram_url }))
     }));
   const blob = new Blob([JSON.stringify(publicos, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
