@@ -24,7 +24,7 @@
     --radius: 8px;
   }
   * { box-sizing: border-box; }
-  body { margin: 0; font-family: 'IBM Plex Sans', sans-serif; color: var(--text); background: var(--bg); height: 100vh; overflow: hidden; }
+  body { margin: 0; font-family: 'IBM Plex Sans', sans-serif; color: var(--text); background: var(--bg); }
   #app { display: flex; height: 100vh; }
 
   /* --- Login --- */
@@ -40,7 +40,7 @@
   #login-error { color: var(--danger); font-size: 12px; margin-top: 8px; display: none; }
 
   /* --- Sidebar --- */
-  #sidebar { width: 380px; min-width: 380px; min-height: 0; background: var(--panel); border-right: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; }
+  #sidebar { width: 380px; min-width: 380px; background: var(--panel); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
   #sidebar-header { padding: 16px; border-bottom: 1px solid var(--border); }
   #sidebar-header h1 { font-size: 15px; margin: 0 0 12px; display:flex; align-items:center; justify-content:space-between; }
   #sidebar-header h1 span.count { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--text-muted); font-weight: 400; }
@@ -99,6 +99,7 @@
   .maps-link { font-size: 12.5px; color: var(--accent); text-decoration: none; }
 
   @media (max-width: 860px) {
+    #detail { width: 100%; }
     #app { flex-direction: column; height: calc(100vh - 0px); }
     #sidebar { width: 100%; min-width: 0; border-right: none; }
     #map { display: none; }
@@ -107,6 +108,8 @@
     #mobile-tabs { display: flex !important; border-bottom: 1px solid var(--border); }
     #mobile-tabs button { flex: 1; padding: 10px; border: none; background: white; font-family: inherit; font-size: 13.5px; color: var(--text-muted); cursor: pointer; }
     #mobile-tabs button.active { color: var(--accent); font-weight: 600; border-bottom: 2px solid var(--accent); }
+    #toggle-agrupar { display: none; }
+    #map.mobile-visible ~ #toggle-agrupar { display: flex; }
   }
 </style>
 </head>
@@ -132,7 +135,7 @@
       <h1>Restaurantes <span class="count" id="count-label">0</span></h1>
       <input id="search" placeholder="Buscar por nombre..." oninput="renderList(); pintarMarcadores();" />
       <button onclick="toggleFiltros()" style="width:100%; text-align:left; background:none; border:none; padding:6px 0; font-size:12.5px; color:var(--text-muted); cursor:pointer; display:flex; justify-content:space-between;">Filtros <span id="filtros-flecha">▾</span></button>
-      <div id="filters" style="display:none;"></div>
+      <div id="filters" style="display:none; max-height:38vh; overflow-y:auto;"></div>
       <button class="add-cat-btn" onclick="abrirGestionCategorias()" style="margin-top:4px;">⚙ Gestionar categorías</button>
       <button class="add-cat-btn" onclick="añadirPorDireccion()" style="width:100%; text-align:center; border:1px solid var(--border); border-radius:6px; padding:7px; margin-top:6px;">📍 Añadir escribiendo la dirección</button>
       <select id="orden" onchange="renderList()" style="width:100%; margin-top:8px; padding:7px; border:1px solid var(--border); border-radius:6px; font-size:12.5px;">
@@ -146,7 +149,7 @@
     <div id="list"></div>
   </div>
   <div id="map"></div>
-  <label id="toggle-agrupar" style="position:absolute; bottom:16px; right:16px; background:white; padding:7px 12px; border-radius:20px; box-shadow:0 1px 4px rgba(0,0,0,0.15); font-size:12.5px; display:flex; align-items:center; gap:6px; cursor:pointer; z-index:500;">
+  <label id="toggle-agrupar" style="position:fixed; bottom:16px; right:16px; background:white; padding:7px 12px; border-radius:20px; box-shadow:0 1px 4px rgba(0,0,0,0.15); font-size:12.5px; display:flex; align-items:center; gap:6px; cursor:pointer; z-index:500;">
     <input type="checkbox" id="agrupar-checkbox" onchange="cambiarAgrupado(this.checked)"> Agrupar pines cercanos
   </label>
 </div>
@@ -181,7 +184,6 @@ let filtroPrecios = new Set();
 let filtroValoraciones = new Set();
 let filtroProbado = null;
 let filtroBarrios = new Set();
-let filtroSubcategorias = new Set();
 const PRECIOS_FIJOS = ['0-5€', '5-10€', '10-20€', '20-35€', '35-50€', '50-80€', '>80€'];
 
 function categoriasMaestro() {
@@ -208,45 +210,6 @@ function añadirCategoriaMaestro(nombre) {
 function quitarCategoriaMaestro(nombre) {
   const lista = categoriasMaestro().filter(c => c !== nombre);
   localStorage.setItem('categoriasMaestro', JSON.stringify(lista));
-  pintarFiltros();
-}
-
-function subcategoriasMaestro() {
-  const guardadas = JSON.parse(localStorage.getItem('subcategoriasMaestro') || 'null');
-  if (guardadas) return guardadas;
-  const mapa = {};
-  restaurantes.forEach(r => r.categorias.forEach(c => {
-    if (c.nombre && c.subcategoria) {
-      if (!mapa[c.nombre]) mapa[c.nombre] = [];
-      if (!mapa[c.nombre].includes(c.subcategoria)) mapa[c.nombre].push(c.subcategoria);
-    }
-  }));
-  localStorage.setItem('subcategoriasMaestro', JSON.stringify(mapa));
-  return mapa;
-}
-
-function subcategoriasPara(categoriaNombre) {
-  return subcategoriasMaestro()[categoriaNombre] || [];
-}
-
-function añadirSubcategoriaMaestro(categoriaNombre, sub) {
-  sub = sub.trim();
-  if (!sub || !categoriaNombre) return;
-  const mapa = subcategoriasMaestro();
-  if (!mapa[categoriaNombre]) mapa[categoriaNombre] = [];
-  if (!mapa[categoriaNombre].includes(sub)) {
-    mapa[categoriaNombre].push(sub);
-    mapa[categoriaNombre].sort();
-    localStorage.setItem('subcategoriasMaestro', JSON.stringify(mapa));
-  }
-}
-
-function quitarSubcategoriaMaestro(categoriaNombre, sub) {
-  const mapa = subcategoriasMaestro();
-  if (mapa[categoriaNombre]) {
-    mapa[categoriaNombre] = mapa[categoriaNombre].filter(s => s !== sub);
-    localStorage.setItem('subcategoriasMaestro', JSON.stringify(mapa));
-  }
   pintarFiltros();
 }
 
@@ -413,34 +376,6 @@ function pintarFiltros() {
   });
   el.appendChild(grupoCat);
 
-  if (subcategoriasMaestro() && Object.keys(subcategoriasMaestro()).length) {
-    const labelSub = document.createElement('div');
-    labelSub.className = 'filtro-label';
-    labelSub.textContent = 'Subcategoría';
-    el.appendChild(labelSub);
-
-    const mapa = subcategoriasMaestro();
-    Object.keys(mapa).sort().forEach(cat => {
-      if (!mapa[cat].length) return;
-      const miniLabel = document.createElement('div');
-      miniLabel.style.cssText = 'font-size:11px; color:var(--text-muted); margin:4px 0 3px;';
-      miniLabel.textContent = cat;
-      el.appendChild(miniLabel);
-
-      const grupoSub = document.createElement('div');
-      grupoSub.style.cssText = 'display:flex; flex-wrap:wrap; gap:6px; margin-bottom:4px; margin-left:6px;';
-      mapa[cat].forEach(s => {
-        const clave = cat + '::' + s;
-        const chip = document.createElement('div');
-        chip.className = 'chip' + (filtroSubcategorias.has(clave) ? ' active' : '');
-        chip.textContent = s;
-        chip.onclick = () => { filtroSubcategorias.has(clave) ? filtroSubcategorias.delete(clave) : filtroSubcategorias.add(clave); pintarFiltros(); renderList(); pintarMarcadores(); };
-        grupoSub.appendChild(chip);
-      });
-      el.appendChild(grupoSub);
-    });
-  }
-
   const labelPrecio = document.createElement('div');
   labelPrecio.className = 'filtro-label';
   labelPrecio.textContent = 'Precio';
@@ -531,67 +466,15 @@ function renderListaCategoriasMaestro() {
 
   categorias.forEach((cat) => {
     const bloque = document.createElement('div');
-    bloque.style.cssText = 'border:1px solid var(--border); border-radius:8px; padding:10px; margin-bottom:10px;';
-
-    const cabecera = document.createElement('div');
-    cabecera.style.cssText = 'display:flex; justify-content:space-between; align-items:center;';
-    const nombreCat = document.createElement('strong');
-    nombreCat.style.fontSize = '13px';
+    bloque.style.cssText = 'display:flex; justify-content:space-between; align-items:center; padding:8px 4px; border-bottom:1px solid var(--border); font-size:13px;';
+    const nombreCat = document.createElement('span');
     nombreCat.textContent = cat;
     const btnQuitarCat = document.createElement('button');
-    btnQuitarCat.textContent = 'Eliminar categoría';
+    btnQuitarCat.textContent = 'Eliminar';
     btnQuitarCat.style.cssText = 'border:none; background:none; color:var(--danger); cursor:pointer; font-size:11.5px;';
     btnQuitarCat.addEventListener('click', () => confirmarQuitarCategoria(cat));
-    cabecera.appendChild(nombreCat);
-    cabecera.appendChild(btnQuitarCat);
-    bloque.appendChild(cabecera);
-
-    const listaSubs = document.createElement('div');
-    listaSubs.style.cssText = 'margin:8px 0 8px 10px;';
-    const subs = subcategoriasPara(cat);
-    if (subs.length) {
-      subs.forEach(s => {
-        const fila = document.createElement('div');
-        fila.style.cssText = 'display:flex; justify-content:space-between; align-items:center; padding:4px 0; font-size:12.5px; color:var(--text);';
-        const spanSub = document.createElement('span');
-        spanSub.textContent = '· ' + s;
-        const btnQuitarSub = document.createElement('button');
-        btnQuitarSub.textContent = 'Quitar';
-        btnQuitarSub.style.cssText = 'border:none; background:none; color:var(--danger); cursor:pointer; font-size:11px;';
-        btnQuitarSub.addEventListener('click', () => confirmarQuitarSubcategoria(cat, s));
-        fila.appendChild(spanSub);
-        fila.appendChild(btnQuitarSub);
-        listaSubs.appendChild(fila);
-      });
-    } else {
-      const vacio = document.createElement('span');
-      vacio.style.cssText = 'font-size:12px; color:var(--text-muted);';
-      vacio.textContent = 'Sin subcategorías todavía';
-      listaSubs.appendChild(vacio);
-    }
-    bloque.appendChild(listaSubs);
-
-    const filaAñadir = document.createElement('div');
-    filaAñadir.style.cssText = 'display:flex; gap:6px; margin-left:10px;';
-    const inputSub = document.createElement('input');
-    inputSub.type = 'text';
-    inputSub.placeholder = 'Nueva subcategoría de ' + cat;
-    inputSub.style.cssText = 'flex:1; padding:5px 7px; border:1px solid var(--border); border-radius:5px; font-size:12px;';
-    const btnAñadirSub = document.createElement('button');
-    btnAñadirSub.textContent = '+';
-    btnAñadirSub.style.cssText = 'padding:5px 10px; background:var(--sage,#6E7A52); color:white; border:none; border-radius:5px; font-size:12px; cursor:pointer;';
-    const intentarAñadir = () => {
-      if (!inputSub.value.trim()) { alert('Escribe primero un nombre para la subcategoría.'); return; }
-      añadirSubcategoriaMaestro(cat, inputSub.value);
-      renderListaCategoriasMaestro();
-      pintarFiltros();
-    };
-    btnAñadirSub.addEventListener('click', intentarAñadir);
-    inputSub.addEventListener('keydown', (e) => { if (e.key === 'Enter') intentarAñadir(); });
-    filaAñadir.appendChild(inputSub);
-    filaAñadir.appendChild(btnAñadirSub);
-    bloque.appendChild(filaAñadir);
-
+    bloque.appendChild(nombreCat);
+    bloque.appendChild(btnQuitarCat);
     el.appendChild(bloque);
   });
 }
@@ -611,12 +494,6 @@ function confirmarQuitarCategoria(nombre) {
   renderListaCategoriasMaestro();
 }
 
-function confirmarQuitarSubcategoria(categoriaNombre, sub) {
-  if (!confirm(`¿Quitar "${sub}" de ${categoriaNombre}?`)) return;
-  quitarSubcategoriaMaestro(categoriaNombre, sub);
-  renderListaCategoriasMaestro();
-}
-
 function restaurantesFiltrados() {
   const q = document.getElementById('search').value.toLowerCase();
   return restaurantes.filter(r => {
@@ -626,8 +503,7 @@ function restaurantesFiltrados() {
     const coincideVal = filtroValoraciones.size === 0 || r.categorias.some(c => [...filtroValoraciones].some(min => (c.valoracion || 0) >= min));
     const coincideProbado = !filtroProbado || (filtroProbado === 'si' ? r.probado : !r.probado);
     const coincideBarrio = filtroBarrios.size === 0 || filtroBarrios.has(r.barrio);
-    const coincideSub = filtroSubcategorias.size === 0 || r.categorias.some(c => filtroSubcategorias.has(c.nombre + '::' + c.subcategoria));
-    return coincideNombre && coincideCat && coincidePrecio && coincideVal && coincideProbado && coincideBarrio && coincideSub;
+    return coincideNombre && coincideCat && coincidePrecio && coincideVal && coincideProbado && coincideBarrio;
   });
 }
 
@@ -773,10 +649,6 @@ function renderCategorias(r) {
         </select>
         <button class="del-cat" onclick="borrarCategoria('${cat.id}')">Quitar</button>
       </div>
-      <select onchange="guardarCategoria('${cat.id}', 'subcategoria', this.value)" style="width:100%; margin-top:6px; font-size:12px;" ${!cat.nombre ? 'disabled' : ''}>
-        <option value="">${cat.nombre ? 'Subcategoría (opcional)...' : 'Elige antes una categoría'}</option>
-        ${subcategoriasPara(cat.nombre).map(s => `<option value="${s}" ${s === cat.subcategoria ? 'selected' : ''}>${s}</option>`).join('')}
-      </select>
       <div class="stars" data-cat="${cat.id}">${[1,2,3,4,5].map(n => `<span class="${n <= (cat.valoracion||0) ? 'filled' : ''}" onclick="guardarCategoria('${cat.id}', 'valoracion', ${n})">★</span>`).join('')}</div>
       <textarea placeholder="Tu reseña..." onblur="guardarCategoria('${cat.id}', 'resena', this.value)">${cat.resena || ''}</textarea>
       <input type="text" value="${cat.instagram_url || ''}" placeholder="Enlace al reel de Instagram (opcional)" style="width:100%; margin-top:6px; font-size:12px;" onblur="guardarCategoria('${cat.id}', 'instagram_url', this.value)">
@@ -810,7 +682,7 @@ async function guardarCategoria(catId, campo, valor) {
   cat[campo] = valor;
   await fetch(`${API}/categorias/${catId}`, {
     method: 'PUT', headers: authHeaders(),
-    body: JSON.stringify({ nombre: cat.nombre, precio: cat.precio, valoracion: cat.valoracion, resena: cat.resena, instagram_url: cat.instagram_url, subcategoria: cat.subcategoria })
+    body: JSON.stringify({ nombre: cat.nombre, precio: cat.precio, valoracion: cat.valoracion, resena: cat.resena, instagram_url: cat.instagram_url })
   });
 
   // Si es una valoración y el restaurante pertenece a una cadena, la igualamos en las demás sedes
@@ -822,7 +694,7 @@ async function guardarCategoria(catId, campo, valor) {
         catHermana.valoracion = valor;
         await fetch(`${API}/categorias/${catHermana.id}`, {
           method: 'PUT', headers: authHeaders(),
-          body: JSON.stringify({ nombre: catHermana.nombre, precio: catHermana.precio, valoracion: valor, resena: catHermana.resena, instagram_url: catHermana.instagram_url, subcategoria: catHermana.subcategoria })
+          body: JSON.stringify({ nombre: catHermana.nombre, precio: catHermana.precio, valoracion: valor, resena: catHermana.resena, instagram_url: catHermana.instagram_url })
         });
       }
     }
@@ -836,7 +708,7 @@ async function añadirCategoria() {
   const r = restaurantes.find(x => x.id === selectedId);
   const res = await fetch(`${API}/restaurantes/${r.id}/categorias`, {
     method: 'POST', headers: authHeaders(),
-    body: JSON.stringify({ nombre: '', precio: '', valoracion: null, resena: '', instagram_url: '', subcategoria: '' })
+    body: JSON.stringify({ nombre: '', precio: '', valoracion: null, resena: '', instagram_url: ''})
   });
   const nueva = await res.json();
   r.categorias.push(nueva);
@@ -925,7 +797,7 @@ function publicarCambios() {
       id: r.id, nombre: r.nombre, lat: r.lat, lng: r.lng,
       direccion: r.direccion, google_maps_url: r.google_maps_url,
       grupo_id: r.grupo_id, barrio: r.barrio,
-      categorias: r.categorias.map(c => ({ nombre: c.nombre, precio: c.precio, valoracion: c.valoracion, resena: c.resena, instagram_url: c.instagram_url, subcategoria: c.subcategoria }))
+      categorias: r.categorias.map(c => ({ nombre: c.nombre, precio: c.precio, valoracion: c.valoracion, resena: c.resena, instagram_url: c.instagram_url }))
     }));
   const blob = new Blob([JSON.stringify(publicos, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);

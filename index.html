@@ -22,7 +22,7 @@
     --radius: 14px;
   }
   * { box-sizing: border-box; }
-  body { margin: 0; font-family: 'Work Sans', sans-serif; color: var(--text); background: var(--bg); height: 100vh; overflow: hidden; }
+  body { margin: 0; font-family: 'Work Sans', sans-serif; color: var(--text); background: var(--bg); }
   h1, h2, .serif { font-family: 'Fraunces', serif; }
 
   #topbar { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid var(--border); background: var(--panel); position: sticky; top: 0; z-index: 200; }
@@ -32,7 +32,7 @@
   #topbar a.ig:hover { border-color: var(--clay); color: var(--clay); }
 
   #layout { display: flex; height: calc(100vh - 57px); }
-  #panel { width: 400px; min-width: 400px; min-height: 0; background: var(--panel); border-right: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; }
+  #panel { width: 400px; min-width: 400px; background: var(--panel); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
   #search-wrap { padding: 16px; border-bottom: 1px solid var(--border); }
   #search { width: 100%; padding: 11px 14px; border: 1px solid var(--border); border-radius: 20px; font-size: 14px; font-family: inherit; }
   #filters { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
@@ -106,7 +106,7 @@
     <div id="search-wrap">
       <input id="search" placeholder="Buscar un restaurante..." oninput="renderList(); pintarMarcadores();" />
       <button onclick="toggleFiltros()" style="width:100%; text-align:left; background:none; border:none; padding:6px 0; font-size:12.5px; color:var(--text-muted); cursor:pointer; display:flex; justify-content:space-between; font-family:inherit;">Filtros <span id="filtros-flecha">▾</span></button>
-      <div id="filters" style="display:none;"></div>
+      <div id="filters" style="display:none; max-height:35vh; overflow-y:auto;"></div>
       <select id="orden" onchange="renderList()" style="width:100%; margin-top:8px; padding:8px; border:1px solid var(--border); border-radius:20px; font-size:12.5px; font-family:inherit;">
         <option value="nombre">Ordenar por nombre</option>
         <option value="precio">Ordenar por precio</option>
@@ -137,7 +137,6 @@ let filtroCategorias = new Set();
 let filtroPrecios = new Set();
 let filtroValoraciones = new Set();
 let filtroBarrios = new Set();
-let filtroSubcategorias = new Set();
 let selectedId = null;
 const PRECIOS_FIJOS = ['0-5€', '5-10€', '10-20€', '20-35€', '35-50€', '50-80€', '>80€'];
 let map, cluster;
@@ -208,39 +207,6 @@ function pintarFiltros() {
   });
   el.appendChild(grupoCat);
 
-  const subsMapa = {};
-  restaurantes.forEach(r => r.categorias.forEach(c => {
-    if (c.nombre && c.subcategoria) {
-      if (!subsMapa[c.nombre]) subsMapa[c.nombre] = new Set();
-      subsMapa[c.nombre].add(c.subcategoria);
-    }
-  }));
-  if (Object.keys(subsMapa).length) {
-    const labelSub = document.createElement('div');
-    labelSub.className = 'filtro-label';
-    labelSub.textContent = 'Subcategoría';
-    el.appendChild(labelSub);
-
-    Object.keys(subsMapa).sort().forEach(cat => {
-      const miniLabel = document.createElement('div');
-      miniLabel.style.cssText = 'font-size:11px; color:var(--text-muted); margin:4px 0 3px;';
-      miniLabel.textContent = cat;
-      el.appendChild(miniLabel);
-
-      const grupoSub = document.createElement('div');
-      grupoSub.style.cssText = 'display:flex; flex-wrap:wrap; gap:6px; margin-bottom:4px; margin-left:6px;';
-      [...subsMapa[cat]].sort().forEach(s => {
-        const clave = cat + '::' + s;
-        const chip = document.createElement('div');
-        chip.className = 'chip' + (filtroSubcategorias.has(clave) ? ' active' : '');
-        chip.textContent = s;
-        chip.onclick = () => { filtroSubcategorias.has(clave) ? filtroSubcategorias.delete(clave) : filtroSubcategorias.add(clave); pintarFiltros(); renderList(); pintarMarcadores(); };
-        grupoSub.appendChild(chip);
-      });
-      el.appendChild(grupoSub);
-    });
-  }
-
   const labelPrecio = document.createElement('div');
   labelPrecio.className = 'filtro-label';
   labelPrecio.textContent = 'Precio';
@@ -300,8 +266,7 @@ function coincide(r) {
   const coincidePrecio = filtroPrecios.size === 0 || r.categorias.some(c => filtroPrecios.has(c.precio));
   const coincideVal = filtroValoraciones.size === 0 || r.categorias.some(c => [...filtroValoraciones].some(min => (c.valoracion || 0) >= min));
   const coincideBarrio = filtroBarrios.size === 0 || filtroBarrios.has(r.barrio);
-  const coincideSub = filtroSubcategorias.size === 0 || r.categorias.some(c => filtroSubcategorias.has(c.nombre + '::' + c.subcategoria));
-  return coincideNombre && coincideCat && coincidePrecio && coincideVal && coincideBarrio && coincideSub;
+  return coincideNombre && coincideCat && coincidePrecio && coincideVal && coincideBarrio;
 }
 
 function centrarConOffset(lat, lng, zoom, offsetXpx) {
@@ -395,7 +360,7 @@ function abrirDetalle(id) {
     ${r.categorias.map(c => `
       <div class="cat-block">
         <div class="cat-top">
-          <span class="cat-nombre">${c.nombre || ''}${c.subcategoria ? ` <span style="font-weight:400; font-size:12.5px; color:var(--text-muted);">(${c.subcategoria})</span>` : ''}</span>
+          <span class="cat-nombre">${c.nombre || ''}</span>
           <span class="cat-precio">${c.precio || ''}</span>
         </div>
         ${c.valoracion ? `<div class="stars">${estrellas(c.valoracion)}</div>` : ''}
