@@ -80,6 +80,13 @@
   .section { padding: 14px 18px; border-bottom: 1px solid var(--border); }
   .section-label { font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--text-muted); margin-bottom: 8px; font-weight: 500; }
   .toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 6px 0; font-size: 13px; }
+  .switch { position: relative; display: inline-block; width: 38px; height: 22px; flex-shrink: 0; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .switch .slider { position: absolute; cursor: pointer; inset: 0; background-color: #D8D4C4; transition: .15s; border-radius: 22px; }
+  .switch .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background-color: white; transition: .15s; border-radius: 50%; box-shadow: 0 1px 2px rgba(0,0,0,0.25); }
+  .switch input:checked + .slider { background-color: var(--ok); }
+  .switch input:checked + .slider:before { transform: translateX(16px); }
+  .switch input:disabled + .slider { opacity: 0.5; cursor: not-allowed; }
   .cat-card { border: 1px solid var(--border); border-radius: 6px; padding: 10px; margin-bottom: 8px; }
   .cat-card-top { display: flex; gap: 8px; align-items: center; }
   .cat-card input[type=text], .cat-card select, .cat-card textarea { border: 1px solid var(--border); border-radius: 5px; padding: 6px 8px; font-size: 13px; font-family: inherit; }
@@ -147,20 +154,13 @@
 <div id="detail"></div>
 
 <div id="cat-overlay" style="display:none; position:fixed; inset:0; background:rgba(35,36,31,0.35); z-index:900; align-items:center; justify-content:center;">
-  <div style="background:white; border-radius:12px; width:340px; max-height:70vh; overflow-y:auto; padding:20px;">
+  <div style="background:white; border-radius:12px; width:380px; max-height:75vh; overflow-y:auto; padding:20px;">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-      <strong style="font-size:14px;">Gestionar categorías y subcategorías</strong>
+      <strong style="font-size:14px;">Categorías y subcategorías</strong>
       <button onclick="cerrarGestionCategorias()" style="border:none; background:none; font-size:16px; cursor:pointer; color:var(--text-muted);">✕</button>
     </div>
-    <div style="display:flex; gap:8px; margin-bottom:12px; border-bottom:1px solid var(--border);">
-      <button id="tab-gestion-cat" onclick="cambiarTabGestion('categorias')" style="border:none; background:none; padding:6px 0; font-size:12.5px; color:var(--accent); border-bottom:2px solid var(--accent); cursor:pointer;">Categorías</button>
-      <button id="tab-gestion-sub" onclick="cambiarTabGestion('subcategorias')" style="border:none; background:none; padding:6px 0; font-size:12.5px; color:var(--text-muted); cursor:pointer;">Subcategorías</button>
-    </div>
-    <div id="selector-padre-wrap" style="display:none; margin-bottom:10px;">
-      <select id="categoria-padre-select" onchange="renderListaCategoriasMaestro()" style="width:100%; padding:7px 9px; border:1px solid var(--border); border-radius:6px; font-size:13px;"></select>
-    </div>
-    <div style="display:flex; gap:6px; margin-bottom:14px;">
-      <input id="nueva-categoria-input" type="text" placeholder="Nombre nuevo" onkeydown="if(event.key==='Enter') confirmarAñadirCategoria()" style="flex:1; padding:7px 9px; border:1px solid var(--border); border-radius:6px; font-size:13px;">
+    <div style="display:flex; gap:6px; margin-bottom:16px;">
+      <input id="nueva-categoria-input" type="text" placeholder="Nombre de categoría nueva" onkeydown="if(event.key==='Enter') confirmarAñadirCategoria()" style="flex:1; padding:7px 9px; border:1px solid var(--border); border-radius:6px; font-size:13px;">
       <button onclick="confirmarAñadirCategoria()" style="padding:7px 12px; background:var(--text); color:white; border:none; border-radius:6px; font-size:13px; cursor:pointer;">+</button>
     </div>
     <div id="lista-categorias-maestro"></div>
@@ -319,6 +319,38 @@ function cambiarAgrupado(agrupar) {
   pintarMarcadores();
 }
 
+async function cambiarProbado(marcado) {
+  const r = restaurantes.find(x => x.id === selectedId);
+  if (!r) return;
+  r.probado = marcado;
+  const cuerpo = { probado: marcado };
+  if (!marcado) {
+    r.visible_publico = false;
+    cuerpo.visible_publico = false;
+  }
+  await fetch(`${API}/restaurantes/${r.id}`, {
+    method: 'PUT', headers: authHeaders(), body: JSON.stringify(cuerpo)
+  });
+  abrirDetalle(r.id);
+  renderList();
+}
+
+function campoObligatorio(valor, etiqueta) {
+  if (!valor || !valor.trim()) {
+    alert(`El campo "${etiqueta}" es obligatorio y no puede quedar vacío.`);
+    return false;
+  }
+  return true;
+}
+
+function centrarConOffset(lat, lng, zoom, offsetXpx) {
+  const z = zoom !== undefined ? zoom : map.getZoom();
+  const punto = map.project([lat, lng], z);
+  const puntoAjustado = punto.add(L.point(offsetXpx, 0));
+  const centro = map.unproject(puntoAjustado, z);
+  map.setView(centro, z);
+}
+
 function pintarMarcadores() {
   cluster.clearLayers();
   markers = {};
@@ -380,21 +412,26 @@ function pintarFiltros() {
     labelSub.textContent = 'Subcategoría';
     el.appendChild(labelSub);
 
-    const grupoSub = document.createElement('div');
-    grupoSub.style.cssText = 'display:flex; flex-wrap:wrap; gap:6px; margin-bottom:6px;';
     const mapa = subcategoriasMaestro();
     Object.keys(mapa).sort().forEach(cat => {
+      if (!mapa[cat].length) return;
+      const miniLabel = document.createElement('div');
+      miniLabel.style.cssText = 'font-size:11px; color:var(--text-muted); margin:4px 0 3px;';
+      miniLabel.textContent = cat;
+      el.appendChild(miniLabel);
+
+      const grupoSub = document.createElement('div');
+      grupoSub.style.cssText = 'display:flex; flex-wrap:wrap; gap:6px; margin-bottom:4px; margin-left:6px;';
       mapa[cat].forEach(s => {
         const clave = cat + '::' + s;
         const chip = document.createElement('div');
         chip.className = 'chip' + (filtroSubcategorias.has(clave) ? ' active' : '');
         chip.textContent = s;
-        chip.title = cat;
         chip.onclick = () => { filtroSubcategorias.has(clave) ? filtroSubcategorias.delete(clave) : filtroSubcategorias.add(clave); pintarFiltros(); renderList(); pintarMarcadores(); };
         grupoSub.appendChild(chip);
       });
+      el.appendChild(grupoSub);
     });
-    el.appendChild(grupoSub);
   }
 
   const labelPrecio = document.createElement('div');
@@ -465,82 +502,88 @@ function pintarFiltros() {
   }
 }
 
-let tabGestionActual = 'categorias';
-
 function abrirGestionCategorias() {
   document.getElementById('cat-overlay').style.display = 'flex';
   document.getElementById('nueva-categoria-input').value = '';
-  cambiarTabGestion('categorias');
+  renderListaCategoriasMaestro();
 }
 
 function cerrarGestionCategorias() {
   document.getElementById('cat-overlay').style.display = 'none';
 }
 
-function cambiarTabGestion(tab) {
-  tabGestionActual = tab;
-  document.getElementById('tab-gestion-cat').style.cssText = tab === 'categorias'
-    ? 'border:none; background:none; padding:6px 0; font-size:12.5px; color:var(--accent); border-bottom:2px solid var(--accent); cursor:pointer;'
-    : 'border:none; background:none; padding:6px 0; font-size:12.5px; color:var(--text-muted); cursor:pointer;';
-  document.getElementById('tab-gestion-sub').style.cssText = tab === 'subcategorias'
-    ? 'border:none; background:none; padding:6px 0; font-size:12.5px; color:var(--accent); border-bottom:2px solid var(--accent); cursor:pointer;'
-    : 'border:none; background:none; padding:6px 0; font-size:12.5px; color:var(--text-muted); cursor:pointer;';
-  document.getElementById('nueva-categoria-input').placeholder = tab === 'categorias' ? 'Nombre de categoría nuevo' : 'Nombre de subcategoría nuevo';
-
-  const wrap = document.getElementById('selector-padre-wrap');
-  if (tab === 'subcategorias') {
-    wrap.style.display = 'block';
-    const sel = document.getElementById('categoria-padre-select');
-    const previa = sel.value;
-    sel.innerHTML = categoriasMaestro().map(c => `<option value="${c}">${c}</option>`).join('');
-    if (previa && categoriasMaestro().includes(previa)) sel.value = previa;
-  } else {
-    wrap.style.display = 'none';
-  }
-  renderListaCategoriasMaestro();
-}
-
 function renderListaCategoriasMaestro() {
   const el = document.getElementById('lista-categorias-maestro');
   el.innerHTML = '';
-  if (tabGestionActual === 'categorias') {
-    categoriasMaestro().forEach(item => {
-      const fila = document.createElement('div');
-      fila.style.cssText = 'display:flex; justify-content:space-between; align-items:center; padding:7px 0; border-bottom:1px solid var(--border); font-size:13px;';
-      fila.innerHTML = `<span>${item}</span><button onclick="confirmarQuitarCategoria('${item.replace(/'/g, "\\'")}')" style="border:none; background:none; color:var(--danger); cursor:pointer; font-size:12px;">Eliminar</button>`;
-      el.appendChild(fila);
-    });
-  } else {
-    const padre = document.getElementById('categoria-padre-select').value;
-    if (!padre) { el.innerHTML = '<p style="font-size:12.5px; color:var(--text-muted);">Primero crea alguna categoría.</p>'; return; }
-    subcategoriasPara(padre).forEach(item => {
-      const fila = document.createElement('div');
-      fila.style.cssText = 'display:flex; justify-content:space-between; align-items:center; padding:7px 0; border-bottom:1px solid var(--border); font-size:13px;';
-      fila.innerHTML = `<span>${item}</span><button onclick="confirmarQuitarCategoria('${item.replace(/'/g, "\\'")}')" style="border:none; background:none; color:var(--danger); cursor:pointer; font-size:12px;">Eliminar</button>`;
-      el.appendChild(fila);
-    });
+  const categorias = categoriasMaestro();
+
+  if (!categorias.length) {
+    el.innerHTML = '<p style="font-size:12.5px; color:var(--text-muted);">Todavía no hay categorías creadas.</p>';
+    return;
   }
+
+  categorias.forEach((cat, idx) => {
+    const bloque = document.createElement('div');
+    bloque.style.cssText = 'border:1px solid var(--border); border-radius:8px; padding:10px; margin-bottom:10px;';
+
+    const cabecera = document.createElement('div');
+    cabecera.style.cssText = 'display:flex; justify-content:space-between; align-items:center;';
+    cabecera.innerHTML = `<strong style="font-size:13px;">${cat}</strong><button onclick="confirmarQuitarCategoria('${cat.replace(/'/g, "\\'")}')" style="border:none; background:none; color:var(--danger); cursor:pointer; font-size:11.5px;">Eliminar categoría</button>`;
+    bloque.appendChild(cabecera);
+
+    const listaSubs = document.createElement('div');
+    listaSubs.style.cssText = 'margin:8px 0 8px 10px;';
+    const subs = subcategoriasPara(cat);
+    if (subs.length) {
+      subs.forEach(s => {
+        const fila = document.createElement('div');
+        fila.style.cssText = 'display:flex; justify-content:space-between; align-items:center; padding:4px 0; font-size:12.5px; color:var(--text);';
+        fila.innerHTML = `<span>· ${s}</span><button onclick="confirmarQuitarSubcategoria('${cat.replace(/'/g, "\\'")}', '${s.replace(/'/g, "\\'")}')" style="border:none; background:none; color:var(--danger); cursor:pointer; font-size:11px;">Quitar</button>`;
+        listaSubs.appendChild(fila);
+      });
+    } else {
+      listaSubs.innerHTML = '<span style="font-size:12px; color:var(--text-muted);">Sin subcategorías todavía</span>';
+    }
+    bloque.appendChild(listaSubs);
+
+    const filaAñadir = document.createElement('div');
+    filaAñadir.style.cssText = 'display:flex; gap:6px; margin-left:10px;';
+    filaAñadir.innerHTML = `
+      <input id="sub-input-${idx}" type="text" placeholder="Nueva subcategoría de ${cat}" style="flex:1; padding:5px 7px; border:1px solid var(--border); border-radius:5px; font-size:12px;">
+      <button onclick="confirmarAñadirSubcategoria(${idx}, '${cat.replace(/'/g, "\\'")}')" style="padding:5px 10px; background:var(--sage,#6E7A52); color:white; border:none; border-radius:5px; font-size:12px; cursor:pointer;">+</button>
+    `;
+    bloque.appendChild(filaAñadir);
+
+    el.appendChild(bloque);
+  });
 }
 
 function confirmarAñadirCategoria() {
   const input = document.getElementById('nueva-categoria-input');
   if (!input.value.trim()) return;
-  if (tabGestionActual === 'categorias') {
-    añadirCategoriaMaestro(input.value);
-    cambiarTabGestion('categorias');
-  } else {
-    const padre = document.getElementById('categoria-padre-select').value;
-    añadirSubcategoriaMaestro(padre, input.value);
-    renderListaCategoriasMaestro();
-  }
+  añadirCategoriaMaestro(input.value);
   input.value = '';
+  renderListaCategoriasMaestro();
+  pintarFiltros();
+}
+
+function confirmarAñadirSubcategoria(idx, categoriaNombre) {
+  const input = document.getElementById(`sub-input-${idx}`);
+  if (!input || !input.value.trim()) return;
+  añadirSubcategoriaMaestro(categoriaNombre, input.value);
+  renderListaCategoriasMaestro();
   pintarFiltros();
 }
 
 function confirmarQuitarCategoria(nombre) {
   if (!confirm(`¿Quitar "${nombre}" de la lista? (los restaurantes que ya la tengan la conservan, pero no podrás volver a elegirla)`)) return;
-  if (tabGestionActual === 'categorias') quitarCategoriaMaestro(nombre);
-  else quitarSubcategoriaMaestro(document.getElementById('categoria-padre-select').value, nombre);
+  quitarCategoriaMaestro(nombre);
+  renderListaCategoriasMaestro();
+}
+
+function confirmarQuitarSubcategoria(categoriaNombre, sub) {
+  if (!confirm(`¿Quitar "${sub}" de ${categoriaNombre}?`)) return;
+  quitarSubcategoriaMaestro(categoriaNombre, sub);
   renderListaCategoriasMaestro();
 }
 
@@ -632,18 +675,17 @@ function abrirDetalle(id) {
   if (!r) return;
   renderList();
   pintarMarcadores();
-  map.setView([r.lat, r.lng], Math.max(map.getZoom(), 17));
-  setTimeout(() => map.panBy([200, 0]), 0);
+  centrarConOffset(r.lat, r.lng, Math.max(map.getZoom(), 17), 200);
 
   const sedes = restaurantes.filter(x => x.grupo_id && x.grupo_id === r.grupo_id && x.id !== r.id);
 
   document.getElementById('detail').innerHTML = `
     <div id="detail-header">
       <button id="detail-close" onclick="cerrarDetalle()">✕</button>
-      <div id="detail-nombre" class="editable" contenteditable oninput="marcarCambio()" onblur="guardarCampo('nombre', this.textContent)">${r.nombre || ''}</div>
-      <div id="detail-direccion" class="editable" contenteditable onblur="guardarDireccionYReubicar(this.textContent)">${r.direccion || 'Añadir dirección'}</div>
-      <input type="text" class="editable" value="${r.barrio || ''}" placeholder="Barrio (ej: Ruzafa, El Carmen...)" style="width:100%; font-size:12px; margin-top:4px;" onblur="guardarBarrioManual(this.value)">
-      <input type="text" class="editable" value="${r.google_maps_url || ''}" placeholder="Pegar enlace de Google Maps..." style="width:100%; font-size:12px; margin-top:4px; color:var(--accent);" onblur="guardarCampo('google_maps_url', this.value)">
+      <div id="detail-nombre" class="editable" contenteditable oninput="marcarCambio()" onblur="if(campoObligatorio(this.textContent,'nombre')) guardarCampo('nombre', this.textContent); else this.textContent = restaurantes.find(x=>x.id===selectedId).nombre || '';">${r.nombre || ''}</div>
+      <div id="detail-direccion" class="editable" contenteditable onblur="if(campoObligatorio(this.textContent,'dirección')) guardarDireccionYReubicar(this.textContent); else this.textContent = restaurantes.find(x=>x.id===selectedId).direccion || '';">${r.direccion || 'Añadir dirección'}</div>
+      <input type="text" class="editable" value="${r.barrio || ''}" placeholder="Barrio (ej: Ruzafa, El Carmen...)" style="width:100%; font-size:12px; margin-top:4px;" onblur="if(campoObligatorio(this.value,'barrio')) guardarBarrioManual(this.value); else this.value = restaurantes.find(x=>x.id===selectedId).barrio || '';">
+      <input type="text" class="editable" value="${r.google_maps_url || ''}" placeholder="Pegar enlace de Google Maps..." style="width:100%; font-size:12px; margin-top:4px; color:var(--accent);" onblur="if(campoObligatorio(this.value,'enlace de Google Maps')) guardarCampo('google_maps_url', this.value); else this.value = restaurantes.find(x=>x.id===selectedId).google_maps_url || '';">
       ${r.google_maps_url ? `<a class="maps-link" href="${r.google_maps_url}" target="_blank">Abrir en Google Maps →</a>` : ''}
       ${sedes.length ? `<div style="margin-top:8px; font-size:12px; color:var(--text-muted);">Otras sedes: ${sedes.map(s => `<a href="#" onclick="abrirDetalle('${s.id}'); return false;" style="color:var(--accent);">${s.nombre}</a>`).join(', ')}</div>` : ''}
     </div>
@@ -651,16 +693,17 @@ function abrirDetalle(id) {
     <div class="section">
       <div class="toggle-row">
         <span>Probado</span>
-        <input type="checkbox" ${r.probado ? 'checked' : ''} onchange="guardarCampo('probado', this.checked)">
+        <label class="switch"><input type="checkbox" id="chk-probado" ${r.probado ? 'checked' : ''} onchange="cambiarProbado(this.checked)"><span class="slider"></span></label>
       </div>
       <div class="toggle-row">
         <span>Visible para seguidores</span>
-        <input type="checkbox" ${r.visible_publico ? 'checked' : ''} onchange="guardarCampo('visible_publico', this.checked)">
+        <label class="switch"><input type="checkbox" id="chk-visible" ${r.visible_publico ? 'checked' : ''} ${!r.probado ? 'disabled' : ''} onchange="guardarCampo('visible_publico', this.checked)"><span class="slider"></span></label>
       </div>
       <div class="toggle-row">
         <span>Pendiente de revisar</span>
-        <input type="checkbox" ${r.pendiente_revisar ? 'checked' : ''} onchange="guardarCampo('pendiente_revisar', this.checked)">
+        <label class="switch"><input type="checkbox" ${r.pendiente_revisar ? 'checked' : ''} onchange="guardarCampo('pendiente_revisar', this.checked)"><span class="slider"></span></label>
       </div>
+      ${!r.probado ? '<div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Un restaurante no probado no puede estar visible para seguidores.</div>' : ''}
     </div>
 
     <div class="section">
