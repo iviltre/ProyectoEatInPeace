@@ -81,7 +81,7 @@
     #map { display: none; }
     #map.mobile-visible { display: block; height: 100%; }
     #panel.mobile-hidden { display: none; }
-    #mobile-tabs { display: flex; border-bottom: 1px solid var(--border); }
+    #mobile-tabs { display: flex; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; background: white; }
     #mobile-tabs button { flex: 1; padding: 10px; border: none; background: white; font-family: inherit; font-size: 13.5px; color: var(--text-muted); cursor: pointer; }
     #mobile-tabs button.active { color: var(--clay); font-weight: 600; border-bottom: 2px solid var(--clay); }
     #toggle-agrupar-publico { display: none; }
@@ -390,7 +390,7 @@ function abrirDetalle(id) {
   else map.panTo([r.lat, r.lng]);
   document.getElementById('detail-body').innerHTML = `
     <h2>${r.nombre}</h2>
-    <div class="direccion">${r.direccion || ''}</div>
+    <div class="direccion">${r.direccion || ''}${r.barrio ? ' · ' + r.barrio : ''}</div>
     ${r.google_maps_url ? `<a class="maps" href="${r.google_maps_url}" target="_blank">Ver en Google Maps →</a>` : ''}
     ${r.categorias.map(c => `
       <div class="cat-block">

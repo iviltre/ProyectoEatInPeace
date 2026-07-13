@@ -335,12 +335,19 @@ async function cambiarProbado(marcado) {
   renderList();
 }
 
-function campoObligatorio(valor, etiqueta) {
-  if (!valor || !valor.trim()) {
-    alert(`El campo "${etiqueta}" es obligatorio y no puede quedar vacío.`);
-    return false;
+async function actualizarPendienteRevisar() {
+  const r = restaurantes.find(x => x.id === selectedId);
+  if (!r) return;
+  const incompleto = !r.nombre || !r.direccion || !r.barrio || !r.google_maps_url;
+  if (r.pendiente_revisar !== incompleto) {
+    r.pendiente_revisar = incompleto;
+    await fetch(`${API}/restaurantes/${r.id}`, {
+      method: 'PUT', headers: authHeaders(), body: JSON.stringify({ pendiente_revisar: incompleto })
+    });
+    abrirDetalle(r.id);
+    renderList();
+    pintarMarcadores();
   }
-  return true;
 }
 
 function centrarConOffset(lat, lng, zoom, offsetXpx) {
@@ -568,11 +575,16 @@ function confirmarAñadirCategoria() {
 }
 
 function confirmarAñadirSubcategoria(idx, categoriaNombre) {
-  const input = document.getElementById(`sub-input-${idx}`);
-  if (!input || !input.value.trim()) return;
-  añadirSubcategoriaMaestro(categoriaNombre, input.value);
-  renderListaCategoriasMaestro();
-  pintarFiltros();
+  try {
+    const input = document.getElementById(`sub-input-${idx}`);
+    if (!input) { alert('No encuentro el campo de texto (sub-input-' + idx + '). Avisa a Claude con este mensaje.'); return; }
+    if (!input.value.trim()) { alert('Escribe primero un nombre para la subcategoría.'); return; }
+    añadirSubcategoriaMaestro(categoriaNombre, input.value);
+    renderListaCategoriasMaestro();
+    pintarFiltros();
+  } catch (e) {
+    alert('Error al añadir subcategoría: ' + e.message);
+  }
 }
 
 function confirmarQuitarCategoria(nombre) {
@@ -662,6 +674,8 @@ async function añadirPorDireccion() {
     restaurantes.push(nuevo);
     pintarMarcadores();
     renderList();
+    selectedId = nuevo.id;
+    await actualizarPendienteRevisar();
     abrirDetalle(nuevo.id);
   } catch (e) {
     alert('Hubo un problema buscando esa dirección. Prueba de nuevo o créalo desde el mapa.');
@@ -682,10 +696,10 @@ function abrirDetalle(id) {
   document.getElementById('detail').innerHTML = `
     <div id="detail-header">
       <button id="detail-close" onclick="cerrarDetalle()">✕</button>
-      <div id="detail-nombre" class="editable" contenteditable oninput="marcarCambio()" onblur="if(campoObligatorio(this.textContent,'nombre')) guardarCampo('nombre', this.textContent); else this.textContent = restaurantes.find(x=>x.id===selectedId).nombre || '';">${r.nombre || ''}</div>
-      <div id="detail-direccion" class="editable" contenteditable onblur="if(campoObligatorio(this.textContent,'dirección')) guardarDireccionYReubicar(this.textContent); else this.textContent = restaurantes.find(x=>x.id===selectedId).direccion || '';">${r.direccion || 'Añadir dirección'}</div>
-      <input type="text" class="editable" value="${r.barrio || ''}" placeholder="Barrio (ej: Ruzafa, El Carmen...)" style="width:100%; font-size:12px; margin-top:4px;" onblur="if(campoObligatorio(this.value,'barrio')) guardarBarrioManual(this.value); else this.value = restaurantes.find(x=>x.id===selectedId).barrio || '';">
-      <input type="text" class="editable" value="${r.google_maps_url || ''}" placeholder="Pegar enlace de Google Maps..." style="width:100%; font-size:12px; margin-top:4px; color:var(--accent);" onblur="if(campoObligatorio(this.value,'enlace de Google Maps')) guardarCampo('google_maps_url', this.value); else this.value = restaurantes.find(x=>x.id===selectedId).google_maps_url || '';">
+      <div id="detail-nombre" class="editable" contenteditable oninput="marcarCambio()" onblur="guardarCampo('nombre', this.textContent).then(() => actualizarPendienteRevisar())">${r.nombre || ''}</div>
+      <div id="detail-direccion" class="editable" contenteditable onblur="guardarDireccionYReubicar(this.textContent).then(() => actualizarPendienteRevisar())">${r.direccion || 'Añadir dirección'}</div>
+      <input type="text" class="editable" value="${r.barrio || ''}" placeholder="Barrio (ej: Ruzafa, El Carmen...)" style="width:100%; font-size:12px; margin-top:4px;" onblur="guardarBarrioManual(this.value).then(() => actualizarPendienteRevisar())">
+      <input type="text" class="editable" value="${r.google_maps_url || ''}" placeholder="Pegar enlace de Google Maps..." style="width:100%; font-size:12px; margin-top:4px; color:var(--accent);" onblur="guardarCampo('google_maps_url', this.value).then(() => actualizarPendienteRevisar())">
       ${r.google_maps_url ? `<a class="maps-link" href="${r.google_maps_url}" target="_blank">Abrir en Google Maps →</a>` : ''}
       ${sedes.length ? `<div style="margin-top:8px; font-size:12px; color:var(--text-muted);">Otras sedes: ${sedes.map(s => `<a href="#" onclick="abrirDetalle('${s.id}'); return false;" style="color:var(--accent);">${s.nombre}</a>`).join(', ')}</div>` : ''}
     </div>
