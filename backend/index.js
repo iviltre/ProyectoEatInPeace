@@ -96,6 +96,8 @@ async function migrarBarrios() {
   }
   console.log(`Barrio extraído y guardado para ${actualizados} restaurantes.`);
 }
+
+async function construirRestaurante(fila, soloPublico) {
   const { rows: categorias } = await db.execute({
     sql: 'SELECT * FROM categorias WHERE restaurante_id = ?', args: [fila.id]
   });
