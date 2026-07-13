@@ -303,12 +303,18 @@ function iconoPara(r) {
   const seleccionado = r.id === selectedId;
   const color = colorParaValoracion(valoracionMostrada(r));
   const borde = r.pendiente_revisar ? '3px solid #C77D2E' : '2px solid white';
-  const tamaño = seleccionado ? 30 : 20;
-  const anillo = seleccionado ? 'box-shadow: 0 0 0 3px var(--text), 0 1px 4px rgba(0,0,0,0.4);' : 'box-shadow: 0 1px 3px rgba(0,0,0,0.3);';
+
+  if (seleccionado) {
+    return L.divIcon({
+      className: '',
+      html: `<div style="width:26px;height:26px;background:${color};border:3px solid var(--text, #23241F);border-radius:50%;box-shadow:0 1px 6px rgba(0,0,0,0.4);"></div>`,
+      iconSize: [26, 26], iconAnchor: [13, 13]
+    });
+  }
   return L.divIcon({
     className: '',
-    html: `<div style="width:${tamaño}px;height:${tamaño}px;background:${color};border:${borde};border-radius:50% 50% 50% 0;transform:rotate(-45deg);${anillo}"></div>`,
-    iconSize: [tamaño, tamaño], iconAnchor: [tamaño/2, tamaño]
+    html: `<div style="width:20px;height:20px;background:${color};border:${borde};border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 1px 3px rgba(0,0,0,0.3);"></div>`,
+    iconSize: [20, 20], iconAnchor: [10, 20]
   });
 }
 
@@ -642,7 +648,7 @@ function abrirDetalle(id) {
       <button id="detail-close" onclick="cerrarDetalle()">✕</button>
       <div id="detail-nombre" class="editable" contenteditable oninput="marcarCambio()" onblur="guardarCampo('nombre', this.textContent)">${r.nombre || ''}</div>
       <div id="detail-direccion" class="editable" contenteditable onblur="guardarDireccionYReubicar(this.textContent)">${r.direccion || 'Añadir dirección'}</div>
-      <input type="text" class="editable" value="${r.barrio || ''}" placeholder="Barrio (ej: Ruzafa, El Carmen...)" style="width:100%; font-size:12px; margin-top:4px;" onblur="guardarCampo('barrio', this.value)">
+      <input type="text" class="editable" value="${r.barrio || ''}" placeholder="Barrio (ej: Ruzafa, El Carmen...)" style="width:100%; font-size:12px; margin-top:4px;" onblur="guardarBarrioManual(this.value)">
       <input type="text" class="editable" value="${r.google_maps_url || ''}" placeholder="Pegar enlace de Google Maps..." style="width:100%; font-size:12px; margin-top:4px; color:var(--accent);" onblur="guardarCampo('google_maps_url', this.value)">
       ${r.google_maps_url ? `<a class="maps-link" href="${r.google_maps_url}" target="_blank">Abrir en Google Maps →</a>` : ''}
       ${sedes.length ? `<div style="margin-top:8px; font-size:12px; color:var(--text-muted);">Otras sedes: ${sedes.map(s => `<a href="#" onclick="abrirDetalle('${s.id}'); return false;" style="color:var(--accent);">${s.nombre}</a>`).join(', ')}</div>` : ''}
@@ -786,15 +792,38 @@ async function borrarRestaurante() {
 }
 
 // ---------- CAMBIAR DIRECCIÓN → REUBICAR EN EL MAPA ----------
+async function guardarBarrioManual(valor) {
+  const r = restaurantes.find(x => x.id === selectedId);
+  if (!r) return;
+  r.barrio = valor;
+  r.barrio_manual = true;
+  await fetch(`${API}/restaurantes/${r.id}`, {
+    method: 'PUT', headers: authHeaders(), body: JSON.stringify({ barrio: valor, barrio_manual: true })
+  });
+  pintarFiltros();
+  renderList();
+}
+
+function extraerBarrioLocal(direccion) {
+  if (!direccion) return null;
+  const partes = direccion.split(',').map(p => p.trim()).filter(Boolean);
+  const idxPostal = partes.findIndex(p => /^\d{4,5}\b/.test(p));
+  if (idxPostal > 1) {
+    const candidato = partes[idxPostal - 1];
+    if (candidato && !/^\d+$/.test(candidato)) return candidato;
+  }
+  const posible = partes.find((p, i) => i > 0 && !/\d/.test(p) && !/valencia|españa|valència/i.test(p));
+  return posible || null;
+}
+
 async function guardarDireccionYReubicar(nuevaDireccion) {
   const r = restaurantes.find(x => x.id === selectedId);
   if (!r || nuevaDireccion === r.direccion) return;
   r.direccion = nuevaDireccion;
   const cuerpo = { direccion: nuevaDireccion };
 
-  if (!r.barrio) {
-    const partes = nuevaDireccion.split(',').map(p => p.trim());
-    const posible = partes.find(p => p && !/\d/.test(p) && !/valencia|españa|valència/i.test(p) && p !== partes[0]);
+  if (!r.barrio_manual) {
+    const posible = extraerBarrioLocal(nuevaDireccion);
     if (posible) { r.barrio = posible; cuerpo.barrio = posible; }
   }
 

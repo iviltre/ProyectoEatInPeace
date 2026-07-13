@@ -24,10 +24,11 @@ async function prepararBaseDeDatos() {
       id TEXT PRIMARY KEY, nombre TEXT NOT NULL, lat REAL NOT NULL, lng REAL NOT NULL,
       direccion TEXT, google_maps_url TEXT, notas_generales TEXT, grupo_id TEXT,
       probado INTEGER DEFAULT 0, pendiente_revisar INTEGER DEFAULT 0,
-      visible_publico INTEGER DEFAULT 1, etiquetas_extra TEXT, barrio TEXT
+      visible_publico INTEGER DEFAULT 1, etiquetas_extra TEXT, barrio TEXT, barrio_manual INTEGER DEFAULT 0
     )
   `);
   try { await db.execute(`ALTER TABLE restaurantes ADD COLUMN barrio TEXT`); } catch (e) {}
+  try { await db.execute(`ALTER TABLE restaurantes ADD COLUMN barrio_manual INTEGER DEFAULT 0`); } catch (e) {}
   await db.execute(`
     CREATE TABLE IF NOT EXISTS categorias (
       id TEXT PRIMARY KEY, restaurante_id TEXT NOT NULL, nombre TEXT, precio TEXT,
@@ -73,28 +74,28 @@ async function prepararBaseDeDatos() {
 function extraerBarrio(direccion) {
   if (!direccion) return null;
   const partes = direccion.split(',').map(p => p.trim()).filter(Boolean);
+  const idxPostal = partes.findIndex(p => /^\d{4,5}\b/.test(p));
+  if (idxPostal > 1) {
+    const candidato = partes[idxPostal - 1];
+    if (candidato && !/^\d+$/.test(candidato)) return candidato;
+  }
   const posible = partes.find((p, i) => i > 0 && !/\d/.test(p) && !/valencia|españa|valència/i.test(p));
   return posible || null;
 }
 
 async function migrarBarrios() {
-  const { rows } = await db.execute(`SELECT id, direccion, barrio FROM restaurantes`);
+  const { rows } = await db.execute(`SELECT id, direccion, barrio, barrio_manual FROM restaurantes`);
   console.log(`Revisando barrios: ${rows.length} restaurantes en total.`);
-  const candidatos = rows.filter(f => (!f.barrio || f.barrio === '') && f.direccion);
-  console.log(`Candidatos sin barrio con dirección: ${candidatos.length}.`);
-  if (candidatos.length) {
-    console.log('Ejemplo de dirección a procesar:', JSON.stringify(candidatos[0].direccion));
-    console.log('Barrio que se extraería de ese ejemplo:', extraerBarrio(candidatos[0].direccion));
-  }
+  const candidatos = rows.filter(f => f.direccion && !f.barrio_manual);
   let actualizados = 0;
   for (const fila of candidatos) {
     const barrio = extraerBarrio(fila.direccion);
-    if (barrio) {
+    if (barrio && barrio !== fila.barrio) {
       await db.execute({ sql: 'UPDATE restaurantes SET barrio = ? WHERE id = ?', args: [barrio, fila.id] });
       actualizados++;
     }
   }
-  console.log(`Barrio extraído y guardado para ${actualizados} restaurantes.`);
+  console.log(`Barrio recalculado y guardado para ${actualizados} restaurantes.`);
 }
 
 async function construirRestaurante(fila, soloPublico) {
@@ -165,7 +166,7 @@ app.post('/api/restaurantes', requiereAuth, async (req, res) => {
 });
 
 app.put('/api/restaurantes/:id', requiereAuth, async (req, res) => {
-  const campos = ['nombre', 'lat', 'lng', 'direccion', 'google_maps_url', 'barrio',
+  const campos = ['nombre', 'lat', 'lng', 'direccion', 'google_maps_url', 'barrio', 'barrio_manual',
     'notas_generales', 'probado', 'pendiente_revisar', 'visible_publico'];
   const { rows } = await db.execute({ sql: 'SELECT * FROM restaurantes WHERE id = ?', args: [req.params.id] });
   if (!rows[0]) return res.status(404).json({ error: 'No encontrado' });
@@ -176,12 +177,13 @@ app.put('/api/restaurantes/:id', requiereAuth, async (req, res) => {
 
   await db.execute({
     sql: `UPDATE restaurantes SET nombre=?, lat=?, lng=?, direccion=?, google_maps_url=?,
-            notas_generales=?, probado=?, pendiente_revisar=?, visible_publico=?, etiquetas_extra=?, barrio=?
+            notas_generales=?, probado=?, pendiente_revisar=?, visible_publico=?, etiquetas_extra=?, barrio=?, barrio_manual=?
           WHERE id=?`,
     args: [actualizados.nombre, actualizados.lat, actualizados.lng, actualizados.direccion,
       actualizados.google_maps_url, actualizados.notas_generales,
       actualizados.probado ? 1 : 0, actualizados.pendiente_revisar ? 1 : 0,
-      actualizados.visible_publico ? 1 : 0, actualizados.etiquetas_extra, actualizados.barrio, req.params.id]
+      actualizados.visible_publico ? 1 : 0, actualizados.etiquetas_extra, actualizados.barrio,
+      actualizados.barrio_manual ? 1 : 0, req.params.id]
   });
   const { rows: nuevaFila } = await db.execute({ sql: 'SELECT * FROM restaurantes WHERE id = ?', args: [req.params.id] });
   res.json(await construirRestaurante(nuevaFila[0], false));
