@@ -78,16 +78,23 @@ function extraerBarrio(direccion) {
 }
 
 async function migrarBarrios() {
-  const { rows } = await db.execute(`SELECT id, direccion FROM restaurantes WHERE (barrio IS NULL OR barrio = '') AND direccion IS NOT NULL`);
+  const { rows } = await db.execute(`SELECT id, direccion, barrio FROM restaurantes`);
+  console.log(`Revisando barrios: ${rows.length} restaurantes en total.`);
+  const candidatos = rows.filter(f => (!f.barrio || f.barrio === '') && f.direccion);
+  console.log(`Candidatos sin barrio con dirección: ${candidatos.length}.`);
+  if (candidatos.length) {
+    console.log('Ejemplo de dirección a procesar:', JSON.stringify(candidatos[0].direccion));
+    console.log('Barrio que se extraería de ese ejemplo:', extraerBarrio(candidatos[0].direccion));
+  }
   let actualizados = 0;
-  for (const fila of rows) {
+  for (const fila of candidatos) {
     const barrio = extraerBarrio(fila.direccion);
     if (barrio) {
       await db.execute({ sql: 'UPDATE restaurantes SET barrio = ? WHERE id = ?', args: [barrio, fila.id] });
       actualizados++;
     }
   }
-  if (actualizados) console.log(`Barrio extraído automáticamente para ${actualizados} restaurantes.`);
+  console.log(`Barrio extraído y guardado para ${actualizados} restaurantes.`);
 }
   const { rows: categorias } = await db.execute({
     sql: 'SELECT * FROM categorias WHERE restaurante_id = ?', args: [fila.id]
