@@ -22,7 +22,7 @@
     --radius: 14px;
   }
   * { box-sizing: border-box; }
-  body { margin: 0; font-family: 'Work Sans', sans-serif; color: var(--text); background: var(--bg); }
+  body { margin: 0; font-family: 'Work Sans', sans-serif; color: var(--text); background: var(--bg); height: 100vh; overflow: hidden; }
   h1, h2, .serif { font-family: 'Fraunces', serif; }
 
   #topbar { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid var(--border); background: var(--panel); position: sticky; top: 0; z-index: 200; }
@@ -32,7 +32,7 @@
   #topbar a.ig:hover { border-color: var(--clay); color: var(--clay); }
 
   #layout { display: flex; height: calc(100vh - 57px); }
-  #panel { width: 400px; min-width: 400px; background: var(--panel); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
+  #panel { width: 400px; min-width: 400px; min-height: 0; background: var(--panel); border-right: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; }
   #search-wrap { padding: 16px; border-bottom: 1px solid var(--border); }
   #search { width: 100%; padding: 11px 14px; border: 1px solid var(--border); border-radius: 20px; font-size: 14px; font-family: inherit; }
   #filters { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
