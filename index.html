@@ -305,9 +305,13 @@ function pintarMarcadores() {
   restaurantes.filter(coincide).forEach(r => {
     const seleccionado = r.id === selectedId;
     const color = colorParaValoracion(valoracionMostrada(r));
-    const icono = seleccionado
-      ? L.divIcon({ className: '', html: `<div style="width:26px;height:26px;background:${color};border:3px solid var(--text);border-radius:50%;box-shadow:0 1px 6px rgba(0,0,0,0.4);"></div>`, iconSize: [26,26], iconAnchor: [13,13] })
-      : L.divIcon({ className: '', html: `<div style="width:20px;height:20px;background:${color};border:2px solid white;border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 1px 3px rgba(0,0,0,0.3);"></div>`, iconSize: [20,20], iconAnchor: [10,20] });
+    const tamaño = seleccionado ? 30 : 20;
+    const anillo = seleccionado ? 'box-shadow: 0 0 0 3px var(--text), 0 1px 4px rgba(0,0,0,0.4);' : 'box-shadow: 0 1px 3px rgba(0,0,0,0.3);';
+    const icono = L.divIcon({
+      className: '',
+      html: `<div style="width:${tamaño}px;height:${tamaño}px;background:${color};border:2px solid white;border-radius:50% 50% 50% 0;transform:rotate(-45deg);${anillo}"></div>`,
+      iconSize: [tamaño, tamaño], iconAnchor: [tamaño / 2, tamaño]
+    });
     const m = L.marker([r.lat, r.lng], { icon: icono });
     m.on('click', () => abrirDetalle(r.id));
     cluster.addLayer(m);
@@ -371,7 +375,7 @@ function abrirDetalle(id) {
   selectedId = id;
   pintarMarcadores();
   map.panTo([r.lat, r.lng]);
-  setTimeout(() => map.panBy([170, 0]), 0);
+  if (window.innerWidth > 860) setTimeout(() => map.panBy([210, 0]), 0);
   document.getElementById('detail-body').innerHTML = `
     <h2>${r.nombre}</h2>
     <div class="direccion">${r.direccion || ''}</div>

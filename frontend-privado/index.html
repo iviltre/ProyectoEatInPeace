@@ -303,18 +303,12 @@ function iconoPara(r) {
   const seleccionado = r.id === selectedId;
   const color = colorParaValoracion(valoracionMostrada(r));
   const borde = r.pendiente_revisar ? '3px solid #C77D2E' : '2px solid white';
-
-  if (seleccionado) {
-    return L.divIcon({
-      className: '',
-      html: `<div style="width:26px;height:26px;background:${color};border:3px solid var(--text, #23241F);border-radius:50%;box-shadow:0 1px 6px rgba(0,0,0,0.4);"></div>`,
-      iconSize: [26, 26], iconAnchor: [13, 13]
-    });
-  }
+  const tamaño = seleccionado ? 30 : 20;
+  const anillo = seleccionado ? 'box-shadow: 0 0 0 3px var(--text), 0 1px 4px rgba(0,0,0,0.4);' : 'box-shadow: 0 1px 3px rgba(0,0,0,0.3);';
   return L.divIcon({
     className: '',
-    html: `<div style="width:20px;height:20px;background:${color};border:${borde};border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 1px 3px rgba(0,0,0,0.3);"></div>`,
-    iconSize: [20, 20], iconAnchor: [10, 20]
+    html: `<div style="width:${tamaño}px;height:${tamaño}px;background:${color};border:${borde};border-radius:50% 50% 50% 0;transform:rotate(-45deg);${anillo}"></div>`,
+    iconSize: [tamaño, tamaño], iconAnchor: [tamaño / 2, tamaño]
   });
 }
 
@@ -639,7 +633,7 @@ function abrirDetalle(id) {
   renderList();
   pintarMarcadores();
   map.setView([r.lat, r.lng], Math.max(map.getZoom(), 17));
-  setTimeout(() => map.panBy([160, 0]), 0);
+  setTimeout(() => map.panBy([200, 0]), 0);
 
   const sedes = restaurantes.filter(x => x.grupo_id && x.grupo_id === r.grupo_id && x.id !== r.id);
 
@@ -855,7 +849,7 @@ function publicarCambios() {
     .map(r => ({
       id: r.id, nombre: r.nombre, lat: r.lat, lng: r.lng,
       direccion: r.direccion, google_maps_url: r.google_maps_url,
-      grupo_id: r.grupo_id,
+      grupo_id: r.grupo_id, barrio: r.barrio,
       categorias: r.categorias.map(c => ({ nombre: c.nombre, precio: c.precio, valoracion: c.valoracion, resena: c.resena, instagram_url: c.instagram_url, subcategoria: c.subcategoria }))
     }));
   const blob = new Blob([JSON.stringify(publicos, null, 2)], { type: 'application/json' });
