@@ -208,9 +208,14 @@ function pintarFiltros() {
   });
   el.appendChild(grupoCat);
 
-  const subs = new Set();
-  restaurantes.forEach(r => r.categorias.forEach(c => c.subcategoria && subs.add(c.subcategoria)));
-  if (subs.size) {
+  const subsMapa = {};
+  restaurantes.forEach(r => r.categorias.forEach(c => {
+    if (c.nombre && c.subcategoria) {
+      if (!subsMapa[c.nombre]) subsMapa[c.nombre] = new Set();
+      subsMapa[c.nombre].add(c.subcategoria);
+    }
+  }));
+  if (Object.keys(subsMapa).length) {
     const labelSub = document.createElement('div');
     labelSub.className = 'filtro-label';
     labelSub.textContent = 'Subcategoría';
@@ -218,12 +223,16 @@ function pintarFiltros() {
 
     const grupoSub = document.createElement('div');
     grupoSub.style.cssText = 'display:flex; flex-wrap:wrap; gap:6px; margin-bottom:6px;';
-    [...subs].sort().forEach(s => {
-      const chip = document.createElement('div');
-      chip.className = 'chip' + (filtroSubcategorias.has(s) ? ' active' : '');
-      chip.textContent = s;
-      chip.onclick = () => { filtroSubcategorias.has(s) ? filtroSubcategorias.delete(s) : filtroSubcategorias.add(s); pintarFiltros(); renderList(); pintarMarcadores(); };
-      grupoSub.appendChild(chip);
+    Object.keys(subsMapa).sort().forEach(cat => {
+      [...subsMapa[cat]].sort().forEach(s => {
+        const clave = cat + '::' + s;
+        const chip = document.createElement('div');
+        chip.className = 'chip' + (filtroSubcategorias.has(clave) ? ' active' : '');
+        chip.textContent = s;
+        chip.title = cat;
+        chip.onclick = () => { filtroSubcategorias.has(clave) ? filtroSubcategorias.delete(clave) : filtroSubcategorias.add(clave); pintarFiltros(); renderList(); pintarMarcadores(); };
+        grupoSub.appendChild(chip);
+      });
     });
     el.appendChild(grupoSub);
   }
@@ -287,7 +296,7 @@ function coincide(r) {
   const coincidePrecio = filtroPrecios.size === 0 || r.categorias.some(c => filtroPrecios.has(c.precio));
   const coincideVal = filtroValoraciones.size === 0 || r.categorias.some(c => [...filtroValoraciones].some(min => (c.valoracion || 0) >= min));
   const coincideBarrio = filtroBarrios.size === 0 || filtroBarrios.has(r.barrio);
-  const coincideSub = filtroSubcategorias.size === 0 || r.categorias.some(c => filtroSubcategorias.has(c.subcategoria));
+  const coincideSub = filtroSubcategorias.size === 0 || r.categorias.some(c => filtroSubcategorias.has(c.nombre + '::' + c.subcategoria));
   return coincideNombre && coincideCat && coincidePrecio && coincideVal && coincideBarrio && coincideSub;
 }
 

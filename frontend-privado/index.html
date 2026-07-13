@@ -156,6 +156,9 @@
       <button id="tab-gestion-cat" onclick="cambiarTabGestion('categorias')" style="border:none; background:none; padding:6px 0; font-size:12.5px; color:var(--accent); border-bottom:2px solid var(--accent); cursor:pointer;">Categorías</button>
       <button id="tab-gestion-sub" onclick="cambiarTabGestion('subcategorias')" style="border:none; background:none; padding:6px 0; font-size:12.5px; color:var(--text-muted); cursor:pointer;">Subcategorías</button>
     </div>
+    <div id="selector-padre-wrap" style="display:none; margin-bottom:10px;">
+      <select id="categoria-padre-select" onchange="renderListaCategoriasMaestro()" style="width:100%; padding:7px 9px; border:1px solid var(--border); border-radius:6px; font-size:13px;"></select>
+    </div>
     <div style="display:flex; gap:6px; margin-bottom:14px;">
       <input id="nueva-categoria-input" type="text" placeholder="Nombre nuevo" onkeydown="if(event.key==='Enter') confirmarAñadirCategoria()" style="flex:1; padding:7px 9px; border:1px solid var(--border); border-radius:6px; font-size:13px;">
       <button onclick="confirmarAñadirCategoria()" style="padding:7px 12px; background:var(--text); color:white; border:none; border-radius:6px; font-size:13px; cursor:pointer;">+</button>
@@ -211,27 +214,39 @@ function quitarCategoriaMaestro(nombre) {
 function subcategoriasMaestro() {
   const guardadas = JSON.parse(localStorage.getItem('subcategoriasMaestro') || 'null');
   if (guardadas) return guardadas;
-  const subs = new Set();
-  restaurantes.forEach(r => r.categorias.forEach(c => c.subcategoria && subs.add(c.subcategoria)));
-  const lista = [...subs].sort();
-  localStorage.setItem('subcategoriasMaestro', JSON.stringify(lista));
-  return lista;
+  const mapa = {};
+  restaurantes.forEach(r => r.categorias.forEach(c => {
+    if (c.nombre && c.subcategoria) {
+      if (!mapa[c.nombre]) mapa[c.nombre] = [];
+      if (!mapa[c.nombre].includes(c.subcategoria)) mapa[c.nombre].push(c.subcategoria);
+    }
+  }));
+  localStorage.setItem('subcategoriasMaestro', JSON.stringify(mapa));
+  return mapa;
 }
 
-function añadirSubcategoriaMaestro(nombre) {
-  nombre = nombre.trim();
-  if (!nombre) return;
-  const lista = subcategoriasMaestro();
-  if (!lista.includes(nombre)) {
-    lista.push(nombre);
-    lista.sort();
-    localStorage.setItem('subcategoriasMaestro', JSON.stringify(lista));
+function subcategoriasPara(categoriaNombre) {
+  return subcategoriasMaestro()[categoriaNombre] || [];
+}
+
+function añadirSubcategoriaMaestro(categoriaNombre, sub) {
+  sub = sub.trim();
+  if (!sub || !categoriaNombre) return;
+  const mapa = subcategoriasMaestro();
+  if (!mapa[categoriaNombre]) mapa[categoriaNombre] = [];
+  if (!mapa[categoriaNombre].includes(sub)) {
+    mapa[categoriaNombre].push(sub);
+    mapa[categoriaNombre].sort();
+    localStorage.setItem('subcategoriasMaestro', JSON.stringify(mapa));
   }
 }
 
-function quitarSubcategoriaMaestro(nombre) {
-  const lista = subcategoriasMaestro().filter(c => c !== nombre);
-  localStorage.setItem('subcategoriasMaestro', JSON.stringify(lista));
+function quitarSubcategoriaMaestro(categoriaNombre, sub) {
+  const mapa = subcategoriasMaestro();
+  if (mapa[categoriaNombre]) {
+    mapa[categoriaNombre] = mapa[categoriaNombre].filter(s => s !== sub);
+    localStorage.setItem('subcategoriasMaestro', JSON.stringify(mapa));
+  }
   pintarFiltros();
 }
 
@@ -359,7 +374,7 @@ function pintarFiltros() {
   });
   el.appendChild(grupoCat);
 
-  if (subcategoriasMaestro().length) {
+  if (subcategoriasMaestro() && Object.keys(subcategoriasMaestro()).length) {
     const labelSub = document.createElement('div');
     labelSub.className = 'filtro-label';
     labelSub.textContent = 'Subcategoría';
@@ -367,12 +382,17 @@ function pintarFiltros() {
 
     const grupoSub = document.createElement('div');
     grupoSub.style.cssText = 'display:flex; flex-wrap:wrap; gap:6px; margin-bottom:6px;';
-    subcategoriasMaestro().forEach(s => {
-      const chip = document.createElement('div');
-      chip.className = 'chip' + (filtroSubcategorias.has(s) ? ' active' : '');
-      chip.textContent = s;
-      chip.onclick = () => { filtroSubcategorias.has(s) ? filtroSubcategorias.delete(s) : filtroSubcategorias.add(s); pintarFiltros(); renderList(); pintarMarcadores(); };
-      grupoSub.appendChild(chip);
+    const mapa = subcategoriasMaestro();
+    Object.keys(mapa).sort().forEach(cat => {
+      mapa[cat].forEach(s => {
+        const clave = cat + '::' + s;
+        const chip = document.createElement('div');
+        chip.className = 'chip' + (filtroSubcategorias.has(clave) ? ' active' : '');
+        chip.textContent = s;
+        chip.title = cat;
+        chip.onclick = () => { filtroSubcategorias.has(clave) ? filtroSubcategorias.delete(clave) : filtroSubcategorias.add(clave); pintarFiltros(); renderList(); pintarMarcadores(); };
+        grupoSub.appendChild(chip);
+      });
     });
     el.appendChild(grupoSub);
   }
@@ -466,35 +486,61 @@ function cambiarTabGestion(tab) {
     ? 'border:none; background:none; padding:6px 0; font-size:12.5px; color:var(--accent); border-bottom:2px solid var(--accent); cursor:pointer;'
     : 'border:none; background:none; padding:6px 0; font-size:12.5px; color:var(--text-muted); cursor:pointer;';
   document.getElementById('nueva-categoria-input').placeholder = tab === 'categorias' ? 'Nombre de categoría nuevo' : 'Nombre de subcategoría nuevo';
+
+  const wrap = document.getElementById('selector-padre-wrap');
+  if (tab === 'subcategorias') {
+    wrap.style.display = 'block';
+    const sel = document.getElementById('categoria-padre-select');
+    const previa = sel.value;
+    sel.innerHTML = categoriasMaestro().map(c => `<option value="${c}">${c}</option>`).join('');
+    if (previa && categoriasMaestro().includes(previa)) sel.value = previa;
+  } else {
+    wrap.style.display = 'none';
+  }
   renderListaCategoriasMaestro();
 }
 
 function renderListaCategoriasMaestro() {
   const el = document.getElementById('lista-categorias-maestro');
   el.innerHTML = '';
-  const lista = tabGestionActual === 'categorias' ? categoriasMaestro() : subcategoriasMaestro();
-  lista.forEach(item => {
-    const fila = document.createElement('div');
-    fila.style.cssText = 'display:flex; justify-content:space-between; align-items:center; padding:7px 0; border-bottom:1px solid var(--border); font-size:13px;';
-    fila.innerHTML = `<span>${item}</span><button onclick="confirmarQuitarCategoria('${item.replace(/'/g, "\\'")}')" style="border:none; background:none; color:var(--danger); cursor:pointer; font-size:12px;">Eliminar</button>`;
-    el.appendChild(fila);
-  });
+  if (tabGestionActual === 'categorias') {
+    categoriasMaestro().forEach(item => {
+      const fila = document.createElement('div');
+      fila.style.cssText = 'display:flex; justify-content:space-between; align-items:center; padding:7px 0; border-bottom:1px solid var(--border); font-size:13px;';
+      fila.innerHTML = `<span>${item}</span><button onclick="confirmarQuitarCategoria('${item.replace(/'/g, "\\'")}')" style="border:none; background:none; color:var(--danger); cursor:pointer; font-size:12px;">Eliminar</button>`;
+      el.appendChild(fila);
+    });
+  } else {
+    const padre = document.getElementById('categoria-padre-select').value;
+    if (!padre) { el.innerHTML = '<p style="font-size:12.5px; color:var(--text-muted);">Primero crea alguna categoría.</p>'; return; }
+    subcategoriasPara(padre).forEach(item => {
+      const fila = document.createElement('div');
+      fila.style.cssText = 'display:flex; justify-content:space-between; align-items:center; padding:7px 0; border-bottom:1px solid var(--border); font-size:13px;';
+      fila.innerHTML = `<span>${item}</span><button onclick="confirmarQuitarCategoria('${item.replace(/'/g, "\\'")}')" style="border:none; background:none; color:var(--danger); cursor:pointer; font-size:12px;">Eliminar</button>`;
+      el.appendChild(fila);
+    });
+  }
 }
 
 function confirmarAñadirCategoria() {
   const input = document.getElementById('nueva-categoria-input');
   if (!input.value.trim()) return;
-  if (tabGestionActual === 'categorias') añadirCategoriaMaestro(input.value);
-  else añadirSubcategoriaMaestro(input.value);
+  if (tabGestionActual === 'categorias') {
+    añadirCategoriaMaestro(input.value);
+    cambiarTabGestion('categorias');
+  } else {
+    const padre = document.getElementById('categoria-padre-select').value;
+    añadirSubcategoriaMaestro(padre, input.value);
+    renderListaCategoriasMaestro();
+  }
   input.value = '';
-  renderListaCategoriasMaestro();
   pintarFiltros();
 }
 
 function confirmarQuitarCategoria(nombre) {
   if (!confirm(`¿Quitar "${nombre}" de la lista? (los restaurantes que ya la tengan la conservan, pero no podrás volver a elegirla)`)) return;
   if (tabGestionActual === 'categorias') quitarCategoriaMaestro(nombre);
-  else quitarSubcategoriaMaestro(nombre);
+  else quitarSubcategoriaMaestro(document.getElementById('categoria-padre-select').value, nombre);
   renderListaCategoriasMaestro();
 }
 
@@ -507,7 +553,7 @@ function restaurantesFiltrados() {
     const coincideVal = filtroValoraciones.size === 0 || r.categorias.some(c => [...filtroValoraciones].some(min => (c.valoracion || 0) >= min));
     const coincideProbado = !filtroProbado || (filtroProbado === 'si' ? r.probado : !r.probado);
     const coincideBarrio = filtroBarrios.size === 0 || filtroBarrios.has(r.barrio);
-    const coincideSub = filtroSubcategorias.size === 0 || r.categorias.some(c => filtroSubcategorias.has(c.subcategoria));
+    const coincideSub = filtroSubcategorias.size === 0 || r.categorias.some(c => filtroSubcategorias.has(c.nombre + '::' + c.subcategoria));
     return coincideNombre && coincideCat && coincidePrecio && coincideVal && coincideProbado && coincideBarrio && coincideSub;
   });
 }
@@ -652,9 +698,9 @@ function renderCategorias(r) {
         </select>
         <button class="del-cat" onclick="borrarCategoria('${cat.id}')">Quitar</button>
       </div>
-      <select onchange="guardarCategoria('${cat.id}', 'subcategoria', this.value)" style="width:100%; margin-top:6px; font-size:12px;">
-        <option value="">Subcategoría (opcional)...</option>
-        ${subcategoriasMaestro().map(s => `<option value="${s}" ${s === cat.subcategoria ? 'selected' : ''}>${s}</option>`).join('')}
+      <select onchange="guardarCategoria('${cat.id}', 'subcategoria', this.value)" style="width:100%; margin-top:6px; font-size:12px;" ${!cat.nombre ? 'disabled' : ''}>
+        <option value="">${cat.nombre ? 'Subcategoría (opcional)...' : 'Elige antes una categoría'}</option>
+        ${subcategoriasPara(cat.nombre).map(s => `<option value="${s}" ${s === cat.subcategoria ? 'selected' : ''}>${s}</option>`).join('')}
       </select>
       <div class="stars" data-cat="${cat.id}">${[1,2,3,4,5].map(n => `<span class="${n <= (cat.valoracion||0) ? 'filled' : ''}" onclick="guardarCategoria('${cat.id}', 'valoracion', ${n})">★</span>`).join('')}</div>
       <textarea placeholder="Tu reseña..." onblur="guardarCategoria('${cat.id}', 'resena', this.value)">${cat.resena || ''}</textarea>
