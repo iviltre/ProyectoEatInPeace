@@ -59,7 +59,7 @@
 
   #detail-overlay { position: fixed; inset: 0; background: rgba(30,28,22,0.15); display: none; align-items: flex-end; justify-content: center; z-index: 800; pointer-events: none; }
   #detail-overlay.open { display: flex; }
-  #detail { background: var(--panel); width: 480px; max-width: 100%; max-height: 68vh; border-radius: 20px 20px 0 0; overflow-y: auto; padding-bottom: 20px; pointer-events: auto; box-shadow: 0 -4px 24px rgba(0,0,0,0.15); }
+  #detail { background: var(--panel); width: 480px; max-width: 100%; max-height: 68vh; border-radius: 20px 20px 0 0; overflow-y: auto; padding-bottom: 20px; pointer-events: auto; box-shadow: 0 -4px 24px rgba(0,0,0,0.15); transition: transform 0.25s ease; }
   @media (min-width: 640px) {
     #detail-overlay { align-items: stretch; justify-content: flex-end; background: transparent; }
     #detail { width: 440px; max-height: 100vh; border-radius: 0; box-shadow: -6px 0 24px rgba(0,0,0,0.1); }
@@ -400,17 +400,50 @@ function mostrarTab(tab) {
 initMap();
 cargar();
 
+function ajustarOffsetMovil() {
+  const topbar = document.getElementById('topbar');
+  const tabs = document.getElementById('mobile-tabs');
+  const layout = document.getElementById('layout');
+  if (window.innerWidth > 860) {
+    layout.style.marginTop = '';
+    layout.style.height = '';
+    tabs.style.top = '';
+    return;
+  }
+  const topbarH = topbar.offsetHeight;
+  const tabsH = tabs.offsetHeight;
+  tabs.style.top = topbarH + 'px';
+  layout.style.marginTop = (topbarH + tabsH) + 'px';
+  layout.style.height = `calc(100vh - ${topbarH + tabsH}px)`;
+}
+window.addEventListener('resize', ajustarOffsetMovil);
+window.addEventListener('load', ajustarOffsetMovil);
+ajustarOffsetMovil();
+
 // ---------- Deslizar hacia abajo para cerrar (móvil) ----------
 (function () {
   const asa = document.getElementById('detail-handle');
+  const panel = document.getElementById('detail');
   let inicioY = null;
-  asa.addEventListener('touchstart', (e) => { inicioY = e.touches[0].clientY; });
-  asa.addEventListener('touchmove', (e) => { e.preventDefault(); });
-  asa.addEventListener('touchend', (e) => {
+  let desplazamiento = 0;
+  asa.addEventListener('touchstart', (e) => {
+    inicioY = e.touches[0].clientY;
+    panel.style.transition = 'none';
+  });
+  asa.addEventListener('touchmove', (e) => {
     if (inicioY === null) return;
-    const diferencia = e.changedTouches[0].clientY - inicioY;
-    if (diferencia > 40) cerrarDetalle();
+    desplazamiento = Math.max(0, e.touches[0].clientY - inicioY);
+    panel.style.transform = `translateY(${desplazamiento}px)`;
+    e.preventDefault();
+  });
+  asa.addEventListener('touchend', () => {
+    panel.style.transition = '';
+    if (desplazamiento > 90) {
+      cerrarDetalle();
+    }
+    panel.style.transform = '';
     inicioY = null;
+    desplazamiento = 0;
   });
 })();
 </script>
