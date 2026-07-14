@@ -27,6 +27,7 @@
   html, body { margin: 0; padding: 0; }
   body { font-family: 'IBM Plex Sans', sans-serif; color: var(--text); background: var(--bg); }
   #app { display: flex; height: 100vh; }
+  #sidebar { min-height: 0; overflow: hidden; }
 
   /* --- Login --- */
   #login-screen {
@@ -111,6 +112,8 @@
     #mobile-tabs button.active { color: var(--accent); font-weight: 600; border-bottom: 2px solid var(--accent); }
     #toggle-agrupar { display: none; }
     #map.mobile-visible ~ #toggle-agrupar { display: flex; }
+    input, select, textarea { font-size: 16px !important; }
+    .leaflet-control-zoom { display: none; }
   }
 </style>
 </head>
@@ -174,6 +177,8 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+window.scrollTo(0, 0);
 const API = 'https://proyectoeatinpeace-backend.onrender.com/api';
 let token = localStorage.getItem('token');
 let restaurantes = [];

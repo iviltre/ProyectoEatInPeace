@@ -33,7 +33,7 @@
   #topbar a.ig:hover { border-color: var(--clay); color: var(--clay); }
 
   #layout { display: flex; height: calc(100vh - 57px); margin-top: 57px; }
-  #panel { width: 400px; min-width: 400px; background: var(--panel); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
+  #panel { width: 400px; min-width: 400px; min-height: 0; overflow: hidden; background: var(--panel); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
   #search-wrap { padding: 16px; border-bottom: 1px solid var(--border); }
   #search { width: 100%; padding: 11px 14px; border: 1px solid var(--border); border-radius: 20px; font-size: 14px; font-family: inherit; }
   #filters { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
@@ -67,7 +67,8 @@
   #detail-close { float: right; background: none; border: none; font-size: 20px; color: var(--text-muted); cursor: pointer; padding: 16px; }
   #detail-handle { display: none; }
   @media (max-width: 639px) {
-    #detail-handle { display: block; width: 40px; height: 4px; background: var(--border); border-radius: 4px; margin: 10px auto 0; }
+    #detail-handle { display: flex; align-items: center; justify-content: center; height: 24px; touch-action: none; }
+    #detail-handle::before { content: ''; width: 40px; height: 4px; background: var(--border); border-radius: 4px; }
   }
   #detail-body { padding: 4px 24px 20px; }
   #detail-body h2 { font-size: 22px; margin: 0 0 4px; }
@@ -81,16 +82,18 @@
   .cat-block .resena { font-size: 13.5px; color: var(--text); margin-top: 6px; line-height: 1.5; }
 
   @media (max-width: 860px) {
-    #layout { flex-direction: column; height: calc(100vh - 57px); }
+    #layout { flex-direction: column; height: calc(100vh - 57px - 44px); margin-top: 44px; }
     #panel { width: 100%; min-width: 0; border-right: none; }
     #map { display: none; }
     #map.mobile-visible { display: block; height: 100%; }
     #panel.mobile-hidden { display: none; }
-    #mobile-tabs { display: flex; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; background: white; }
+    #mobile-tabs { display: flex; border-bottom: 1px solid var(--border); position: fixed; top: 57px; left: 0; right: 0; height: 44px; z-index: 999; background: white; }
     #mobile-tabs button { flex: 1; padding: 10px; border: none; background: white; font-family: inherit; font-size: 13.5px; color: var(--text-muted); cursor: pointer; }
     #mobile-tabs button.active { color: var(--clay); font-weight: 600; border-bottom: 2px solid var(--clay); }
     #toggle-agrupar-publico { display: none; }
     #map.mobile-visible ~ #toggle-agrupar-publico { display: flex; }
+    input, select, textarea { font-size: 16px !important; }
+    .leaflet-control-zoom { display: none; }
   }
 </style>
 </head>
@@ -138,6 +141,8 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+window.scrollTo(0, 0);
 let restaurantes = [];
 let filtroCategorias = new Set();
 let filtroPrecios = new Set();
@@ -397,16 +402,14 @@ cargar();
 
 // ---------- Deslizar hacia abajo para cerrar (móvil) ----------
 (function () {
-  const detalle = document.getElementById('detail');
+  const asa = document.getElementById('detail-handle');
   let inicioY = null;
-  detalle.addEventListener('touchstart', (e) => {
-    if (detalle.scrollTop <= 0) inicioY = e.touches[0].clientY;
-    else inicioY = null;
-  });
-  detalle.addEventListener('touchend', (e) => {
+  asa.addEventListener('touchstart', (e) => { inicioY = e.touches[0].clientY; });
+  asa.addEventListener('touchmove', (e) => { e.preventDefault(); });
+  asa.addEventListener('touchend', (e) => {
     if (inicioY === null) return;
     const diferencia = e.changedTouches[0].clientY - inicioY;
-    if (diferencia > 80) cerrarDetalle();
+    if (diferencia > 40) cerrarDetalle();
     inicioY = null;
   });
 })();
