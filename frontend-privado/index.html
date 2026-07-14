@@ -24,7 +24,8 @@
     --radius: 8px;
   }
   * { box-sizing: border-box; }
-  body { margin: 0; font-family: 'IBM Plex Sans', sans-serif; color: var(--text); background: var(--bg); }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: 'IBM Plex Sans', sans-serif; color: var(--text); background: var(--bg); }
   #app { display: flex; height: 100vh; }
 
   /* --- Login --- */
@@ -70,8 +71,8 @@
   /* --- Detail panel --- */
   #detail { position: fixed; top: 0; right: 0; width: 420px; height: 100vh; background: var(--panel); border-left: 1px solid var(--border); box-shadow: -4px 0 16px rgba(0,0,0,0.06); transform: translateX(100%); transition: transform .18s ease; overflow-y: auto; z-index: 500; }
   #detail.open { transform: translateX(0); }
-  #detail-header { padding: 18px 18px 12px; border-bottom: 1px solid var(--border); }
-  #detail-close { float: right; background: none; border: none; font-size: 18px; cursor: pointer; color: var(--text-muted); }
+  #detail-header { padding: 18px 44px 12px 18px; border-bottom: 1px solid var(--border); position: relative; }
+  #detail-close { position: absolute; top: 14px; right: 14px; background: none; border: none; font-size: 18px; cursor: pointer; color: var(--text-muted); }
   .editable { border: 1px solid transparent; border-radius: 5px; padding: 4px 6px; cursor: text; }
   .editable:hover { border-color: var(--border); }
   .editable:focus { outline: none; border-color: var(--accent); background: white; }
@@ -90,7 +91,7 @@
   .cat-card { border: 1px solid var(--border); border-radius: 6px; padding: 10px; margin-bottom: 8px; }
   .cat-card-top { display: flex; gap: 8px; align-items: center; }
   .cat-card input[type=text], .cat-card select, .cat-card textarea { border: 1px solid var(--border); border-radius: 5px; padding: 6px 8px; font-size: 13px; font-family: inherit; }
-  .cat-card textarea { width: 100%; margin-top: 6px; resize: vertical; min-height: 40px; }
+  .cat-card textarea { width: 100%; margin-top: 6px; resize: vertical; min-height: 110px; }
   .stars { cursor: pointer; letter-spacing: 2px; color: #D8D4C4; font-size: 15px; }
   .stars span.filled { color: var(--warn); }
   .del-cat { background: none; border: none; color: var(--danger); cursor: pointer; font-size: 12px; margin-left: auto; }

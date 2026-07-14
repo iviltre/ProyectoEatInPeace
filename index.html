@@ -22,16 +22,17 @@
     --radius: 14px;
   }
   * { box-sizing: border-box; }
-  body { margin: 0; font-family: 'Work Sans', sans-serif; color: var(--text); background: var(--bg); }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: 'Work Sans', sans-serif; color: var(--text); background: var(--bg); }
   h1, h2, .serif { font-family: 'Fraunces', serif; }
 
-  #topbar { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid var(--border); background: var(--panel); position: sticky; top: 0; z-index: 200; }
+  #topbar { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid var(--border); background: var(--panel); position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 57px; }
   #topbar .brand { display: flex; align-items: center; gap: 8px; }
   #topbar h1 { font-size: 19px; margin: 0; font-weight: 600; letter-spacing: -0.01em; }
   #topbar a.ig { color: var(--text-muted); text-decoration: none; font-size: 13px; border: 1px solid var(--border); padding: 5px 12px; border-radius: 20px; }
   #topbar a.ig:hover { border-color: var(--clay); color: var(--clay); }
 
-  #layout { display: flex; height: calc(100vh - 57px); }
+  #layout { display: flex; height: calc(100vh - 57px); margin-top: 57px; }
   #panel { width: 400px; min-width: 400px; background: var(--panel); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
   #search-wrap { padding: 16px; border-bottom: 1px solid var(--border); }
   #search { width: 100%; padding: 11px 14px; border: 1px solid var(--border); border-radius: 20px; font-size: 14px; font-family: inherit; }
@@ -58,12 +59,16 @@
 
   #detail-overlay { position: fixed; inset: 0; background: rgba(30,28,22,0.15); display: none; align-items: flex-end; justify-content: center; z-index: 800; pointer-events: none; }
   #detail-overlay.open { display: flex; }
-  #detail { background: var(--panel); width: 480px; max-width: 100%; max-height: 85vh; border-radius: 20px 20px 0 0; overflow-y: auto; padding-bottom: 20px; pointer-events: auto; box-shadow: 0 -4px 24px rgba(0,0,0,0.15); }
+  #detail { background: var(--panel); width: 480px; max-width: 100%; max-height: 68vh; border-radius: 20px 20px 0 0; overflow-y: auto; padding-bottom: 20px; pointer-events: auto; box-shadow: 0 -4px 24px rgba(0,0,0,0.15); }
   @media (min-width: 640px) {
     #detail-overlay { align-items: stretch; justify-content: flex-end; background: transparent; }
     #detail { width: 440px; max-height: 100vh; border-radius: 0; box-shadow: -6px 0 24px rgba(0,0,0,0.1); }
   }
   #detail-close { float: right; background: none; border: none; font-size: 20px; color: var(--text-muted); cursor: pointer; padding: 16px; }
+  #detail-handle { display: none; }
+  @media (max-width: 639px) {
+    #detail-handle { display: block; width: 40px; height: 4px; background: var(--border); border-radius: 4px; margin: 10px auto 0; }
+  }
   #detail-body { padding: 4px 24px 20px; }
   #detail-body h2 { font-size: 22px; margin: 0 0 4px; }
   #detail-body .direccion { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; }
@@ -124,6 +129,7 @@
 
 <div id="detail-overlay" onclick="if(event.target===this) cerrarDetalle()">
   <div id="detail">
+    <div id="detail-handle"></div>
     <button id="detail-close" onclick="cerrarDetalle()">✕</button>
     <div id="detail-body"></div>
   </div>
@@ -388,6 +394,22 @@ function mostrarTab(tab) {
 
 initMap();
 cargar();
+
+// ---------- Deslizar hacia abajo para cerrar (móvil) ----------
+(function () {
+  const detalle = document.getElementById('detail');
+  let inicioY = null;
+  detalle.addEventListener('touchstart', (e) => {
+    if (detalle.scrollTop <= 0) inicioY = e.touches[0].clientY;
+    else inicioY = null;
+  });
+  detalle.addEventListener('touchend', (e) => {
+    if (inicioY === null) return;
+    const diferencia = e.changedTouches[0].clientY - inicioY;
+    if (diferencia > 80) cerrarDetalle();
+    inicioY = null;
+  });
+})();
 </script>
 </body>
 </html>
