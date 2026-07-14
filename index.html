@@ -61,8 +61,8 @@
   #detail-overlay.open { display: flex; }
   #detail { background: var(--panel); width: 480px; max-width: 100%; max-height: 68vh; border-radius: 20px 20px 0 0; overflow-y: auto; padding-bottom: 20px; pointer-events: auto; box-shadow: 0 -4px 24px rgba(0,0,0,0.15); transition: transform 0.25s ease; }
   @media (min-width: 640px) {
-    #detail-overlay { align-items: stretch; justify-content: flex-end; background: transparent; }
-    #detail { width: 440px; max-height: 100vh; border-radius: 0; box-shadow: -6px 0 24px rgba(0,0,0,0.1); }
+    #detail-overlay { align-items: stretch; justify-content: flex-end; background: transparent; top: 57px; }
+    #detail { width: 440px; max-height: calc(100vh - 57px) !important; border-radius: 0; box-shadow: -6px 0 24px rgba(0,0,0,0.1); }
   }
   #detail-close { float: right; background: none; border: none; font-size: 20px; color: var(--text-muted); cursor: pointer; padding: 16px; }
   #detail-handle { display: none; }
@@ -361,6 +361,7 @@ function abrirDetalle(id) {
   const r = restaurantes.find(x => x.id === id);
   if (!r) return;
   selectedId = id;
+  document.getElementById('detail').style.maxHeight = '';
   pintarMarcadores();
   if (window.innerWidth > 860) centrarConOffset(r.lat, r.lng, map.getZoom(), 210);
   else map.panTo([r.lat, r.lng]);
@@ -420,30 +421,46 @@ window.addEventListener('resize', ajustarOffsetMovil);
 window.addEventListener('load', ajustarOffsetMovil);
 ajustarOffsetMovil();
 
-// ---------- Deslizar hacia abajo para cerrar (móvil) ----------
+// ---------- Arrastrar el popup: hacia abajo cierra, hacia arriba agranda ----------
 (function () {
   const asa = document.getElementById('detail-handle');
   const panel = document.getElementById('detail');
+  const ALTURA_BASE = 68;
+  const ALTURA_MAX = 92;
   let inicioY = null;
-  let desplazamiento = 0;
+  let alturaInicioVh = ALTURA_BASE;
+
+  function alturaActualVh() {
+    const val = parseFloat(panel.style.maxHeight);
+    return isNaN(val) ? ALTURA_BASE : val;
+  }
+
   asa.addEventListener('touchstart', (e) => {
     inicioY = e.touches[0].clientY;
+    alturaInicioVh = alturaActualVh();
     panel.style.transition = 'none';
   });
   asa.addEventListener('touchmove', (e) => {
     if (inicioY === null) return;
-    desplazamiento = Math.max(0, e.touches[0].clientY - inicioY);
-    panel.style.transform = `translateY(${desplazamiento}px)`;
+    const deltaPx = e.touches[0].clientY - inicioY;
+    if (deltaPx < 0) {
+      const deltaVh = (-deltaPx / window.innerHeight) * 100;
+      const nuevaAltura = Math.min(ALTURA_MAX, alturaInicioVh + deltaVh);
+      panel.style.maxHeight = nuevaAltura + 'vh';
+      panel.style.transform = '';
+    } else {
+      panel.style.transform = `translateY(${deltaPx}px)`;
+    }
     e.preventDefault();
   });
-  asa.addEventListener('touchend', () => {
+  asa.addEventListener('touchend', (e) => {
     panel.style.transition = '';
-    if (desplazamiento > 90) {
+    const deltaPx = e.changedTouches[0].clientY - inicioY;
+    if (deltaPx > 90) {
       cerrarDetalle();
     }
     panel.style.transform = '';
     inicioY = null;
-    desplazamiento = 0;
   });
 })();
 </script>
