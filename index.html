@@ -201,13 +201,24 @@ async function cargar() {
 
 function categoriaCoincideFiltro(nombreCategoria, filtro) {
   if (filtro.has(nombreCategoria)) return true;
-  const nodo = categoriasArbol.find(n => n.nombre === nombreCategoria);
-  return !!(nodo && nodo.padre && filtro.has(nodo.padre));
+  let actual = categoriasArbol.find(n => n.nombre === nombreCategoria);
+  const visitados = new Set();
+  while (actual && actual.padre) {
+    if (filtro.has(actual.padre)) return true;
+    if (visitados.has(actual.padre)) break;
+    visitados.add(actual.padre);
+    actual = categoriasArbol.find(n => n.nombre === actual.padre);
+  }
+  return false;
 }
 
-function arbolAgrupadoPublico() {
-  const padres = categoriasArbol.filter(n => !n.padre);
-  return padres.map(p => ({ nombre: p.nombre, hijas: categoriasArbol.filter(n => n.padre === p.nombre).map(n => n.nombre) }));
+function construirArbolRecursivoPublico(nombrePadre) {
+  return categoriasArbol
+    .filter(n => n.padre === nombrePadre)
+    .map(n => ({ nombre: n.nombre, hijos: construirArbolRecursivoPublico(n.nombre) }));
+}
+function arbolCompletoPublico() {
+  return construirArbolRecursivoPublico(null);
 }
 
 function toggleFiltros() {
@@ -229,41 +240,39 @@ function pintarFiltros() {
   const grupoCat = document.createElement('div');
   grupoCat.style.cssText = 'margin-bottom:6px;';
 
-  let arbolAMostrar = arbolAgrupadoPublico();
+  let arbolAMostrar = arbolCompletoPublico();
   if (!arbolAMostrar.length) {
     // sin árbol publicado todavía (data.json antiguo): lista plana como antes
     const cats = new Set();
     restaurantes.forEach(r => r.categorias.forEach(c => c.nombre && cats.add(c.nombre)));
-    arbolAMostrar = [...cats].sort().map(nombre => ({ nombre, hijas: [] }));
+    arbolAMostrar = [...cats].sort().map(nombre => ({ nombre, hijos: [] }));
+  }
+
+  function pintarNodoFiltroPublico(nodo, contenedor, nivel) {
+    const chip = document.createElement('div');
+    chip.className = 'chip' + (filtroCategorias.has(nodo.nombre) ? ' active' : '');
+    chip.textContent = nodo.nombre;
+    if (nivel === 0) { chip.style.fontWeight = '600'; }
+    else { chip.style.fontSize = '11.5px'; }
+    chip.style.display = 'inline-block';
+    chip.style.marginBottom = '4px';
+    chip.onclick = () => { filtroCategorias.has(nodo.nombre) ? filtroCategorias.delete(nodo.nombre) : filtroCategorias.add(nodo.nombre); pintarFiltros(); renderList(); pintarMarcadores(); };
+    contenedor.appendChild(chip);
+
+    if (nodo.hijos && nodo.hijos.length) {
+      const sub = document.createElement('div');
+      sub.style.cssText = 'display:flex; flex-wrap:wrap; gap:5px; margin:2px 0 6px 10px; padding-left:8px; border-left:2px solid var(--border);';
+      nodo.hijos.forEach(h => pintarNodoFiltroPublico(h, sub, nivel + 1));
+      contenedor.appendChild(sub);
+    }
   }
 
   arbolAMostrar.forEach(nodo => {
     const caja = document.createElement('div');
-    caja.style.cssText = nodo.hijas.length
+    caja.style.cssText = (nodo.hijos && nodo.hijos.length)
       ? 'border:1px solid var(--border); border-radius:8px; padding:6px; margin-bottom:6px;'
       : 'margin-bottom:6px;';
-
-    const chipPadre = document.createElement('div');
-    chipPadre.className = 'chip' + (filtroCategorias.has(nodo.nombre) ? ' active' : '');
-    chipPadre.textContent = nodo.nombre;
-    chipPadre.style.fontWeight = '600';
-    chipPadre.style.display = 'inline-block';
-    chipPadre.onclick = () => { filtroCategorias.has(nodo.nombre) ? filtroCategorias.delete(nodo.nombre) : filtroCategorias.add(nodo.nombre); pintarFiltros(); renderList(); pintarMarcadores(); };
-    caja.appendChild(chipPadre);
-
-    if (nodo.hijas && nodo.hijas.length) {
-      const filaHijas = document.createElement('div');
-      filaHijas.style.cssText = 'display:flex; flex-wrap:wrap; gap:5px; margin-top:6px; padding-left:10px; border-left:2px solid var(--border);';
-      nodo.hijas.forEach(hija => {
-        const chipHija = document.createElement('div');
-        chipHija.className = 'chip' + (filtroCategorias.has(hija) ? ' active' : '');
-        chipHija.textContent = hija;
-        chipHija.style.fontSize = '11.5px';
-        chipHija.onclick = () => { filtroCategorias.has(hija) ? filtroCategorias.delete(hija) : filtroCategorias.add(hija); pintarFiltros(); renderList(); pintarMarcadores(); };
-        filaHijas.appendChild(chipHija);
-      });
-      caja.appendChild(filaHijas);
-    }
+    pintarNodoFiltroPublico(nodo, caja, 0);
     grupoCat.appendChild(caja);
   });
   el.appendChild(grupoCat);

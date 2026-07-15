@@ -237,36 +237,63 @@ function cambiarPadreCategoria(nombre, nuevoPadre) {
 }
 
 // Categorías que pueden usarse como padre: las que no tienen padre ellas mismas, y no son la propia categoría
-function opcionesDePadrePara(nombre) {
-  return categoriasMaestro().filter(n => !n.padre && n.nombre !== nombre);
-}
-
-// Agrupa la lista plana en padres + sus hijas, para pintar filtros y desplegables
-function arbolAgrupado() {
+// ¿'candidato' es descendiente (a cualquier profundidad) de 'posibleAncestro'?
+function esDescendienteDe(candidato, posibleAncestro) {
   const lista = categoriasMaestro();
-  const padres = lista.filter(n => !n.padre);
-  const huerfanas = lista.filter(n => n.padre && !padres.some(p => p.nombre === n.padre));
-  return [...padres, ...huerfanas.map(h => ({ nombre: h.nombre, padre: null }))]
-    .filter((n, i, arr) => arr.findIndex(x => x.nombre === n.nombre) === i)
-    .map(p => ({ nombre: p.nombre, hijas: lista.filter(n => n.padre === p.nombre).map(n => n.nombre) }));
+  let actual = lista.find(n => n.nombre === candidato);
+  const visitados = new Set();
+  while (actual && actual.padre) {
+    if (actual.padre === posibleAncestro) return true;
+    if (visitados.has(actual.padre)) break; // por seguridad, evita bucles infinitos
+    visitados.add(actual.padre);
+    actual = lista.find(n => n.nombre === actual.padre);
+  }
+  return false;
 }
 
-// Lista plana de opciones para el desplegable de categoría del restaurante (con hijas indentadas)
+// Categorías que se le pueden asignar como padre a 'nombre': cualquiera menos ella misma
+// y menos las que ya son descendientes suyas (para no crear un ciclo)
+function opcionesDePadrePara(nombre) {
+  return categoriasMaestro().filter(n => n.nombre !== nombre && !esDescendienteDe(n.nombre, nombre));
+}
+
+// Construye el árbol completo (a cualquier profundidad) a partir de la lista plana
+function construirArbolRecursivo(nombrePadre) {
+  return categoriasMaestro()
+    .filter(n => n.padre === nombrePadre)
+    .map(n => ({ nombre: n.nombre, hijos: construirArbolRecursivo(n.nombre) }));
+}
+function arbolCompleto() {
+  return construirArbolRecursivo(null);
+}
+
+// Lista plana de opciones para el desplegable de categoría del restaurante (indentada por nivel)
 function opcionesCategoriaPlanas() {
   const opciones = [];
-  arbolAgrupado().forEach(nodo => {
-    opciones.push({ value: nodo.nombre, label: nodo.nombre, esHija: false });
-    nodo.hijas.forEach(h => opciones.push({ value: h, label: '— ' + h, esHija: true }));
-  });
+  function recorrer(nodos, nivel) {
+    nodos.forEach(nodo => {
+      opciones.push({ value: nodo.nombre, label: '—'.repeat(nivel) + (nivel ? ' ' : '') + nodo.nombre });
+      recorrer(nodo.hijos, nivel + 1);
+    });
+  }
+  recorrer(arbolCompleto(), 0);
   return opciones;
 }
 
 // ¿El nombre de categoría de un restaurante coincide con lo filtrado?
-// (si se filtra por un padre, tambien cuentan las categorías que tengan ese padre asignado)
+// (si se filtra por un antepasado, a cualquier nivel, tambien cuenta)
 function categoriaCoincideFiltro(nombreCategoria, filtro) {
   if (filtro.has(nombreCategoria)) return true;
-  const nodo = categoriasMaestro().find(n => n.nombre === nombreCategoria);
-  return !!(nodo && nodo.padre && filtro.has(nodo.padre));
+  const lista = categoriasMaestro();
+  let actual = lista.find(n => n.nombre === nombreCategoria);
+  const visitados = new Set();
+  while (actual && actual.padre) {
+    if (filtro.has(actual.padre)) return true;
+    if (visitados.has(actual.padre)) break;
+    visitados.add(actual.padre);
+    actual = lista.find(n => n.nombre === actual.padre);
+  }
+  return false;
 }
 
 // ---------- LOGIN ----------
@@ -423,33 +450,32 @@ function pintarFiltros() {
 
   const grupoCat = document.createElement('div');
   grupoCat.style.cssText = 'margin-bottom:6px;';
-  arbolAgrupado().forEach(nodo => {
+
+  function pintarNodoFiltro(nodo, contenedor, nivel) {
+    const chip = document.createElement('div');
+    chip.className = 'chip' + (filtroCategorias.has(nodo.nombre) ? ' active' : '');
+    chip.textContent = nodo.nombre;
+    if (nivel === 0) { chip.style.fontWeight = '600'; }
+    else { chip.style.fontSize = '11.5px'; }
+    chip.style.display = 'inline-block';
+    chip.style.marginBottom = '4px';
+    chip.onclick = () => { filtroCategorias.has(nodo.nombre) ? filtroCategorias.delete(nodo.nombre) : filtroCategorias.add(nodo.nombre); pintarFiltros(); renderList(); pintarMarcadores(); };
+    contenedor.appendChild(chip);
+
+    if (nodo.hijos.length) {
+      const sub = document.createElement('div');
+      sub.style.cssText = 'display:flex; flex-wrap:wrap; gap:5px; margin:2px 0 6px 10px; padding-left:8px; border-left:2px solid var(--border);';
+      nodo.hijos.forEach(h => pintarNodoFiltro(h, sub, nivel + 1));
+      contenedor.appendChild(sub);
+    }
+  }
+
+  arbolCompleto().forEach(nodo => {
     const caja = document.createElement('div');
-    caja.style.cssText = nodo.hijas.length
+    caja.style.cssText = nodo.hijos.length
       ? 'border:1px solid var(--border); border-radius:6px; padding:6px; margin-bottom:6px;'
       : 'margin-bottom:6px;';
-
-    const chipPadre = document.createElement('div');
-    chipPadre.className = 'chip' + (filtroCategorias.has(nodo.nombre) ? ' active' : '');
-    chipPadre.textContent = nodo.nombre;
-    chipPadre.style.fontWeight = '600';
-    chipPadre.style.display = 'inline-block';
-    chipPadre.onclick = () => { filtroCategorias.has(nodo.nombre) ? filtroCategorias.delete(nodo.nombre) : filtroCategorias.add(nodo.nombre); pintarFiltros(); renderList(); pintarMarcadores(); };
-    caja.appendChild(chipPadre);
-
-    if (nodo.hijas.length) {
-      const filaHijas = document.createElement('div');
-      filaHijas.style.cssText = 'display:flex; flex-wrap:wrap; gap:5px; margin-top:6px; padding-left:10px; border-left:2px solid var(--border);';
-      nodo.hijas.forEach(hija => {
-        const chipHija = document.createElement('div');
-        chipHija.className = 'chip' + (filtroCategorias.has(hija) ? ' active' : '');
-        chipHija.textContent = hija;
-        chipHija.style.fontSize = '11.5px';
-        chipHija.onclick = () => { filtroCategorias.has(hija) ? filtroCategorias.delete(hija) : filtroCategorias.add(hija); pintarFiltros(); renderList(); pintarMarcadores(); };
-        filaHijas.appendChild(chipHija);
-      });
-      caja.appendChild(filaHijas);
-    }
+    pintarNodoFiltro(nodo, caja, 0);
     grupoCat.appendChild(caja);
   });
   el.appendChild(grupoCat);
@@ -536,10 +562,15 @@ function renderListaCategoriasMaestro() {
   const el = document.getElementById('lista-categorias-maestro');
   el.innerHTML = '';
   const orden = [];
-  arbolAgrupado().forEach(nodo => {
-    orden.push(nodo.nombre);
-    nodo.hijas.forEach(h => orden.push(h));
-  });
+  const profundidades = {};
+  function recorrerOrden(nodos, nivel) {
+    nodos.forEach(nodo => {
+      orden.push(nodo.nombre);
+      profundidades[nodo.nombre] = nivel;
+      recorrerOrden(nodo.hijos, nivel + 1);
+    });
+  }
+  recorrerOrden(arbolCompleto(), 0);
   const todas = categoriasMaestro();
   const categorias = orden.map(nombre => todas.find(n => n.nombre === nombre)).filter(Boolean);
 
@@ -553,8 +584,9 @@ function renderListaCategoriasMaestro() {
     fila.style.cssText = 'display:flex; align-items:center; gap:8px; padding:8px 4px; border-bottom:1px solid var(--border);';
 
     const nombreCat = document.createElement('span');
-    nombreCat.style.cssText = 'flex:1; font-size:13px;' + (nodo.padre ? ' padding-left:14px; color:var(--text-muted);' : ' font-weight:600;');
-    nombreCat.textContent = (nodo.padre ? '↳ ' : '') + nodo.nombre;
+    const nivel = profundidades[nodo.nombre] || 0;
+    nombreCat.style.cssText = 'flex:1; font-size:13px;' + (nivel > 0 ? ` padding-left:${14 * nivel}px; color:var(--text-muted);` : ' font-weight:600;');
+    nombreCat.textContent = (nivel > 0 ? '↳ ' : '') + nodo.nombre;
     fila.appendChild(nombreCat);
 
     const selectPadre = document.createElement('select');
