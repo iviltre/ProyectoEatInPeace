@@ -361,8 +361,15 @@ function abrirDetalle(id) {
   const r = restaurantes.find(x => x.id === id);
   if (!r) return;
   selectedId = id;
-  document.getElementById('detail').style.maxHeight = '';
-  document.getElementById('detail').style.height = '';
+  const panelDetalle = document.getElementById('detail');
+  if (window.innerWidth <= 860) {
+    panelDetalle.style.transition = 'none';
+    panelDetalle.style.height = (window.innerHeight * 0.48) + 'px';
+    panelDetalle.style.maxHeight = (window.innerHeight * 0.48) + 'px';
+  } else {
+    panelDetalle.style.height = '';
+    panelDetalle.style.maxHeight = '';
+  }
   pintarMarcadores();
   if (window.innerWidth > 860) centrarConOffset(r.lat, r.lng, map.getZoom(), 210);
   else map.panTo([r.lat, r.lng]);
@@ -422,47 +429,49 @@ window.addEventListener('resize', ajustarOffsetMovil);
 window.addEventListener('load', ajustarOffsetMovil);
 ajustarOffsetMovil();
 
-// ---------- Arrastrar el popup: hacia abajo cierra, hacia arriba agranda ----------
+// ---------- Arrastrar el popup: 3 alturas + cerrar, tipo Google Maps ----------
 (function () {
   const asa = document.getElementById('detail-handle');
   const panel = document.getElementById('detail');
-  const ALTURA_BASE = 68;
-  const ALTURA_MAX = 92;
   let inicioY = null;
-  let alturaInicioVh = ALTURA_BASE;
+  let alturaInicioPx = 0;
+  let alturaActualPx = 0;
 
-  function alturaActualVh() {
-    const val = parseFloat(panel.style.height || panel.style.maxHeight);
-    return isNaN(val) ? ALTURA_BASE : val;
+  function alturasSnap() {
+    const vh = window.innerHeight;
+    return { full: vh * 0.88, medio: vh * 0.48, mini: 64 };
+  }
+
+  function fijarAltura(px, animar) {
+    panel.style.transition = animar ? 'height 0.22s ease' : 'none';
+    panel.style.height = px + 'px';
+    panel.style.maxHeight = px + 'px';
+    alturaActualPx = px;
   }
 
   asa.addEventListener('touchstart', (e) => {
     inicioY = e.touches[0].clientY;
-    alturaInicioVh = alturaActualVh();
+    alturaInicioPx = panel.getBoundingClientRect().height;
     panel.style.transition = 'none';
   });
   asa.addEventListener('touchmove', (e) => {
     if (inicioY === null) return;
     const deltaPx = e.touches[0].clientY - inicioY;
-    if (deltaPx < 0) {
-      const deltaVh = (-deltaPx / window.innerHeight) * 100;
-      const nuevaAltura = Math.min(ALTURA_MAX, alturaInicioVh + deltaVh);
-      panel.style.maxHeight = nuevaAltura + 'vh';
-      panel.style.height = nuevaAltura + 'vh';
-      panel.style.transform = '';
-    } else {
-      panel.style.transform = `translateY(${deltaPx}px)`;
-    }
+    const { full } = alturasSnap();
+    const nuevaAltura = Math.min(full, Math.max(20, alturaInicioPx - deltaPx));
+    fijarAltura(nuevaAltura, false);
     e.preventDefault();
   });
-  asa.addEventListener('touchend', (e) => {
-    panel.style.transition = '';
-    const deltaPx = e.changedTouches[0].clientY - inicioY;
-    if (deltaPx > 90) {
-      cerrarDetalle();
-    }
-    panel.style.transform = '';
+  asa.addEventListener('touchend', () => {
     inicioY = null;
+    const { full, medio, mini } = alturasSnap();
+    if (alturaActualPx < mini * 0.6) {
+      cerrarDetalle();
+      return;
+    }
+    const opciones = [full, medio, mini];
+    const masCercana = opciones.reduce((a, b) => Math.abs(b - alturaActualPx) < Math.abs(a - alturaActualPx) ? b : a);
+    fijarAltura(masCercana, true);
   });
 })();
 </script>
