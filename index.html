@@ -57,7 +57,7 @@
   /* Bottom sheet on mobile */
   #mobile-tabs { display: none; }
 
-  #detail-overlay { position: fixed; inset: 0; background: rgba(30,28,22,0.15); display: none; align-items: flex-end; justify-content: center; z-index: 800; pointer-events: none; }
+  #detail-overlay { position: fixed; inset: 0; background: transparent; display: none; align-items: flex-end; justify-content: center; z-index: 800; pointer-events: none; }
   #detail-overlay.open { display: flex; }
   #detail { background: var(--panel); width: 480px; max-width: 100%; max-height: 68vh; border-radius: 20px 20px 0 0; overflow-y: auto; padding-bottom: 20px; pointer-events: auto; box-shadow: 0 -4px 24px rgba(0,0,0,0.15); transition: transform 0.25s ease; }
   @media (min-width: 640px) {
@@ -361,6 +361,7 @@ function abrirDetalle(id) {
   const r = restaurantes.find(x => x.id === id);
   if (!r) return;
   selectedId = id;
+  if (window.innerWidth <= 860) mostrarTab('mapa');
   const panelDetalle = document.getElementById('detail');
   if (window.innerWidth <= 860) {
     panelDetalle.style.transition = 'none';
@@ -465,7 +466,7 @@ ajustarOffsetMovil();
   asa.addEventListener('touchend', () => {
     inicioY = null;
     const { full, medio, mini } = alturasSnap();
-    if (alturaActualPx < mini * 0.6) {
+    if (alturaActualPx < 120) {
       cerrarDetalle();
       return;
     }
