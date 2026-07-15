@@ -3,95 +3,115 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>eat in peace · Restaurantes en Valencia</title>
+<title>Panel privado · Restaurantes Valencia</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #FAF7F2;
+    --bg: #FAFAF8;
     --panel: #FFFFFF;
-    --border: #E9E3D8;
-    --text: #2B2823;
-    --text-muted: #837C6E;
-    --sage: #6E7A52;
-    --clay: #BD6B4C;
-    --clay-soft: #F4E3D9;
-    --radius: 14px;
+    --border: #E4E1D8;
+    --text: #23241F;
+    --text-muted: #767468;
+    --accent: #B5541E;
+    --accent-soft: #F3E4D8;
+    --ok: #5B7553;
+    --warn: #C77D2E;
+    --danger: #B23B3B;
+    --radius: 8px;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
-  body { font-family: 'Work Sans', sans-serif; color: var(--text); background: var(--bg); }
-  h1, h2, .serif { font-family: 'Fraunces', serif; }
+  body { font-family: 'IBM Plex Sans', sans-serif; color: var(--text); background: var(--bg); }
+  #app { display: flex; height: 100vh; }
+  #sidebar { min-height: 0; overflow: hidden; }
 
-  #topbar { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid var(--border); background: var(--panel); position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: 57px; }
-  #topbar .brand { display: flex; align-items: center; gap: 8px; }
-  #topbar h1 { font-size: 19px; margin: 0; font-weight: 600; letter-spacing: -0.01em; }
-  #topbar a.ig { color: var(--text-muted); text-decoration: none; font-size: 13px; border: 1px solid var(--border); padding: 5px 12px; border-radius: 20px; }
-  #topbar a.ig:hover { border-color: var(--clay); color: var(--clay); }
+  /* --- Login --- */
+  #login-screen {
+    position: fixed; inset: 0; background: var(--bg);
+    display: flex; align-items: center; justify-content: center; z-index: 999;
+  }
+  #login-box { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; width: 300px; }
+  #login-box h1 { font-size: 16px; margin: 0 0 4px; }
+  #login-box p { font-size: 13px; color: var(--text-muted); margin: 0 0 16px; }
+  #login-box input { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px; margin-bottom: 10px; }
+  #login-box button { width: 100%; padding: 10px; background: var(--accent); color: white; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; }
+  #login-error { color: var(--danger); font-size: 12px; margin-top: 8px; display: none; }
 
-  #layout { display: flex; height: calc(100vh - 57px); margin-top: 57px; }
-  #panel { width: 400px; min-width: 400px; min-height: 0; overflow: hidden; background: var(--panel); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
-  #search-wrap { padding: 16px; border-bottom: 1px solid var(--border); }
-  #search { width: 100%; padding: 11px 14px; border: 1px solid var(--border); border-radius: 20px; font-size: 14px; font-family: inherit; }
+  /* --- Sidebar --- */
+  #sidebar { width: 380px; min-width: 380px; background: var(--panel); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
+  #sidebar-header { padding: 16px; border-bottom: 1px solid var(--border); }
+  #sidebar-header h1 { font-size: 15px; margin: 0 0 12px; display:flex; align-items:center; justify-content:space-between; }
+  #sidebar-header h1 span.count { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--text-muted); font-weight: 400; }
+  #search { width: 100%; padding: 9px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; }
   #filters { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
-  .chip { padding: 6px 12px; border: 1px solid var(--border); border-radius: 20px; font-size: 12.5px; cursor: pointer; background: white; color: var(--text-muted); user-select: none; }
-  .chip.active { background: var(--sage); border-color: var(--sage); color: white; }
-  select { appearance: none; -webkit-appearance: none; background: white url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="6"><path d="M0 0l5 6 5-6z" fill="%23837C6E"/></svg>') no-repeat right 12px center; padding-right: 30px !important; cursor: pointer; }
-  .filtro-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: .04em; color: var(--text-muted); margin: 10px 0 4px; font-weight: 500; }
-  #results-count { font-size: 12px; color: var(--text-muted); padding: 10px 16px 0; }
-  #list { flex: 1; overflow-y: auto; padding: 8px; }
+  .chip { padding: 5px 10px; border: 1px solid var(--border); border-radius: 20px; font-size: 12px; cursor: pointer; background: white; color: var(--text-muted); user-select: none; }
+  .chip.active { background: var(--accent); border-color: var(--accent); color: white; }
+  select { appearance: none; -webkit-appearance: none; background: white url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="6"><path d="M0 0l5 6 5-6z" fill="%23767468"/></svg>') no-repeat right 10px center; padding-right: 26px !important; cursor: pointer; }
+  .filtro-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: .04em; color: var(--text-muted); margin: 8px 0 4px; font-weight: 500; }
+  #add-btn { margin-top: 10px; width: 100%; padding: 9px; background: var(--text); color: white; border: none; border-radius: 6px; font-size: 13px; cursor: pointer; }
+  #publish-btn { margin-top: 8px; width: 100%; padding: 9px; background: var(--ok); color: white; border: none; border-radius: 6px; font-size: 13px; cursor: pointer; }
+  #list { flex: 1; overflow-y: auto; }
+  .card { padding: 12px 16px; border-bottom: 1px solid var(--border); cursor: pointer; }
+  .card:hover { background: #F5F4EF; }
+  .card.selected { background: var(--accent-soft); }
+  .card .nombre { font-size: 13.5px; font-weight: 500; display:flex; justify-content:space-between; gap:8px; }
+  .card .meta { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
+  .badge { font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: 500; }
+  .badge.revisar { background: #FBEAD9; color: var(--warn); }
 
-  .card { padding: 14px; border-radius: var(--radius); cursor: pointer; margin-bottom: 6px; }
-  .card:hover { background: #F5F1E9; }
-  .card .nombre { font-size: 15px; font-weight: 600; font-family: 'Fraunces', serif; }
-  .card .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
-  .tag { font-size: 11.5px; background: var(--clay-soft); color: var(--clay); padding: 3px 9px; border-radius: 20px; }
-  .stars-mini { color: var(--clay); font-size: 12px; margin-top: 5px; }
-
+  /* --- Map --- */
   #map { flex: 1; }
-  .leaflet-div-icon { background: var(--clay); border: 2px solid white; border-radius: 50% 50% 50% 0; width: 22px !important; height: 22px !important; transform: rotate(-45deg); box-shadow: 0 1px 3px rgba(0,0,0,0.25); }
+  .leaflet-div-icon { background: var(--accent); border: 2px solid white; border-radius: 50% 50% 50% 0; width: 22px !important; height: 22px !important; transform: rotate(-45deg); box-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+  .leaflet-div-icon.revisar { background: var(--warn); }
+  #add-hint { position:absolute; top:16px; left:50%; transform:translateX(-50%); background: var(--text); color:white; padding:8px 16px; border-radius:6px; font-size:13px; z-index:1000; display:none; }
 
-  /* Bottom sheet on mobile */
-  #mobile-tabs { display: none; }
-
-  #detail-overlay { position: fixed; inset: 0; background: transparent; display: none; align-items: flex-end; justify-content: center; z-index: 800; pointer-events: none; }
-  #detail-overlay.open { display: flex; }
-  #detail { background: var(--panel); width: 480px; max-width: 100%; max-height: 68vh; border-radius: 20px 20px 0 0; overflow-y: auto; padding-bottom: 20px; pointer-events: auto; box-shadow: 0 -4px 24px rgba(0,0,0,0.15); transition: transform 0.25s ease; }
-  @media (min-width: 640px) {
-    #detail-overlay { align-items: stretch; justify-content: flex-end; background: transparent; top: 57px; }
-    #detail { width: 440px; max-height: calc(100vh - 57px) !important; border-radius: 0; box-shadow: -6px 0 24px rgba(0,0,0,0.1); }
-  }
-  #detail-close { float: right; background: none; border: none; font-size: 20px; color: var(--text-muted); cursor: pointer; padding: 16px; }
-  #detail-handle { display: none; }
-  @media (max-width: 639px) {
-    #detail-handle { display: flex; align-items: center; justify-content: center; height: 44px; touch-action: none; }
-    #detail-handle::before { content: ''; width: 48px; height: 5px; background: var(--border); border-radius: 4px; }
-  }
-  #detail-body { padding: 4px 24px 20px; }
-  #detail-body h2 { font-size: 22px; margin: 0 0 4px; }
-  #detail-body .direccion { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; }
-  #detail-body a.maps { font-size: 13px; color: var(--sage); text-decoration: none; font-weight: 500; }
-  .cat-block { border-top: 1px solid var(--border); padding: 14px 0; }
-  .cat-block .cat-top { display: flex; align-items: center; justify-content: space-between; }
-  .cat-block .cat-nombre { font-family: 'Fraunces', serif; font-size: 15.5px; font-weight: 600; }
-  .cat-block .cat-precio { font-size: 13px; color: var(--clay); font-weight: 500; }
-  .cat-block .stars { color: var(--clay); font-size: 14px; margin-top: 4px; }
-  .cat-block .resena { font-size: 13.5px; color: var(--text); margin-top: 6px; line-height: 1.5; }
+  /* --- Detail panel --- */
+  #detail { position: fixed; top: 0; right: 0; width: 420px; height: 100vh; background: var(--panel); border-left: 1px solid var(--border); box-shadow: -4px 0 16px rgba(0,0,0,0.06); transform: translateX(100%); transition: transform .18s ease; overflow-y: auto; z-index: 500; }
+  #detail.open { transform: translateX(0); }
+  #detail-header { padding: 18px 44px 12px 18px; border-bottom: 1px solid var(--border); position: relative; }
+  #detail-close { position: absolute; top: 14px; right: 14px; background: none; border: none; font-size: 18px; cursor: pointer; color: var(--text-muted); }
+  .editable { border: 1px solid transparent; border-radius: 5px; padding: 4px 6px; cursor: text; }
+  .editable:hover { border-color: var(--border); }
+  .editable:focus { outline: none; border-color: var(--accent); background: white; }
+  #detail-nombre { font-size: 17px; font-weight: 600; width: 100%; }
+  #detail-direccion { font-size: 12.5px; color: var(--text-muted); width: 100%; margin-top: 4px; }
+  .section { padding: 14px 18px; border-bottom: 1px solid var(--border); }
+  .section-label { font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--text-muted); margin-bottom: 8px; font-weight: 500; }
+  .toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 6px 0; font-size: 13px; }
+  .switch { position: relative; display: inline-block; width: 38px; height: 22px; flex-shrink: 0; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .switch .slider { position: absolute; cursor: pointer; inset: 0; background-color: #D8D4C4; transition: .15s; border-radius: 22px; }
+  .switch .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background-color: white; transition: .15s; border-radius: 50%; box-shadow: 0 1px 2px rgba(0,0,0,0.25); }
+  .switch input:checked + .slider { background-color: var(--ok); }
+  .switch input:checked + .slider:before { transform: translateX(16px); }
+  .switch input:disabled + .slider { opacity: 0.5; cursor: not-allowed; }
+  .cat-card { border: 1px solid var(--border); border-radius: 6px; padding: 10px; margin-bottom: 8px; }
+  .cat-card-top { display: flex; gap: 8px; align-items: center; }
+  .cat-card input[type=text], .cat-card select, .cat-card textarea { border: 1px solid var(--border); border-radius: 5px; padding: 6px 8px; font-size: 13px; font-family: inherit; }
+  .cat-card textarea { width: 100%; margin-top: 6px; resize: vertical; min-height: 110px; }
+  .stars { cursor: pointer; letter-spacing: 2px; color: #D8D4C4; font-size: 15px; }
+  .stars span.filled { color: var(--warn); }
+  .del-cat { background: none; border: none; color: var(--danger); cursor: pointer; font-size: 12px; margin-left: auto; }
+  .add-cat-btn { font-size: 12.5px; color: var(--accent); background: none; border: none; cursor: pointer; padding: 4px 0; }
+  #delete-restaurante { width: 100%; padding: 10px; background: none; border: 1px solid var(--danger); color: var(--danger); border-radius: 6px; font-size: 13px; cursor: pointer; margin: 16px 18px; width: calc(100% - 36px); }
+  .maps-link { font-size: 12.5px; color: var(--accent); text-decoration: none; }
 
   @media (max-width: 860px) {
-    #layout { flex-direction: column; height: calc(100vh - 57px - 44px); margin-top: 44px; }
-    #panel { width: 100%; min-width: 0; border-right: none; }
+    #detail { width: 100%; }
+    #app { flex-direction: column; height: calc(100vh - 0px); }
+    #sidebar { width: 100%; min-width: 0; border-right: none; }
     #map { display: none; }
     #map.mobile-visible { display: block; height: 100%; }
-    #panel.mobile-hidden { display: none; }
-    #mobile-tabs { display: flex; border-bottom: 1px solid var(--border); position: fixed; top: 57px; left: 0; right: 0; height: 44px; z-index: 999; background: white; }
+    #sidebar.mobile-hidden { display: none; }
+    #mobile-tabs { display: flex !important; border-bottom: 1px solid var(--border); }
     #mobile-tabs button { flex: 1; padding: 10px; border: none; background: white; font-family: inherit; font-size: 13.5px; color: var(--text-muted); cursor: pointer; }
-    #mobile-tabs button.active { color: var(--clay); font-weight: 600; border-bottom: 2px solid var(--clay); }
-    #toggle-agrupar-publico { display: none; }
-    #map.mobile-visible ~ #toggle-agrupar-publico { display: flex; }
+    #mobile-tabs button.active { color: var(--accent); font-weight: 600; border-bottom: 2px solid var(--accent); }
+    #toggle-agrupar { display: none; }
+    #map.mobile-visible ~ #toggle-agrupar { display: flex; }
     input, select, textarea { font-size: 16px !important; }
     .leaflet-control-zoom { display: none; }
   }
@@ -99,42 +119,58 @@
 </head>
 <body>
 
-<div id="topbar">
-  <div class="brand"><h1>eat in peace</h1></div>
-  <a class="ig" href="https://www.instagram.com/eatinpeace_" target="_blank">@eatinpeace_</a>
+<div id="login-screen">
+  <div id="login-box">
+    <h1>Panel privado</h1>
+    <p>Restaurantes de Valencia — acceso de edición</p>
+    <input type="password" id="login-password" placeholder="Contraseña" />
+    <button onclick="login()">Entrar</button>
+    <div id="login-error">Contraseña incorrecta</div>
+  </div>
 </div>
 
-<div id="mobile-tabs">
-  <button id="tab-lista" class="active" onclick="mostrarTab('lista')">Lista</button>
-  <button id="tab-mapa" onclick="mostrarTab('mapa')">Mapa</button>
-</div>
-
-<div id="layout">
-  <div id="panel">
-    <div id="search-wrap">
-      <input id="search" placeholder="Buscar un restaurante..." oninput="renderList(); pintarMarcadores();" />
-      <button onclick="toggleFiltros()" style="width:100%; text-align:left; background:none; border:none; padding:6px 0; font-size:12.5px; color:var(--text-muted); cursor:pointer; display:flex; justify-content:space-between; font-family:inherit;">Filtros <span id="filtros-flecha">▾</span></button>
-      <div id="filters" style="display:none; max-height:35vh; overflow-y:auto;"></div>
-      <select id="orden" onchange="renderList()" style="width:100%; margin-top:8px; padding:8px; border:1px solid var(--border); border-radius:20px; font-size:12.5px; font-family:inherit;">
+<div id="app" style="display:none;">
+  <div id="mobile-tabs" style="display:none;">
+    <button id="tab-lista" class="active" onclick="mostrarTabMovil('lista')">Lista</button>
+    <button id="tab-mapa" onclick="mostrarTabMovil('mapa')">Mapa</button>
+  </div>
+  <div id="sidebar">
+    <div id="sidebar-header">
+      <h1>Restaurantes <span class="count" id="count-label">0</span></h1>
+      <input id="search" placeholder="Buscar por nombre..." oninput="renderList(); pintarMarcadores();" />
+      <button onclick="toggleFiltros()" style="width:100%; text-align:left; background:none; border:none; padding:6px 0; font-size:12.5px; color:var(--text-muted); cursor:pointer; display:flex; justify-content:space-between;">Filtros <span id="filtros-flecha">▾</span></button>
+      <div id="filters" style="display:none; max-height:38vh; overflow-y:auto;"></div>
+      <button class="add-cat-btn" onclick="abrirGestionCategorias()" style="margin-top:4px;">⚙ Gestionar categorías</button>
+      <button class="add-cat-btn" onclick="añadirPorDireccion()" style="width:100%; text-align:center; border:1px solid var(--border); border-radius:6px; padding:7px; margin-top:6px;">📍 Añadir escribiendo la dirección</button>
+      <select id="orden" onchange="renderList()" style="width:100%; margin-top:8px; padding:7px; border:1px solid var(--border); border-radius:6px; font-size:12.5px;">
         <option value="nombre">Ordenar por nombre</option>
         <option value="precio">Ordenar por precio</option>
         <option value="valoracion">Ordenar por valoración</option>
       </select>
+      <button id="publish-btn" onclick="publicarCambios()">📤 Publicar cambios para seguidores</button>
+      <button id="backup-btn" onclick="descargarBackup()" style="margin-top:6px; width:100%; padding:9px; background:none; border:1px solid var(--border); color:var(--text-muted); border-radius:6px; font-size:12.5px; cursor:pointer;">💾 Descargar copia de seguridad completa</button>
     </div>
-    <div id="results-count"></div>
     <div id="list"></div>
   </div>
   <div id="map"></div>
-  <label id="toggle-agrupar-publico" style="position:fixed; bottom:16px; right:16px; background:white; padding:7px 12px; border-radius:20px; box-shadow:0 1px 4px rgba(0,0,0,0.15); font-size:12.5px; display:flex; align-items:center; gap:6px; cursor:pointer; z-index:500;">
-    <input type="checkbox" onchange="cambiarAgrupado(this.checked)"> Agrupar pines cercanos
+  <label id="toggle-agrupar" style="position:fixed; bottom:16px; right:16px; background:white; padding:7px 12px; border-radius:20px; box-shadow:0 1px 4px rgba(0,0,0,0.15); font-size:12.5px; display:flex; align-items:center; gap:6px; cursor:pointer; z-index:500;">
+    <input type="checkbox" id="agrupar-checkbox" onchange="cambiarAgrupado(this.checked)"> Agrupar pines cercanos
   </label>
 </div>
 
-<div id="detail-overlay" onclick="if(event.target===this) cerrarDetalle()">
-  <div id="detail">
-    <div id="detail-handle"></div>
-    <button id="detail-close" onclick="cerrarDetalle()">✕</button>
-    <div id="detail-body"></div>
+<div id="detail"></div>
+
+<div id="cat-overlay" style="display:none; position:fixed; inset:0; background:rgba(35,36,31,0.35); z-index:900; align-items:center; justify-content:center;">
+  <div style="background:white; border-radius:12px; width:380px; max-height:75vh; overflow-y:auto; padding:20px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+      <strong style="font-size:14px;">Categorías y subcategorías</strong>
+      <button onclick="cerrarGestionCategorias()" style="border:none; background:none; font-size:16px; cursor:pointer; color:var(--text-muted);">✕</button>
+    </div>
+    <div style="display:flex; gap:6px; margin-bottom:16px;">
+      <input id="nueva-categoria-input" type="text" placeholder="Nombre de categoría nueva" onkeydown="if(event.key==='Enter') confirmarAñadirCategoria()" style="flex:1; padding:7px 9px; border:1px solid var(--border); border-radius:6px; font-size:13px;">
+      <button onclick="confirmarAñadirCategoria()" style="padding:7px 12px; background:var(--text); color:white; border:none; border-radius:6px; font-size:13px; cursor:pointer;">+</button>
+    </div>
+    <div id="lista-categorias-maestro"></div>
   </div>
 </div>
 
@@ -143,29 +179,123 @@
 <script>
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 window.scrollTo(0, 0);
+const API = 'https://proyectoeatinpeace-backend.onrender.com/api';
+let token = localStorage.getItem('token');
 let restaurantes = [];
+let markers = {};
+let selectedId = null;
+let modoAñadir = false;
 let filtroCategorias = new Set();
 let filtroPrecios = new Set();
 let filtroValoraciones = new Set();
+let filtroProbado = null;
 let filtroBarrios = new Set();
-let selectedId = null;
 const PRECIOS_FIJOS = ['0-5€', '5-10€', '10-20€', '20-35€', '35-50€', '50-80€', '>80€'];
-let map, cluster;
 
+function categoriasMaestro() {
+  const guardado = JSON.parse(localStorage.getItem('categoriasArbol') || 'null');
+  if (guardado) return guardado;
+  const cats = new Set();
+  restaurantes.forEach(r => r.categorias.forEach(c => c.nombre && cats.add(c.nombre)));
+  const arbol = [...cats].sort().map(nombre => ({ nombre, hijas: [] }));
+  localStorage.setItem('categoriasArbol', JSON.stringify(arbol));
+  return arbol;
+}
+
+function guardarArbol(arbol) {
+  localStorage.setItem('categoriasArbol', JSON.stringify(arbol));
+}
+
+function añadirCategoriaMaestro(nombre) {
+  nombre = nombre.trim();
+  if (!nombre) return;
+  const arbol = categoriasMaestro();
+  if (!arbol.some(n => n.nombre === nombre)) {
+    arbol.push({ nombre, hijas: [] });
+    arbol.sort((a, b) => a.nombre.localeCompare(b.nombre));
+    guardarArbol(arbol);
+  }
+}
+
+function quitarCategoriaMaestro(nombre) {
+  const arbol = categoriasMaestro().filter(n => n.nombre !== nombre);
+  guardarArbol(arbol);
+  pintarFiltros();
+}
+
+function añadirCategoriaHija(padreNombre, hijaNombre) {
+  hijaNombre = hijaNombre.trim();
+  if (!hijaNombre || !padreNombre) return;
+  const arbol = categoriasMaestro();
+  const padre = arbol.find(n => n.nombre === padreNombre);
+  if (padre && !padre.hijas.includes(hijaNombre)) {
+    padre.hijas.push(hijaNombre);
+    padre.hijas.sort();
+    guardarArbol(arbol);
+  }
+}
+
+function quitarCategoriaHija(padreNombre, hijaNombre) {
+  const arbol = categoriasMaestro();
+  const padre = arbol.find(n => n.nombre === padreNombre);
+  if (padre) {
+    padre.hijas = padre.hijas.filter(h => h !== hijaNombre);
+    guardarArbol(arbol);
+  }
+  pintarFiltros();
+}
+
+// Lista plana de opciones para el desplegable de categoría (con hijas indentadas)
+function opcionesCategoriaPlanas() {
+  const opciones = [];
+  categoriasMaestro().forEach(nodo => {
+    opciones.push({ value: nodo.nombre, label: nodo.nombre, esHija: false });
+    nodo.hijas.forEach(h => opciones.push({ value: h, label: '— ' + h, esHija: true }));
+  });
+  return opciones;
+}
+
+// ¿El nombre de categoría de un restaurante coincide con lo filtrado?
+// (si se filtra por un padre, tambien cuentan sus hijas)
+function categoriaCoincideFiltro(nombreCategoria, filtro) {
+  if (filtro.has(nombreCategoria)) return true;
+  return categoriasMaestro().some(nodo => filtro.has(nodo.nombre) && nodo.hijas.includes(nombreCategoria));
+}
+
+// ---------- LOGIN ----------
+async function login() {
+  const password = document.getElementById('login-password').value;
+  const res = await fetch(`${API}/login`, {
+    method: 'POST', headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({ password })
+  });
+  if (!res.ok) { document.getElementById('login-error').style.display = 'block'; return; }
+  const data = await res.json();
+  token = data.token;
+  localStorage.setItem('token', token);
+  arrancar();
+}
+
+function authHeaders() {
+  return { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` };
+}
+
+async function arrancar() {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'flex';
+  initMap();
+  await cargarRestaurantes();
+}
+
+// ---------- MAPA ----------
+let map, cluster;
 function initMap() {
-  map = L.map('map').setView([39.4699, -0.3763], 14);
+  map = L.map('map').setView([39.4699, -0.3763], 14); // Valencia
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
     attribution: '© OpenStreetMap © CARTO', subdomains: 'abcd', maxZoom: 20
   }).addTo(map);
   cluster = L.layerGroup();
   map.addLayer(cluster);
-}
-
-function cambiarAgrupado(agrupar) {
-  map.removeLayer(cluster);
-  cluster = agrupar ? L.markerClusterGroup({ maxClusterRadius: 40 }) : L.layerGroup();
-  map.addLayer(cluster);
-  pintarMarcadores();
 }
 
 function colorParaValoracion(v) {
@@ -181,12 +311,91 @@ function valoracionMostrada(r) {
   return Math.max(...lista.map(c => c.valoracion || 0), 0);
 }
 
-async function cargar() {
-  const res = await fetch('./data.json');
+function iconoPara(r) {
+  const seleccionado = r.id === selectedId;
+  const color = colorParaValoracion(valoracionMostrada(r));
+  const borde = r.pendiente_revisar ? '3px solid #C77D2E' : '2px solid white';
+  const tamaño = seleccionado ? 30 : 20;
+  const anillo = seleccionado ? 'box-shadow: 0 0 0 3px var(--text), 0 1px 4px rgba(0,0,0,0.4);' : 'box-shadow: 0 1px 3px rgba(0,0,0,0.3);';
+  return L.divIcon({
+    className: '',
+    html: `<div style="width:${tamaño}px;height:${tamaño}px;background:${color};border:${borde};border-radius:50% 50% 50% 0;transform:rotate(-45deg);${anillo}"></div>`,
+    iconSize: [tamaño, tamaño], iconAnchor: [tamaño / 2, tamaño]
+  });
+}
+
+function cambiarAgrupado(agrupar) {
+  map.removeLayer(cluster);
+  cluster = agrupar ? L.markerClusterGroup({ maxClusterRadius: 40 }) : L.layerGroup();
+  map.addLayer(cluster);
+  pintarMarcadores();
+}
+
+async function cambiarProbado(marcado) {
+  const r = restaurantes.find(x => x.id === selectedId);
+  if (!r) return;
+  r.probado = marcado;
+  const cuerpo = { probado: marcado };
+  if (!marcado) {
+    r.visible_publico = false;
+    cuerpo.visible_publico = false;
+  }
+  await fetch(`${API}/restaurantes/${r.id}`, {
+    method: 'PUT', headers: authHeaders(), body: JSON.stringify(cuerpo)
+  });
+  abrirDetalle(r.id);
+  renderList();
+}
+
+async function actualizarPendienteRevisar() {
+  const r = restaurantes.find(x => x.id === selectedId);
+  if (!r) return;
+  const incompleto = !r.nombre || !r.direccion || !r.barrio || !r.google_maps_url;
+  if (r.pendiente_revisar !== incompleto) {
+    r.pendiente_revisar = incompleto;
+    await fetch(`${API}/restaurantes/${r.id}`, {
+      method: 'PUT', headers: authHeaders(), body: JSON.stringify({ pendiente_revisar: incompleto })
+    });
+    abrirDetalle(r.id);
+    renderList();
+    pintarMarcadores();
+  }
+}
+
+function centrarConOffset(lat, lng, zoom, offsetXpx) {
+  const z = zoom !== undefined ? zoom : map.getZoom();
+  const punto = map.project([lat, lng], z);
+  const puntoAjustado = punto.add(L.point(offsetXpx, 0));
+  const centro = map.unproject(puntoAjustado, z);
+  map.setView(centro, z);
+}
+
+function pintarMarcadores() {
+  cluster.clearLayers();
+  markers = {};
+  restaurantesFiltrados().forEach(r => {
+    const m = L.marker([r.lat, r.lng], { icon: iconoPara(r), draggable: false });
+    m.on('click', () => abrirDetalle(r.id));
+    markers[r.id] = m;
+    cluster.addLayer(m);
+  });
+}
+
+// ---------- CARGAR DATOS ----------
+async function cargarRestaurantes() {
+  const res = await fetch(`${API}/restaurantes`, { headers: authHeaders() });
   restaurantes = await res.json();
   pintarFiltros();
   pintarMarcadores();
   renderList();
+}
+
+function mostrarTabMovil(tab) {
+  document.getElementById('tab-lista').classList.toggle('active', tab === 'lista');
+  document.getElementById('tab-mapa').classList.toggle('active', tab === 'mapa');
+  document.getElementById('sidebar').classList.toggle('mobile-hidden', tab === 'mapa');
+  document.getElementById('map').classList.toggle('mobile-visible', tab === 'mapa');
+  if (tab === 'mapa') setTimeout(() => map.invalidateSize(), 50);
 }
 
 function toggleFiltros() {
@@ -197,8 +406,6 @@ function toggleFiltros() {
 }
 
 function pintarFiltros() {
-  const cats = new Set();
-  restaurantes.forEach(r => r.categorias.forEach(c => c.nombre && cats.add(c.nombre)));
   const el = document.getElementById('filters');
   el.innerHTML = '';
 
@@ -208,13 +415,30 @@ function pintarFiltros() {
   el.appendChild(labelCat);
 
   const grupoCat = document.createElement('div');
-  grupoCat.style.cssText = 'display:flex; flex-wrap:wrap; gap:6px; margin-bottom:6px;';
-  [...cats].sort().forEach(cat => {
-    const chip = document.createElement('div');
-    chip.className = 'chip' + (filtroCategorias.has(cat) ? ' active' : '');
-    chip.textContent = cat;
-    chip.onclick = () => { filtroCategorias.has(cat) ? filtroCategorias.delete(cat) : filtroCategorias.add(cat); pintarFiltros(); renderList(); pintarMarcadores(); };
-    grupoCat.appendChild(chip);
+  grupoCat.style.cssText = 'margin-bottom:6px;';
+  categoriasMaestro().forEach(nodo => {
+    const filaPadre = document.createElement('div');
+    filaPadre.style.cssText = 'display:flex; align-items:center; gap:6px; margin-bottom:4px;';
+    const chipPadre = document.createElement('div');
+    chipPadre.className = 'chip' + (filtroCategorias.has(nodo.nombre) ? ' active' : '');
+    chipPadre.textContent = nodo.nombre;
+    chipPadre.onclick = () => { filtroCategorias.has(nodo.nombre) ? filtroCategorias.delete(nodo.nombre) : filtroCategorias.add(nodo.nombre); pintarFiltros(); renderList(); pintarMarcadores(); };
+    filaPadre.appendChild(chipPadre);
+    grupoCat.appendChild(filaPadre);
+
+    if (nodo.hijas.length) {
+      const filaHijas = document.createElement('div');
+      filaHijas.style.cssText = 'display:flex; flex-wrap:wrap; gap:5px; margin:0 0 6px 14px;';
+      nodo.hijas.forEach(hija => {
+        const chipHija = document.createElement('div');
+        chipHija.className = 'chip' + (filtroCategorias.has(hija) ? ' active' : '');
+        chipHija.textContent = hija;
+        chipHija.style.fontSize = '11.5px';
+        chipHija.onclick = () => { filtroCategorias.has(hija) ? filtroCategorias.delete(hija) : filtroCategorias.add(hija); pintarFiltros(); renderList(); pintarMarcadores(); };
+        filaHijas.appendChild(chipHija);
+      });
+      grupoCat.appendChild(filaHijas);
+    }
   });
   el.appendChild(grupoCat);
 
@@ -250,6 +474,22 @@ function pintarFiltros() {
   });
   el.appendChild(grupoVal);
 
+  const labelProbado = document.createElement('div');
+  labelProbado.className = 'filtro-label';
+  labelProbado.textContent = 'Probado';
+  el.appendChild(labelProbado);
+
+  const grupoProbado = document.createElement('div');
+  grupoProbado.style.cssText = 'display:flex; flex-wrap:wrap; gap:6px;';
+  [['si','Probado'], ['no','No probado']].forEach(([val, texto]) => {
+    const chip = document.createElement('div');
+    chip.className = 'chip' + (filtroProbado === val ? ' active' : '');
+    chip.textContent = texto;
+    chip.onclick = () => { filtroProbado = (filtroProbado === val) ? null : val; pintarFiltros(); renderList(); pintarMarcadores(); };
+    grupoProbado.appendChild(chip);
+  });
+  el.appendChild(grupoProbado);
+
   const barrios = new Set(restaurantes.map(r => r.barrio).filter(Boolean));
   if (barrios.size) {
     const labelBarrio = document.createElement('div');
@@ -270,45 +510,137 @@ function pintarFiltros() {
   }
 }
 
-function coincide(r) {
-  const q = document.getElementById('search').value.toLowerCase();
-  const coincideNombre = r.nombre.toLowerCase().includes(q);
-  const coincideCat = filtroCategorias.size === 0 || r.categorias.some(c => filtroCategorias.has(c.nombre));
-  const coincidePrecio = filtroPrecios.size === 0 || r.categorias.some(c => filtroPrecios.has(c.precio));
-  const coincideVal = filtroValoraciones.size === 0 || r.categorias.some(c => [...filtroValoraciones].some(min => (c.valoracion || 0) >= min));
-  const coincideBarrio = filtroBarrios.size === 0 || filtroBarrios.has(r.barrio);
-  return coincideNombre && coincideCat && coincidePrecio && coincideVal && coincideBarrio;
+function abrirGestionCategorias() {
+  document.getElementById('cat-overlay').style.display = 'flex';
+  document.getElementById('nueva-categoria-input').value = '';
+  renderListaCategoriasMaestro();
 }
 
-function centrarConOffset(lat, lng, zoom, offsetXpx, offsetYpx) {
-  const z = zoom !== undefined ? zoom : map.getZoom();
-  const punto = map.project([lat, lng], z);
-  const puntoAjustado = punto.add(L.point(offsetXpx || 0, offsetYpx || 0));
-  const centro = map.unproject(puntoAjustado, z);
-  map.setView(centro, z);
+function cerrarGestionCategorias() {
+  document.getElementById('cat-overlay').style.display = 'none';
 }
 
-function pintarMarcadores() {
-  cluster.clearLayers();
-  restaurantes.filter(coincide).forEach(r => {
-    const seleccionado = r.id === selectedId;
-    const color = colorParaValoracion(valoracionMostrada(r));
-    const tamaño = seleccionado ? 30 : 20;
-    const anillo = seleccionado ? 'box-shadow: 0 0 0 3px var(--text), 0 1px 4px rgba(0,0,0,0.4);' : 'box-shadow: 0 1px 3px rgba(0,0,0,0.3);';
-    const icono = L.divIcon({
-      className: '',
-      html: `<div style="width:${tamaño}px;height:${tamaño}px;background:${color};border:2px solid white;border-radius:50% 50% 50% 0;transform:rotate(-45deg);${anillo}"></div>`,
-      iconSize: [tamaño, tamaño], iconAnchor: [tamaño / 2, tamaño]
-    });
-    const m = L.marker([r.lat, r.lng], { icon: icono });
-    m.on('click', () => abrirDetalle(r.id));
-    cluster.addLayer(m);
+function renderListaCategoriasMaestro() {
+  const el = document.getElementById('lista-categorias-maestro');
+  el.innerHTML = '';
+  const categorias = categoriasMaestro();
+
+  if (!categorias.length) {
+    el.innerHTML = '<p style="font-size:12.5px; color:var(--text-muted);">Todavía no hay categorías creadas.</p>';
+    return;
+  }
+
+  categorias.forEach((nodo) => {
+    const bloque = document.createElement('div');
+    bloque.style.cssText = 'border:1px solid var(--border); border-radius:8px; padding:10px; margin-bottom:10px;';
+
+    const cabecera = document.createElement('div');
+    cabecera.style.cssText = 'display:flex; justify-content:space-between; align-items:center;';
+    const nombreCat = document.createElement('strong');
+    nombreCat.style.fontSize = '13px';
+    nombreCat.textContent = nodo.nombre;
+    const btnQuitarCat = document.createElement('button');
+    btnQuitarCat.textContent = 'Eliminar categoría';
+    btnQuitarCat.style.cssText = 'border:none; background:none; color:var(--danger); cursor:pointer; font-size:11.5px;';
+    btnQuitarCat.addEventListener('click', () => confirmarQuitarCategoria(nodo.nombre));
+    cabecera.appendChild(nombreCat);
+    cabecera.appendChild(btnQuitarCat);
+    bloque.appendChild(cabecera);
+
+    const listaHijas = document.createElement('div');
+    listaHijas.style.cssText = 'margin:8px 0 8px 10px;';
+    if (nodo.hijas.length) {
+      nodo.hijas.forEach(h => {
+        const fila = document.createElement('div');
+        fila.style.cssText = 'display:flex; justify-content:space-between; align-items:center; padding:4px 0; font-size:12.5px;';
+        const spanH = document.createElement('span');
+        spanH.textContent = '· ' + h;
+        const btnQuitarH = document.createElement('button');
+        btnQuitarH.textContent = 'Quitar';
+        btnQuitarH.style.cssText = 'border:none; background:none; color:var(--danger); cursor:pointer; font-size:11px;';
+        btnQuitarH.addEventListener('click', () => { quitarCategoriaHija(nodo.nombre, h); renderListaCategoriasMaestro(); });
+        fila.appendChild(spanH);
+        fila.appendChild(btnQuitarH);
+        listaHijas.appendChild(fila);
+      });
+    } else {
+      const vacio = document.createElement('span');
+      vacio.style.cssText = 'font-size:12px; color:var(--text-muted);';
+      vacio.textContent = 'Sin subcategorías todavía';
+      listaHijas.appendChild(vacio);
+    }
+    bloque.appendChild(listaHijas);
+
+    const filaAñadir = document.createElement('div');
+    filaAñadir.style.cssText = 'display:flex; gap:6px; margin-left:10px;';
+    const inputHija = document.createElement('input');
+    inputHija.type = 'text';
+    inputHija.placeholder = 'Nueva subcategoría de ' + nodo.nombre;
+    inputHija.style.cssText = 'flex:1; padding:5px 7px; border:1px solid var(--border); border-radius:5px; font-size:12px;';
+    const btnAñadirHija = document.createElement('button');
+    btnAñadirHija.textContent = '+';
+    btnAñadirHija.style.cssText = 'padding:5px 10px; background:var(--sage,#6E7A52); color:white; border:none; border-radius:5px; font-size:12px; cursor:pointer;';
+    const intentarAñadirHija = () => {
+      if (!inputHija.value.trim()) return;
+      añadirCategoriaHija(nodo.nombre, inputHija.value);
+      renderListaCategoriasMaestro();
+      pintarFiltros();
+    };
+    btnAñadirHija.addEventListener('click', intentarAñadirHija);
+    inputHija.addEventListener('keydown', (e) => { if (e.key === 'Enter') intentarAñadirHija(); });
+    filaAñadir.appendChild(inputHija);
+    filaAñadir.appendChild(btnAñadirHija);
+    bloque.appendChild(filaAñadir);
+
+    el.appendChild(bloque);
   });
 }
 
-function estrellas(n) {
-  n = Math.round(n || 0);
-  return '★'.repeat(n) + '☆'.repeat(5 - n);
+function confirmarAñadirCategoria() {
+  const input = document.getElementById('nueva-categoria-input');
+  if (!input.value.trim()) return;
+  añadirCategoriaMaestro(input.value);
+  input.value = '';
+  renderListaCategoriasMaestro();
+  pintarFiltros();
+}
+
+function confirmarQuitarCategoria(nombre) {
+  if (!confirm(`¿Quitar "${nombre}" de la lista? (los restaurantes que ya la tengan la conservan, pero no podrás volver a elegirla)`)) return;
+  quitarCategoriaMaestro(nombre);
+  renderListaCategoriasMaestro();
+}
+
+function restaurantesFiltrados() {
+  const q = document.getElementById('search').value.toLowerCase();
+  return restaurantes.filter(r => {
+    const coincideNombre = r.nombre.toLowerCase().includes(q);
+    const coincideCat = filtroCategorias.size === 0 || r.categorias.some(c => categoriaCoincideFiltro(c.nombre, filtroCategorias));
+    const coincidePrecio = filtroPrecios.size === 0 || r.categorias.some(c => filtroPrecios.has(c.precio));
+    const coincideVal = filtroValoraciones.size === 0 || r.categorias.some(c => [...filtroValoraciones].some(min => (c.valoracion || 0) >= min));
+    const coincideProbado = !filtroProbado || (filtroProbado === 'si' ? r.probado : !r.probado);
+    const coincideBarrio = filtroBarrios.size === 0 || filtroBarrios.has(r.barrio);
+    return coincideNombre && coincideCat && coincidePrecio && coincideVal && coincideProbado && coincideBarrio;
+  });
+}
+
+function renderList() {
+  const lista = ordenar(restaurantesFiltrados());
+  document.getElementById('count-label').textContent = `${lista.length} / ${restaurantes.length}`;
+  const el = document.getElementById('list');
+  el.innerHTML = '';
+  lista.forEach(r => {
+    const cat = r.categorias[0] || {};
+    const div = document.createElement('div');
+    div.className = 'card' + (r.id === selectedId ? ' selected' : '');
+    div.onclick = () => abrirDetalle(r.id);
+    div.innerHTML = `
+      <div class="nombre">${r.nombre || '(sin nombre)'} ${r.pendiente_revisar ? '<span class="badge revisar">revisar</span>' : ''}</div>
+      <div class="meta" style="color:var(--text-muted); font-size:11.5px;">${r.direccion || ''}</div>
+      <div class="meta">${cat.nombre || 'sin categoría'} ${cat.precio ? '· ' + cat.precio : ''} ${r.categorias.length > 1 ? `· +${r.categorias.length - 1} más` : ''}</div>
+    `;
+    el.appendChild(div);
+  });
 }
 
 function ordenar(lista) {
@@ -332,153 +664,279 @@ function ordenar(lista) {
   return copia;
 }
 
-function direccionCorta(direccion) {
-  if (!direccion) return '';
-  return direccion.replace(/,?\s*\d{5}\s*[^,]*,\s*Valencia,\s*España\s*$/i, '').replace(/,\s*España\s*$/i, '');
+async function añadirPorDireccion() {
+  const direccion = prompt('Escribe la dirección del restaurante (cuanto más completa, mejor):');
+  if (!direccion || !direccion.trim()) return;
+  const nombre = prompt('¿Nombre del restaurante?') || 'Nuevo restaurante';
+
+  try {
+    const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=es&q=${encodeURIComponent(direccion)}`);
+    const resultados = await res.json();
+    if (!resultados.length) {
+      alert('No he encontrado esa dirección. Prueba a escribirla de forma más completa, o créalo haciendo clic en el mapa.');
+      return;
+    }
+    const { lat, lon } = resultados[0];
+    const r = await fetch(`${API}/restaurantes`, {
+      method: 'POST', headers: authHeaders(),
+      body: JSON.stringify({ nombre, lat: parseFloat(lat), lng: parseFloat(lon), direccion })
+    });
+    const nuevo = await r.json();
+    restaurantes.push(nuevo);
+    pintarMarcadores();
+    renderList();
+    selectedId = nuevo.id;
+    await actualizarPendienteRevisar();
+    abrirDetalle(nuevo.id);
+  } catch (e) {
+    alert('Hubo un problema buscando esa dirección. Prueba de nuevo o créalo desde el mapa.');
+  }
 }
 
-function renderList() {
-  const lista = ordenar(restaurantes.filter(coincide));
-  document.getElementById('results-count').textContent = `${lista.length} sitios`;
-  const el = document.getElementById('list');
+// ---------- DETALLE ----------
+function abrirDetalle(id) {
+  selectedId = id;
+  const r = restaurantes.find(x => x.id === id);
+  if (!r) return;
+  renderList();
+  pintarMarcadores();
+  centrarConOffset(r.lat, r.lng, Math.max(map.getZoom(), 17), 200);
+
+  const sedes = restaurantes.filter(x => x.grupo_id && x.grupo_id === r.grupo_id && x.id !== r.id);
+
+  document.getElementById('detail').innerHTML = `
+    <div id="detail-header">
+      <button id="detail-close" onclick="cerrarDetalle()">✕</button>
+      <div id="detail-nombre" class="editable" contenteditable oninput="marcarCambio()" onblur="guardarCampo('nombre', this.textContent).then(() => actualizarPendienteRevisar())">${r.nombre || ''}</div>
+      <div id="detail-direccion" class="editable" contenteditable onblur="guardarDireccionYReubicar(this.textContent).then(() => actualizarPendienteRevisar())">${r.direccion || 'Añadir dirección'}</div>
+      <input type="text" class="editable" value="${r.barrio || ''}" placeholder="Barrio (ej: Ruzafa, El Carmen...)" style="width:100%; font-size:12px; margin-top:4px;" onblur="guardarBarrioManual(this.value).then(() => actualizarPendienteRevisar())">
+      <input type="text" class="editable" value="${r.google_maps_url || ''}" placeholder="Pegar enlace de Google Maps..." style="width:100%; font-size:12px; margin-top:4px; color:var(--accent);" onblur="guardarCampo('google_maps_url', this.value).then(() => actualizarPendienteRevisar())">
+      ${r.google_maps_url ? `<a class="maps-link" href="${r.google_maps_url}" target="_blank">Abrir en Google Maps →</a>` : ''}
+      ${sedes.length ? `<div style="margin-top:8px; font-size:12px; color:var(--text-muted);">Otras sedes: ${sedes.map(s => `<a href="#" onclick="abrirDetalle('${s.id}'); return false;" style="color:var(--accent);">${s.nombre}</a>`).join(', ')}</div>` : ''}
+    </div>
+
+    <div class="section">
+      <div class="toggle-row">
+        <span>Probado</span>
+        <label class="switch"><input type="checkbox" id="chk-probado" ${r.probado ? 'checked' : ''} onchange="cambiarProbado(this.checked)"><span class="slider"></span></label>
+      </div>
+      <div class="toggle-row">
+        <span>Visible para seguidores</span>
+        <label class="switch"><input type="checkbox" id="chk-visible" ${r.visible_publico ? 'checked' : ''} ${!r.probado ? 'disabled' : ''} onchange="guardarCampo('visible_publico', this.checked)"><span class="slider"></span></label>
+      </div>
+      <div class="toggle-row">
+        <span>Pendiente de revisar</span>
+        <label class="switch"><input type="checkbox" ${r.pendiente_revisar ? 'checked' : ''} onchange="guardarCampo('pendiente_revisar', this.checked)"><span class="slider"></span></label>
+      </div>
+      ${!r.probado ? '<div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Un restaurante no probado no puede estar visible para seguidores.</div>' : ''}
+    </div>
+
+    <div class="section">
+      <div class="section-label">Categorías</div>
+      <div id="cat-list"></div>
+      <button class="add-cat-btn" onclick="añadirCategoria()">+ Añadir categoría</button>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Notas privadas</div>
+      <textarea class="editable" style="width:100%; min-height:60px;" onblur="guardarCampo('notas_generales', this.value)" placeholder="Notas que solo tú ves...">${r.notas_generales || ''}</textarea>
+    </div>
+
+    <button id="delete-restaurante" onclick="borrarRestaurante()">Eliminar restaurante</button>
+  `;
+  renderCategorias(r);
+  document.getElementById('detail').classList.add('open');
+}
+
+function renderCategorias(r) {
+  const el = document.getElementById('cat-list');
   el.innerHTML = '';
-  lista.forEach(r => {
+  r.categorias.forEach(cat => {
     const div = document.createElement('div');
-    div.className = 'card';
-    div.onclick = () => abrirDetalle(r.id);
-    const mejorValoracion = valoracionMostrada(r);
+    div.className = 'cat-card';
     div.innerHTML = `
-      <div class="nombre">${r.nombre}</div>
-      <div style="color:var(--text-muted); font-size:11.5px; margin-top:2px;">${direccionCorta(r.direccion)}</div>
-      <div class="tags">${r.categorias.map(c => `<span class="tag">${c.nombre || ''}${c.precio ? ' · ' + c.precio : ''}</span>`).join('')}</div>
-      ${mejorValoracion ? `<div class="stars-mini">${estrellas(mejorValoracion)}</div>` : ''}
+      <div class="cat-card-top">
+        <select onchange="guardarCategoria('${cat.id}', 'nombre', this.value)" style="flex:1;">
+          <option value="">Elegir categoría...</option>
+          ${opcionesCategoriaPlanas().map(o => `<option value="${o.value}" ${o.value === cat.nombre ? 'selected' : ''}>${o.label}</option>`).join('')}
+        </select>
+        <select onchange="guardarCategoria('${cat.id}', 'precio', this.value)" style="width:100px;">
+          <option value="">Precio...</option>
+          ${PRECIOS_FIJOS.map(p => `<option value="${p}" ${p === cat.precio ? 'selected' : ''}>${p}</option>`).join('')}
+        </select>
+        <button class="del-cat" onclick="borrarCategoria('${cat.id}')">Quitar</button>
+      </div>
+      <div class="stars" data-cat="${cat.id}">${[1,2,3,4,5].map(n => `<span class="${n <= (cat.valoracion||0) ? 'filled' : ''}" onclick="guardarCategoria('${cat.id}', 'valoracion', ${n})">★</span>`).join('')}</div>
+      <textarea placeholder="Tu reseña..." onblur="guardarCategoria('${cat.id}', 'resena', this.value)">${cat.resena || ''}</textarea>
+      <input type="text" value="${cat.instagram_url || ''}" placeholder="Enlace al reel de Instagram (opcional)" style="width:100%; margin-top:6px; font-size:12px;" onblur="guardarCategoria('${cat.id}', 'instagram_url', this.value)">
     `;
     el.appendChild(div);
   });
 }
 
-function abrirDetalle(id) {
-  const r = restaurantes.find(x => x.id === id);
-  if (!r) return;
-  selectedId = id;
-  if (window.innerWidth <= 860) mostrarTab('mapa');
-  const panelDetalle = document.getElementById('detail');
-  let alturaPanelMovil = 0;
-  if (window.innerWidth <= 860) {
-    alturaPanelMovil = window.innerHeight * 0.48;
-    panelDetalle.style.transition = 'none';
-    panelDetalle.style.height = alturaPanelMovil + 'px';
-    panelDetalle.style.maxHeight = alturaPanelMovil + 'px';
-  } else {
-    panelDetalle.style.height = '';
-    panelDetalle.style.maxHeight = '';
-  }
-  pintarMarcadores();
-  if (window.innerWidth > 860) centrarConOffset(r.lat, r.lng, map.getZoom(), 210, 0);
-  else centrarConOffset(r.lat, r.lng, map.getZoom(), 0, alturaPanelMovil / 2);
-  document.getElementById('detail-body').innerHTML = `
-    <h2>${r.nombre}</h2>
-    <div class="direccion">${r.direccion || ''}${r.barrio ? ' · ' + r.barrio : ''}</div>
-    ${r.google_maps_url ? `<a class="maps" href="${r.google_maps_url}" target="_blank">Ver en Google Maps →</a>` : ''}
-    ${r.categorias.map(c => `
-      <div class="cat-block">
-        <div class="cat-top">
-          <span class="cat-nombre">${c.nombre || ''}</span>
-          <span class="cat-precio">${c.precio || ''}</span>
-        </div>
-        ${c.valoracion ? `<div class="stars">${estrellas(c.valoracion)}</div>` : ''}
-        ${c.resena ? `<div class="resena">${c.resena.replace(/\n/g, '<br>')}</div>` : ''}
-        ${c.instagram_url ? `<a class="maps" href="${c.instagram_url}" target="_blank" style="display:inline-block; margin-top:6px;">Ver reel en Instagram →</a>` : ''}
-      </div>
-    `).join('')}
-  `;
-  document.getElementById('detail-overlay').classList.add('open');
-}
-
 function cerrarDetalle() {
-  document.getElementById('detail-overlay').classList.remove('open');
+  document.getElementById('detail').classList.remove('open');
   selectedId = null;
+  renderList();
   pintarMarcadores();
 }
 
-function mostrarTab(tab) {
-  document.getElementById('tab-lista').classList.toggle('active', tab === 'lista');
-  document.getElementById('tab-mapa').classList.toggle('active', tab === 'mapa');
-  document.getElementById('panel').classList.toggle('mobile-hidden', tab === 'mapa');
-  document.getElementById('map').classList.toggle('mobile-visible', tab === 'mapa');
-  if (tab === 'mapa') setTimeout(() => map.invalidateSize(), 50);
+// ---------- GUARDAR CAMBIOS ----------
+async function guardarCampo(campo, valor) {
+  const r = restaurantes.find(x => x.id === selectedId);
+  if (!r) return;
+  r[campo] = valor;
+  await fetch(`${API}/restaurantes/${r.id}`, {
+    method: 'PUT', headers: authHeaders(), body: JSON.stringify({ [campo]: valor })
+  });
+  pintarMarcadores();
+  renderList();
 }
 
-initMap();
-cargar();
-
-function ajustarOffsetMovil() {
-  const topbar = document.getElementById('topbar');
-  const tabs = document.getElementById('mobile-tabs');
-  const layout = document.getElementById('layout');
-  if (window.innerWidth > 860) {
-    layout.style.marginTop = '';
-    layout.style.height = '';
-    tabs.style.top = '';
-    return;
-  }
-  const topbarH = topbar.offsetHeight;
-  const tabsH = tabs.offsetHeight;
-  tabs.style.top = topbarH + 'px';
-  layout.style.marginTop = (topbarH + tabsH) + 'px';
-  layout.style.height = `calc(100vh - ${topbarH + tabsH}px)`;
-}
-window.addEventListener('resize', ajustarOffsetMovil);
-window.addEventListener('load', ajustarOffsetMovil);
-ajustarOffsetMovil();
-
-// ---------- Arrastrar el popup: 3 alturas + cerrar, tipo Google Maps ----------
-(function () {
-  const asa = document.getElementById('detail-handle');
-  const panel = document.getElementById('detail');
-  let inicioY = null;
-  let alturaInicioPx = 0;
-  let alturaActualPx = 0;
-
-  function alturasSnap() {
-    const vh = window.innerHeight;
-    return { full: vh * 0.88, medio: vh * 0.48, mini: 64 };
-  }
-
-  function fijarAltura(px, animar) {
-    panel.style.transition = animar ? 'height 0.22s ease' : 'none';
-    panel.style.height = px + 'px';
-    panel.style.maxHeight = px + 'px';
-    alturaActualPx = px;
-  }
-
-  asa.addEventListener('touchstart', (e) => {
-    inicioY = e.touches[0].clientY;
-    alturaInicioPx = panel.getBoundingClientRect().height;
-    panel.style.transition = 'none';
+async function guardarCategoria(catId, campo, valor) {
+  const r = restaurantes.find(x => x.id === selectedId);
+  const cat = r.categorias.find(c => c.id === catId);
+  cat[campo] = valor;
+  await fetch(`${API}/categorias/${catId}`, {
+    method: 'PUT', headers: authHeaders(),
+    body: JSON.stringify({ nombre: cat.nombre, precio: cat.precio, valoracion: cat.valoracion, resena: cat.resena, instagram_url: cat.instagram_url })
   });
-  asa.addEventListener('touchmove', (e) => {
-    if (inicioY === null) return;
-    const deltaPx = e.touches[0].clientY - inicioY;
-    const { full } = alturasSnap();
-    const nuevaAltura = Math.min(full, Math.max(20, alturaInicioPx - deltaPx));
-    fijarAltura(nuevaAltura, false);
-    e.preventDefault();
-  });
-  asa.addEventListener('touchend', () => {
-    inicioY = null;
-    const { full, medio, mini } = alturasSnap();
-    if (alturaActualPx < 120) {
-      cerrarDetalle();
-      return;
+
+  // Si es una valoración y el restaurante pertenece a una cadena, la igualamos en las demás sedes
+  if (campo === 'valoracion' && r.grupo_id) {
+    const sedes = restaurantes.filter(x => x.grupo_id === r.grupo_id && x.id !== r.id);
+    for (const sede of sedes) {
+      const catHermana = sede.categorias.find(c => c.nombre === cat.nombre);
+      if (catHermana && catHermana.valoracion !== valor) {
+        catHermana.valoracion = valor;
+        await fetch(`${API}/categorias/${catHermana.id}`, {
+          method: 'PUT', headers: authHeaders(),
+          body: JSON.stringify({ nombre: catHermana.nombre, precio: catHermana.precio, valoracion: valor, resena: catHermana.resena, instagram_url: catHermana.instagram_url })
+        });
+      }
     }
-    const opciones = [full, medio, mini];
-    const masCercana = opciones.reduce((a, b) => Math.abs(b - alturaActualPx) < Math.abs(a - alturaActualPx) ? b : a);
-    fijarAltura(masCercana, true);
-    const r = restaurantes.find(x => x.id === selectedId);
-    if (r) setTimeout(() => centrarConOffset(r.lat, r.lng, map.getZoom(), 0, masCercana / 2), 230);
+  }
+
+  renderCategorias(r);
+  renderList();
+}
+
+async function añadirCategoria() {
+  const r = restaurantes.find(x => x.id === selectedId);
+  const res = await fetch(`${API}/restaurantes/${r.id}/categorias`, {
+    method: 'POST', headers: authHeaders(),
+    body: JSON.stringify({ nombre: '', precio: '', valoracion: null, resena: '', instagram_url: ''})
   });
-})();
+  const nueva = await res.json();
+  r.categorias.push(nueva);
+  renderCategorias(r);
+}
+
+async function borrarCategoria(catId) {
+  const r = restaurantes.find(x => x.id === selectedId);
+  await fetch(`${API}/categorias/${catId}`, { method: 'DELETE', headers: authHeaders() });
+  r.categorias = r.categorias.filter(c => c.id !== catId);
+  renderCategorias(r);
+  renderList();
+}
+
+async function borrarRestaurante() {
+  if (!confirm('¿Seguro que quieres eliminar este restaurante? No se puede deshacer.')) return;
+  await fetch(`${API}/restaurantes/${selectedId}`, { method: 'DELETE', headers: authHeaders() });
+  restaurantes = restaurantes.filter(r => r.id !== selectedId);
+  cerrarDetalle();
+  pintarMarcadores();
+  renderList();
+}
+
+// ---------- CAMBIAR DIRECCIÓN → REUBICAR EN EL MAPA ----------
+async function guardarBarrioManual(valor) {
+  const r = restaurantes.find(x => x.id === selectedId);
+  if (!r) return;
+  r.barrio = valor;
+  r.barrio_manual = true;
+  await fetch(`${API}/restaurantes/${r.id}`, {
+    method: 'PUT', headers: authHeaders(), body: JSON.stringify({ barrio: valor, barrio_manual: true })
+  });
+  pintarFiltros();
+  renderList();
+}
+
+function extraerBarrioLocal(direccion) {
+  if (!direccion) return null;
+  const partes = direccion.split(',').map(p => p.trim()).filter(Boolean);
+  const idxPostal = partes.findIndex(p => /^\d{4,5}\b/.test(p));
+  if (idxPostal > 1) {
+    const candidato = partes[idxPostal - 1];
+    if (candidato && !/^\d+$/.test(candidato)) return candidato;
+  }
+  const posible = partes.find((p, i) => i > 0 && !/\d/.test(p) && !/valencia|españa|valència/i.test(p));
+  return posible || null;
+}
+
+async function guardarDireccionYReubicar(nuevaDireccion) {
+  const r = restaurantes.find(x => x.id === selectedId);
+  if (!r || nuevaDireccion === r.direccion) return;
+  r.direccion = nuevaDireccion;
+  const cuerpo = { direccion: nuevaDireccion };
+
+  if (!r.barrio_manual) {
+    const posible = extraerBarrioLocal(nuevaDireccion);
+    if (posible) { r.barrio = posible; cuerpo.barrio = posible; }
+  }
+
+  await fetch(`${API}/restaurantes/${r.id}`, {
+    method: 'PUT', headers: authHeaders(), body: JSON.stringify(cuerpo)
+  });
+  renderList();
+  if (cuerpo.barrio) abrirDetalle(r.id);
+
+  try {
+    const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=es&q=${encodeURIComponent(nuevaDireccion)}`);
+    const resultados = await res.json();
+    if (resultados.length) {
+      const { lat, lon } = resultados[0];
+      r.lat = parseFloat(lat); r.lng = parseFloat(lon);
+      await fetch(`${API}/restaurantes/${r.id}`, {
+        method: 'PUT', headers: authHeaders(), body: JSON.stringify({ lat: r.lat, lng: r.lng })
+      });
+      pintarMarcadores();
+      map.panTo([r.lat, r.lng]);
+    }
+  } catch (e) { /* si falla la geolocalización, al menos la dirección de texto ya se guardó */ }
+}
+
+// ---------- PUBLICAR PARA SEGUIDORES ----------
+function publicarCambios() {
+  const publicos = restaurantes
+    .filter(r => r.visible_publico)
+    .map(r => ({
+      id: r.id, nombre: r.nombre, lat: r.lat, lng: r.lng,
+      direccion: r.direccion, google_maps_url: r.google_maps_url,
+      grupo_id: r.grupo_id, barrio: r.barrio,
+      categorias: r.categorias.map(c => ({ nombre: c.nombre, precio: c.precio, valoracion: c.valoracion, resena: c.resena, instagram_url: c.instagram_url }))
+    }));
+  const paquete = { arbol: categoriasMaestro(), restaurantes: publicos };
+  const blob = new Blob([JSON.stringify(paquete, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'data.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  alert(`Descargado data.json con ${publicos.length} restaurantes visibles.\n\nAhora sustituye el archivo data.json que está en la RAÍZ de tu proyecto (junto a backend y frontend-privado) por este, y haz git add . / git commit / git push para publicarlo.`);
+}
+
+// ---------- ARRANQUE ----------
+if (token) arrancar();
+
+function descargarBackup() {
+  const blob = new Blob([JSON.stringify(restaurantes, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'backup-completo.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
 </script>
 </body>
 </html>
