@@ -280,10 +280,10 @@ function coincide(r) {
   return coincideNombre && coincideCat && coincidePrecio && coincideVal && coincideBarrio;
 }
 
-function centrarConOffset(lat, lng, zoom, offsetXpx) {
+function centrarConOffset(lat, lng, zoom, offsetXpx, offsetYpx) {
   const z = zoom !== undefined ? zoom : map.getZoom();
   const punto = map.project([lat, lng], z);
-  const puntoAjustado = punto.add(L.point(offsetXpx, 0));
+  const puntoAjustado = punto.add(L.point(offsetXpx || 0, offsetYpx || 0));
   const centro = map.unproject(puntoAjustado, z);
   map.setView(centro, z);
 }
@@ -363,17 +363,19 @@ function abrirDetalle(id) {
   selectedId = id;
   if (window.innerWidth <= 860) mostrarTab('mapa');
   const panelDetalle = document.getElementById('detail');
+  let alturaPanelMovil = 0;
   if (window.innerWidth <= 860) {
+    alturaPanelMovil = window.innerHeight * 0.48;
     panelDetalle.style.transition = 'none';
-    panelDetalle.style.height = (window.innerHeight * 0.48) + 'px';
-    panelDetalle.style.maxHeight = (window.innerHeight * 0.48) + 'px';
+    panelDetalle.style.height = alturaPanelMovil + 'px';
+    panelDetalle.style.maxHeight = alturaPanelMovil + 'px';
   } else {
     panelDetalle.style.height = '';
     panelDetalle.style.maxHeight = '';
   }
   pintarMarcadores();
-  if (window.innerWidth > 860) centrarConOffset(r.lat, r.lng, map.getZoom(), 210);
-  else map.panTo([r.lat, r.lng]);
+  if (window.innerWidth > 860) centrarConOffset(r.lat, r.lng, map.getZoom(), 210, 0);
+  else centrarConOffset(r.lat, r.lng, map.getZoom(), 0, alturaPanelMovil / 2);
   document.getElementById('detail-body').innerHTML = `
     <h2>${r.nombre}</h2>
     <div class="direccion">${r.direccion || ''}${r.barrio ? ' · ' + r.barrio : ''}</div>
@@ -473,6 +475,8 @@ ajustarOffsetMovil();
     const opciones = [full, medio, mini];
     const masCercana = opciones.reduce((a, b) => Math.abs(b - alturaActualPx) < Math.abs(a - alturaActualPx) ? b : a);
     fijarAltura(masCercana, true);
+    const r = restaurantes.find(x => x.id === selectedId);
+    if (r) setTimeout(() => centrarConOffset(r.lat, r.lng, map.getZoom(), 0, masCercana / 2), 230);
   });
 })();
 </script>
