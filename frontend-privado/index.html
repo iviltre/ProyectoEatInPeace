@@ -193,12 +193,30 @@ let filtroBarrios = new Set();
 const PRECIOS_FIJOS = ['0-5€', '5-10€', '10-20€', '20-35€', '35-50€', '50-80€', '>80€'];
 
 function categoriasMaestro() {
-  const guardado = JSON.parse(localStorage.getItem('categoriasArbol') || 'null');
-  if (guardado) return guardado;
-  const cats = new Set();
-  restaurantes.forEach(r => r.categorias.forEach(c => c.nombre && cats.add(c.nombre)));
-  const lista = [...cats].sort().map(nombre => ({ nombre, padre: null }));
-  localStorage.setItem('categoriasArbol', JSON.stringify(lista));
+  let lista = JSON.parse(localStorage.getItem('categoriasArbol') || 'null');
+  if (!lista) {
+    const cats = new Set();
+    restaurantes.forEach(r => r.categorias.forEach(c => c.nombre && cats.add(c.nombre)));
+    lista = [...cats].sort().map(nombre => ({ nombre, padre: null }));
+    localStorage.setItem('categoriasArbol', JSON.stringify(lista));
+    return lista;
+  }
+  // Migración desde el formato antiguo (nodos con "hijas" en vez de "padre")
+  if (lista.some(n => n.padre === undefined)) {
+    const nueva = [];
+    lista.forEach(n => {
+      if (n.padre !== undefined) {
+        if (!nueva.some(x => x.nombre === n.nombre)) nueva.push({ nombre: n.nombre, padre: n.padre });
+      } else {
+        if (!nueva.some(x => x.nombre === n.nombre)) nueva.push({ nombre: n.nombre, padre: null });
+        (n.hijas || []).forEach(h => {
+          if (!nueva.some(x => x.nombre === h)) nueva.push({ nombre: h, padre: n.nombre });
+        });
+      }
+    });
+    lista = nueva;
+    localStorage.setItem('categoriasArbol', JSON.stringify(lista));
+  }
   return lista;
 }
 
@@ -260,7 +278,7 @@ function opcionesDePadrePara(nombre) {
 // Construye el árbol completo (a cualquier profundidad) a partir de la lista plana
 function construirArbolRecursivo(nombrePadre) {
   return categoriasMaestro()
-    .filter(n => n.padre === nombrePadre)
+    .filter(n => (nombrePadre === null ? !n.padre : n.padre === nombrePadre))
     .map(n => ({ nombre: n.nombre, hijos: construirArbolRecursivo(n.nombre) }));
 }
 function arbolCompleto() {

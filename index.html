@@ -214,7 +214,7 @@ function categoriaCoincideFiltro(nombreCategoria, filtro) {
 
 function construirArbolRecursivoPublico(nombrePadre) {
   return categoriasArbol
-    .filter(n => n.padre === nombrePadre)
+    .filter(n => (nombrePadre === null ? !n.padre : n.padre === nombrePadre))
     .map(n => ({ nombre: n.nombre, hijos: construirArbolRecursivoPublico(n.nombre) }));
 }
 function arbolCompletoPublico() {
