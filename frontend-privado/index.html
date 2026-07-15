@@ -193,30 +193,80 @@ let filtroBarrios = new Set();
 const PRECIOS_FIJOS = ['0-5€', '5-10€', '10-20€', '20-35€', '35-50€', '50-80€', '>80€'];
 
 function categoriasMaestro() {
-  const guardadas = JSON.parse(localStorage.getItem('categoriasMaestro') || 'null');
-  if (guardadas) return guardadas;
+  const guardado = JSON.parse(localStorage.getItem('categoriasArbol') || 'null');
+  if (guardado) return guardado;
   const cats = new Set();
   restaurantes.forEach(r => r.categorias.forEach(c => c.nombre && cats.add(c.nombre)));
-  const lista = [...cats].sort();
-  localStorage.setItem('categoriasMaestro', JSON.stringify(lista));
+  const lista = [...cats].sort().map(nombre => ({ nombre, padre: null }));
+  localStorage.setItem('categoriasArbol', JSON.stringify(lista));
   return lista;
+}
+
+function guardarArbol(lista) {
+  localStorage.setItem('categoriasArbol', JSON.stringify(lista));
 }
 
 function añadirCategoriaMaestro(nombre) {
   nombre = nombre.trim();
   if (!nombre) return;
   const lista = categoriasMaestro();
-  if (!lista.includes(nombre)) {
-    lista.push(nombre);
-    lista.sort();
-    localStorage.setItem('categoriasMaestro', JSON.stringify(lista));
+  if (!lista.some(n => n.nombre === nombre)) {
+    lista.push({ nombre, padre: null });
+    lista.sort((a, b) => a.nombre.localeCompare(b.nombre));
+    guardarArbol(lista);
   }
 }
 
 function quitarCategoriaMaestro(nombre) {
-  const lista = categoriasMaestro().filter(c => c !== nombre);
-  localStorage.setItem('categoriasMaestro', JSON.stringify(lista));
+  // si alguna categoría tenía esta como padre, se quedan sin padre (no se borran)
+  const lista = categoriasMaestro()
+    .filter(n => n.nombre !== nombre)
+    .map(n => n.padre === nombre ? { ...n, padre: null } : n);
+  guardarArbol(lista);
   pintarFiltros();
+}
+
+function cambiarPadreCategoria(nombre, nuevoPadre) {
+  const lista = categoriasMaestro();
+  const nodo = lista.find(n => n.nombre === nombre);
+  if (nodo) {
+    nodo.padre = nuevoPadre || null;
+    guardarArbol(lista);
+  }
+  pintarFiltros();
+}
+
+// Categorías que pueden usarse como padre: las que no tienen padre ellas mismas, y no son la propia categoría
+function opcionesDePadrePara(nombre) {
+  return categoriasMaestro().filter(n => !n.padre && n.nombre !== nombre);
+}
+
+// Agrupa la lista plana en padres + sus hijas, para pintar filtros y desplegables
+function arbolAgrupado() {
+  const lista = categoriasMaestro();
+  const padres = lista.filter(n => !n.padre);
+  const huerfanas = lista.filter(n => n.padre && !padres.some(p => p.nombre === n.padre));
+  return [...padres, ...huerfanas.map(h => ({ nombre: h.nombre, padre: null }))]
+    .filter((n, i, arr) => arr.findIndex(x => x.nombre === n.nombre) === i)
+    .map(p => ({ nombre: p.nombre, hijas: lista.filter(n => n.padre === p.nombre).map(n => n.nombre) }));
+}
+
+// Lista plana de opciones para el desplegable de categoría del restaurante (con hijas indentadas)
+function opcionesCategoriaPlanas() {
+  const opciones = [];
+  arbolAgrupado().forEach(nodo => {
+    opciones.push({ value: nodo.nombre, label: nodo.nombre, esHija: false });
+    nodo.hijas.forEach(h => opciones.push({ value: h, label: '— ' + h, esHija: true }));
+  });
+  return opciones;
+}
+
+// ¿El nombre de categoría de un restaurante coincide con lo filtrado?
+// (si se filtra por un padre, tambien cuentan las categorías que tengan ese padre asignado)
+function categoriaCoincideFiltro(nombreCategoria, filtro) {
+  if (filtro.has(nombreCategoria)) return true;
+  const nodo = categoriasMaestro().find(n => n.nombre === nombreCategoria);
+  return !!(nodo && nodo.padre && filtro.has(nodo.padre));
 }
 
 // ---------- LOGIN ----------
@@ -372,13 +422,35 @@ function pintarFiltros() {
   el.appendChild(labelCat);
 
   const grupoCat = document.createElement('div');
-  grupoCat.style.cssText = 'display:flex; flex-wrap:wrap; gap:6px; margin-bottom:6px;';
-  categoriasMaestro().forEach(cat => {
-    const chip = document.createElement('div');
-    chip.className = 'chip' + (filtroCategorias.has(cat) ? ' active' : '');
-    chip.textContent = cat;
-    chip.onclick = () => { filtroCategorias.has(cat) ? filtroCategorias.delete(cat) : filtroCategorias.add(cat); pintarFiltros(); renderList(); pintarMarcadores(); };
-    grupoCat.appendChild(chip);
+  grupoCat.style.cssText = 'margin-bottom:6px;';
+  arbolAgrupado().forEach(nodo => {
+    const caja = document.createElement('div');
+    caja.style.cssText = nodo.hijas.length
+      ? 'border:1px solid var(--border); border-radius:6px; padding:6px; margin-bottom:6px;'
+      : 'margin-bottom:6px;';
+
+    const chipPadre = document.createElement('div');
+    chipPadre.className = 'chip' + (filtroCategorias.has(nodo.nombre) ? ' active' : '');
+    chipPadre.textContent = nodo.nombre;
+    chipPadre.style.fontWeight = '600';
+    chipPadre.style.display = 'inline-block';
+    chipPadre.onclick = () => { filtroCategorias.has(nodo.nombre) ? filtroCategorias.delete(nodo.nombre) : filtroCategorias.add(nodo.nombre); pintarFiltros(); renderList(); pintarMarcadores(); };
+    caja.appendChild(chipPadre);
+
+    if (nodo.hijas.length) {
+      const filaHijas = document.createElement('div');
+      filaHijas.style.cssText = 'display:flex; flex-wrap:wrap; gap:5px; margin-top:6px; padding-left:10px; border-left:2px solid var(--border);';
+      nodo.hijas.forEach(hija => {
+        const chipHija = document.createElement('div');
+        chipHija.className = 'chip' + (filtroCategorias.has(hija) ? ' active' : '');
+        chipHija.textContent = hija;
+        chipHija.style.fontSize = '11.5px';
+        chipHija.onclick = () => { filtroCategorias.has(hija) ? filtroCategorias.delete(hija) : filtroCategorias.add(hija); pintarFiltros(); renderList(); pintarMarcadores(); };
+        filaHijas.appendChild(chipHija);
+      });
+      caja.appendChild(filaHijas);
+    }
+    grupoCat.appendChild(caja);
   });
   el.appendChild(grupoCat);
 
@@ -463,25 +535,54 @@ function cerrarGestionCategorias() {
 function renderListaCategoriasMaestro() {
   const el = document.getElementById('lista-categorias-maestro');
   el.innerHTML = '';
-  const categorias = categoriasMaestro();
+  const orden = [];
+  arbolAgrupado().forEach(nodo => {
+    orden.push(nodo.nombre);
+    nodo.hijas.forEach(h => orden.push(h));
+  });
+  const todas = categoriasMaestro();
+  const categorias = orden.map(nombre => todas.find(n => n.nombre === nombre)).filter(Boolean);
 
   if (!categorias.length) {
     el.innerHTML = '<p style="font-size:12.5px; color:var(--text-muted);">Todavía no hay categorías creadas.</p>';
     return;
   }
 
-  categorias.forEach((cat) => {
-    const bloque = document.createElement('div');
-    bloque.style.cssText = 'display:flex; justify-content:space-between; align-items:center; padding:8px 4px; border-bottom:1px solid var(--border); font-size:13px;';
+  categorias.forEach((nodo) => {
+    const fila = document.createElement('div');
+    fila.style.cssText = 'display:flex; align-items:center; gap:8px; padding:8px 4px; border-bottom:1px solid var(--border);';
+
     const nombreCat = document.createElement('span');
-    nombreCat.textContent = cat;
+    nombreCat.style.cssText = 'flex:1; font-size:13px;' + (nodo.padre ? ' padding-left:14px; color:var(--text-muted);' : ' font-weight:600;');
+    nombreCat.textContent = (nodo.padre ? '↳ ' : '') + nodo.nombre;
+    fila.appendChild(nombreCat);
+
+    const selectPadre = document.createElement('select');
+    selectPadre.style.cssText = 'font-size:11.5px; padding:4px 6px; border:1px solid var(--border); border-radius:5px; max-width:130px;';
+    const optNinguno = document.createElement('option');
+    optNinguno.value = '';
+    optNinguno.textContent = 'Sin categoría padre';
+    selectPadre.appendChild(optNinguno);
+    opcionesDePadrePara(nodo.nombre).forEach(p => {
+      const opt = document.createElement('option');
+      opt.value = p.nombre;
+      opt.textContent = 'Dentro de: ' + p.nombre;
+      if (p.nombre === nodo.padre) opt.selected = true;
+      selectPadre.appendChild(opt);
+    });
+    selectPadre.addEventListener('change', () => {
+      cambiarPadreCategoria(nodo.nombre, selectPadre.value);
+      renderListaCategoriasMaestro();
+    });
+    fila.appendChild(selectPadre);
+
     const btnQuitarCat = document.createElement('button');
     btnQuitarCat.textContent = 'Eliminar';
     btnQuitarCat.style.cssText = 'border:none; background:none; color:var(--danger); cursor:pointer; font-size:11.5px;';
-    btnQuitarCat.addEventListener('click', () => confirmarQuitarCategoria(cat));
-    bloque.appendChild(nombreCat);
-    bloque.appendChild(btnQuitarCat);
-    el.appendChild(bloque);
+    btnQuitarCat.addEventListener('click', () => confirmarQuitarCategoria(nodo.nombre));
+    fila.appendChild(btnQuitarCat);
+
+    el.appendChild(fila);
   });
 }
 
@@ -504,7 +605,7 @@ function restaurantesFiltrados() {
   const q = document.getElementById('search').value.toLowerCase();
   return restaurantes.filter(r => {
     const coincideNombre = r.nombre.toLowerCase().includes(q);
-    const coincideCat = filtroCategorias.size === 0 || r.categorias.some(c => filtroCategorias.has(c.nombre));
+    const coincideCat = filtroCategorias.size === 0 || r.categorias.some(c => categoriaCoincideFiltro(c.nombre, filtroCategorias));
     const coincidePrecio = filtroPrecios.size === 0 || r.categorias.some(c => filtroPrecios.has(c.precio));
     const coincideVal = filtroValoraciones.size === 0 || r.categorias.some(c => [...filtroValoraciones].some(min => (c.valoracion || 0) >= min));
     const coincideProbado = !filtroProbado || (filtroProbado === 'si' ? r.probado : !r.probado);
@@ -647,7 +748,7 @@ function renderCategorias(r) {
       <div class="cat-card-top">
         <select onchange="guardarCategoria('${cat.id}', 'nombre', this.value)" style="flex:1;">
           <option value="">Elegir categoría...</option>
-          ${categoriasMaestro().map(c => `<option value="${c}" ${c === cat.nombre ? 'selected' : ''}>${c}</option>`).join('')}
+          ${opcionesCategoriaPlanas().map(o => `<option value="${o.value}" ${o.value === cat.nombre ? 'selected' : ''}>${o.label}</option>`).join('')}
         </select>
         <select onchange="guardarCategoria('${cat.id}', 'precio', this.value)" style="width:100px;">
           <option value="">Precio...</option>
@@ -805,7 +906,8 @@ function publicarCambios() {
       grupo_id: r.grupo_id, barrio: r.barrio,
       categorias: r.categorias.map(c => ({ nombre: c.nombre, precio: c.precio, valoracion: c.valoracion, resena: c.resena, instagram_url: c.instagram_url }))
     }));
-  const blob = new Blob([JSON.stringify(publicos, null, 2)], { type: 'application/json' });
+  const paquete = { arbol: categoriasMaestro(), restaurantes: publicos };
+  const blob = new Blob([JSON.stringify(paquete, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url; a.download = 'data.json';
