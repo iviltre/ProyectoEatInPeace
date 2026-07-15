@@ -67,8 +67,8 @@
   #detail-close { float: right; background: none; border: none; font-size: 20px; color: var(--text-muted); cursor: pointer; padding: 16px; }
   #detail-handle { display: none; }
   @media (max-width: 639px) {
-    #detail-handle { display: flex; align-items: center; justify-content: center; height: 24px; touch-action: none; }
-    #detail-handle::before { content: ''; width: 40px; height: 4px; background: var(--border); border-radius: 4px; }
+    #detail-handle { display: flex; align-items: center; justify-content: center; height: 44px; touch-action: none; }
+    #detail-handle::before { content: ''; width: 48px; height: 5px; background: var(--border); border-radius: 4px; }
   }
   #detail-body { padding: 4px 24px 20px; }
   #detail-body h2 { font-size: 22px; margin: 0 0 4px; }
@@ -362,6 +362,7 @@ function abrirDetalle(id) {
   if (!r) return;
   selectedId = id;
   document.getElementById('detail').style.maxHeight = '';
+  document.getElementById('detail').style.height = '';
   pintarMarcadores();
   if (window.innerWidth > 860) centrarConOffset(r.lat, r.lng, map.getZoom(), 210);
   else map.panTo([r.lat, r.lng]);
@@ -431,7 +432,7 @@ ajustarOffsetMovil();
   let alturaInicioVh = ALTURA_BASE;
 
   function alturaActualVh() {
-    const val = parseFloat(panel.style.maxHeight);
+    const val = parseFloat(panel.style.height || panel.style.maxHeight);
     return isNaN(val) ? ALTURA_BASE : val;
   }
 
@@ -447,6 +448,7 @@ ajustarOffsetMovil();
       const deltaVh = (-deltaPx / window.innerHeight) * 100;
       const nuevaAltura = Math.min(ALTURA_MAX, alturaInicioVh + deltaVh);
       panel.style.maxHeight = nuevaAltura + 'vh';
+      panel.style.height = nuevaAltura + 'vh';
       panel.style.transform = '';
     } else {
       panel.style.transform = `translateY(${deltaPx}px)`;
