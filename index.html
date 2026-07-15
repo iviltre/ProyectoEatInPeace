@@ -101,7 +101,10 @@
 
 <div id="topbar">
   <div class="brand"><h1>eat in peace</h1></div>
-  <a class="ig" href="https://www.instagram.com/eatinpeace_" target="_blank">@eatinpeace_</a>
+  <div style="display:flex; align-items:center; gap:8px;">
+    <a class="ig" href="https://www.instagram.com/eatinpeace_" target="_blank">@eatinpeace_</a>
+    <a class="ig" href="https://www.tiktok.com/@eatinpeace" target="_blank">TikTok</a>
+  </div>
 </div>
 
 <div id="mobile-tabs">
@@ -447,7 +450,8 @@ function abrirDetalle(id) {
         </div>
         ${c.valoracion ? `<div class="stars">${estrellas(c.valoracion)}</div>` : ''}
         ${c.resena ? `<div class="resena">${c.resena.replace(/\n/g, '<br>')}</div>` : ''}
-        ${c.instagram_url ? `<a class="maps" href="${c.instagram_url}" target="_blank" style="display:inline-block; margin-top:6px;">Ver reel en Instagram →</a>` : ''}
+        ${c.instagram_url ? `<a class="maps" href="${c.instagram_url}" target="_blank" style="display:inline-block; margin-top:6px; margin-right:12px;">Ver reel en Instagram →</a>` : ''}
+        ${c.tiktok_url ? `<a class="maps" href="${c.tiktok_url}" target="_blank" style="display:inline-block; margin-top:6px;">Ver en TikTok →</a>` : ''}
       </div>
     `).join('')}
   `;

@@ -809,6 +809,7 @@ function renderCategorias(r) {
       <div class="stars" data-cat="${cat.id}">${[1,2,3,4,5].map(n => `<span class="${n <= (cat.valoracion||0) ? 'filled' : ''}" onclick="guardarCategoria('${cat.id}', 'valoracion', ${n})">★</span>`).join('')}</div>
       <textarea placeholder="Tu reseña..." onblur="guardarCategoria('${cat.id}', 'resena', this.value)">${cat.resena || ''}</textarea>
       <input type="text" value="${cat.instagram_url || ''}" placeholder="Enlace al reel de Instagram (opcional)" style="width:100%; margin-top:6px; font-size:12px;" onblur="guardarCategoria('${cat.id}', 'instagram_url', this.value)">
+      <input type="text" value="${cat.tiktok_url || ''}" placeholder="Enlace al vídeo de TikTok (opcional)" style="width:100%; margin-top:6px; font-size:12px;" onblur="guardarCategoria('${cat.id}', 'tiktok_url', this.value)">
     `;
     el.appendChild(div);
   });
@@ -839,7 +840,7 @@ async function guardarCategoria(catId, campo, valor) {
   cat[campo] = valor;
   await fetch(`${API}/categorias/${catId}`, {
     method: 'PUT', headers: authHeaders(),
-    body: JSON.stringify({ nombre: cat.nombre, precio: cat.precio, valoracion: cat.valoracion, resena: cat.resena, instagram_url: cat.instagram_url })
+    body: JSON.stringify({ nombre: cat.nombre, precio: cat.precio, valoracion: cat.valoracion, resena: cat.resena, instagram_url: cat.instagram_url, tiktok_url: cat.tiktok_url })
   });
 
   // Si es una valoración y el restaurante pertenece a una cadena, la igualamos en las demás sedes
@@ -851,7 +852,7 @@ async function guardarCategoria(catId, campo, valor) {
         catHermana.valoracion = valor;
         await fetch(`${API}/categorias/${catHermana.id}`, {
           method: 'PUT', headers: authHeaders(),
-          body: JSON.stringify({ nombre: catHermana.nombre, precio: catHermana.precio, valoracion: valor, resena: catHermana.resena, instagram_url: catHermana.instagram_url })
+          body: JSON.stringify({ nombre: catHermana.nombre, precio: catHermana.precio, valoracion: valor, resena: catHermana.resena, instagram_url: catHermana.instagram_url, tiktok_url: catHermana.tiktok_url })
         });
       }
     }
@@ -865,7 +866,7 @@ async function añadirCategoria() {
   const r = restaurantes.find(x => x.id === selectedId);
   const res = await fetch(`${API}/restaurantes/${r.id}/categorias`, {
     method: 'POST', headers: authHeaders(),
-    body: JSON.stringify({ nombre: '', precio: '', valoracion: null, resena: '', instagram_url: ''})
+    body: JSON.stringify({ nombre: '', precio: '', valoracion: null, resena: '', instagram_url: '', tiktok_url: ''})
   });
   const nueva = await res.json();
   r.categorias.push(nueva);
@@ -954,7 +955,7 @@ function publicarCambios() {
       id: r.id, nombre: r.nombre, lat: r.lat, lng: r.lng,
       direccion: r.direccion, google_maps_url: r.google_maps_url,
       grupo_id: r.grupo_id, barrio: r.barrio,
-      categorias: r.categorias.map(c => ({ nombre: c.nombre, precio: c.precio, valoracion: c.valoracion, resena: c.resena, instagram_url: c.instagram_url }))
+      categorias: r.categorias.map(c => ({ nombre: c.nombre, precio: c.precio, valoracion: c.valoracion, resena: c.resena, instagram_url: c.instagram_url, tiktok_url: c.tiktok_url }))
     }));
   const paquete = { arbol: categoriasMaestro(), restaurantes: publicos };
   const blob = new Blob([JSON.stringify(paquete, null, 2)], { type: 'application/json' });

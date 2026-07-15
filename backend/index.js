@@ -32,11 +32,12 @@ async function prepararBaseDeDatos() {
   await db.execute(`
     CREATE TABLE IF NOT EXISTS categorias (
       id TEXT PRIMARY KEY, restaurante_id TEXT NOT NULL, nombre TEXT, precio TEXT,
-      valoracion INTEGER, resena TEXT, instagram_url TEXT, subcategoria TEXT
+      valoracion INTEGER, resena TEXT, instagram_url TEXT, subcategoria TEXT, tiktok_url TEXT
     )
   `);
   try { await db.execute(`ALTER TABLE categorias ADD COLUMN instagram_url TEXT`); } catch (e) {}
   try { await db.execute(`ALTER TABLE categorias ADD COLUMN subcategoria TEXT`); } catch (e) {}
+  try { await db.execute(`ALTER TABLE categorias ADD COLUMN tiktok_url TEXT`); } catch (e) {}
 
   const { rows } = await db.execute('SELECT COUNT(*) as total FROM restaurantes');
   if (rows[0].total > 0) {
@@ -62,9 +63,9 @@ async function prepararBaseDeDatos() {
     });
     for (const c of r.categorias) {
       await db.execute({
-        sql: `INSERT INTO categorias (id, restaurante_id, nombre, precio, valoracion, resena, instagram_url)
-              VALUES (?, ?, ?, ?, ?, ?, ?)`,
-        args: [c.id, r.id, c.nombre, c.precio, c.valoracion, c.resena, c.instagram_url || null]
+        sql: `INSERT INTO categorias (id, restaurante_id, nombre, precio, valoracion, resena, instagram_url, tiktok_url)
+              VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+        args: [c.id, r.id, c.nombre, c.precio, c.valoracion, c.resena, c.instagram_url || null, c.tiktok_url || null]
       });
     }
   }
@@ -109,7 +110,7 @@ async function construirRestaurante(fila, soloPublico) {
     probado: !!fila.probado, etiquetas_extra: JSON.parse(fila.etiquetas_extra || '[]'),
     categorias: categorias.map(c => ({
       id: c.id, nombre: c.nombre, precio: c.precio, valoracion: c.valoracion,
-      resena: c.resena, instagram_url: c.instagram_url, subcategoria: c.subcategoria
+      resena: c.resena, instagram_url: c.instagram_url, subcategoria: c.subcategoria, tiktok_url: c.tiktok_url
     })),
   };
   if (!soloPublico) {
@@ -197,22 +198,22 @@ app.delete('/api/restaurantes/:id', requiereAuth, async (req, res) => {
 
 app.post('/api/restaurantes/:id/categorias', requiereAuth, async (req, res) => {
   const id = randomUUID();
-  const { nombre, precio, valoracion, resena, instagram_url, subcategoria } = req.body;
+  const { nombre, precio, valoracion, resena, instagram_url, subcategoria, tiktok_url } = req.body;
   await db.execute({
-    sql: `INSERT INTO categorias (id, restaurante_id, nombre, precio, valoracion, resena, instagram_url, subcategoria)
-          VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-    args: [id, req.params.id, nombre, precio, valoracion, resena, instagram_url || null, subcategoria || null]
+    sql: `INSERT INTO categorias (id, restaurante_id, nombre, precio, valoracion, resena, instagram_url, subcategoria, tiktok_url)
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    args: [id, req.params.id, nombre, precio, valoracion, resena, instagram_url || null, subcategoria || null, tiktok_url || null]
   });
-  res.status(201).json({ id, nombre, precio, valoracion, resena, instagram_url, subcategoria });
+  res.status(201).json({ id, nombre, precio, valoracion, resena, instagram_url, subcategoria, tiktok_url });
 });
 
 app.put('/api/categorias/:catId', requiereAuth, async (req, res) => {
-  const { nombre, precio, valoracion, resena, instagram_url, subcategoria } = req.body;
+  const { nombre, precio, valoracion, resena, instagram_url, subcategoria, tiktok_url } = req.body;
   await db.execute({
-    sql: `UPDATE categorias SET nombre=?, precio=?, valoracion=?, resena=?, instagram_url=?, subcategoria=? WHERE id=?`,
-    args: [nombre, precio, valoracion, resena, instagram_url || null, subcategoria || null, req.params.catId]
+    sql: `UPDATE categorias SET nombre=?, precio=?, valoracion=?, resena=?, instagram_url=?, subcategoria=?, tiktok_url=? WHERE id=?`,
+    args: [nombre, precio, valoracion, resena, instagram_url || null, subcategoria || null, tiktok_url || null, req.params.catId]
   });
-  res.json({ id: req.params.catId, nombre, precio, valoracion, resena, instagram_url, subcategoria });
+  res.json({ id: req.params.catId, nombre, precio, valoracion, resena, instagram_url, subcategoria, tiktok_url });
 });
 
 app.delete('/api/categorias/:catId', requiereAuth, async (req, res) => {
