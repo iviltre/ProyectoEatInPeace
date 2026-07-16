@@ -32,7 +32,7 @@
   #topbar a.ig { color: var(--text-muted); text-decoration: none; font-size: 13px; border: 1px solid var(--border); padding: 5px 12px; border-radius: 20px; }
   #topbar a.ig:hover { border-color: var(--clay); color: var(--clay); }
 
-  #layout { display: flex; height: calc(100vh - 57px); margin-top: 57px; }
+  #layout { display: flex; height: calc(100vh - 57px); margin-top: 57px; position: relative; }
   #panel { width: 400px; min-width: 400px; min-height: 0; overflow: hidden; background: var(--panel); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
   #search-wrap { padding: 16px; border-bottom: 1px solid var(--border); }
   #search { width: 100%; padding: 11px 14px; border: 1px solid var(--border); border-radius: 20px; font-size: 14px; font-family: inherit; }
@@ -128,6 +128,7 @@
     <div id="list"></div>
   </div>
   <div id="map"></div>
+  <button id="btn-zona-mapa" onclick="toggleFiltroZona()" style="display:none; position:absolute; top:14px; left:50%; transform:translateX(-50%); background:var(--text); color:white; padding:8px 16px; border-radius:20px; box-shadow:0 1px 6px rgba(0,0,0,0.25); font-size:12.5px; border:none; cursor:pointer; z-index:600;"></button>
   <label id="toggle-agrupar-publico" style="position:fixed; bottom:16px; right:16px; background:white; padding:7px 12px; border-radius:20px; box-shadow:0 1px 4px rgba(0,0,0,0.15); font-size:12.5px; display:flex; align-items:center; gap:6px; cursor:pointer; z-index:500;">
     <input type="checkbox" onchange="cambiarAgrupado(this.checked)"> Agrupar pines cercanos
   </label>
@@ -151,6 +152,8 @@ let filtroCategorias = new Set();
 let filtroPrecios = new Set();
 let filtroValoraciones = new Set();
 let filtroBarrios = new Set();
+let filtroZonaActivo = false;
+let limitesZona = null;
 let selectedId = null;
 const PRECIOS_FIJOS = ['0-5€', '5-10€', '10-20€', '20-35€', '35-50€', '50-80€', '>80€'];
 let map, cluster;
@@ -162,6 +165,28 @@ function initMap() {
   }).addTo(map);
   cluster = L.layerGroup();
   map.addLayer(cluster);
+  map.on('moveend', () => {
+    const boton = document.getElementById('btn-zona-mapa');
+    if (!filtroZonaActivo) {
+      boton.textContent = 'Buscar en esta zona del mapa';
+      boton.style.display = 'block';
+    }
+  });
+}
+
+function toggleFiltroZona() {
+  const boton = document.getElementById('btn-zona-mapa');
+  if (filtroZonaActivo) {
+    filtroZonaActivo = false;
+    limitesZona = null;
+    boton.style.display = 'none';
+  } else {
+    filtroZonaActivo = true;
+    limitesZona = map.getBounds();
+    boton.textContent = '✕ Quitar filtro de zona';
+    boton.style.display = 'block';
+  }
+  renderList();
 }
 
 function cambiarAgrupado(agrupar) {
@@ -339,7 +364,8 @@ function coincide(r) {
   const coincidePrecio = filtroPrecios.size === 0 || r.categorias.some(c => filtroPrecios.has(c.precio));
   const coincideVal = filtroValoraciones.size === 0 || r.categorias.some(c => [...filtroValoraciones].some(min => (c.valoracion || 0) >= min));
   const coincideBarrio = filtroBarrios.size === 0 || filtroBarrios.has(r.barrio);
-  return coincideNombre && coincideCat && coincidePrecio && coincideVal && coincideBarrio;
+  const coincideZona = !filtroZonaActivo || !limitesZona || limitesZona.contains([r.lat, r.lng]);
+  return coincideNombre && coincideCat && coincidePrecio && coincideVal && coincideBarrio && coincideZona;
 }
 
 function centrarConOffset(lat, lng, zoom, offsetXpx, offsetYpx) {

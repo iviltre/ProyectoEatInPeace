@@ -26,7 +26,7 @@
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
   body { font-family: 'IBM Plex Sans', sans-serif; color: var(--text); background: var(--bg); }
-  #app { display: flex; height: 100vh; }
+  #app { display: flex; height: 100vh; position: relative; }
   #sidebar { min-height: 0; overflow: hidden; }
 
   /* --- Login --- */
@@ -153,6 +153,7 @@
     <div id="list"></div>
   </div>
   <div id="map"></div>
+  <button id="btn-zona-mapa" onclick="toggleFiltroZona()" style="display:none; position:absolute; top:14px; left:50%; transform:translateX(-50%); background:var(--text); color:white; padding:8px 16px; border-radius:20px; box-shadow:0 1px 6px rgba(0,0,0,0.25); font-size:12.5px; border:none; cursor:pointer; z-index:600;"></button>
   <label id="toggle-agrupar" style="position:fixed; bottom:16px; right:16px; background:white; padding:7px 12px; border-radius:20px; box-shadow:0 1px 4px rgba(0,0,0,0.15); font-size:12.5px; display:flex; align-items:center; gap:6px; cursor:pointer; z-index:500;">
     <input type="checkbox" id="agrupar-checkbox" onchange="cambiarAgrupado(this.checked)"> Agrupar pines cercanos
   </label>
@@ -190,6 +191,8 @@ let filtroPrecios = new Set();
 let filtroValoraciones = new Set();
 let filtroProbado = null;
 let filtroBarrios = new Set();
+let filtroZonaActivo = false;
+let limitesZona = null;
 const PRECIOS_FIJOS = ['0-5€', '5-10€', '10-20€', '20-35€', '35-50€', '50-80€', '>80€'];
 
 function categoriasMaestro() {
@@ -348,6 +351,28 @@ function initMap() {
   }).addTo(map);
   cluster = L.layerGroup();
   map.addLayer(cluster);
+  map.on('moveend', () => {
+    const boton = document.getElementById('btn-zona-mapa');
+    if (!filtroZonaActivo) {
+      boton.textContent = 'Buscar en esta zona del mapa';
+      boton.style.display = 'block';
+    }
+  });
+}
+
+function toggleFiltroZona() {
+  const boton = document.getElementById('btn-zona-mapa');
+  if (filtroZonaActivo) {
+    filtroZonaActivo = false;
+    limitesZona = null;
+    boton.style.display = 'none';
+  } else {
+    filtroZonaActivo = true;
+    limitesZona = map.getBounds();
+    boton.textContent = '✕ Quitar filtro de zona';
+    boton.style.display = 'block';
+  }
+  renderList();
 }
 
 function colorParaValoracion(v) {
@@ -660,7 +685,8 @@ function restaurantesFiltrados() {
     const coincideVal = filtroValoraciones.size === 0 || r.categorias.some(c => [...filtroValoraciones].some(min => (c.valoracion || 0) >= min));
     const coincideProbado = !filtroProbado || (filtroProbado === 'si' ? r.probado : !r.probado);
     const coincideBarrio = filtroBarrios.size === 0 || filtroBarrios.has(r.barrio);
-    return coincideNombre && coincideCat && coincidePrecio && coincideVal && coincideProbado && coincideBarrio;
+    const coincideZona = !filtroZonaActivo || !limitesZona || limitesZona.contains([r.lat, r.lng]);
+    return coincideNombre && coincideCat && coincidePrecio && coincideVal && coincideProbado && coincideBarrio && coincideZona;
   });
 }
 
