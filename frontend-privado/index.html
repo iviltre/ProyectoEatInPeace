@@ -153,7 +153,6 @@
     <div id="list"></div>
   </div>
   <div id="map"></div>
-  <button id="btn-zona-mapa" onclick="toggleFiltroZona()" style="display:none; position:absolute; top:14px; left:50%; transform:translateX(-50%); background:var(--text); color:white; padding:8px 16px; border-radius:20px; box-shadow:0 1px 6px rgba(0,0,0,0.25); font-size:12.5px; border:none; cursor:pointer; z-index:600;"></button>
   <label id="toggle-agrupar" style="position:fixed; bottom:16px; right:16px; background:white; padding:7px 12px; border-radius:20px; box-shadow:0 1px 4px rgba(0,0,0,0.15); font-size:12.5px; display:flex; align-items:center; gap:6px; cursor:pointer; z-index:500;">
     <input type="checkbox" id="agrupar-checkbox" onchange="cambiarAgrupado(this.checked)"> Agrupar pines cercanos
   </label>
@@ -352,26 +351,16 @@ function initMap() {
   cluster = L.layerGroup();
   map.addLayer(cluster);
   map.on('moveend', () => {
-    const boton = document.getElementById('btn-zona-mapa');
-    if (!filtroZonaActivo) {
-      boton.textContent = 'Buscar en esta zona del mapa';
-      boton.style.display = 'block';
+    if (filtroZonaActivo) {
+      limitesZona = map.getBounds();
+      renderList();
     }
   });
 }
 
-function toggleFiltroZona() {
-  const boton = document.getElementById('btn-zona-mapa');
-  if (filtroZonaActivo) {
-    filtroZonaActivo = false;
-    limitesZona = null;
-    boton.style.display = 'none';
-  } else {
-    filtroZonaActivo = true;
-    limitesZona = map.getBounds();
-    boton.textContent = '✕ Quitar filtro de zona';
-    boton.style.display = 'block';
-  }
+function toggleFiltroZona(marcado) {
+  filtroZonaActivo = marcado;
+  limitesZona = marcado ? map.getBounds() : null;
   renderList();
 }
 
@@ -570,6 +559,12 @@ function pintarFiltros() {
     grupoProbado.appendChild(chip);
   });
   el.appendChild(grupoProbado);
+
+  const filaZona = document.createElement('label');
+  filaZona.style.cssText = 'display:flex; align-items:center; gap:6px; font-size:12.5px; margin-top:8px; cursor:pointer;';
+  filaZona.innerHTML = `<input type="checkbox" id="chk-zona-mapa" ${filtroZonaActivo ? 'checked' : ''}> Solo lo que se ve en el mapa`;
+  filaZona.querySelector('input').addEventListener('change', (e) => toggleFiltroZona(e.target.checked));
+  el.appendChild(filaZona);
 
   const barrios = new Set(restaurantes.map(r => r.barrio).filter(Boolean));
   if (barrios.size) {
