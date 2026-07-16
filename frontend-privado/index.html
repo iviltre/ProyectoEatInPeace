@@ -138,7 +138,7 @@
     <div id="sidebar-header">
       <h1>Restaurantes <span class="count" id="count-label">0</span></h1>
       <input id="search" placeholder="Buscar por nombre..." oninput="renderList(); pintarMarcadores();" />
-      <button onclick="toggleFiltros()" style="width:100%; text-align:left; background:none; border:none; padding:6px 0; font-size:12.5px; color:var(--text-muted); cursor:pointer; display:flex; justify-content:space-between;">Filtros <span id="filtros-flecha">▾</span></button>
+      <button onclick="toggleFiltros()" style="width:100%; text-align:left; background:none; border:none; padding:6px 0; font-size:12.5px; color:var(--text-muted); cursor:pointer; display:flex; justify-content:space-between; align-items:center;">Filtros <span id="filtros-flecha" style="font-size:15px; display:inline-block; transition:transform 0.15s ease;">▾</span></button>
       <div id="filters" style="display:none; max-height:38vh; overflow-y:auto;"></div>
       <button class="add-cat-btn" onclick="abrirGestionCategorias()" style="margin-top:4px;">⚙ Gestionar categorías</button>
       <button class="add-cat-btn" onclick="añadirPorDireccion()" style="width:100%; text-align:center; border:1px solid var(--border); border-radius:6px; padding:7px; margin-top:6px;">📍 Añadir escribiendo la dirección</button>
@@ -187,43 +187,29 @@ let selectedId = null;
 let modoAñadir = false;
 let filtroCategorias = new Set();
 let filtroPrecios = new Set();
-let filtroValoraciones = new Set();
+let filtroValoracionMin = null;
 let filtroProbado = null;
 let filtroBarrios = new Set();
 let filtroZonaActivo = false;
 let limitesZona = null;
 const PRECIOS_FIJOS = ['0-5€', '5-10€', '10-20€', '20-35€', '35-50€', '50-80€', '>80€'];
 
+let categoriasMaestroCache = [];
+
+async function cargarCategoriasMaestro() {
+  const res = await fetch(`${API}/categorias-maestro`);
+  categoriasMaestroCache = await res.json();
+}
+
 function categoriasMaestro() {
-  let lista = JSON.parse(localStorage.getItem('categoriasArbol') || 'null');
-  if (!lista) {
-    const cats = new Set();
-    restaurantes.forEach(r => r.categorias.forEach(c => c.nombre && cats.add(c.nombre)));
-    lista = [...cats].sort().map(nombre => ({ nombre, padre: null }));
-    localStorage.setItem('categoriasArbol', JSON.stringify(lista));
-    return lista;
-  }
-  // Migración desde el formato antiguo (nodos con "hijas" en vez de "padre")
-  if (lista.some(n => n.padre === undefined)) {
-    const nueva = [];
-    lista.forEach(n => {
-      if (n.padre !== undefined) {
-        if (!nueva.some(x => x.nombre === n.nombre)) nueva.push({ nombre: n.nombre, padre: n.padre });
-      } else {
-        if (!nueva.some(x => x.nombre === n.nombre)) nueva.push({ nombre: n.nombre, padre: null });
-        (n.hijas || []).forEach(h => {
-          if (!nueva.some(x => x.nombre === h)) nueva.push({ nombre: h, padre: n.nombre });
-        });
-      }
-    });
-    lista = nueva;
-    localStorage.setItem('categoriasArbol', JSON.stringify(lista));
-  }
-  return lista;
+  return categoriasMaestroCache;
 }
 
 function guardarArbol(lista) {
-  localStorage.setItem('categoriasArbol', JSON.stringify(lista));
+  categoriasMaestroCache = lista;
+  fetch(`${API}/categorias-maestro`, {
+    method: 'PUT', headers: authHeaders(), body: JSON.stringify({ lista })
+  });
 }
 
 function añadirCategoriaMaestro(nombre) {
@@ -338,7 +324,13 @@ async function arrancar() {
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app').style.display = 'flex';
   initMap();
+  await cargarCategoriasMaestro();
   await cargarRestaurantes();
+  setInterval(async () => {
+    await cargarCategoriasMaestro();
+    pintarFiltros();
+    if (document.getElementById('cat-overlay').style.display === 'flex') renderListaCategoriasMaestro();
+  }, 20000);
 }
 
 // ---------- MAPA ----------
@@ -380,7 +372,7 @@ function valoracionMostrada(r) {
 function iconoPara(r) {
   const seleccionado = r.id === selectedId;
   const color = colorParaValoracion(valoracionMostrada(r));
-  const borde = r.pendiente_revisar ? '3px solid #C77D2E' : '2px solid white';
+  const borde = '2px solid white';
   const tamaño = seleccionado ? 30 : 20;
   const anillo = seleccionado ? 'box-shadow: 0 0 0 3px var(--text), 0 1px 4px rgba(0,0,0,0.4);' : 'box-shadow: 0 1px 3px rgba(0,0,0,0.3);';
   return L.divIcon({
@@ -468,7 +460,7 @@ function toggleFiltros() {
   const el = document.getElementById('filters');
   const abierto = el.style.display !== 'none';
   el.style.display = abierto ? 'none' : 'block';
-  document.getElementById('filtros-flecha').textContent = abierto ? '▾' : '▴';
+  document.getElementById('filtros-flecha').style.transform = abierto ? 'rotate(0deg)' : 'rotate(180deg)';
 }
 
 function pintarFiltros() {
@@ -537,9 +529,9 @@ function pintarFiltros() {
   grupoVal.style.cssText = 'display:flex; flex-wrap:wrap; gap:6px;';
   [5,4,3,2,1].forEach(n => {
     const chip = document.createElement('div');
-    chip.className = 'chip' + (filtroValoraciones.has(n) ? ' active' : '');
+    chip.className = 'chip' + (filtroValoracionMin === n ? ' active' : '');
     chip.textContent = '★'.repeat(n) + '+';
-    chip.onclick = () => { filtroValoraciones.has(n) ? filtroValoraciones.delete(n) : filtroValoraciones.add(n); pintarFiltros(); renderList(); pintarMarcadores(); };
+    chip.onclick = () => { filtroValoracionMin = (filtroValoracionMin === n) ? null : n; pintarFiltros(); renderList(); pintarMarcadores(); };
     grupoVal.appendChild(chip);
   });
   el.appendChild(grupoVal);
@@ -560,11 +552,13 @@ function pintarFiltros() {
   });
   el.appendChild(grupoProbado);
 
-  const filaZona = document.createElement('label');
-  filaZona.style.cssText = 'display:flex; align-items:center; gap:6px; font-size:12.5px; margin-top:8px; cursor:pointer;';
-  filaZona.innerHTML = `<input type="checkbox" id="chk-zona-mapa" ${filtroZonaActivo ? 'checked' : ''}> Solo lo que se ve en el mapa`;
-  filaZona.querySelector('input').addEventListener('change', (e) => toggleFiltroZona(e.target.checked));
-  el.appendChild(filaZona);
+  const chipZona = document.createElement('div');
+  chipZona.className = 'chip' + (filtroZonaActivo ? ' active' : '');
+  chipZona.style.marginTop = '8px';
+  chipZona.style.display = 'inline-block';
+  chipZona.textContent = '🗺 Solo lo que se ve en el mapa';
+  chipZona.onclick = () => toggleFiltroZona(!filtroZonaActivo);
+  el.appendChild(chipZona);
 
   const barrios = new Set(restaurantes.map(r => r.barrio).filter(Boolean));
   if (barrios.size) {
@@ -586,9 +580,10 @@ function pintarFiltros() {
   }
 }
 
-function abrirGestionCategorias() {
+async function abrirGestionCategorias() {
   document.getElementById('cat-overlay').style.display = 'flex';
   document.getElementById('nueva-categoria-input').value = '';
+  await cargarCategoriasMaestro();
   renderListaCategoriasMaestro();
 }
 
@@ -677,7 +672,7 @@ function restaurantesFiltrados() {
     const coincideNombre = r.nombre.toLowerCase().includes(q);
     const coincideCat = filtroCategorias.size === 0 || r.categorias.some(c => categoriaCoincideFiltro(c.nombre, filtroCategorias));
     const coincidePrecio = filtroPrecios.size === 0 || r.categorias.some(c => filtroPrecios.has(c.precio));
-    const coincideVal = filtroValoraciones.size === 0 || r.categorias.some(c => [...filtroValoraciones].some(min => (c.valoracion || 0) >= min));
+    const coincideVal = filtroValoracionMin === null || r.categorias.some(c => (c.valoracion || 0) >= filtroValoracionMin);
     const coincideProbado = !filtroProbado || (filtroProbado === 'si' ? r.probado : !r.probado);
     const coincideBarrio = filtroBarrios.size === 0 || filtroBarrios.has(r.barrio);
     const coincideZona = !filtroZonaActivo || !limitesZona || limitesZona.contains([r.lat, r.lng]);
@@ -761,7 +756,8 @@ function abrirDetalle(id) {
   if (!r) return;
   renderList();
   pintarMarcadores();
-  centrarConOffset(r.lat, r.lng, Math.max(map.getZoom(), 17), 200);
+  if (window.innerWidth > 860) centrarConOffset(r.lat, r.lng, map.getZoom(), 200);
+  else map.panTo([r.lat, r.lng]);
 
   const sedes = restaurantes.filter(x => x.grupo_id && x.grupo_id === r.grupo_id && x.id !== r.id);
 

@@ -99,6 +99,20 @@ async function migrarBarrios() {
   console.log(`Barrio recalculado y guardado para ${actualizados} restaurantes.`);
 }
 
+async function migrarCategoriasMaestro() {
+  await db.execute(`CREATE TABLE IF NOT EXISTS categorias_maestro (nombre TEXT PRIMARY KEY, padre TEXT)`);
+  const { rows } = await db.execute('SELECT COUNT(*) as total FROM categorias_maestro');
+  if (rows[0].total > 0) {
+    console.log(`Categorías maestro: ya hay ${rows[0].total}, no se inicializan de nuevo.`);
+    return;
+  }
+  const { rows: cats } = await db.execute(`SELECT DISTINCT nombre FROM categorias WHERE nombre IS NOT NULL AND nombre != ''`);
+  for (const c of cats) {
+    await db.execute({ sql: 'INSERT OR IGNORE INTO categorias_maestro (nombre, padre) VALUES (?, NULL)', args: [c.nombre] });
+  }
+  console.log(`Categorías maestro inicializadas: ${cats.length}`);
+}
+
 async function construirRestaurante(fila, soloPublico) {
   const { rows: categorias } = await db.execute({
     sql: 'SELECT * FROM categorias WHERE restaurante_id = ?', args: [fila.id]
@@ -221,8 +235,23 @@ app.delete('/api/categorias/:catId', requiereAuth, async (req, res) => {
   res.status(204).end();
 });
 
+app.get('/api/categorias-maestro', async (req, res) => {
+  const { rows } = await db.execute('SELECT nombre, padre FROM categorias_maestro');
+  res.json(rows);
+});
+
+app.put('/api/categorias-maestro', requiereAuth, async (req, res) => {
+  const lista = req.body.lista || [];
+  await db.execute('DELETE FROM categorias_maestro');
+  for (const n of lista) {
+    await db.execute({ sql: 'INSERT INTO categorias_maestro (nombre, padre) VALUES (?, ?)', args: [n.nombre, n.padre || null] });
+  }
+  res.json({ ok: true });
+});
+
 const PORT = process.env.PORT || 3001;
 prepararBaseDeDatos()
   .then(() => migrarBarrios())
+  .then(() => migrarCategoriasMaestro())
   .then(() => app.listen(PORT, () => console.log(`Backend escuchando en el puerto ${PORT}`)))
   .catch(err => { console.error('Error preparando la base de datos:', err); process.exit(1); });
