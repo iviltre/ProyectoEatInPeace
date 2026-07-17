@@ -336,7 +336,7 @@ async function arrancar() {
 // ---------- MAPA ----------
 let map, cluster;
 function initMap() {
-  map = L.map('map').setView([39.4699, -0.3763], 14); // Valencia
+  map = L.map('map', { preferCanvas: true }).setView([39.4699, -0.3763], 14); // Valencia
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
     attribution: '© OpenStreetMap © CARTO', subdomains: 'abcd', maxZoom: 20
   }).addTo(map);
@@ -369,15 +369,25 @@ function valoracionMostrada(r) {
   return Math.max(...lista.map(c => c.valoracion || 0), 0);
 }
 
+function circuloPara(r) {
+  const seleccionado = r.id === selectedId;
+  return {
+    radius: seleccionado ? 11 : 7,
+    fillColor: colorParaValoracion(valoracionMostrada(r)),
+    color: 'white',
+    weight: seleccionado ? 3 : 2,
+    fillOpacity: 1
+  };
+}
+
 function iconoPara(r) {
   const seleccionado = r.id === selectedId;
   const color = colorParaValoracion(valoracionMostrada(r));
-  const borde = '2px solid white';
   const tamaño = seleccionado ? 30 : 20;
   const anillo = seleccionado ? 'box-shadow: 0 0 0 3px var(--text), 0 1px 4px rgba(0,0,0,0.4);' : 'box-shadow: 0 1px 3px rgba(0,0,0,0.3);';
   return L.divIcon({
     className: '',
-    html: `<div style="width:${tamaño}px;height:${tamaño}px;background:${color};border:${borde};border-radius:50% 50% 50% 0;transform:rotate(-45deg);${anillo}"></div>`,
+    html: `<div style="width:${tamaño}px;height:${tamaño}px;background:${color};border:2px solid white;border-radius:50% 50% 50% 0;transform:rotate(-45deg);${anillo}"></div>`,
     iconSize: [tamaño, tamaño], iconAnchor: [tamaño / 2, tamaño]
   });
 }
@@ -431,8 +441,11 @@ function centrarConOffset(lat, lng, zoom, offsetXpx) {
 function pintarMarcadores() {
   cluster.clearLayers();
   markers = {};
+  const agrupando = cluster instanceof L.MarkerClusterGroup;
   restaurantesFiltrados().forEach(r => {
-    const m = L.marker([r.lat, r.lng], { icon: iconoPara(r), draggable: false });
+    const m = agrupando
+      ? L.marker([r.lat, r.lng], { icon: iconoPara(r), draggable: false })
+      : L.circleMarker([r.lat, r.lng], circuloPara(r));
     m.on('click', () => abrirDetalle(r.id));
     markers[r.id] = m;
     cluster.addLayer(m);
