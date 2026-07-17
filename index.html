@@ -70,8 +70,9 @@
     #detail-overlay { align-items: stretch; justify-content: flex-end; background: transparent; top: 57px; }
     #detail { width: 440px; max-height: calc(100vh - 57px) !important; border-radius: 0; box-shadow: -6px 0 24px rgba(0,0,0,0.1); }
   }
-  #detail-close { float: right; background: none; border: none; font-size: 20px; color: var(--text-muted); cursor: pointer; padding: 16px; }
-  #detail-handle { display: none; }
+  #detail-top-row { display: flex; align-items: center; justify-content: flex-end; }
+  #detail-close { background: none; border: none; font-size: 20px; color: var(--text-muted); cursor: pointer; padding: 16px; flex-shrink: 0; }
+  #detail-handle { display: none; flex: 1; }
   @media (max-width: 639px) {
     #detail-handle { display: flex; align-items: center; justify-content: center; height: 44px; touch-action: none; }
     #detail-handle::before { content: ''; width: 48px; height: 5px; background: var(--border); border-radius: 4px; }
@@ -146,8 +147,10 @@
 
 <div id="detail-overlay" onclick="if(event.target===this) cerrarDetalle()">
   <div id="detail">
-    <div id="detail-handle"></div>
-    <button id="detail-close" onclick="cerrarDetalle()">✕</button>
+    <div id="detail-top-row">
+      <div id="detail-handle"></div>
+      <button id="detail-close" onclick="cerrarDetalle()">✕</button>
+    </div>
     <div id="detail-body"></div>
   </div>
 </div>
