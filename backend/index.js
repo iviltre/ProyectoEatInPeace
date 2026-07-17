@@ -99,18 +99,72 @@ async function migrarBarrios() {
   console.log(`Barrio recalculado y guardado para ${actualizados} restaurantes.`);
 }
 
+const ARBOL_CATEGORIAS_INICIAL = [
+  { nombre: 'Esmorzar', padre: null },
+  { nombre: 'Premium', padre: 'Esmorzar' },
+  { nombre: 'Tradicional', padre: 'Esmorzar' },
+  { nombre: 'Brunch', padre: null },
+  { nombre: 'Fusion', padre: null },
+  { nombre: 'Nikkei', padre: 'Fusion' },
+  { nombre: 'Asiatico mediterraneo', padre: 'Fusion' },
+  { nombre: 'Otros', padre: 'Fusion' },
+  { nombre: 'Tapas', padre: null },
+  { nombre: 'Paella/arroces', padre: null },
+  { nombre: 'Tortilla de patatas', padre: null },
+  { nombre: 'Italiano', padre: null },
+  { nombre: 'Pasta', padre: 'Italiano' },
+  { nombre: 'Pizza', padre: 'Italiano' },
+  { nombre: 'Focaccia', padre: 'Italiano' },
+  { nombre: 'Pizza romana y otros tipos', padre: 'Focaccia' },
+  { nombre: 'Pizza napolitana', padre: 'Focaccia' },
+  { nombre: 'Asiatico', padre: null },
+  { nombre: 'Japones', padre: 'Asiatico' },
+  { nombre: 'Ramen Japones', padre: 'Japones' },
+  { nombre: 'Sushi', padre: 'Japones' },
+  { nombre: 'Sushi Buffet', padre: 'Sushi' },
+  { nombre: 'Chino', padre: 'Asiatico' },
+  { nombre: 'Ramen Chino', padre: 'Chino' },
+  { nombre: 'Tailandes', padre: 'Asiatico' },
+  { nombre: 'Coreano', padre: 'Asiatico' },
+  { nombre: 'Latino', padre: null },
+  { nombre: 'Mexicano', padre: 'Latino' },
+  { nombre: 'Peruano', padre: 'Latino' },
+  { nombre: 'Saludables', padre: null },
+  { nombre: 'Vegetariano', padre: null },
+  { nombre: 'Vegano', padre: 'Vegetariano' },
+  { nombre: 'Desayuno', padre: null },
+  { nombre: 'Café', padre: 'Desayuno' },
+  { nombre: 'Matcha', padre: 'Desayuno' },
+  { nombre: 'Dulces', padre: null },
+  { nombre: 'Tarta de queso', padre: 'Dulces' },
+  { nombre: 'Horchata', padre: 'Dulces' },
+  { nombre: 'Buñuelos', padre: 'Dulces' },
+  { nombre: 'Helados', padre: 'Dulces' },
+  { nombre: 'Hornos', padre: 'Dulces' },
+  { nombre: 'Hamburguesa', padre: null },
+  { nombre: 'Smash', padre: 'Hamburguesa' },
+  { nombre: 'Normal', padre: 'Hamburguesa' },
+  { nombre: 'Pollo', padre: 'Hamburguesa' },
+  { nombre: 'Kebab y Shawarmas', padre: null },
+  { nombre: 'Kebab', padre: 'Kebab y Shawarmas' },
+  { nombre: 'Kebab premium', padre: 'Kebab' },
+  { nombre: 'Kebab tradicional', padre: 'Kebab' },
+  { nombre: 'Shawarma', padre: 'Kebab y Shawarmas' },
+];
+
 async function migrarCategoriasMaestro() {
   await db.execute(`CREATE TABLE IF NOT EXISTS categorias_maestro (nombre TEXT PRIMARY KEY, padre TEXT)`);
   const { rows } = await db.execute('SELECT COUNT(*) as total FROM categorias_maestro');
-  if (rows[0].total > 0) {
-    console.log(`Categorías maestro: ya hay ${rows[0].total}, no se inicializan de nuevo.`);
+  const { rows: yaAplicado } = await db.execute(`SELECT 1 FROM categorias_maestro WHERE nombre = 'Kebab y Shawarmas'`);
+  if (rows[0].total > 0 && yaAplicado.length > 0) {
+    console.log(`Categorías maestro: ya hay ${rows[0].total} y el árbol nuevo ya está aplicado.`);
     return;
   }
-  const { rows: cats } = await db.execute(`SELECT DISTINCT nombre FROM categorias WHERE nombre IS NOT NULL AND nombre != ''`);
-  for (const c of cats) {
-    await db.execute({ sql: 'INSERT OR IGNORE INTO categorias_maestro (nombre, padre) VALUES (?, NULL)', args: [c.nombre] });
+  await db.execute('DELETE FROM categorias_maestro');
+  for (const n of ARBOL_CATEGORIAS_INICIAL) {
+    await db.execute({ sql: 'INSERT OR IGNORE INTO categorias_maestro (nombre, padre) VALUES (?, ?)', args: [n.nombre, n.padre] });
   }
-  console.log(`Categorías maestro inicializadas: ${cats.length}`);
+  console.log(`Árbol de categorías sustituido por el nuevo: ${ARBOL_CATEGORIAS_INICIAL.length} categorías.`);
 }
 
 async function construirRestaurante(fila, soloPublico) {
@@ -240,12 +294,16 @@ app.get('/api/categorias-maestro', async (req, res) => {
   res.json(rows);
 });
 
-app.put('/api/categorias-maestro', requiereAuth, async (req, res) => {
-  const lista = req.body.lista || [];
-  await db.execute('DELETE FROM categorias_maestro');
-  for (const n of lista) {
-    await db.execute({ sql: 'INSERT INTO categorias_maestro (nombre, padre) VALUES (?, ?)', args: [n.nombre, n.padre || null] });
-  }
+// Crea o actualiza UNA sola categoría (no toca las demás, evita que los guardados se pisen entre sí)
+app.post('/api/categorias-maestro', requiereAuth, async (req, res) => {
+  const { nombre, padre } = req.body;
+  if (!nombre) return res.status(400).json({ error: 'Falta el nombre' });
+  await db.execute({ sql: 'INSERT OR REPLACE INTO categorias_maestro (nombre, padre) VALUES (?, ?)', args: [nombre, padre || null] });
+  res.json({ ok: true });
+});
+
+app.delete('/api/categorias-maestro/:nombre', requiereAuth, async (req, res) => {
+  await db.execute({ sql: 'DELETE FROM categorias_maestro WHERE nombre = ?', args: [req.params.nombre] });
   res.json({ ok: true });
 });
 

@@ -205,41 +205,48 @@ function categoriasMaestro() {
   return categoriasMaestroCache;
 }
 
-function guardarArbol(lista) {
-  categoriasMaestroCache = lista;
-  fetch(`${API}/categorias-maestro`, {
-    method: 'PUT', headers: authHeaders(), body: JSON.stringify({ lista })
+// Guarda UNA sola categoría en el servidor, sin tocar las demás (evita que dos guardados se pisen)
+async function guardarCategoriaEnServidor(nombre, padre) {
+  await fetch(`${API}/categorias-maestro`, {
+    method: 'POST', headers: authHeaders(), body: JSON.stringify({ nombre, padre: padre || null })
   });
 }
 
-function añadirCategoriaMaestro(nombre) {
+async function añadirCategoriaMaestro(nombre) {
   nombre = nombre.trim();
   if (!nombre) return;
   const lista = categoriasMaestro();
   if (!lista.some(n => n.nombre === nombre)) {
     lista.push({ nombre, padre: null });
     lista.sort((a, b) => a.nombre.localeCompare(b.nombre));
-    guardarArbol(lista);
+    await guardarCategoriaEnServidor(nombre, null);
   }
 }
 
-function quitarCategoriaMaestro(nombre) {
+async function quitarCategoriaMaestro(nombre) {
   // si alguna categoría tenía esta como padre, se quedan sin padre (no se borran)
-  const lista = categoriasMaestro()
+  const lista = categoriasMaestro();
+  const huerfanas = lista.filter(n => n.padre === nombre);
+  categoriasMaestroCache = lista
     .filter(n => n.nombre !== nombre)
     .map(n => n.padre === nombre ? { ...n, padre: null } : n);
-  guardarArbol(lista);
   pintarFiltros();
+  await fetch(`${API}/categorias-maestro/${encodeURIComponent(nombre)}`, {
+    method: 'DELETE', headers: authHeaders()
+  });
+  for (const h of huerfanas) {
+    await guardarCategoriaEnServidor(h.nombre, null);
+  }
 }
 
-function cambiarPadreCategoria(nombre, nuevoPadre) {
+async function cambiarPadreCategoria(nombre, nuevoPadre) {
   const lista = categoriasMaestro();
   const nodo = lista.find(n => n.nombre === nombre);
   if (nodo) {
     nodo.padre = nuevoPadre || null;
-    guardarArbol(lista);
+    pintarFiltros();
+    await guardarCategoriaEnServidor(nombre, nuevoPadre || null);
   }
-  pintarFiltros();
 }
 
 // Categorías que pueden usarse como padre: las que no tienen padre ellas mismas, y no son la propia categoría
