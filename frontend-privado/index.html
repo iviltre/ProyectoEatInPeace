@@ -441,11 +441,8 @@ function centrarConOffset(lat, lng, zoom, offsetXpx) {
 function pintarMarcadores() {
   cluster.clearLayers();
   markers = {};
-  const agrupando = cluster instanceof L.MarkerClusterGroup;
   restaurantesFiltrados().forEach(r => {
-    const m = agrupando
-      ? L.marker([r.lat, r.lng], { icon: iconoPara(r), draggable: false })
-      : L.circleMarker([r.lat, r.lng], circuloPara(r));
+    const m = L.circleMarker([r.lat, r.lng], circuloPara(r));
     m.on('click', () => abrirDetalle(r.id));
     markers[r.id] = m;
     cluster.addLayer(m);

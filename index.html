@@ -419,11 +419,8 @@ function iconoPara(r) {
 
 function pintarMarcadores() {
   cluster.clearLayers();
-  const agrupando = cluster instanceof L.MarkerClusterGroup;
   restaurantes.filter(coincide).forEach(r => {
-    const m = agrupando
-      ? L.marker([r.lat, r.lng], { icon: iconoPara(r) })
-      : L.circleMarker([r.lat, r.lng], circuloPara(r));
+    const m = L.circleMarker([r.lat, r.lng], circuloPara(r));
     m.on('click', () => abrirDetalle(r.id));
     cluster.addLayer(m);
   });
