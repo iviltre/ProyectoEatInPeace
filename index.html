@@ -39,8 +39,14 @@
   #filters { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
   .chip { padding: 6px 12px; border: 1px solid var(--border); border-radius: 20px; font-size: 12.5px; cursor: pointer; background: white; color: var(--text-muted); user-select: none; }
   .chip.active { background: var(--sage); border-color: var(--sage); color: white; }
-  select { appearance: none; -webkit-appearance: none; background: white url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="6"><path d="M0 0l5 6 5-6z" fill="%23837C6E"/></svg>') no-repeat right 12px center; padding-right: 30px !important; cursor: pointer; }
+  select { appearance: none; -webkit-appearance: none; background: white url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="6"><path d="M0 0l5 6 5-6z" fill="%23837C6E"/></svg>') no-repeat right 12px center; padding-right: 30px !important; cursor: pointer; color: var(--text); }
   .filtro-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: .04em; color: var(--text-muted); margin: 10px 0 4px; font-weight: 500; }
+  .switch { position: relative; display: inline-block; width: 38px; height: 22px; flex-shrink: 0; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .switch .slider { position: absolute; cursor: pointer; inset: 0; background-color: #E9E3D8; transition: .15s; border-radius: 22px; }
+  .switch .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background-color: white; transition: .15s; border-radius: 50%; box-shadow: 0 1px 2px rgba(0,0,0,0.25); }
+  .switch input:checked + .slider { background-color: var(--sage); }
+  .switch input:checked + .slider:before { transform: translateX(16px); }
   #results-count { font-size: 12px; color: var(--text-muted); padding: 10px 16px 0; }
   #list { flex: 1; overflow-y: auto; padding: 8px; }
 
@@ -92,11 +98,12 @@
     #mobile-tabs button.active { color: var(--clay); font-weight: 600; border-bottom: 2px solid var(--clay); }
     #toggle-agrupar-publico { display: none; }
     #map.mobile-visible ~ #toggle-agrupar-publico { display: flex; }
-    input, select, textarea { font-size: 16px !important; }
+    input, select, textarea { font-size: 16px !important; color: var(--text) !important; -webkit-text-fill-color: var(--text); }
     .leaflet-control-zoom { display: none; }
-    #topbar { padding: 10px 12px; gap: 6px; flex-wrap: nowrap; overflow-x: auto; }
-    #topbar h1 { font-size: 14px; white-space: nowrap; }
-    #topbar .ig { padding: 4px 7px; font-size: 10.5px; white-space: nowrap; }
+    #topbar { padding: 10px 12px; gap: 5px; flex-wrap: nowrap; overflow-x: auto; }
+    #topbar h1 { font-size: 17px; white-space: nowrap; }
+    #topbar .ig { padding: 4px 6px; font-size: 10px; white-space: nowrap; }
+    #topbar > div { gap: 4px !important; }
   }
 </style>
 </head>
@@ -105,8 +112,9 @@
 <div id="topbar">
   <div class="brand"><h1>eat in peace</h1></div>
   <div style="display:flex; align-items:center; gap:8px;">
-    <a class="ig" href="https://www.instagram.com/eatinpeace_" target="_blank">IG</a>
+    <a class="ig" href="https://www.instagram.com/eatinpeace_" target="_blank">Instagram</a>
     <a class="ig" href="https://www.tiktok.com/@eatinpeace" target="_blank">TikTok</a>
+    <a class="ig" href="mailto:eatinpeace.vlc@gmail.com">Contacto</a>
   </div>
 </div>
 
@@ -119,7 +127,7 @@
   <div id="panel">
     <div id="search-wrap">
       <input id="search" placeholder="Buscar un restaurante..." oninput="renderList(); pintarMarcadores();" />
-      <button onclick="toggleFiltros()" style="width:100%; text-align:left; background:none; border:none; padding:6px 0; font-size:12.5px; color:var(--text-muted); cursor:pointer; display:flex; justify-content:space-between; align-items:center; font-family:inherit;">Filtros <span id="filtros-flecha" style="font-size:15px; display:inline-block; transition:transform 0.15s ease;">▾</span></button>
+      <button onclick="toggleFiltros()" style="width:100%; text-align:left; background:none; border:none; padding:6px 0; font-size:12.5px; color:var(--text-muted); cursor:pointer; display:flex; justify-content:space-between; align-items:center; font-family:inherit;">Filtros <span id="filtros-flecha" style="font-size:19px; display:inline-block; transition:transform 0.15s ease;">▾</span></button>
       <div id="filters" style="display:none; max-height:35vh; overflow-y:auto;"></div>
       <select id="orden" onchange="renderList()" style="width:100%; margin-top:8px; padding:8px; border:1px solid var(--border); border-radius:20px; font-size:12.5px; font-family:inherit;">
         <option value="nombre">Ordenar por nombre</option>
@@ -348,12 +356,11 @@ function pintarFiltros() {
     el.appendChild(grupoBarrio);
   }
 
-  const chipZona = document.createElement('div');
-  chipZona.className = 'chip' + (filtroZonaActivo ? ' active' : '');
-  chipZona.style.cssText = 'margin-top:8px; display:inline-block;';
-  chipZona.textContent = '🗺 Solo lo que se ve en el mapa';
-  chipZona.onclick = () => toggleFiltroZona(!filtroZonaActivo);
-  el.appendChild(chipZona);
+  const filaZona = document.createElement('div');
+  filaZona.style.cssText = 'display:flex; align-items:center; justify-content:space-between; margin-top:8px; font-size:12.5px;';
+  filaZona.innerHTML = `<span>Solo lo que se ve en el mapa</span><label class="switch"><input type="checkbox" ${filtroZonaActivo ? 'checked' : ''}><span class="slider"></span></label>`;
+  filaZona.querySelector('input').addEventListener('change', (e) => toggleFiltroZona(e.target.checked));
+  el.appendChild(filaZona);
 }
 
 function coincide(r) {
