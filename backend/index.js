@@ -169,6 +169,20 @@ async function migrarCategoriasMaestro() {
   console.log(`Árbol de categorías sustituido por el nuevo: ${ARBOL_CATEGORIAS_INICIAL.length} categorías.`);
 }
 
+// Se ejecuta siempre: si alguna categoría se quedó sin número de orden (por ejemplo,
+// de un despliegue anterior a que existiera esta columna), le asigna uno al final.
+async function rellenarOrdenFaltante() {
+  const { rows: sinOrden } = await db.execute('SELECT nombre FROM categorias_maestro WHERE orden IS NULL ORDER BY nombre ASC');
+  if (!sinOrden.length) return;
+  const { rows: maxRow } = await db.execute('SELECT MAX(orden) as maximo FROM categorias_maestro');
+  let siguiente = (maxRow[0].maximo === null ? -1 : maxRow[0].maximo) + 1;
+  for (const fila of sinOrden) {
+    await db.execute({ sql: 'UPDATE categorias_maestro SET orden = ? WHERE nombre = ?', args: [siguiente, fila.nombre] });
+    siguiente++;
+  }
+  console.log(`Orden asignado a ${sinOrden.length} categorías que no lo tenían.`);
+}
+
 async function construirRestaurante(fila, soloPublico) {
   const { rows: categorias } = await db.execute({
     sql: 'SELECT * FROM categorias WHERE restaurante_id = ?', args: [fila.id]
@@ -363,5 +377,6 @@ const PORT = process.env.PORT || 3001;
 prepararBaseDeDatos()
   .then(() => migrarBarrios())
   .then(() => migrarCategoriasMaestro())
+  .then(() => rellenarOrdenFaltante())
   .then(() => app.listen(PORT, () => console.log(`Backend escuchando en el puerto ${PORT}`)))
   .catch(err => { console.error('Error preparando la base de datos:', err); process.exit(1); });

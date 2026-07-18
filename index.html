@@ -302,8 +302,11 @@ function pintarFiltros() {
     rama.appendChild(chip);
 
     if (nodo.hijos && nodo.hijos.length) {
+      const todasHojas = nodo.hijos.every(h => !h.hijos || h.hijos.length === 0);
       const sub = document.createElement('div');
-      sub.style.cssText = 'margin:3px 0 3px 10px; padding-left:8px; border-left:2px solid var(--border);';
+      sub.style.cssText = todasHojas
+        ? 'display:flex; flex-wrap:wrap; gap:5px; margin:3px 0 3px 10px; padding-left:8px; border-left:2px solid var(--border);'
+        : 'margin:3px 0 3px 10px; padding-left:8px; border-left:2px solid var(--border);';
       nodo.hijos.forEach(h => pintarNodoFiltroPublico(h, sub, nivel + 1));
       rama.appendChild(sub);
     }
