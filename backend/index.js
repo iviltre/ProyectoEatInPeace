@@ -307,6 +307,12 @@ app.delete('/api/categorias-maestro/:nombre', requiereAuth, async (req, res) => 
   res.json({ ok: true });
 });
 
+// Red de seguridad: si algo falla de forma inesperada en una petición,
+// que se registre el error, pero que el servidor no se caiga entero.
+process.on('unhandledRejection', (err) => {
+  console.error('Error no controlado (el servidor sigue funcionando):', err);
+});
+
 const PORT = process.env.PORT || 3001;
 prepararBaseDeDatos()
   .then(() => migrarBarrios())
