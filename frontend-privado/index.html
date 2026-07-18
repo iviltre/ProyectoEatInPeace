@@ -218,8 +218,8 @@ async function añadirCategoriaMaestro(nombre) {
   const lista = categoriasMaestro();
   if (!lista.some(n => n.nombre === nombre)) {
     lista.push({ nombre, padre: null });
-    lista.sort((a, b) => a.nombre.localeCompare(b.nombre));
     await guardarCategoriaEnServidor(nombre, null);
+    await cargarCategoriasMaestro();
   }
 }
 
@@ -493,22 +493,25 @@ function pintarFiltros() {
   grupoCat.style.cssText = 'margin-bottom:6px;';
 
   function pintarNodoFiltro(nodo, contenedor, nivel) {
+    const rama = document.createElement('div');
+    rama.style.marginBottom = '3px';
+
     const chip = document.createElement('div');
     chip.className = 'chip' + (filtroCategorias.has(nodo.nombre) ? ' active' : '');
     chip.textContent = nodo.nombre;
     if (nivel === 0) { chip.style.fontWeight = '600'; }
     else { chip.style.fontSize = '11.5px'; }
     chip.style.display = 'inline-block';
-    chip.style.marginBottom = '4px';
     chip.onclick = () => { filtroCategorias.has(nodo.nombre) ? filtroCategorias.delete(nodo.nombre) : filtroCategorias.add(nodo.nombre); pintarFiltros(); renderList(); pintarMarcadores(); };
-    contenedor.appendChild(chip);
+    rama.appendChild(chip);
 
     if (nodo.hijos.length) {
       const sub = document.createElement('div');
-      sub.style.cssText = 'display:flex; flex-wrap:wrap; gap:5px; margin:2px 0 6px 10px; padding-left:8px; border-left:2px solid var(--border);';
+      sub.style.cssText = 'margin:3px 0 3px 10px; padding-left:8px; border-left:2px solid var(--border);';
       nodo.hijos.forEach(h => pintarNodoFiltro(h, sub, nivel + 1));
-      contenedor.appendChild(sub);
+      rama.appendChild(sub);
     }
+    contenedor.appendChild(rama);
   }
 
   arbolCompleto().forEach(nodo => {
@@ -606,6 +609,43 @@ function cerrarGestionCategorias() {
   document.getElementById('cat-overlay').style.display = 'none';
 }
 
+async function moverCategoria(nombre, direccion) {
+  await fetch(`${API}/categorias-maestro/${encodeURIComponent(nombre)}/orden`, {
+    method: 'PUT', headers: authHeaders(), body: JSON.stringify({ direccion })
+  });
+  await cargarCategoriasMaestro();
+  renderListaCategoriasMaestro();
+  pintarFiltros();
+}
+
+function activarRenombrar(span, nombreActual, nivel) {
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.value = nombreActual;
+  input.style.cssText = 'flex:1; font-size:13px; padding:2px 4px; border:1px solid var(--accent); border-radius:4px;' + (nivel > 0 ? ` margin-left:${14 * nivel}px;` : '');
+  span.replaceWith(input);
+  input.focus();
+  input.select();
+
+  const confirmar = async () => {
+    const nuevo = input.value.trim();
+    if (nuevo && nuevo !== nombreActual) {
+      const res = await fetch(`${API}/categorias-maestro/${encodeURIComponent(nombreActual)}/renombrar`, {
+        method: 'PUT', headers: authHeaders(), body: JSON.stringify({ nuevoNombre: nuevo })
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        alert(err.error || 'No se ha podido renombrar');
+      }
+      await cargarCategoriasMaestro();
+    }
+    renderListaCategoriasMaestro();
+    pintarFiltros();
+  };
+  input.addEventListener('blur', confirmar);
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') input.blur(); });
+}
+
 function renderListaCategoriasMaestro() {
   const el = document.getElementById('lista-categorias-maestro');
   el.innerHTML = '';
@@ -629,12 +669,28 @@ function renderListaCategoriasMaestro() {
 
   categorias.forEach((nodo) => {
     const fila = document.createElement('div');
-    fila.style.cssText = 'display:flex; align-items:center; gap:8px; padding:8px 4px; border-bottom:1px solid var(--border);';
+    fila.style.cssText = 'display:flex; align-items:center; gap:6px; padding:8px 4px; border-bottom:1px solid var(--border);';
 
-    const nombreCat = document.createElement('span');
+    const flechas = document.createElement('div');
+    flechas.style.cssText = 'display:flex; flex-direction:column; gap:0;';
+    const btnArriba = document.createElement('button');
+    btnArriba.textContent = '▲';
+    btnArriba.style.cssText = 'border:none; background:none; color:var(--text-muted); cursor:pointer; font-size:10px; line-height:1; padding:1px;';
+    btnArriba.addEventListener('click', () => moverCategoria(nodo.nombre, 'arriba'));
+    const btnAbajo = document.createElement('button');
+    btnAbajo.textContent = '▼';
+    btnAbajo.style.cssText = 'border:none; background:none; color:var(--text-muted); cursor:pointer; font-size:10px; line-height:1; padding:1px;';
+    btnAbajo.addEventListener('click', () => moverCategoria(nodo.nombre, 'abajo'));
+    flechas.appendChild(btnArriba);
+    flechas.appendChild(btnAbajo);
+    fila.appendChild(flechas);
+
     const nivel = profundidades[nodo.nombre] || 0;
-    nombreCat.style.cssText = 'flex:1; font-size:13px;' + (nivel > 0 ? ` padding-left:${14 * nivel}px; color:var(--text-muted);` : ' font-weight:600;');
+    const nombreCat = document.createElement('span');
+    nombreCat.style.cssText = 'flex:1; font-size:13px; cursor:text;' + (nivel > 0 ? ` padding-left:${14 * nivel}px; color:var(--text-muted);` : ' font-weight:600;');
     nombreCat.textContent = (nivel > 0 ? '↳ ' : '') + nodo.nombre;
+    nombreCat.title = 'Clic para renombrar';
+    nombreCat.addEventListener('click', () => activarRenombrar(nombreCat, nodo.nombre, nivel));
     fila.appendChild(nombreCat);
 
     const selectPadre = document.createElement('select');

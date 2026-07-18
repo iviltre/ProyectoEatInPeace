@@ -289,22 +289,25 @@ function pintarFiltros() {
   }
 
   function pintarNodoFiltroPublico(nodo, contenedor, nivel) {
+    const rama = document.createElement('div');
+    rama.style.marginBottom = '3px';
+
     const chip = document.createElement('div');
     chip.className = 'chip' + (filtroCategorias.has(nodo.nombre) ? ' active' : '');
     chip.textContent = nodo.nombre;
     if (nivel === 0) { chip.style.fontWeight = '600'; }
     else { chip.style.fontSize = '11.5px'; }
     chip.style.display = 'inline-block';
-    chip.style.marginBottom = '4px';
     chip.onclick = () => { filtroCategorias.has(nodo.nombre) ? filtroCategorias.delete(nodo.nombre) : filtroCategorias.add(nodo.nombre); pintarFiltros(); renderList(); pintarMarcadores(); };
-    contenedor.appendChild(chip);
+    rama.appendChild(chip);
 
     if (nodo.hijos && nodo.hijos.length) {
       const sub = document.createElement('div');
-      sub.style.cssText = 'display:flex; flex-wrap:wrap; gap:5px; margin:2px 0 6px 10px; padding-left:8px; border-left:2px solid var(--border);';
+      sub.style.cssText = 'margin:3px 0 3px 10px; padding-left:8px; border-left:2px solid var(--border);';
       nodo.hijos.forEach(h => pintarNodoFiltroPublico(h, sub, nivel + 1));
-      contenedor.appendChild(sub);
+      rama.appendChild(sub);
     }
+    contenedor.appendChild(rama);
   }
 
   arbolAMostrar.forEach(nodo => {

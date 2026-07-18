@@ -153,7 +153,8 @@ const ARBOL_CATEGORIAS_INICIAL = [
 ];
 
 async function migrarCategoriasMaestro() {
-  await db.execute(`CREATE TABLE IF NOT EXISTS categorias_maestro (nombre TEXT PRIMARY KEY, padre TEXT)`);
+  await db.execute(`CREATE TABLE IF NOT EXISTS categorias_maestro (nombre TEXT PRIMARY KEY, padre TEXT, orden INTEGER)`);
+  try { await db.execute(`ALTER TABLE categorias_maestro ADD COLUMN orden INTEGER`); } catch (e) {}
   const { rows } = await db.execute('SELECT COUNT(*) as total FROM categorias_maestro');
   const { rows: yaAplicado } = await db.execute(`SELECT 1 FROM categorias_maestro WHERE nombre = 'Kebab y Shawarmas'`);
   if (rows[0].total > 0 && yaAplicado.length > 0) {
@@ -161,8 +162,9 @@ async function migrarCategoriasMaestro() {
     return;
   }
   await db.execute('DELETE FROM categorias_maestro');
-  for (const n of ARBOL_CATEGORIAS_INICIAL) {
-    await db.execute({ sql: 'INSERT OR IGNORE INTO categorias_maestro (nombre, padre) VALUES (?, ?)', args: [n.nombre, n.padre] });
+  for (let i = 0; i < ARBOL_CATEGORIAS_INICIAL.length; i++) {
+    const n = ARBOL_CATEGORIAS_INICIAL[i];
+    await db.execute({ sql: 'INSERT OR IGNORE INTO categorias_maestro (nombre, padre, orden) VALUES (?, ?, ?)', args: [n.nombre, n.padre, i] });
   }
   console.log(`Árbol de categorías sustituido por el nuevo: ${ARBOL_CATEGORIAS_INICIAL.length} categorías.`);
 }
@@ -290,15 +292,59 @@ app.delete('/api/categorias/:catId', requiereAuth, async (req, res) => {
 });
 
 app.get('/api/categorias-maestro', async (req, res) => {
-  const { rows } = await db.execute('SELECT nombre, padre FROM categorias_maestro');
+  const { rows } = await db.execute('SELECT nombre, padre, orden FROM categorias_maestro ORDER BY orden ASC, nombre ASC');
   res.json(rows);
 });
 
-// Crea o actualiza UNA sola categoría (no toca las demás, evita que los guardados se pisen entre sí)
+// Crea o actualiza UNA sola categoría (no toca las demás, evita que los guardados se pisen entre sí).
+// Si ya existe, mantiene su orden actual; si es nueva, la coloca al final.
 app.post('/api/categorias-maestro', requiereAuth, async (req, res) => {
   const { nombre, padre } = req.body;
   if (!nombre) return res.status(400).json({ error: 'Falta el nombre' });
-  await db.execute({ sql: 'INSERT OR REPLACE INTO categorias_maestro (nombre, padre) VALUES (?, ?)', args: [nombre, padre || null] });
+  const { rows: existente } = await db.execute({ sql: 'SELECT orden FROM categorias_maestro WHERE nombre = ?', args: [nombre] });
+  if (existente.length) {
+    await db.execute({ sql: 'UPDATE categorias_maestro SET padre = ? WHERE nombre = ?', args: [padre || null, nombre] });
+  } else {
+    const { rows: maxRow } = await db.execute('SELECT MAX(orden) as maximo FROM categorias_maestro');
+    const nuevoOrden = (maxRow[0].maximo === null ? -1 : maxRow[0].maximo) + 1;
+    await db.execute({ sql: 'INSERT INTO categorias_maestro (nombre, padre, orden) VALUES (?, ?, ?)', args: [nombre, padre || null, nuevoOrden] });
+  }
+  res.json({ ok: true });
+});
+
+// Mueve una categoría un puesto arriba o abajo entre sus hermanas (mismo padre)
+app.put('/api/categorias-maestro/:nombre/orden', requiereAuth, async (req, res) => {
+  const { direccion } = req.body; // 'arriba' o 'abajo'
+  const { rows: actual } = await db.execute({ sql: 'SELECT padre FROM categorias_maestro WHERE nombre = ?', args: [req.params.nombre] });
+  if (!actual.length) return res.status(404).json({ error: 'No encontrada' });
+  const padre = actual[0].padre;
+  const { rows: hermanas } = padre === null
+    ? await db.execute('SELECT nombre, orden FROM categorias_maestro WHERE padre IS NULL ORDER BY orden ASC, nombre ASC')
+    : await db.execute({ sql: 'SELECT nombre, orden FROM categorias_maestro WHERE padre = ? ORDER BY orden ASC, nombre ASC', args: [padre] });
+  const idx = hermanas.findIndex(h => h.nombre === req.params.nombre);
+  const destino = direccion === 'arriba' ? idx - 1 : idx + 1;
+  if (idx === -1 || destino < 0 || destino >= hermanas.length) return res.json({ ok: true });
+  const a = hermanas[idx], b = hermanas[destino];
+  await db.execute({ sql: 'UPDATE categorias_maestro SET orden = ? WHERE nombre = ?', args: [b.orden, a.nombre] });
+  await db.execute({ sql: 'UPDATE categorias_maestro SET orden = ? WHERE nombre = ?', args: [a.orden, b.nombre] });
+  res.json({ ok: true });
+});
+
+// Renombra una categoría: actualiza sus hijas (que la tenían como padre)
+// y todos los restaurantes que ya la tenían asignada, para que no se pierda el vínculo.
+app.put('/api/categorias-maestro/:nombre/renombrar', requiereAuth, async (req, res) => {
+  const nombreActual = req.params.nombre;
+  const nuevoNombre = (req.body.nuevoNombre || '').trim();
+  if (!nuevoNombre) return res.status(400).json({ error: 'Falta el nuevo nombre' });
+  if (nuevoNombre === nombreActual) return res.json({ ok: true });
+  const { rows: existe } = await db.execute({ sql: 'SELECT 1 FROM categorias_maestro WHERE nombre = ?', args: [nuevoNombre] });
+  if (existe.length) return res.status(409).json({ error: 'Ya existe una categoría con ese nombre' });
+  const { rows: actual } = await db.execute({ sql: 'SELECT padre, orden FROM categorias_maestro WHERE nombre = ?', args: [nombreActual] });
+  if (!actual.length) return res.status(404).json({ error: 'No encontrada' });
+  await db.execute({ sql: 'INSERT INTO categorias_maestro (nombre, padre, orden) VALUES (?, ?, ?)', args: [nuevoNombre, actual[0].padre, actual[0].orden] });
+  await db.execute({ sql: 'DELETE FROM categorias_maestro WHERE nombre = ?', args: [nombreActual] });
+  await db.execute({ sql: 'UPDATE categorias_maestro SET padre = ? WHERE padre = ?', args: [nuevoNombre, nombreActual] });
+  await db.execute({ sql: 'UPDATE categorias SET nombre = ? WHERE nombre = ?', args: [nuevoNombre, nombreActual] });
   res.json({ ok: true });
 });
 
