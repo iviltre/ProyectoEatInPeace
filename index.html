@@ -223,6 +223,9 @@ function valoracionMostrada(r) {
 
 let categoriasArbol = [];
 
+let etiquetasMaestroCache = [];
+let filtroEtiquetas = new Set();
+
 async function cargar() {
   const res = await fetch('./data.json');
   const datos = await res.json();
@@ -230,9 +233,11 @@ async function cargar() {
     // formato antiguo: solo la lista de restaurantes, sin árbol
     restaurantes = datos;
     categoriasArbol = [];
+    etiquetasMaestroCache = [];
   } else {
     restaurantes = datos.restaurantes || [];
     categoriasArbol = datos.arbol || [];
+    etiquetasMaestroCache = datos.etiquetas || [];
   }
   pintarFiltros();
   pintarMarcadores();
@@ -374,6 +379,24 @@ function pintarFiltros() {
     el.appendChild(grupoBarrio);
   }
 
+  if (etiquetasMaestroCache.length) {
+    const labelEtq = document.createElement('div');
+    labelEtq.className = 'filtro-label';
+    labelEtq.textContent = 'Etiquetas';
+    el.appendChild(labelEtq);
+
+    const grupoEtq = document.createElement('div');
+    grupoEtq.style.cssText = 'display:flex; flex-wrap:wrap; gap:6px; margin-bottom:6px;';
+    etiquetasMaestroCache.forEach(nombre => {
+      const chip = document.createElement('div');
+      chip.className = 'chip' + (filtroEtiquetas.has(nombre) ? ' active' : '');
+      chip.textContent = nombre;
+      chip.onclick = () => { filtroEtiquetas.has(nombre) ? filtroEtiquetas.delete(nombre) : filtroEtiquetas.add(nombre); pintarFiltros(); renderList(); pintarMarcadores(); };
+      grupoEtq.appendChild(chip);
+    });
+    el.appendChild(grupoEtq);
+  }
+
   const filaZona = document.createElement('div');
   filaZona.style.cssText = 'display:flex; align-items:center; justify-content:space-between; margin-top:8px; font-size:12.5px;';
   filaZona.innerHTML = `<span>Solo lo que se ve en el mapa</span><label class="switch"><input type="checkbox" ${filtroZonaActivo ? 'checked' : ''}><span class="slider"></span></label>`;
@@ -389,7 +412,8 @@ function coincide(r) {
   const coincideVal = filtroValoracionMin === null || r.categorias.some(c => (c.valoracion || 0) >= filtroValoracionMin);
   const coincideBarrio = filtroBarrios.size === 0 || filtroBarrios.has(r.barrio);
   const coincideZona = !filtroZonaActivo || !limitesZona || limitesZona.contains([r.lat, r.lng]);
-  return coincideNombre && coincideCat && coincidePrecio && coincideVal && coincideBarrio && coincideZona;
+  const coincideEtiquetas = filtroEtiquetas.size === 0 || (r.etiquetas_extra || []).some(e => filtroEtiquetas.has(e));
+  return coincideNombre && coincideCat && coincidePrecio && coincideVal && coincideBarrio && coincideZona && coincideEtiquetas;
 }
 
 function centrarConOffset(lat, lng, zoom, offsetXpx, offsetYpx) {
@@ -505,6 +529,7 @@ function abrirDetalle(id) {
   document.getElementById('detail-body').innerHTML = `
     <h2>${r.nombre}</h2>
     <div class="direccion">${r.direccion || ''}${r.barrio ? ' · ' + r.barrio : ''}</div>
+    ${(r.etiquetas_extra && r.etiquetas_extra.length) ? `<div style="margin:4px 0 8px;">${r.etiquetas_extra.map(e => `<span class="tag">${e}</span>`).join(' ')}</div>` : ''}
     ${r.google_maps_url ? `<a class="maps" href="${r.google_maps_url}" target="_blank">Ver en Google Maps →</a>` : ''}
     ${r.categorias.map(c => `
       <div class="cat-block">

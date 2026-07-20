@@ -149,10 +149,12 @@
       </select>
       <button id="publish-btn" onclick="publicarCambios()">📤 Publicar cambios para seguidores</button>
       <button id="backup-btn" onclick="descargarBackup()" style="margin-top:6px; width:100%; padding:9px; background:none; border:1px solid var(--border); color:var(--text-muted); border-radius:6px; font-size:12.5px; cursor:pointer;">💾 Descargar copia de seguridad completa</button>
+      <button id="captura-btn" onclick="activarModoCaptura()" style="margin-top:6px; width:100%; padding:9px; background:none; border:1px solid var(--border); color:var(--text-muted); border-radius:6px; font-size:12.5px; cursor:pointer;">📸 Modo captura (para vídeos)</button>
     </div>
     <div id="list"></div>
   </div>
   <div id="map"></div>
+  <button id="salir-captura-btn" onclick="salirModoCaptura()" style="display:none; position:fixed; top:14px; left:14px; background:var(--text); color:white; padding:8px 16px; border-radius:20px; border:none; font-size:12.5px; cursor:pointer; z-index:700;">✕ Salir del modo captura</button>
   <label id="toggle-agrupar" style="position:fixed; bottom:16px; right:16px; background:white; padding:7px 12px; border-radius:20px; box-shadow:0 1px 4px rgba(0,0,0,0.15); font-size:12.5px; display:flex; align-items:center; gap:6px; cursor:pointer; z-index:500;">
     <input type="checkbox" id="agrupar-checkbox" onchange="cambiarAgrupado(this.checked)"> Agrupar pines cercanos
   </label>
@@ -174,6 +176,20 @@
   </div>
 </div>
 
+<div id="etq-overlay" style="display:none; position:fixed; inset:0; background:rgba(35,36,31,0.35); z-index:900; align-items:center; justify-content:center;">
+  <div style="background:white; border-radius:12px; width:340px; max-height:70vh; overflow-y:auto; padding:20px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+      <strong style="font-size:14px;">Etiquetas</strong>
+      <button onclick="cerrarGestionEtiquetas()" style="border:none; background:none; font-size:16px; cursor:pointer; color:var(--text-muted);">✕</button>
+    </div>
+    <div style="display:flex; gap:6px; margin-bottom:16px;">
+      <input id="nueva-etiqueta-input" type="text" placeholder="Nombre de etiqueta nueva" onkeydown="if(event.key==='Enter') confirmarAñadirEtiqueta()" style="flex:1; padding:7px 9px; border:1px solid var(--border); border-radius:6px; font-size:13px;">
+      <button onclick="confirmarAñadirEtiqueta()" style="padding:7px 12px; background:var(--text); color:white; border:none; border-radius:6px; font-size:13px; cursor:pointer;">+</button>
+    </div>
+    <div id="lista-etiquetas-maestro"></div>
+  </div>
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
@@ -190,6 +206,7 @@ let filtroPrecios = new Set();
 let filtroValoracionMin = null;
 let filtroProbado = null;
 let filtroBarrios = new Set();
+let filtroEtiquetas = new Set();
 let filtroZonaActivo = false;
 let limitesZona = null;
 const PRECIOS_FIJOS = ['0-5€', '5-10€', '10-20€', '20-35€', '35-50€', '50-80€', '>80€'];
@@ -332,12 +349,20 @@ async function arrancar() {
   document.getElementById('app').style.display = 'flex';
   initMap();
   await cargarCategoriasMaestro();
+  await cargarEtiquetasMaestro();
   await cargarRestaurantes();
   setInterval(async () => {
     await cargarCategoriasMaestro();
+    await cargarEtiquetasMaestro();
     pintarFiltros();
     if (document.getElementById('cat-overlay').style.display === 'flex') renderListaCategoriasMaestro();
   }, 20000);
+}
+
+let etiquetasMaestroCache = [];
+async function cargarEtiquetasMaestro() {
+  const res = await fetch(`${API}/etiquetas-maestro`);
+  etiquetasMaestroCache = await res.json();
 }
 
 // ---------- MAPA ----------
@@ -374,6 +399,37 @@ function valoracionMostrada(r) {
     : r.categorias.filter(c => filtroCategorias.has(c.nombre));
   const lista = relevantes.length ? relevantes : r.categorias;
   return Math.max(...lista.map(c => c.valoracion || 0), 0);
+}
+
+let modoCaptura = false;
+const EMOJIS_VALORACION = ['⚪', '😞', '😐', '🙂', '😋', '🤩']; // índice 0 = sin valorar
+
+function emojiIconoPara(r) {
+  const v = Math.round(valoracionMostrada(r));
+  const emoji = EMOJIS_VALORACION[v] || EMOJIS_VALORACION[0];
+  return L.divIcon({
+    className: '',
+    html: `<div style="font-size:26px; line-height:1; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.4));">${emoji}</div>`,
+    iconSize: [30, 30], iconAnchor: [15, 15]
+  });
+}
+
+function activarModoCaptura() {
+  modoCaptura = true;
+  document.getElementById('sidebar').style.display = 'none';
+  document.getElementById('salir-captura-btn').style.display = 'block';
+  document.getElementById('toggle-agrupar').style.display = 'none';
+  setTimeout(() => map.invalidateSize(), 50);
+  pintarMarcadores();
+}
+
+function salirModoCaptura() {
+  modoCaptura = false;
+  document.getElementById('sidebar').style.display = 'flex';
+  document.getElementById('salir-captura-btn').style.display = 'none';
+  document.getElementById('toggle-agrupar').style.display = 'flex';
+  setTimeout(() => map.invalidateSize(), 50);
+  pintarMarcadores();
 }
 
 function circuloPara(r) {
@@ -449,7 +505,9 @@ function pintarMarcadores() {
   cluster.clearLayers();
   markers = {};
   restaurantesFiltrados().forEach(r => {
-    const m = L.circleMarker([r.lat, r.lng], circuloPara(r));
+    const m = modoCaptura
+      ? L.marker([r.lat, r.lng], { icon: emojiIconoPara(r) })
+      : L.circleMarker([r.lat, r.lng], circuloPara(r));
     m.on('click', () => abrirDetalle(r.id));
     markers[r.id] = m;
     cluster.addLayer(m);
@@ -598,6 +656,24 @@ function pintarFiltros() {
       grupoBarrio.appendChild(chip);
     });
     el.appendChild(grupoBarrio);
+  }
+
+  if (etiquetasMaestroCache.length) {
+    const labelEtq = document.createElement('div');
+    labelEtq.className = 'filtro-label';
+    labelEtq.textContent = 'Etiquetas';
+    el.appendChild(labelEtq);
+
+    const grupoEtq = document.createElement('div');
+    grupoEtq.style.cssText = 'display:flex; flex-wrap:wrap; gap:6px;';
+    etiquetasMaestroCache.forEach(nombre => {
+      const chip = document.createElement('div');
+      chip.className = 'chip' + (filtroEtiquetas.has(nombre) ? ' active' : '');
+      chip.textContent = nombre;
+      chip.onclick = () => { filtroEtiquetas.has(nombre) ? filtroEtiquetas.delete(nombre) : filtroEtiquetas.add(nombre); pintarFiltros(); renderList(); pintarMarcadores(); };
+      grupoEtq.appendChild(chip);
+    });
+    el.appendChild(grupoEtq);
   }
 }
 
@@ -750,7 +826,8 @@ function restaurantesFiltrados() {
     const coincideProbado = !filtroProbado || (filtroProbado === 'si' ? r.probado : !r.probado);
     const coincideBarrio = filtroBarrios.size === 0 || filtroBarrios.has(r.barrio);
     const coincideZona = !filtroZonaActivo || !limitesZona || limitesZona.contains([r.lat, r.lng]);
-    return coincideNombre && coincideCat && coincidePrecio && coincideVal && coincideProbado && coincideBarrio && coincideZona;
+    const coincideEtiquetas = filtroEtiquetas.size === 0 || (r.etiquetas_extra || []).some(e => filtroEtiquetas.has(e));
+    return coincideNombre && coincideCat && coincidePrecio && coincideVal && coincideProbado && coincideBarrio && coincideZona && coincideEtiquetas;
   });
 }
 
@@ -869,12 +946,19 @@ function abrirDetalle(id) {
     </div>
 
     <div class="section">
+      <div class="section-label">Etiquetas</div>
+      <div id="etiquetas-chips"></div>
+      <button class="add-cat-btn" onclick="abrirGestionEtiquetas()">⚙ Gestionar etiquetas</button>
+    </div>
+
+    <div class="section">
       <div class="section-label">Notas privadas</div>
       <textarea class="editable" style="width:100%; min-height:60px;" onblur="guardarCampo('notas_generales', this.value)" placeholder="Notas que solo tú ves...">${r.notas_generales || ''}</textarea>
     </div>
 
     <button id="delete-restaurante" onclick="borrarRestaurante()">Eliminar restaurante</button>
   `;
+  renderEtiquetasChips(r);
   renderCategorias(r);
   document.getElementById('detail').classList.add('open');
 }
@@ -904,6 +988,76 @@ function renderCategorias(r) {
     `;
     el.appendChild(div);
   });
+}
+
+function renderEtiquetasChips(r) {
+  const el = document.getElementById('etiquetas-chips');
+  el.innerHTML = '';
+  el.style.cssText = 'display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px;';
+  const actuales = new Set(r.etiquetas_extra || []);
+  etiquetasMaestroCache.forEach(nombre => {
+    const chip = document.createElement('div');
+    chip.className = 'chip' + (actuales.has(nombre) ? ' active' : '');
+    chip.textContent = nombre;
+    chip.onclick = async () => {
+      actuales.has(nombre) ? actuales.delete(nombre) : actuales.add(nombre);
+      const lista = [...actuales];
+      r.etiquetas_extra = lista;
+      renderEtiquetasChips(r);
+      await guardarCampo('etiquetas_extra', lista);
+      renderList();
+    };
+    el.appendChild(chip);
+  });
+}
+
+function abrirGestionEtiquetas() {
+  document.getElementById('etq-overlay').style.display = 'flex';
+  document.getElementById('nueva-etiqueta-input').value = '';
+  renderListaEtiquetasMaestro();
+}
+
+function cerrarGestionEtiquetas() {
+  document.getElementById('etq-overlay').style.display = 'none';
+}
+
+function renderListaEtiquetasMaestro() {
+  const el = document.getElementById('lista-etiquetas-maestro');
+  el.innerHTML = '';
+  if (!etiquetasMaestroCache.length) {
+    el.innerHTML = '<p style="font-size:12.5px; color:var(--text-muted);">Todavía no hay etiquetas creadas.</p>';
+    return;
+  }
+  etiquetasMaestroCache.forEach(nombre => {
+    const fila = document.createElement('div');
+    fila.style.cssText = 'display:flex; justify-content:space-between; align-items:center; padding:7px 0; border-bottom:1px solid var(--border); font-size:13px;';
+    const span = document.createElement('span');
+    span.textContent = nombre;
+    const btn = document.createElement('button');
+    btn.textContent = 'Eliminar';
+    btn.style.cssText = 'border:none; background:none; color:var(--danger); cursor:pointer; font-size:11.5px;';
+    btn.addEventListener('click', async () => {
+      if (!confirm(`¿Quitar la etiqueta "${nombre}"? Los restaurantes que ya la tengan la conservarán.`)) return;
+      await fetch(`${API}/etiquetas-maestro/${encodeURIComponent(nombre)}`, { method: 'DELETE', headers: authHeaders() });
+      await cargarEtiquetasMaestro();
+      renderListaEtiquetasMaestro();
+    });
+    fila.appendChild(span);
+    fila.appendChild(btn);
+    el.appendChild(fila);
+  });
+}
+
+async function confirmarAñadirEtiqueta() {
+  const input = document.getElementById('nueva-etiqueta-input');
+  if (!input.value.trim()) return;
+  await fetch(`${API}/etiquetas-maestro`, {
+    method: 'POST', headers: authHeaders(), body: JSON.stringify({ nombre: input.value.trim() })
+  });
+  input.value = '';
+  await cargarEtiquetasMaestro();
+  renderListaEtiquetasMaestro();
+  pintarFiltros();
 }
 
 function cerrarDetalle() {
@@ -1045,10 +1199,10 @@ function publicarCambios() {
     .map(r => ({
       id: r.id, nombre: r.nombre, lat: r.lat, lng: r.lng,
       direccion: r.direccion, google_maps_url: r.google_maps_url,
-      grupo_id: r.grupo_id, barrio: r.barrio,
+      grupo_id: r.grupo_id, barrio: r.barrio, etiquetas_extra: r.etiquetas_extra || [],
       categorias: r.categorias.map(c => ({ nombre: c.nombre, precio: c.precio, valoracion: c.valoracion, resena: c.resena, instagram_url: c.instagram_url, tiktok_url: c.tiktok_url }))
     }));
-  const paquete = { arbol: categoriasMaestro(), restaurantes: publicos };
+  const paquete = { arbol: categoriasMaestro(), etiquetas: etiquetasMaestroCache, restaurantes: publicos };
   const blob = new Blob([JSON.stringify(paquete, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');

@@ -152,6 +152,18 @@ const ARBOL_CATEGORIAS_INICIAL = [
   { nombre: 'Shawarma', padre: 'Kebab y Shawarmas' },
 ];
 
+const ETIQUETAS_INICIALES = ['Menú del día', 'Take away', 'Sin reserva'];
+
+async function migrarEtiquetasMaestro() {
+  await db.execute(`CREATE TABLE IF NOT EXISTS etiquetas_maestro (nombre TEXT PRIMARY KEY, orden INTEGER)`);
+  const { rows } = await db.execute('SELECT COUNT(*) as total FROM etiquetas_maestro');
+  if (rows[0].total > 0) return;
+  for (let i = 0; i < ETIQUETAS_INICIALES.length; i++) {
+    await db.execute({ sql: 'INSERT OR IGNORE INTO etiquetas_maestro (nombre, orden) VALUES (?, ?)', args: [ETIQUETAS_INICIALES[i], i] });
+  }
+  console.log(`Etiquetas iniciales creadas: ${ETIQUETAS_INICIALES.length}`);
+}
+
 async function migrarCategoriasMaestro() {
   await db.execute(`CREATE TABLE IF NOT EXISTS categorias_maestro (nombre TEXT PRIMARY KEY, padre TEXT, orden INTEGER)`);
   try { await db.execute(`ALTER TABLE categorias_maestro ADD COLUMN orden INTEGER`); } catch (e) {}
@@ -367,6 +379,28 @@ app.delete('/api/categorias-maestro/:nombre', requiereAuth, async (req, res) => 
   res.json({ ok: true });
 });
 
+app.get('/api/etiquetas-maestro', async (req, res) => {
+  const { rows } = await db.execute('SELECT nombre FROM etiquetas_maestro ORDER BY orden ASC, nombre ASC');
+  res.json(rows.map(r => r.nombre));
+});
+
+app.post('/api/etiquetas-maestro', requiereAuth, async (req, res) => {
+  const nombre = (req.body.nombre || '').trim();
+  if (!nombre) return res.status(400).json({ error: 'Falta el nombre' });
+  const { rows: existente } = await db.execute({ sql: 'SELECT 1 FROM etiquetas_maestro WHERE nombre = ?', args: [nombre] });
+  if (!existente.length) {
+    const { rows: maxRow } = await db.execute('SELECT MAX(orden) as maximo FROM etiquetas_maestro');
+    const nuevoOrden = (maxRow[0].maximo === null ? -1 : maxRow[0].maximo) + 1;
+    await db.execute({ sql: 'INSERT INTO etiquetas_maestro (nombre, orden) VALUES (?, ?)', args: [nombre, nuevoOrden] });
+  }
+  res.json({ ok: true });
+});
+
+app.delete('/api/etiquetas-maestro/:nombre', requiereAuth, async (req, res) => {
+  await db.execute({ sql: 'DELETE FROM etiquetas_maestro WHERE nombre = ?', args: [req.params.nombre] });
+  res.json({ ok: true });
+});
+
 // Red de seguridad: si algo falla de forma inesperada en una petición,
 // que se registre el error, pero que el servidor no se caiga entero.
 process.on('unhandledRejection', (err) => {
@@ -377,6 +411,7 @@ const PORT = process.env.PORT || 3001;
 prepararBaseDeDatos()
   .then(() => migrarBarrios())
   .then(() => migrarCategoriasMaestro())
+  .then(() => migrarEtiquetasMaestro())
   .then(() => rellenarOrdenFaltante())
   .then(() => app.listen(PORT, () => console.log(`Backend escuchando en el puerto ${PORT}`)))
   .catch(err => { console.error('Error preparando la base de datos:', err); process.exit(1); });
