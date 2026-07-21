@@ -1,93 +1,260 @@
 {
   "arbol": [
     {
-      "nombre": "Asiático",
-      "padre": "Restaurantes"
+      "nombre": "Vegetariano",
+      "padre": null,
+      "orden": 0
+    },
+    {
+      "nombre": "Asiatico",
+      "padre": null,
+      "orden": 1
+    },
+    {
+      "nombre": "Asiatico mediterraneo",
+      "padre": "Fusion",
+      "orden": 2
     },
     {
       "nombre": "Brunch",
-      "padre": null
+      "padre": null,
+      "orden": 3
     },
     {
       "nombre": "Buñuelos",
-      "padre": null
+      "padre": "Dulces",
+      "orden": 4
     },
     {
       "nombre": "Café",
-      "padre": null
+      "padre": "Desayuno",
+      "orden": 5
+    },
+    {
+      "nombre": "Chino",
+      "padre": "Asiatico",
+      "orden": 6
+    },
+    {
+      "nombre": "Coreano",
+      "padre": "Asiatico",
+      "orden": 7
+    },
+    {
+      "nombre": "Desayuno",
+      "padre": null,
+      "orden": 8
+    },
+    {
+      "nombre": "Dulces",
+      "padre": null,
+      "orden": 9
     },
     {
       "nombre": "Esmorzar",
-      "padre": null
+      "padre": null,
+      "orden": 10
     },
     {
-      "nombre": "Fusión Tapas",
-      "padre": null
+      "nombre": "Focaccia",
+      "padre": "Italiano",
+      "orden": 11
+    },
+    {
+      "nombre": "Fusion",
+      "padre": null,
+      "orden": 12
     },
     {
       "nombre": "Hamburguesa",
-      "padre": null
-    },
-    {
-      "nombre": "Normal",
-      "padre": "Hamburguesa"
-    },
-    {
-      "nombre": "Smash",
-      "padre": "Hamburguesa"
+      "padre": null,
+      "orden": 13
     },
     {
       "nombre": "Helados",
-      "padre": null
+      "padre": "Dulces",
+      "orden": 14
     },
     {
       "nombre": "Horchata",
-      "padre": null
+      "padre": "Dulces",
+      "orden": 15
+    },
+    {
+      "nombre": "Hornos",
+      "padre": "Dulces",
+      "orden": 16
+    },
+    {
+      "nombre": "Italiano",
+      "padre": null,
+      "orden": 17
+    },
+    {
+      "nombre": "Japones",
+      "padre": "Asiatico",
+      "orden": 18
+    },
+    {
+      "nombre": "Kebab",
+      "padre": "Kebab y Shawarmas",
+      "orden": 19
+    },
+    {
+      "nombre": "Kebab premium",
+      "padre": "Kebab",
+      "orden": 20
+    },
+    {
+      "nombre": "Kebab tradicional",
+      "padre": "Kebab",
+      "orden": 21
+    },
+    {
+      "nombre": "Kebab y Shawarmas",
+      "padre": null,
+      "orden": 22
+    },
+    {
+      "nombre": "Latino",
+      "padre": null,
+      "orden": 23
     },
     {
       "nombre": "Matcha",
-      "padre": null
+      "padre": "Desayuno",
+      "orden": 24
     },
     {
       "nombre": "Mexicano",
-      "padre": null
+      "padre": "Latino",
+      "orden": 25
+    },
+    {
+      "nombre": "Nikkei",
+      "padre": "Fusion",
+      "orden": 26
+    },
+    {
+      "nombre": "Normal",
+      "padre": "Hamburguesa",
+      "orden": 27
+    },
+    {
+      "nombre": "Otros",
+      "padre": "Fusion",
+      "orden": 28
+    },
+    {
+      "nombre": "Paella/arroces",
+      "padre": null,
+      "orden": 29
     },
     {
       "nombre": "Pasta",
-      "padre": null
+      "padre": "Italiano",
+      "orden": 30
+    },
+    {
+      "nombre": "Peruano",
+      "padre": "Latino",
+      "orden": 31
     },
     {
       "nombre": "Pizza",
-      "padre": null
+      "padre": "Italiano",
+      "orden": 32
     },
     {
-      "nombre": "prueba",
-      "padre": "Sushi"
+      "nombre": "Pizza napolitana",
+      "padre": "Focaccia",
+      "orden": 33
     },
     {
-      "nombre": "Ramen",
-      "padre": "Asiático"
+      "nombre": "Pizza romana y otros tipos",
+      "padre": "Focaccia",
+      "orden": 34
     },
     {
-      "nombre": "Restaurantes",
-      "padre": null
+      "nombre": "Pollo",
+      "padre": "Hamburguesa",
+      "orden": 35
+    },
+    {
+      "nombre": "Premium",
+      "padre": "Esmorzar",
+      "orden": 36
+    },
+    {
+      "nombre": "Ramen Chino",
+      "padre": "Chino",
+      "orden": 37
+    },
+    {
+      "nombre": "Ramen Japones",
+      "padre": "Japones",
+      "orden": 38
     },
     {
       "nombre": "Saludables",
-      "padre": null
+      "padre": null,
+      "orden": 39
+    },
+    {
+      "nombre": "Shawarma",
+      "padre": "Kebab y Shawarmas",
+      "orden": 40
+    },
+    {
+      "nombre": "Smash",
+      "padre": "Hamburguesa",
+      "orden": 41
     },
     {
       "nombre": "Sushi",
-      "padre": "Asiático"
+      "padre": "Japones",
+      "orden": 42
+    },
+    {
+      "nombre": "Sushi Buffet",
+      "padre": "Japones",
+      "orden": 43
+    },
+    {
+      "nombre": "Tailandes",
+      "padre": "Asiatico",
+      "orden": 44
+    },
+    {
+      "nombre": "Tapas",
+      "padre": null,
+      "orden": 45
     },
     {
       "nombre": "Tarta de queso",
-      "padre": null
+      "padre": "Dulces",
+      "orden": 46
     },
     {
-      "nombre": "Vegetariano vegano",
-      "padre": null
+      "nombre": "Tortilla de patatas",
+      "padre": null,
+      "orden": 47
+    },
+    {
+      "nombre": "Tradicional",
+      "padre": "Esmorzar",
+      "orden": 48
+    },
+    {
+      "nombre": "Vegano",
+      "padre": "Vegetariano",
+      "orden": 49
     }
+  ],
+  "etiquetas": [
+    "Menú del día",
+    "Take away",
+    "Sin reserva"
   ],
   "restaurantes": [
     {
@@ -99,6 +266,9 @@
       "google_maps_url": "http://maps.google.com/?cid=2360055383022952508",
       "grupo_id": null,
       "barrio": "La Saïdia",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Buñuelos",
@@ -119,6 +289,7 @@
       "google_maps_url": "http://maps.google.com/?cid=8124552691578316441",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -147,6 +318,7 @@
       "google_maps_url": "http://maps.google.com/?cid=12554607993396024942",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": null,
@@ -167,6 +339,9 @@
       "google_maps_url": "http://maps.google.com/?cid=15927645960128895643",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Sin buffet"
+      ],
       "categorias": [
         {
           "nombre": "Sushi",
@@ -187,6 +362,9 @@
       "google_maps_url": "http://maps.google.com/?cid=12107097853067057471",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Sin buffet"
+      ],
       "categorias": [
         {
           "nombre": "Sushi",
@@ -207,6 +385,9 @@
       "google_maps_url": "http://maps.google.com/?cid=310833639009033940",
       "grupo_id": null,
       "barrio": "El Pla del Real",
+      "etiquetas_extra": [
+        "Sin buffet"
+      ],
       "categorias": [
         {
           "nombre": "Sushi",
@@ -227,6 +408,7 @@
       "google_maps_url": "http://maps.google.com/?cid=12893013206994828152",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Horchata",
@@ -247,6 +429,9 @@
       "google_maps_url": "http://maps.google.com/?cid=5649318076595626836",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Tipo romana"
+      ],
       "categorias": [
         {
           "nombre": "Pizza",
@@ -267,6 +452,9 @@
       "google_maps_url": "http://maps.google.com/?cid=11171206758054351799",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Tipo gourmet"
+      ],
       "categorias": [
         {
           "nombre": "Esmorzar",
@@ -287,6 +475,9 @@
       "google_maps_url": "http://maps.google.com/?cid=6824344621741480542",
       "grupo_id": null,
       "barrio": "Extramurs",
+      "etiquetas_extra": [
+        "Tipo romana"
+      ],
       "categorias": [
         {
           "nombre": "Pasta",
@@ -315,6 +506,10 @@
       "google_maps_url": "http://maps.google.com/?cid=4129651690049543198",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "No reserva",
+        "Tipo gourmet"
+      ],
       "categorias": [
         {
           "nombre": "Esmorzar",
@@ -335,6 +530,7 @@
       "google_maps_url": "http://maps.google.com/?cid=15102703499882448652",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Saludables",
@@ -355,6 +551,9 @@
       "google_maps_url": "http://maps.google.com/?cid=3848081936193726401",
       "grupo_id": null,
       "barrio": "Campanar",
+      "etiquetas_extra": [
+        "Tipo gourmet"
+      ],
       "categorias": [
         {
           "nombre": "Esmorzar",
@@ -375,6 +574,7 @@
       "google_maps_url": "http://maps.google.com/?cid=385397663960465439",
       "grupo_id": null,
       "barrio": "Camins al Grau",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -395,6 +595,7 @@
       "google_maps_url": "http://maps.google.com/?cid=7545225600865801431",
       "grupo_id": null,
       "barrio": "Algirós",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Brunch",
@@ -423,6 +624,9 @@
       "google_maps_url": "http://maps.google.com/?cid=2088599603021186497",
       "grupo_id": null,
       "barrio": "Patraix",
+      "etiquetas_extra": [
+        "Tipo gourmet"
+      ],
       "categorias": [
         {
           "nombre": "Esmorzar",
@@ -443,6 +647,7 @@
       "google_maps_url": "http://maps.google.com/?cid=9346614288472975504",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Brunch",
@@ -471,6 +676,9 @@
       "google_maps_url": "http://maps.google.com/?cid=17033908823600044953",
       "grupo_id": null,
       "barrio": "Camins al Grau",
+      "etiquetas_extra": [
+        "Tipo normal"
+      ],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -499,6 +707,7 @@
       "google_maps_url": "http://maps.google.com/?cid=12120935592092373122",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": null,
@@ -519,6 +728,7 @@
       "google_maps_url": "http://maps.google.com/?cid=9543088306410430174",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": null,
@@ -539,6 +749,10 @@
       "google_maps_url": "http://maps.google.com/?cid=4871491139074394229",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away",
+        "Tipo smash"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
@@ -559,6 +773,10 @@
       "google_maps_url": "http://maps.google.com/?cid=70319397007044200",
       "grupo_id": null,
       "barrio": "Camins al Grau",
+      "etiquetas_extra": [
+        "Take away",
+        "Tipo smash"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
@@ -579,6 +797,9 @@
       "google_maps_url": "http://maps.google.com/?cid=3018209717685284842",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Restaurante"
+      ],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -607,6 +828,7 @@
       "google_maps_url": "http://maps.google.com/?cid=16729562303268259759",
       "grupo_id": null,
       "barrio": "El Pla del Real",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": null,
@@ -627,6 +849,7 @@
       "google_maps_url": "http://maps.google.com/?cid=9908971675832496017",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Ramen",
@@ -647,6 +870,7 @@
       "google_maps_url": "http://maps.google.com/?cid=1627687333094562864",
       "grupo_id": null,
       "barrio": "Algirós",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Ramen",
@@ -667,6 +891,9 @@
       "google_maps_url": "http://maps.google.com/?cid=1963794772024625461",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Tipo napolitana"
+      ],
       "categorias": [
         {
           "nombre": "Pizza",
@@ -687,6 +914,10 @@
       "google_maps_url": "http://maps.google.com/?cid=6463842264897431900",
       "grupo_id": null,
       "barrio": "Algirós",
+      "etiquetas_extra": [
+        "Take away",
+        "Tipo napolitana"
+      ],
       "categorias": [
         {
           "nombre": "Pizza",
@@ -707,6 +938,9 @@
       "google_maps_url": "http://maps.google.com/?cid=15435337462086611410",
       "grupo_id": null,
       "barrio": "Benimaclet",
+      "etiquetas_extra": [
+        "Tipo napolitana"
+      ],
       "categorias": [
         {
           "nombre": "Pizza",
@@ -727,6 +961,9 @@
       "google_maps_url": "http://maps.google.com/?cid=5629889881537431864",
       "grupo_id": null,
       "barrio": "Algirós",
+      "etiquetas_extra": [
+        "Vegano"
+      ],
       "categorias": [
         {
           "nombre": "Saludables",
@@ -755,6 +992,7 @@
       "google_maps_url": "http://maps.google.com/?cid=11141017384890126097",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Pasta",
@@ -783,6 +1021,7 @@
       "google_maps_url": "http://maps.google.com/?cid=17530374082256269255",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -803,6 +1042,9 @@
       "google_maps_url": "http://maps.google.com/?cid=2254644794802331698",
       "grupo_id": null,
       "barrio": "Campanar",
+      "etiquetas_extra": [
+        "Tipo tradicional"
+      ],
       "categorias": [
         {
           "nombre": "Esmorzar",
@@ -823,6 +1065,9 @@
       "google_maps_url": "http://maps.google.com/?cid=15569575595128267743",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
+      "etiquetas_extra": [
+        "Tipo tradicional"
+      ],
       "categorias": [
         {
           "nombre": "Esmorzar",
@@ -843,6 +1088,9 @@
       "google_maps_url": "http://maps.google.com/?cid=1043506567681548615",
       "grupo_id": null,
       "barrio": "Benicalap",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": null,
@@ -863,6 +1111,7 @@
       "google_maps_url": "http://maps.google.com/?cid=2639939698447232582",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -883,6 +1132,7 @@
       "google_maps_url": "http://maps.google.com/?cid=8748095561448154208",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -903,6 +1153,7 @@
       "google_maps_url": "http://maps.google.com/?cid=12207812050992123255",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -923,6 +1174,7 @@
       "google_maps_url": "http://maps.google.com/?cid=15988536970089340679",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -943,6 +1195,7 @@
       "google_maps_url": "http://maps.google.com/?cid=5786613840955277618",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -963,6 +1216,7 @@
       "google_maps_url": "http://maps.google.com/?cid=9377782626660078027",
       "grupo_id": "356e0f41-59f6-4cf1-9f4b-eb04506dd869",
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": null,
@@ -983,6 +1237,7 @@
       "google_maps_url": "http://maps.google.com/?cid=5264438878003219556",
       "grupo_id": "356e0f41-59f6-4cf1-9f4b-eb04506dd869",
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": null,
@@ -1003,6 +1258,7 @@
       "google_maps_url": "http://maps.google.com/?cid=10372842656576466304",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -1023,6 +1279,7 @@
       "google_maps_url": "http://maps.google.com/?cid=8116576843712424740",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -1043,6 +1300,7 @@
       "google_maps_url": "http://maps.google.com/?cid=314257651272869860",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -1063,6 +1321,7 @@
       "google_maps_url": "http://maps.google.com/?cid=13958552449102137194",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -1083,6 +1342,7 @@
       "google_maps_url": "http://maps.google.com/?cid=2470030154431139391",
       "grupo_id": null,
       "barrio": "Extramurs",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -1103,6 +1363,7 @@
       "google_maps_url": "http://maps.google.com/?cid=12298633549260394440",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -1123,6 +1384,7 @@
       "google_maps_url": "http://maps.google.com/?cid=7035494363480640603",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -1143,6 +1405,7 @@
       "google_maps_url": "http://maps.google.com/?cid=4544547210990506857",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -1163,6 +1426,7 @@
       "google_maps_url": "http://maps.google.com/?cid=13715000236599759129",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -1183,6 +1447,7 @@
       "google_maps_url": "http://maps.google.com/?cid=8716654429927844066",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -1203,6 +1468,7 @@
       "google_maps_url": "http://maps.google.com/?cid=2952300036593963419",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -1223,6 +1489,7 @@
       "google_maps_url": "http://maps.google.com/?cid=13292090688316030817",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -1251,6 +1518,7 @@
       "google_maps_url": "http://maps.google.com/?cid=3679629500932306929",
       "grupo_id": null,
       "barrio": "Camins al Grau",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -1271,6 +1539,7 @@
       "google_maps_url": "http://maps.google.com/?cid=5892905980621492567",
       "grupo_id": null,
       "barrio": "Camins al Grau",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -1291,6 +1560,7 @@
       "google_maps_url": "http://maps.google.com/?cid=5569655710024749087",
       "grupo_id": null,
       "barrio": "Camins al Grau",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -1319,6 +1589,7 @@
       "google_maps_url": "http://maps.google.com/?cid=11599701841996420109",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -1347,6 +1618,7 @@
       "google_maps_url": "http://maps.google.com/?cid=2564475293962880436",
       "grupo_id": "b92a93f4-7191-4b2d-8bfe-3fc5b76cd0b6",
       "barrio": "La Saïdia",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -1367,6 +1639,7 @@
       "google_maps_url": "http://maps.google.com/?cid=8802642117838710057",
       "grupo_id": null,
       "barrio": "La Saïdia",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -1387,6 +1660,7 @@
       "google_maps_url": "http://maps.google.com/?cid=11949694961905953449",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -1407,6 +1681,7 @@
       "google_maps_url": "http://maps.google.com/?cid=3778266095820538494",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -1427,6 +1702,7 @@
       "google_maps_url": "http://maps.google.com/?cid=16714125037666381000",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Brunch",
@@ -1463,6 +1739,7 @@
       "google_maps_url": "http://maps.google.com/?cid=7419440916959627857",
       "grupo_id": null,
       "barrio": "El Pla del Real",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -1483,6 +1760,9 @@
       "google_maps_url": "http://maps.google.com/?cid=989458853137621394",
       "grupo_id": null,
       "barrio": "El Pla del Real",
+      "etiquetas_extra": [
+        "Menú del día"
+      ],
       "categorias": [
         {
           "nombre": "Café",
@@ -1503,6 +1783,7 @@
       "google_maps_url": "http://maps.google.com/?cid=4640836612236071285",
       "grupo_id": null,
       "barrio": "Campanar",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -1523,6 +1804,9 @@
       "google_maps_url": "http://maps.google.com/?cid=5680668574500480652",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Matcha",
@@ -1543,6 +1827,7 @@
       "google_maps_url": "http://maps.google.com/?cid=4473860084898567194",
       "grupo_id": null,
       "barrio": "Algirós",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -1563,6 +1848,7 @@
       "google_maps_url": "http://maps.google.com/?cid=8266260652301042679",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Brunch",
@@ -1591,6 +1877,7 @@
       "google_maps_url": "http://maps.google.com/?cid=15530826203790172604",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Brunch",
@@ -1619,6 +1906,7 @@
       "google_maps_url": "http://maps.google.com/?cid=13420068791946653742",
       "grupo_id": null,
       "barrio": "Algirós",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Brunch",
@@ -1647,6 +1935,7 @@
       "google_maps_url": "http://maps.google.com/?cid=11216609214201490593",
       "grupo_id": null,
       "barrio": "El Pla del Real",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -1667,6 +1956,7 @@
       "google_maps_url": "http://maps.google.com/?cid=7008546563860690388",
       "grupo_id": null,
       "barrio": "Campanar",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -1687,6 +1977,7 @@
       "google_maps_url": "http://maps.google.com/?cid=119887754370455031",
       "grupo_id": null,
       "barrio": "Benicalap",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -1715,6 +2006,7 @@
       "google_maps_url": "http://maps.google.com/?cid=13850213593750911407",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -1735,6 +2027,7 @@
       "google_maps_url": "http://maps.google.com/?cid=1506369226542909341",
       "grupo_id": null,
       "barrio": "Benicalap",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -1755,6 +2048,7 @@
       "google_maps_url": "http://maps.google.com/?cid=2706539629624271592",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -1775,6 +2069,7 @@
       "google_maps_url": "http://maps.google.com/?cid=6971873991193916501",
       "grupo_id": null,
       "barrio": "Benicalap",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": null,
@@ -1795,6 +2090,9 @@
       "google_maps_url": "http://maps.google.com/?cid=13653318891793493273",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Pizza",
@@ -1815,6 +2113,9 @@
       "google_maps_url": "http://maps.google.com/?cid=4022428250023722555",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Pizza",
@@ -1835,6 +2136,9 @@
       "google_maps_url": "http://maps.google.com/?cid=11059272894607498380",
       "grupo_id": null,
       "barrio": "El Pla del Real",
+      "etiquetas_extra": [
+        "Sin buffet"
+      ],
       "categorias": [
         {
           "nombre": "Sushi",
@@ -1855,6 +2159,9 @@
       "google_maps_url": "http://maps.google.com/?cid=5842792329703121580",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Tipo romana"
+      ],
       "categorias": [
         {
           "nombre": "Pasta",
@@ -1883,6 +2190,7 @@
       "google_maps_url": "http://maps.google.com/?cid=16951985905863909221",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Helados",
@@ -1911,6 +2219,9 @@
       "google_maps_url": "http://maps.google.com/?cid=11877160214427395933",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Sin buffet"
+      ],
       "categorias": [
         {
           "nombre": "Sushi",
@@ -1931,6 +2242,7 @@
       "google_maps_url": "http://maps.google.com/?cid=14693202187146216164",
       "grupo_id": null,
       "barrio": "Algirós",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Pasta",
@@ -1951,6 +2263,9 @@
       "google_maps_url": "http://maps.google.com/?cid=12281529043516697667",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Restaurante"
+      ],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -1979,6 +2294,9 @@
       "google_maps_url": "http://maps.google.com/?cid=10876678754384177453",
       "grupo_id": null,
       "barrio": "Patraix",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": null,
@@ -1999,6 +2317,9 @@
       "google_maps_url": "http://maps.google.com/?cid=12420094752058637077",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": null,
@@ -2019,6 +2340,9 @@
       "google_maps_url": "http://maps.google.com/?cid=5049050768328374643",
       "grupo_id": null,
       "barrio": "Quatre Carreres",
+      "etiquetas_extra": [
+        "Tipo gourmet"
+      ],
       "categorias": [
         {
           "nombre": "Esmorzar",
@@ -2047,6 +2371,9 @@
       "google_maps_url": "http://maps.google.com/?cid=16835571381669257027",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Asiático",
@@ -2067,6 +2394,9 @@
       "google_maps_url": "http://maps.google.com/?cid=5923824498257228743",
       "grupo_id": null,
       "barrio": "Algirós",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Asiático",
@@ -2087,6 +2417,9 @@
       "google_maps_url": "http://maps.google.com/?cid=9856843803103517721",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": null,
@@ -2107,6 +2440,9 @@
       "google_maps_url": "http://maps.google.com/?cid=2517106105194588550",
       "grupo_id": null,
       "barrio": "Campanar",
+      "etiquetas_extra": [
+        "Buffet"
+      ],
       "categorias": [
         {
           "nombre": "Sushi",
@@ -2127,6 +2463,9 @@
       "google_maps_url": "http://maps.google.com/?cid=1312287137421683833",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "No reserva"
+      ],
       "categorias": [
         {
           "nombre": "Asiático",
@@ -2147,6 +2486,10 @@
       "google_maps_url": "http://maps.google.com/?cid=7325442362951213534",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "No reserva",
+        "Tipo japonés"
+      ],
       "categorias": [
         {
           "nombre": "Asiático",
@@ -2167,6 +2510,9 @@
       "google_maps_url": "http://maps.google.com/?cid=14553450011835611879",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Café",
@@ -2187,6 +2533,9 @@
       "google_maps_url": "http://maps.google.com/?cid=16605586650337053423",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Sin buffet"
+      ],
       "categorias": [
         {
           "nombre": "Sushi",
@@ -2207,6 +2556,9 @@
       "google_maps_url": "http://maps.google.com/?cid=7311335414980916614",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Sin buffet"
+      ],
       "categorias": [
         {
           "nombre": "Sushi",
@@ -2227,6 +2579,7 @@
       "google_maps_url": "http://maps.google.com/?cid=3692347857513438164",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Pasta",
@@ -2247,6 +2600,9 @@
       "google_maps_url": "http://maps.google.com/?cid=11990919875033945994",
       "grupo_id": null,
       "barrio": "Extramurs",
+      "etiquetas_extra": [
+        "Tipo chino"
+      ],
       "categorias": [
         {
           "nombre": "Asiático",
@@ -2275,6 +2631,10 @@
       "google_maps_url": "http://maps.google.com/?cid=8651205305816443037",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away",
+        "Tipo normal"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
@@ -2295,6 +2655,7 @@
       "google_maps_url": "http://maps.google.com/?cid=6705004632604437511",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -2315,6 +2676,9 @@
       "google_maps_url": "http://maps.google.com/?cid=9019373056314962983",
       "grupo_id": "4be7db72-aeea-409d-98e8-ee6865444bd0",
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Helados",
@@ -2335,6 +2699,9 @@
       "google_maps_url": "http://maps.google.com/?cid=7005629276119079255",
       "grupo_id": "4be7db72-aeea-409d-98e8-ee6865444bd0",
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Helados",
@@ -2355,6 +2722,10 @@
       "google_maps_url": "http://maps.google.com/?cid=2255056721351944166",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Local especializado",
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Tarta de queso",
@@ -2375,6 +2746,10 @@
       "google_maps_url": "http://maps.google.com/?cid=10367181127563008592",
       "grupo_id": "55765673-a32d-45b4-8d97-5a52b9803254",
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away",
+        "Tipo smash"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
@@ -2395,6 +2770,10 @@
       "google_maps_url": "http://maps.google.com/?cid=1470347292982630879",
       "grupo_id": "55765673-a32d-45b4-8d97-5a52b9803254",
       "barrio": "Patraix",
+      "etiquetas_extra": [
+        "Take away",
+        "Tipo smash"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
@@ -2415,6 +2794,9 @@
       "google_maps_url": "http://maps.google.com/?cid=1881303040344151525",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Restaurante"
+      ],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -2443,6 +2825,7 @@
       "google_maps_url": "http://maps.google.com/?cid=430277217445908919",
       "grupo_id": null,
       "barrio": "Benimaclet",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -2463,6 +2846,9 @@
       "google_maps_url": "http://maps.google.com/?cid=11783880793233659634",
       "grupo_id": null,
       "barrio": "Algirós",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": null,
@@ -2483,20 +2869,15 @@
       "google_maps_url": "http://maps.google.com/?cid=5373926058136639610",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Menú del día"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
           "precio": "20-35€",
           "valoracion": 3,
           "resena": null,
-          "instagram_url": null,
-          "tiktok_url": null
-        },
-        {
-          "nombre": "",
-          "precio": "",
-          "valoracion": null,
-          "resena": "",
           "instagram_url": null,
           "tiktok_url": null
         }
@@ -2511,6 +2892,9 @@
       "google_maps_url": "http://maps.google.com/?cid=12613716187250492308",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": null,
@@ -2531,6 +2915,7 @@
       "google_maps_url": "http://maps.google.com/?cid=9479951877507878747",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": null,
@@ -2551,6 +2936,7 @@
       "google_maps_url": "http://maps.google.com/?cid=4553920256773454183",
       "grupo_id": null,
       "barrio": "El Pla del Real",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -2571,6 +2957,10 @@
       "google_maps_url": "http://maps.google.com/?cid=12751443663510107247",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away",
+        "Tipo smash"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
@@ -2591,6 +2981,10 @@
       "google_maps_url": "http://maps.google.com/?cid=2995285609828346838",
       "grupo_id": null,
       "barrio": "El Pla del Real",
+      "etiquetas_extra": [
+        "Take away",
+        "Tipo smash"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
@@ -2611,6 +3005,7 @@
       "google_maps_url": "http://maps.google.com/?cid=3984530988236177749",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": null,
@@ -2631,6 +3026,9 @@
       "google_maps_url": "http://maps.google.com/?cid=10557849947621079849",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Helados",
@@ -2651,6 +3049,9 @@
       "google_maps_url": "http://maps.google.com/?cid=6554050508884437865",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Helados",
@@ -2671,6 +3072,7 @@
       "google_maps_url": "http://maps.google.com/?cid=13441873389387679756",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -2691,6 +3093,9 @@
       "google_maps_url": "http://maps.google.com/?cid=9606999186855439364",
       "grupo_id": null,
       "barrio": "Extramurs",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": null,
@@ -2711,6 +3116,9 @@
       "google_maps_url": "http://maps.google.com/?cid=7433691851661972892",
       "grupo_id": null,
       "barrio": "Algirós",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Ramen",
@@ -2731,6 +3139,9 @@
       "google_maps_url": "http://maps.google.com/?cid=3328795330159779511",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Ramen",
@@ -2751,6 +3162,9 @@
       "google_maps_url": "http://maps.google.com/?cid=8736826044312277671",
       "grupo_id": null,
       "barrio": "Quatre Carreres",
+      "etiquetas_extra": [
+        "Buffet"
+      ],
       "categorias": [
         {
           "nombre": "Sushi",
@@ -2771,6 +3185,9 @@
       "google_maps_url": "http://maps.google.com/?cid=7099493143522931302",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Buffet"
+      ],
       "categorias": [
         {
           "nombre": "Sushi",
@@ -2791,6 +3208,9 @@
       "google_maps_url": "http://maps.google.com/?cid=11872859643974332834",
       "grupo_id": null,
       "barrio": "El Pla del Real",
+      "etiquetas_extra": [
+        "Restaurante"
+      ],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -2819,6 +3239,9 @@
       "google_maps_url": "http://maps.google.com/?cid=3117183683273276082",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": null,
@@ -2839,6 +3262,7 @@
       "google_maps_url": "http://maps.google.com/?cid=13851670454679752287",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Asiático",
@@ -2859,6 +3283,7 @@
       "google_maps_url": "http://maps.google.com/?cid=14298167549188272119",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -2887,6 +3312,7 @@
       "google_maps_url": "http://maps.google.com/?cid=11866929016910498440",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Pasta",
@@ -2915,6 +3341,9 @@
       "google_maps_url": "http://maps.google.com/?cid=1362802767926878124",
       "grupo_id": null,
       "barrio": "Quatre Carreres",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Pasta",
@@ -2935,6 +3364,7 @@
       "google_maps_url": "http://maps.google.com/?cid=7509024379411119413",
       "grupo_id": null,
       "barrio": "El Pla del Real",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -2955,6 +3385,7 @@
       "google_maps_url": "http://maps.google.com/?cid=14881513996892713681",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Saludables",
@@ -2983,6 +3414,10 @@
       "google_maps_url": "http://maps.google.com/?cid=12612430866942261489",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away",
+        "Tipo napolitana"
+      ],
       "categorias": [
         {
           "nombre": "Pizza",
@@ -3003,6 +3438,10 @@
       "google_maps_url": "http://maps.google.com/?cid=5727181208399425051",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away",
+        "Tipo napolitana"
+      ],
       "categorias": [
         {
           "nombre": "Pizza",
@@ -3023,6 +3462,7 @@
       "google_maps_url": "http://maps.google.com/?cid=13061902941466687094",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Matcha",
@@ -3043,6 +3483,7 @@
       "google_maps_url": "http://maps.google.com/?cid=17410383064073139154",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -3071,6 +3512,7 @@
       "google_maps_url": "http://maps.google.com/?cid=13030008337921970122",
       "grupo_id": null,
       "barrio": null,
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -3099,6 +3541,7 @@
       "google_maps_url": "http://maps.google.com/?cid=346872295430379493",
       "grupo_id": null,
       "barrio": "Extramurs",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -3127,6 +3570,7 @@
       "google_maps_url": "http://maps.google.com/?cid=11511257145000826700",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Matcha",
@@ -3147,6 +3591,10 @@
       "google_maps_url": "http://maps.google.com/?cid=7662621446725259562",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away",
+        "Tipo smash"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
@@ -3167,6 +3615,10 @@
       "google_maps_url": "http://maps.google.com/?cid=14080778094020418137",
       "grupo_id": null,
       "barrio": "El Pla del Real",
+      "etiquetas_extra": [
+        "Take away",
+        "Tipo normal"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
@@ -3187,6 +3639,10 @@
       "google_maps_url": "http://maps.google.com/?cid=1341253813144481790",
       "grupo_id": null,
       "barrio": "Campanar",
+      "etiquetas_extra": [
+        "Take away",
+        "Tipo smash"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
@@ -3207,6 +3663,10 @@
       "google_maps_url": "http://maps.google.com/?cid=1925310568633549920",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away",
+        "Tipo smash"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
@@ -3227,6 +3687,10 @@
       "google_maps_url": "http://maps.google.com/?cid=8727270209977787022",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away",
+        "Tipo normal"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
@@ -3247,6 +3711,10 @@
       "google_maps_url": "http://maps.google.com/?cid=2251636710397843142",
       "grupo_id": "9a55ddf8-abe1-4ebe-ae13-92d29071f225",
       "barrio": "Poblats Marítims",
+      "etiquetas_extra": [
+        "Take away",
+        "Tipo normal"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
@@ -3267,6 +3735,10 @@
       "google_maps_url": "http://maps.google.com/?cid=18377340143396503994",
       "grupo_id": null,
       "barrio": "El Pla del Real",
+      "etiquetas_extra": [
+        "Take away",
+        "Tipo normal"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
@@ -3287,6 +3759,10 @@
       "google_maps_url": "http://maps.google.com/?cid=3144148443285732543",
       "grupo_id": "9a55ddf8-abe1-4ebe-ae13-92d29071f225",
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away",
+        "Tipo normal"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
@@ -3307,6 +3783,9 @@
       "google_maps_url": "http://maps.google.com/?cid=10328786592804977647",
       "grupo_id": null,
       "barrio": "Extramurs",
+      "etiquetas_extra": [
+        "Tipo normal"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
@@ -3327,6 +3806,9 @@
       "google_maps_url": "http://maps.google.com/?cid=12384985998209231008",
       "grupo_id": null,
       "barrio": "Benimaclet",
+      "etiquetas_extra": [
+        "Tipo normal"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
@@ -3347,6 +3829,9 @@
       "google_maps_url": "http://maps.google.com/?cid=9070586153992408664",
       "grupo_id": null,
       "barrio": "El Pla del Real",
+      "etiquetas_extra": [
+        "Tipo normal"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
@@ -3367,6 +3852,7 @@
       "google_maps_url": "http://maps.google.com/?cid=6839958861989987395",
       "grupo_id": null,
       "barrio": "Quatre Carreres",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": null,
@@ -3387,6 +3873,7 @@
       "google_maps_url": "http://maps.google.com/?cid=6404520077173857099",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -3415,6 +3902,7 @@
       "google_maps_url": "http://maps.google.com/?cid=17919432661570058084",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Café",
@@ -3443,6 +3931,7 @@
       "google_maps_url": "http://maps.google.com/?cid=16940087699901615893",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -3463,6 +3952,9 @@
       "google_maps_url": "http://maps.google.com/?cid=16806176821037541587",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Restaurante"
+      ],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -3491,6 +3983,10 @@
       "google_maps_url": "http://maps.google.com/?cid=1292663272409661532",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Local especializado",
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Tarta de queso",
@@ -3511,6 +4007,10 @@
       "google_maps_url": "http://maps.google.com/?cid=2078765072463829406",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Local especializado",
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Tarta de queso",
@@ -3531,6 +4031,10 @@
       "google_maps_url": "http://maps.google.com/?cid=6766720135125956171",
       "grupo_id": null,
       "barrio": "Extramurs",
+      "etiquetas_extra": [
+        "Restaurante",
+        "Tipo normal"
+      ],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -3567,6 +4071,10 @@
       "google_maps_url": "http://maps.google.com/?cid=4511714208715827142",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Local especializado",
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Tarta de queso",
@@ -3587,6 +4095,9 @@
       "google_maps_url": "http://maps.google.com/?cid=15100803414129163511",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Restaurante"
+      ],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -3615,6 +4126,9 @@
       "google_maps_url": "http://maps.google.com/?cid=15611847957016418210",
       "grupo_id": null,
       "barrio": "El Pla del Real",
+      "etiquetas_extra": [
+        "Tipo romana"
+      ],
       "categorias": [
         {
           "nombre": "Pizza",
@@ -3635,6 +4149,9 @@
       "google_maps_url": "http://maps.google.com/?cid=2945661044955640850",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Pasta",
@@ -3655,6 +4172,9 @@
       "google_maps_url": "http://maps.google.com/?cid=8987554680870762542",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Pasta",
@@ -3675,6 +4195,9 @@
       "google_maps_url": "http://maps.google.com/?cid=5657773833721835729",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Pasta",
@@ -3695,6 +4218,11 @@
       "google_maps_url": "http://maps.google.com/?cid=15772491801034533387",
       "grupo_id": null,
       "barrio": "Extramurs",
+      "etiquetas_extra": [
+        "Menú del día",
+        "Take away",
+        "Sin reserva"
+      ],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -3715,6 +4243,7 @@
       "google_maps_url": "http://maps.google.com/?cid=2004215486746741814",
       "grupo_id": null,
       "barrio": "El Pla del Real",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -3735,6 +4264,9 @@
       "google_maps_url": "http://maps.google.com/?cid=5891751900827350198",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Tipo gourmet"
+      ],
       "categorias": [
         {
           "nombre": "Esmorzar",
@@ -3755,6 +4287,9 @@
       "google_maps_url": "http://maps.google.com/?cid=5606887139537587035",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
+      "etiquetas_extra": [
+        "Tipo gourmet"
+      ],
       "categorias": [
         {
           "nombre": "Esmorzar",
@@ -3775,6 +4310,7 @@
       "google_maps_url": "http://maps.google.com/?cid=11856031621981878016",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -3795,6 +4331,7 @@
       "google_maps_url": "http://maps.google.com/?cid=13152239302520760162",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -3815,6 +4352,7 @@
       "google_maps_url": "http://maps.google.com/?cid=15413679378283883065",
       "grupo_id": null,
       "barrio": "Benimaclet",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -3835,6 +4373,9 @@
       "google_maps_url": "http://maps.google.com/?cid=15736716869991637104",
       "grupo_id": null,
       "barrio": "Algirós",
+      "etiquetas_extra": [
+        "Tipo romana"
+      ],
       "categorias": [
         {
           "nombre": "Pizza",
@@ -3855,6 +4396,9 @@
       "google_maps_url": "http://maps.google.com/?cid=2317889559675442080",
       "grupo_id": "9e556e05-7b2f-44e7-83aa-42d22f0d339d",
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": null,
@@ -3875,6 +4419,9 @@
       "google_maps_url": "http://maps.google.com/?cid=10602436425301641091",
       "grupo_id": "9e556e05-7b2f-44e7-83aa-42d22f0d339d",
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": null,
@@ -3895,6 +4442,7 @@
       "google_maps_url": "http://maps.google.com/?cid=12208040975075040813",
       "grupo_id": null,
       "barrio": null,
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -3915,6 +4463,9 @@
       "google_maps_url": "http://maps.google.com/?cid=5031312183282851105",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
+      "etiquetas_extra": [
+        "Tipo tradicional"
+      ],
       "categorias": [
         {
           "nombre": "Esmorzar",
@@ -3943,6 +4494,9 @@
       "google_maps_url": "http://maps.google.com/?cid=7463830265852852048",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
+      "etiquetas_extra": [
+        "Tipo tradicional"
+      ],
       "categorias": [
         {
           "nombre": "Esmorzar",
@@ -3963,6 +4517,9 @@
       "google_maps_url": "http://maps.google.com/?cid=16619868085528539244",
       "grupo_id": null,
       "barrio": "Benimaclet",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Horchata",
@@ -3983,6 +4540,9 @@
       "google_maps_url": "http://maps.google.com/?cid=14748417768743652172",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Pasta",
@@ -4003,6 +4563,7 @@
       "google_maps_url": "http://maps.google.com/?cid=10751787727160946774",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Brunch",
@@ -4031,6 +4592,7 @@
       "google_maps_url": "http://maps.google.com/?cid=10474445980916342709",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Ramen",
@@ -4051,6 +4613,9 @@
       "google_maps_url": "http://maps.google.com/?cid=1689533377330651495",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Tipo normal"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
@@ -4071,6 +4636,9 @@
       "google_maps_url": "http://maps.google.com/?cid=16905747070246979049",
       "grupo_id": null,
       "barrio": "Benicalap",
+      "etiquetas_extra": [
+        "Tipo normal"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
@@ -4091,6 +4659,10 @@
       "google_maps_url": "http://maps.google.com/?cid=6830779734333765962",
       "grupo_id": null,
       "barrio": "Algirós",
+      "etiquetas_extra": [
+        "Take away",
+        "Tipo normal"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
@@ -4111,6 +4683,10 @@
       "google_maps_url": "http://maps.google.com/?cid=14012091711036707172",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
+      "etiquetas_extra": [
+        "No reserva",
+        "Tipo normal"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
@@ -4131,6 +4707,7 @@
       "google_maps_url": "http://maps.google.com/?cid=456569369635522370",
       "grupo_id": null,
       "barrio": "Benimaclet",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Ramen",
@@ -4151,6 +4728,7 @@
       "google_maps_url": "http://maps.google.com/?cid=6349962663000200128",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Ramen",
@@ -4171,6 +4749,7 @@
       "google_maps_url": "http://maps.google.com/?cid=14011054314622324022",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Ramen",
@@ -4191,6 +4770,9 @@
       "google_maps_url": "http://maps.google.com/?cid=2173042566859191138",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Pizza",
@@ -4211,6 +4793,7 @@
       "google_maps_url": "http://maps.google.com/?cid=1647333402604135337",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -4231,6 +4814,9 @@
       "google_maps_url": "http://maps.google.com/?cid=1701519618424257765",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Horchata",
@@ -4251,6 +4837,9 @@
       "google_maps_url": "http://maps.google.com/?cid=8714520771781106821",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Horchata",
@@ -4271,6 +4860,7 @@
       "google_maps_url": "http://maps.google.com/?cid=6461683131973469155",
       "grupo_id": null,
       "barrio": "El Pla del Real",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -4291,6 +4881,7 @@
       "google_maps_url": "http://maps.google.com/?cid=3266165875152165359",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -4311,6 +4902,9 @@
       "google_maps_url": "http://maps.google.com/?cid=575180812554933005",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Buñuelos",
@@ -4331,6 +4925,10 @@
       "google_maps_url": "http://maps.google.com/?cid=14864774345200931413",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away",
+        "Tipo normal"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
@@ -4351,6 +4949,9 @@
       "google_maps_url": "http://maps.google.com/?cid=3205905851934178911",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Buñuelos",
@@ -4371,6 +4972,7 @@
       "google_maps_url": "http://maps.google.com/?cid=16425372763023510356",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -4391,6 +4993,7 @@
       "google_maps_url": "http://maps.google.com/?cid=4087756717656065324",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -4411,6 +5014,7 @@
       "google_maps_url": "http://maps.google.com/?cid=6354670418123064854",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -4431,6 +5035,7 @@
       "google_maps_url": "http://maps.google.com/?cid=9874331404853037931",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -4451,6 +5056,7 @@
       "google_maps_url": "http://maps.google.com/?cid=16975458300788570628",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -4471,6 +5077,9 @@
       "google_maps_url": "http://maps.google.com/?cid=18380639796302365469",
       "grupo_id": null,
       "barrio": "Camins al Grau",
+      "etiquetas_extra": [
+        "Tipo napolitana"
+      ],
       "categorias": [
         {
           "nombre": "Pizza",
@@ -4491,6 +5100,10 @@
       "google_maps_url": "http://maps.google.com/?cid=1545992980554337772",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
+      "etiquetas_extra": [
+        "Take away",
+        "Tipo napolitana"
+      ],
       "categorias": [
         {
           "nombre": "Pizza",
@@ -4511,6 +5124,7 @@
       "google_maps_url": "http://maps.google.com/?cid=5534837425531108154",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": null,
@@ -4531,6 +5145,9 @@
       "google_maps_url": "http://maps.google.com/?cid=1998393457413273237",
       "grupo_id": null,
       "barrio": "Camins al Grau",
+      "etiquetas_extra": [
+        "Sin buffet"
+      ],
       "categorias": [
         {
           "nombre": "Sushi",
@@ -4551,6 +5168,7 @@
       "google_maps_url": "http://maps.google.com/?cid=6878454986481132025",
       "grupo_id": null,
       "barrio": "Benicalap",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -4571,6 +5189,7 @@
       "google_maps_url": "http://maps.google.com/?cid=6851987355298262580",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -4591,6 +5210,7 @@
       "google_maps_url": "http://maps.google.com/?cid=15860959928564635057",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Ramen",
@@ -4611,6 +5231,7 @@
       "google_maps_url": "http://maps.google.com/?cid=11839703952079550819",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -4631,6 +5252,7 @@
       "google_maps_url": "http://maps.google.com/?cid=7326139438181368575",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": null,
@@ -4651,6 +5273,7 @@
       "google_maps_url": "http://maps.google.com/?cid=6642405912049264432",
       "grupo_id": null,
       "barrio": "Algirós",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": null,
@@ -4671,6 +5294,7 @@
       "google_maps_url": "http://maps.google.com/?cid=1578072214495465370",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": null,
@@ -4691,6 +5315,7 @@
       "google_maps_url": "http://maps.google.com/?cid=4158104906474278633",
       "grupo_id": null,
       "barrio": "Benicalap",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": null,
@@ -4711,6 +5336,7 @@
       "google_maps_url": "http://maps.google.com/?cid=8704633972500618235",
       "grupo_id": null,
       "barrio": "Camins al Grau",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": null,
@@ -4731,6 +5357,7 @@
       "google_maps_url": "http://maps.google.com/?cid=1993677743115099421",
       "grupo_id": null,
       "barrio": "El Pla del Real",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -4751,6 +5378,10 @@
       "google_maps_url": "http://maps.google.com/?cid=12665887784071150961",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
+      "etiquetas_extra": [
+        "Take away",
+        "Tipo smash"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
@@ -4771,6 +5402,9 @@
       "google_maps_url": "http://maps.google.com/?cid=9878570267568350931",
       "grupo_id": null,
       "barrio": "Campanar",
+      "etiquetas_extra": [
+        "Tipo gourmet"
+      ],
       "categorias": [
         {
           "nombre": "Esmorzar",
@@ -4791,6 +5425,11 @@
       "google_maps_url": "http://maps.google.com/?cid=13770577200257369260",
       "grupo_id": null,
       "barrio": "Benicalap",
+      "etiquetas_extra": [
+        "Take away",
+        "Tipo normal",
+        "Tipo smash"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
@@ -4811,6 +5450,7 @@
       "google_maps_url": "http://maps.google.com/?cid=6853435587664462491",
       "grupo_id": null,
       "barrio": "Algirós",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -4831,6 +5471,7 @@
       "google_maps_url": "http://maps.google.com/?cid=1198929613466110352",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -4851,6 +5492,10 @@
       "google_maps_url": "http://maps.google.com/?cid=2661373684865933688",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "No reserva",
+        "Tipo napolitana"
+      ],
       "categorias": [
         {
           "nombre": "Pizza",
@@ -4871,6 +5516,7 @@
       "google_maps_url": "http://maps.google.com/?cid=1429840338810591902",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -4891,6 +5537,7 @@
       "google_maps_url": "http://maps.google.com/?cid=13612190625087230572",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Pasta",
@@ -4911,6 +5558,7 @@
       "google_maps_url": "http://maps.google.com/?cid=10877064048303708183",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -4931,6 +5579,9 @@
       "google_maps_url": "http://maps.google.com/?cid=6025669517094614771",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
@@ -4951,6 +5602,10 @@
       "google_maps_url": "http://maps.google.com/?cid=12259888427101689196",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away",
+        "Tipo normal"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
@@ -4971,6 +5626,7 @@
       "google_maps_url": "http://maps.google.com/?cid=1213995268965628575",
       "grupo_id": "3c0736a3-2ca0-44f5-be5e-15cdba84b07d",
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Mexicano",
@@ -4991,6 +5647,7 @@
       "google_maps_url": "http://maps.google.com/?cid=9460277388980283948",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Mexicano",
@@ -5011,6 +5668,7 @@
       "google_maps_url": "http://maps.google.com/?cid=7107970471120362560",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Mexicano",
@@ -5031,6 +5689,7 @@
       "google_maps_url": "http://maps.google.com/?cid=4443962016424242390",
       "grupo_id": "3c0736a3-2ca0-44f5-be5e-15cdba84b07d",
       "barrio": "Algirós",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Mexicano",
@@ -5051,6 +5710,7 @@
       "google_maps_url": "http://maps.google.com/?cid=1459032781324318493",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Mexicano",
@@ -5071,6 +5731,7 @@
       "google_maps_url": "http://maps.google.com/?cid=17713886985373985301",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Mexicano",
@@ -5091,6 +5752,7 @@
       "google_maps_url": "http://maps.google.com/?cid=6165944780750569350",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Brunch",
@@ -5127,6 +5789,10 @@
       "google_maps_url": "http://maps.google.com/?cid=3092176573927540986",
       "grupo_id": null,
       "barrio": "Algirós",
+      "etiquetas_extra": [
+        "Sin buffet",
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Sushi",
@@ -5147,6 +5813,7 @@
       "google_maps_url": "http://maps.google.com/?cid=4716789048899281365",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -5167,6 +5834,7 @@
       "google_maps_url": "http://maps.google.com/?cid=5385056342896018330",
       "grupo_id": null,
       "barrio": "Extramurs",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -5187,6 +5855,7 @@
       "google_maps_url": "http://maps.google.com/?cid=7635378951394661916",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -5215,6 +5884,9 @@
       "google_maps_url": "http://maps.google.com/?cid=6121122886392359019",
       "grupo_id": null,
       "barrio": "Camins al Grau",
+      "etiquetas_extra": [
+        "Tipo romana"
+      ],
       "categorias": [
         {
           "nombre": "Brunch",
@@ -5259,6 +5931,9 @@
       "google_maps_url": "http://maps.google.com/?cid=7744705280349352532",
       "grupo_id": null,
       "barrio": "Algirós",
+      "etiquetas_extra": [
+        "Tipo romana"
+      ],
       "categorias": [
         {
           "nombre": "Brunch",
@@ -5303,6 +5978,7 @@
       "google_maps_url": "http://maps.google.com/?cid=1260710975629317162",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Brunch",
@@ -5347,6 +6023,7 @@
       "google_maps_url": "http://maps.google.com/?cid=10456455012558151181",
       "grupo_id": null,
       "barrio": "Algirós",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Brunch",
@@ -5367,6 +6044,9 @@
       "google_maps_url": "http://maps.google.com/?cid=1748644642454127713",
       "grupo_id": null,
       "barrio": "Benicalap",
+      "etiquetas_extra": [
+        "Tipo romana"
+      ],
       "categorias": [
         {
           "nombre": "Brunch",
@@ -5411,6 +6091,7 @@
       "google_maps_url": "http://maps.google.com/?cid=2242475553626308690",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": null,
@@ -5431,6 +6112,7 @@
       "google_maps_url": "http://maps.google.com/?cid=4080113257761428805",
       "grupo_id": null,
       "barrio": "Camins al Grau",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": null,
@@ -5451,31 +6133,15 @@
       "google_maps_url": "http://maps.google.com/?cid=14397704477298206018",
       "grupo_id": null,
       "barrio": "Campanar",
+      "etiquetas_extra": [
+        "Take away",
+        "Tipo normal"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
           "precio": "10-25€",
           "valoracion": 3,
-          "resena": null,
-          "instagram_url": null,
-          "tiktok_url": null
-        }
-      ]
-    },
-    {
-      "id": "6885ad30-f6da-4a08-b4a1-bdef9e26dd1a",
-      "nombre": "Ashita Restaurante Xátiva",
-      "lat": 39.4676453,
-      "lng": -0.3784605,
-      "direccion": "C/ de Xàtiva, 14, Extramurs, 46002 València, Valencia, España",
-      "google_maps_url": "http://maps.google.com/?cid=15486660668714884238",
-      "grupo_id": null,
-      "barrio": "Extramurs",
-      "categorias": [
-        {
-          "nombre": null,
-          "precio": null,
-          "valoracion": null,
           "resena": null,
           "instagram_url": null,
           "tiktok_url": null
@@ -5491,6 +6157,7 @@
       "google_maps_url": "http://maps.google.com/?cid=10630779147210148693",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Brunch",
@@ -5511,6 +6178,7 @@
       "google_maps_url": "http://maps.google.com/?cid=1204801212689966656",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [],
       "categorias": [
         {
           "nombre": "Brunch",
@@ -5531,6 +6199,9 @@
       "google_maps_url": "http://maps.google.com/?cid=12635096486745046211",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Café",
@@ -5559,6 +6230,9 @@
       "google_maps_url": "http://maps.google.com/?cid=13263548031996237505",
       "grupo_id": null,
       "barrio": "Benimaclet",
+      "etiquetas_extra": [
+        "Buffet"
+      ],
       "categorias": [
         {
           "nombre": "Sushi",
@@ -5579,6 +6253,9 @@
       "google_maps_url": "http://maps.google.com/?cid=5107099963564434177",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Sin buffet"
+      ],
       "categorias": [
         {
           "nombre": "Sushi",
@@ -5599,6 +6276,9 @@
       "google_maps_url": "http://maps.google.com/?cid=13964346652715698783",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Buffet"
+      ],
       "categorias": [
         {
           "nombre": "Sushi",
@@ -5619,6 +6299,9 @@
       "google_maps_url": "http://maps.google.com/?cid=9036857898787902020",
       "grupo_id": null,
       "barrio": "Benicalap",
+      "etiquetas_extra": [
+        "Buffet"
+      ],
       "categorias": [
         {
           "nombre": "Sushi",
@@ -5639,6 +6322,9 @@
       "google_maps_url": "http://maps.google.com/?cid=12563002149142529890",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Buffet"
+      ],
       "categorias": [
         {
           "nombre": "Sushi",
@@ -5659,6 +6345,9 @@
       "google_maps_url": "http://maps.google.com/?cid=8564505286626204352",
       "grupo_id": null,
       "barrio": "Algirós",
+      "etiquetas_extra": [
+        "Buffet"
+      ],
       "categorias": [
         {
           "nombre": "Sushi",
@@ -5679,6 +6368,9 @@
       "google_maps_url": "http://maps.google.com/?cid=9228368687210117850",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Sin buffet"
+      ],
       "categorias": [
         {
           "nombre": "Sushi",
@@ -5699,6 +6391,10 @@
       "google_maps_url": "http://maps.google.com/?cid=2316007841787843117",
       "grupo_id": null,
       "barrio": "Campanar",
+      "etiquetas_extra": [
+        "Sin buffet",
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Sushi",
@@ -5719,6 +6415,9 @@
       "google_maps_url": "http://maps.google.com/?cid=10293205545009405242",
       "grupo_id": null,
       "barrio": "Algirós",
+      "etiquetas_extra": [
+        "Sin buffet"
+      ],
       "categorias": [
         {
           "nombre": "Sushi",
@@ -5739,6 +6438,10 @@
       "google_maps_url": "http://maps.google.com/?cid=7033195974602893015",
       "grupo_id": null,
       "barrio": "El Pla del Real",
+      "etiquetas_extra": [
+        "Sin buffet",
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Sushi",
@@ -5759,6 +6462,9 @@
       "google_maps_url": "http://maps.google.com/?cid=4828095916583580854",
       "grupo_id": null,
       "barrio": "Extramurs",
+      "etiquetas_extra": [
+        "Buffet"
+      ],
       "categorias": [
         {
           "nombre": "Sushi",
@@ -5779,6 +6485,9 @@
       "google_maps_url": "http://maps.google.com/?cid=7988304865076407507",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Sin buffet"
+      ],
       "categorias": [
         {
           "nombre": "Sushi",
@@ -5799,6 +6508,9 @@
       "google_maps_url": "http://maps.google.com/?cid=12699345038426933570",
       "grupo_id": null,
       "barrio": "Extramurs",
+      "etiquetas_extra": [
+        "Restaurante"
+      ],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -5827,6 +6539,11 @@
       "google_maps_url": "http://maps.google.com/?cid=14147697159289157398",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Restaurante",
+        "Take away",
+        "Tipo smash"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
@@ -5855,6 +6572,9 @@
       "google_maps_url": "http://maps.google.com/?cid=10788183838027996588",
       "grupo_id": null,
       "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Tipo normal"
+      ],
       "categorias": [
         {
           "nombre": "Hamburguesa",
@@ -5875,6 +6595,9 @@
       "google_maps_url": "http://maps.google.com/?cid=14456229836985137918",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Fusión Tapas",
@@ -5895,6 +6618,9 @@
       "google_maps_url": "http://maps.google.com/?cid=9867784046182662312",
       "grupo_id": null,
       "barrio": "Patraix",
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Fusión Tapas",

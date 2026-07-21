@@ -150,6 +150,7 @@
       <button id="publish-btn" onclick="publicarCambios()">📤 Publicar cambios para seguidores</button>
       <button id="backup-btn" onclick="descargarBackup()" style="margin-top:6px; width:100%; padding:9px; background:none; border:1px solid var(--border); color:var(--text-muted); border-radius:6px; font-size:12.5px; cursor:pointer;">💾 Descargar copia de seguridad completa</button>
       <button id="captura-btn" onclick="activarModoCaptura()" style="margin-top:6px; width:100%; padding:9px; background:none; border:1px solid var(--border); color:var(--text-muted); border-radius:6px; font-size:12.5px; cursor:pointer;">📸 Modo captura (para vídeos)</button>
+      <button onclick="abrirEditorEmojis()" style="margin-top:6px; width:100%; padding:7px; background:none; border:none; color:var(--text-muted); font-size:11.5px; cursor:pointer; text-decoration:underline;">Editar emoticonos del modo captura</button>
     </div>
     <div id="list"></div>
   </div>
@@ -187,6 +188,17 @@
       <button onclick="confirmarAñadirEtiqueta()" style="padding:7px 12px; background:var(--text); color:white; border:none; border-radius:6px; font-size:13px; cursor:pointer;">+</button>
     </div>
     <div id="lista-etiquetas-maestro"></div>
+  </div>
+</div>
+
+<div id="emoji-overlay" style="display:none; position:fixed; inset:0; background:rgba(35,36,31,0.35); z-index:900; align-items:center; justify-content:center;">
+  <div style="background:white; border-radius:12px; width:300px; padding:20px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+      <strong style="font-size:14px;">Emoticonos del modo captura</strong>
+      <button onclick="document.getElementById('emoji-overlay').style.display='none'" style="border:none; background:none; font-size:16px; cursor:pointer; color:var(--text-muted);">✕</button>
+    </div>
+    <div id="emoji-inputs"></div>
+    <button onclick="guardarEmojis()" style="margin-top:10px; width:100%; padding:9px; background:var(--text); color:white; border:none; border-radius:6px; font-size:13px; cursor:pointer;">Guardar</button>
   </div>
 </div>
 
@@ -402,16 +414,44 @@ function valoracionMostrada(r) {
 }
 
 let modoCaptura = false;
-const EMOJIS_VALORACION = ['⚪', '😞', '😐', '🙂', '😋', '🤩']; // índice 0 = sin valorar
+function emojisValoracion() {
+  const guardados = JSON.parse(localStorage.getItem('emojisValoracion') || 'null');
+  return guardados || ['⚪', '😞', '😐', '🙂', '😋', '🤩']; // índice 0 = sin valorar
+}
 
 function emojiIconoPara(r) {
   const v = Math.round(valoracionMostrada(r));
-  const emoji = EMOJIS_VALORACION[v] || EMOJIS_VALORACION[0];
+  const emoji = emojisValoracion()[v] || emojisValoracion()[0];
   return L.divIcon({
     className: '',
     html: `<div style="font-size:26px; line-height:1; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.4));">${emoji}</div>`,
     iconSize: [30, 30], iconAnchor: [15, 15]
   });
+}
+
+function abrirEditorEmojis() {
+  const actuales = emojisValoracion();
+  const etiquetas = ['Sin valorar', '1 estrella', '2 estrellas', '3 estrellas', '4 estrellas', '5 estrellas'];
+  const el = document.getElementById('emoji-inputs');
+  el.innerHTML = '';
+  for (let i = 0; i < 6; i++) {
+    const fila = document.createElement('div');
+    fila.style.cssText = 'display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:8px;';
+    fila.innerHTML = `<span style="font-size:12.5px; color:var(--text-muted);">${etiquetas[i]}</span><input id="emoji-input-${i}" type="text" value="${actuales[i]}" style="width:50px; text-align:center; font-size:18px; padding:5px; border:1px solid var(--border); border-radius:6px;">`;
+    el.appendChild(fila);
+  }
+  document.getElementById('emoji-overlay').style.display = 'flex';
+}
+
+function guardarEmojis() {
+  const nuevos = [];
+  for (let i = 0; i < 6; i++) {
+    const val = document.getElementById(`emoji-input-${i}`).value.trim();
+    nuevos.push(val || '⚪');
+  }
+  localStorage.setItem('emojisValoracion', JSON.stringify(nuevos));
+  document.getElementById('emoji-overlay').style.display = 'none';
+  if (modoCaptura) pintarMarcadores();
 }
 
 function activarModoCaptura() {
@@ -1000,12 +1040,11 @@ function renderEtiquetasChips(r) {
     chip.className = 'chip' + (actuales.has(nombre) ? ' active' : '');
     chip.textContent = nombre;
     chip.onclick = async () => {
-      actuales.has(nombre) ? actuales.delete(nombre) : actuales.add(nombre);
+      const activo = chip.classList.toggle('active');
+      if (activo) actuales.add(nombre); else actuales.delete(nombre);
       const lista = [...actuales];
       r.etiquetas_extra = lista;
-      renderEtiquetasChips(r);
       await guardarCampo('etiquetas_extra', lista);
-      renderList();
     };
     el.appendChild(chip);
   });
