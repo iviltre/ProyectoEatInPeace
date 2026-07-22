@@ -424,8 +424,8 @@ function emojiIconoPara(r) {
   const emoji = emojisValoracion()[v] || emojisValoracion()[0];
   return L.divIcon({
     className: '',
-    html: `<div style="font-size:26px; line-height:1; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.4));">${emoji}</div>`,
-    iconSize: [30, 30], iconAnchor: [15, 15]
+    html: `<div style="width:32px;height:32px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 1px 4px rgba(0,0,0,0.4);">${emoji}</div>`,
+    iconSize: [32, 32], iconAnchor: [16, 16]
   });
 }
 
@@ -456,7 +456,12 @@ function guardarEmojis() {
 
 function activarModoCaptura() {
   modoCaptura = true;
-  document.getElementById('sidebar').style.display = 'none';
+  if (window.innerWidth <= 860) {
+    mostrarTabMovil('mapa');
+    document.getElementById('mobile-tabs').style.display = 'none';
+  } else {
+    document.getElementById('sidebar').style.display = 'none';
+  }
   document.getElementById('salir-captura-btn').style.display = 'block';
   document.getElementById('toggle-agrupar').style.display = 'none';
   setTimeout(() => map.invalidateSize(), 50);
@@ -465,7 +470,12 @@ function activarModoCaptura() {
 
 function salirModoCaptura() {
   modoCaptura = false;
-  document.getElementById('sidebar').style.display = 'flex';
+  if (window.innerWidth <= 860) {
+    document.getElementById('mobile-tabs').style.display = '';
+    mostrarTabMovil('lista');
+  } else {
+    document.getElementById('sidebar').style.display = 'flex';
+  }
   document.getElementById('salir-captura-btn').style.display = 'none';
   document.getElementById('toggle-agrupar').style.display = 'flex';
   setTimeout(() => map.invalidateSize(), 50);
@@ -477,7 +487,7 @@ function circuloPara(r) {
   return {
     radius: seleccionado ? 11 : 7,
     fillColor: colorParaValoracion(valoracionMostrada(r)),
-    color: 'white',
+    color: seleccionado ? '#1a1a1a' : 'white',
     weight: seleccionado ? 3 : 2,
     fillOpacity: 1
   };
