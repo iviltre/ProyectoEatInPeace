@@ -1114,12 +1114,12 @@
       "etiquetas_extra": [],
       "categorias": [
         {
-          "nombre": "Fusión Tapas",
+          "nombre": "Tapas",
           "precio": "20-35€",
           "valoracion": 4,
-          "resena": null,
-          "instagram_url": null,
-          "tiktok_url": null
+          "resena": "Antes incluso de tener redes ya nos encantaba salir a descubrir sitios para comer, y hoy queríamos recordar uno de esos restaurantes que nos conquistó desde la primera visita.\n\nSe trata de Bar Trinchera, en Ruzafa. Nos encantó por la sencillez de su carta, la originalidad de sus platos y lo bien que se come sin gastarse una barbaridad. Si buscáis un sitio para tapear diferente, apuntadlo.\n\nEsto fue lo que probamos:\n\n🥨 Marineras – 8/10 (4€ unidad)\nUna marinera con ensaladilla, anchoa y una salsa de alcaparras y mostaza. Nos pareció el plato más flojo de la comida, pero solo porque el nivel del resto era muy alto. La ensaladilla estaba buena (7/10) y las anchoas eran de mucha calidad (9/10).\n\n🥙 Pan con cordero – 1000/10 (12€)\nSin exagerar, de los mejores platos que hemos comido en Valencia. Lleva cordero, alubias, cebolla, piparras y una salsa espectacular. Todo estaba perfectamente equilibrado y cada bocado era mejor que el anterior. Imprescindible.\n\n🍳 Huevos rotos con atún marinado – 10/10 (15€)\nNunca habíamos probado unos huevos rotos con atún y nos sorprendieron muchísimo. Las patatas estaban increíbles y, aunque cada ingrediente tenía un sabor muy potente por separado, juntos funcionaban de maravilla.\n\nEn resumen, un sitio al que volveríamos sin pensarlo. Una carta sencilla pero muy bien ejecutada, platos originales y precios que hacen que apetezca pedir un poco de todo. Si vais, el pan con cordero es obligatorio.",
+          "instagram_url": "https://www.instagram.com/p/Dala9o5imfQ/?igsh=MXZjc2IxcHlmNXl4Zw==",
+          "tiktok_url": "https://vm.tiktok.com/ZN81w1bGx/"
         }
       ]
     },
@@ -1209,19 +1209,21 @@
     },
     {
       "id": "012bb36d-8428-4d98-98d5-3834549b388a",
-      "nombre": "Syra Coffee",
+      "nombre": "Syra Coffee - Samaniego",
       "lat": 39.4776433,
       "lng": -0.3762281,
       "direccion": "C/ de Samaniego, 18, Ciutat Vella, 46003 València, Valencia, España",
       "google_maps_url": "http://maps.google.com/?cid=9377782626660078027",
       "grupo_id": "356e0f41-59f6-4cf1-9f4b-eb04506dd869",
       "barrio": "Ciutat Vella",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
-          "nombre": null,
-          "precio": null,
-          "valoracion": null,
+          "nombre": "Café",
+          "precio": "0-5€",
+          "valoracion": 1,
           "resena": null,
           "instagram_url": null,
           "tiktok_url": null
@@ -1230,19 +1232,21 @@
     },
     {
       "id": "96814ca7-3231-43d8-aaea-6120b7043a0c",
-      "nombre": "Syra Coffee",
+      "nombre": "Syra Coffee - Gran Via",
       "lat": 39.4670106,
       "lng": -0.3680253,
       "direccion": "Gran Via del Marqués del Túria, 54, L'Eixample, 46005 València, Valencia, España",
       "google_maps_url": "http://maps.google.com/?cid=5264438878003219556",
       "grupo_id": "356e0f41-59f6-4cf1-9f4b-eb04506dd869",
       "barrio": "L'Eixample",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
-          "nombre": null,
-          "precio": null,
-          "valoracion": null,
+          "nombre": "Café",
+          "precio": "0-5€",
+          "valoracion": 1,
           "resena": null,
           "instagram_url": null,
           "tiktok_url": null
@@ -1251,18 +1255,20 @@
     },
     {
       "id": "5c0c6979-4013-413b-ab22-ecd8b179157e",
-      "nombre": "Syra Coffee Cirilo Amorós",
+      "nombre": "Syra Coffee - Cirilo Amorós",
       "lat": 39.4674463,
       "lng": -0.3716366,
       "direccion": "C/ de Ciril Amorós, 35, L'Eixample, 46004 València, Valencia, España",
       "google_maps_url": "http://maps.google.com/?cid=10372842656576466304",
       "grupo_id": null,
       "barrio": "L'Eixample",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 1,
           "resena": null,
           "instagram_url": null,
@@ -1279,11 +1285,13 @@
       "google_maps_url": "http://maps.google.com/?cid=8116576843712424740",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 1,
           "resena": null,
           "instagram_url": null,
@@ -2137,16 +2145,25 @@
       "grupo_id": null,
       "barrio": "El Pla del Real",
       "etiquetas_extra": [
-        "Sin buffet"
+        "Sin buffet",
+        "Menú del día"
       ],
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": "25-40€",
+          "precio": "20-35€",
+          "valoracion": 4,
+          "resena": "Hemos ido a Kibo, y probamos su menú del día. En general, nos gustó bastante: platos bien pensados, sabores claros y buena relación calidad-precio.\n\nKibo\n\n🍽️ Lo que probamos:\n\n🥟 Gyozas de curry verde – 10/10\nMuy top, de los platos que más nos gustaron.\n\n🥔 Causa limeña – 9/10\nFresca y bien equilibrada.\n\n🥬 Col al miso – 10/10\nSorpresa total, muy rico.\n\n🐟 Tartar de salmón – 8,5/10\nCorrecto, aunque más sencillo que otros platos, el frito de arroz no nos convenció.\n\n🍣 Maki – 9,25/10\nBien ejecutado y con buen producto, muy fresco y se agradece.\n\n🍏 Tatin de manzana – 9,5/10\nMuy buen cierre, equilibrado y nada pesado.\n\n🍰 Bizcocho – 9,5/10\nMuy bien acompañado el bizcocho.\n\n🔝 Conclusión:\nUn menú muy sólido, con varios platos que destacan bastante. Buen sitio si buscas algo diferente sin irte mucho de precio en Valencia.",
+          "instagram_url": "https://www.instagram.com/reel/DYXMct9q7YR/?igsh=MWs0bDI3dW9yazkwbg==",
+          "tiktok_url": "https://vm.tiktok.com/ZN8J8K3nL/"
+        },
+        {
+          "nombre": "Asiatico mediterraneo",
+          "precio": "20-35€",
           "valoracion": 3,
-          "resena": null,
-          "instagram_url": null,
-          "tiktok_url": null
+          "resena": "Hemos ido a Kibo, y probamos su menú del día. En general, nos gustó bastante: platos bien pensados, sabores claros y buena relación calidad-precio.\n\nKibo\n\n🍽️ Lo que probamos:\n\n🥟 Gyozas de curry verde – 10/10\nMuy top, de los platos que más nos gustaron.\n\n🥔 Causa limeña – 9/10\nFresca y bien equilibrada.\n\n🥬 Col al miso – 10/10\nSorpresa total, muy rico.\n\n🐟 Tartar de salmón – 8,5/10\nCorrecto, aunque más sencillo que otros platos, el frito de arroz no nos convenció.\n\n🍣 Maki – 9,25/10\nBien ejecutado y con buen producto, muy fresco y se agradece.\n\n🍏 Tatin de manzana – 9,5/10\nMuy buen cierre, equilibrado y nada pesado.\n\n🍰 Bizcocho – 9,5/10\nMuy bien acompañado el bizcocho.\n\n🔝 Conclusión:\nUn menú muy sólido, con varios platos que destacan bastante. Buen sitio si buscas algo diferente sin irte mucho de precio en Valencia.",
+          "instagram_url": "https://www.instagram.com/reel/DYXMct9q7YR/?igsh=MWs0bDI3dW9yazkwbg==",
+          "tiktok_url": "https://vm.tiktok.com/ZN8J8K3nL/"
         }
       ]
     },
@@ -2160,24 +2177,25 @@
       "grupo_id": null,
       "barrio": "Ciutat Vella",
       "etiquetas_extra": [
-        "Tipo romana"
+        "Tipo romana",
+        "Take away"
       ],
       "categorias": [
         {
           "nombre": "Pasta",
-          "precio": "15-25€",
+          "precio": "20-35€",
           "valoracion": 4,
-          "resena": "Recomendamos pizza con masa integral.",
-          "instagram_url": null,
-          "tiktok_url": null
+          "resena": "Hemos ido a Bottega Marsengo, uno de esos sitios que consiguen hacer muy bien tanto la pizza como la pasta, algo que no es tan habitual.\n\nFuimos con ganas de probar un poco de todo y salimos muy contentos.\n\n🍽️ Esto fue lo que pedimos:\n\n🧀 Sferas – 8/10\nEstaban buenas, pero si volviéramos probablemente pediríamos otros entrantes.\n\n🍕 Pizza Zucchina – 9,5/10\nNuestra favorita. La masa, con un toque más integral, nos gustó muchísimo.\n\n🌶️ Pizza de salami picante – 9/10\nMuy rica también, aunque nos quedamos con la otra masa.\n\n🍝 Pasta Marsengo – 9,5/10\nOriginal y muy buena. De esos platos que pediríamos otra vez sin pensarlo.\n\n🥄 Tiramisú de pistacho – 9/10\nRico, aunque no nos pareció de los postres que más destacan.\n\n🍮 Tarta Marsengo de caramelo – 9,75/10\nMuy distinta a lo habitual y nos encantó. Nuestro postre favorito.\n\nEn general, un italiano que nos sorprendió para bien. Si sois de los que nunca sabéis si pedir pizza o pasta, aquí no hace falta elegir porque las dos cosas merecen la pena.",
+          "instagram_url": "https://www.instagram.com/reel/DaJLuqYKd_g/?igsh=cGxrbDVib3FleTd3",
+          "tiktok_url": "https://vm.tiktok.com/ZN81wRbTf/"
         },
         {
           "nombre": "Pizza",
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 4,
-          "resena": null,
-          "instagram_url": null,
-          "tiktok_url": null
+          "resena": "Hemos ido a Bottega Marsengo, uno de esos sitios que consiguen hacer muy bien tanto la pizza como la pasta, algo que no es tan habitual.\n\nFuimos con ganas de probar un poco de todo y salimos muy contentos.\n\n🍽️ Esto fue lo que pedimos:\n\n🧀 Sferas – 8/10\nEstaban buenas, pero si volviéramos probablemente pediríamos otros entrantes.\n\n🍕 Pizza Zucchina – 9,5/10\nNuestra favorita. La masa, con un toque más integral, nos gustó muchísimo.\n\n🌶️ Pizza de salami picante – 9/10\nMuy rica también, aunque nos quedamos con la otra masa.\n\n🍝 Pasta Marsengo – 9,5/10\nOriginal y muy buena. De esos platos que pediríamos otra vez sin pensarlo.\n\n🥄 Tiramisú de pistacho – 9/10\nRico, aunque no nos pareció de los postres que más destacan.\n\n🍮 Tarta Marsengo de caramelo – 9,75/10\nMuy distinta a lo habitual y nos encantó. Nuestro postre favorito.\n\nEn general, un italiano que nos sorprendió para bien. Si sois de los que nunca sabéis si pedir pizza o pasta, aquí no hace falta elegir porque las dos cosas merecen la pena.",
+          "instagram_url": "https://www.instagram.com/reel/DaJLuqYKd_g/?igsh=cGxrbDVib3FleTd3",
+          "tiktok_url": "https://vm.tiktok.com/ZN81wRbTf/"
         }
       ]
     },
@@ -2562,11 +2580,11 @@
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": "30-50€",
+          "precio": "35-50€",
           "valoracion": 2,
-          "resena": null,
-          "instagram_url": null,
-          "tiktok_url": null
+          "resena": "Hemos ido a Kawori, un sitio bastante conocido en Valencia y muy recomendado por guías como Guía Repsol o Macarfi. Íbamos con expectativas altas, pero la experiencia no nos terminó de convencer del todo.\n\n🍽️ Lo que probamos:\n\n🐟 Uramaki de dorada – 8/10\n🐚 Zamburiña – 8/10\n🐟 Tartar de salmón – 7/10\n🧀 Buñuelos de queso Idiazábal con hamachi – 9/10\n🦆 Maki de pato y foie – 7,5/10\n🦐 Dim sum de gamba roja – 9/10\n\n🍣 Nigiris:\n🥩 Vaca madurada – 8,5/10\n🐟 Hamachi – 9,25/10\n🐟 Salmón – 8,5/10\n🐟 Ventresca de atún – 8/10\n🐟 Dorada – 8,5/10\n\n🍰 Matcha cheesecake – 8,5/10\n\nEs un sitio donde todo está bien y hay platos que destacan, pero en conjunto no nos pareció al nivel de las expectativas que llevábamos. Probablemente repetiríamos algunos platos sueltos más que la experiencia completa.",
+          "instagram_url": "https://www.instagram.com/reel/DXr4vf-ClbY/?igsh=MXY1NTdseGlicnp3dA==",
+          "tiktok_url": "https://vm.tiktok.com/ZN8J8neES/"
         }
       ]
     },
@@ -2874,12 +2892,12 @@
       ],
       "categorias": [
         {
-          "nombre": "Hamburguesa",
+          "nombre": "Tapas",
           "precio": "20-35€",
           "valoracion": 3,
-          "resena": null,
-          "instagram_url": null,
-          "tiktok_url": null
+          "resena": "A huevo🍳\n\nHemos ido a probar este sitio con una propuesta bastante equilibrada entre cocina clásica bien ejecutada y algún toque más creativo. En general, es un restaurante donde se come bien, con platos reconocibles y sabores claros, sin grandes riesgos pero con buena técnica.\n\n🍽️ Lo que probamos:\n\t•\tCroquetas – 8/10\nCorrectas, cremosas y bien fritas. Cumplen, aunque no son lo más destacable de la comida.\n\t•\tHuevos rotos – 9/10\nMuy buenos. Buen punto del huevo y patata bien hecha. Un plato sencillo pero muy bien ejecutado.\n\t•\tSalmón con couscous – 9,5/10\nDe lo mejor del menú. El salmón estaba en su punto y el couscous acompañaba perfectamente. Plato muy equilibrado y sabroso.\n\t•\tCarne sobre puré de calabaza – 8,5/10\nBuena carne y puré suave, con un contraste dulce interesante. Quizá no sorprende, pero funciona muy bien.\n\t•\tTarta de queso azul – 8/10\nOriginal por el toque de queso azul, bien integrada, aunque sin llegar a ser espectacular.\n\t•\tBizcocho de calabaza – 7/10\nCorrecto, pero es el postre que menos nos convenció. Rico, pero algo más plano.\n\nUna experiencia sólida, con platos bien hechos y alguno realmente destacable. Un sitio recomendable si buscas comer bien sin complicaciones.\n",
+          "instagram_url": "https://www.instagram.com/reel/DS0XBKuCgO_/?igsh=MWpkb2I3cnNsOGI3bw==",
+          "tiktok_url": "https://vm.tiktok.com/ZN81wYKRg/"
         }
       ]
     },
@@ -3265,12 +3283,12 @@
       "etiquetas_extra": [],
       "categorias": [
         {
-          "nombre": "Asiático",
-          "precio": "25-40€",
+          "nombre": "Coreano",
+          "precio": "20-35€",
           "valoracion": 5,
-          "resena": null,
-          "instagram_url": null,
-          "tiktok_url": null
+          "resena": "✨ Hemos vuelto a La Taula de Yoon ✨\n\nEs uno de esos sitios que nos encantó la primera vez que fuimos y al que llevábamos tiempo queriendo volver. Aprovechamos que habían cambiado a la carta de verano para probar platos nuevos y la sensación sigue siendo la misma: cocina coreana casera, auténtica y hecha con muchísimo cariño. De esos restaurantes pequeños que no llaman la atención desde fuera, pero a los que siempre apetece volver.\n\n🍴 Esta vez probamos:\n\n🌶️ Tteokbokki con omuktwigim – 9,25/10\nPasta de arroz en salsa de gochujang acompañada de pasta de pescado frita. Muy rico, pero te tiene que gustar el gochujang porque tiene bastante protagonismo y además pica bastante.\n\n🥞 Kimchijeon – 10/10\nTortita de kimchi. Nos encantó. Crujiente, sabrosa y de esos platos que volveríamos a pedir siempre.\n\n🥓 Suyuk Bossam Kimchi – 10/10\nPanceta cocida con kimchi bossam y hojas de lechuga. La panceta estaba increíblemente tierna y todos los acompañamientos funcionaban genial.\n\n🍵 Mousse de té matcha – 10/10\nEl único plato que repetimos. No nos podíamos ir sin volver a pedirlo.\n\n🍫 Mousse de chocolate – 9,5/10\nSi sois de los que no disfrutan tanto el matcha, esta es una apuesta segura. Aun así, nosotros seguimos quedándonos con la de té matcha.\n\n📋 Y por si os perdisteis nuestra primera visita:\n\n🥟 Kimchi Mandu – 8,5/10\n🍜 Buchu Japchae – 9/10\n🍗 Cheese Dakgalbi con Ssammu – 9,5/10\n🍵 Mousse de té matcha – 10/10\n\n",
+          "instagram_url": "https://www.instagram.com/reel/DZ3BQKdqIqd/?igsh=MTA4aG0zNG03eGcxdQ==",
+          "tiktok_url": "https://vm.tiktok.com/ZN81w2gJN/"
         }
       ]
     },
@@ -3902,11 +3920,13 @@
       "google_maps_url": "http://maps.google.com/?cid=17919432661570058084",
       "grupo_id": null,
       "barrio": "L'Eixample",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 1,
           "resena": null,
           "instagram_url": null,
@@ -3934,12 +3954,12 @@
       "etiquetas_extra": [],
       "categorias": [
         {
-          "nombre": "Fusión Tapas",
-          "precio": "35-60€",
+          "nombre": "Tapas",
+          "precio": "35-50€",
           "valoracion": 3,
-          "resena": null,
-          "instagram_url": null,
-          "tiktok_url": null
+          "resena": "Hemos ido a Fiveo Bar, el nuevo sitio de los de Fiveo Coffee. Acaban de abrir y se nota en algunos detalles, pero también en lo bueno: platos bastante originales y diferentes a lo típico.\n\nEn general nos gustó. Hay cosas a mejorar, pero la idea está muy bien y varios platos destacan bastante. Eso sí, nos pareció un pelín caro.\n\nEsto fue lo que probamos:\n\n🐰 Croqueta de conejo con jengibre y cebollino japonés – 8,5/10  \nSi no te gusta el jengibre, este no es tu plato. Aun así, rica y original.\n\n🦪 Vieira con coliflor y oxalis – 9,75/10  \nDe lo mejor. La salsa muy buena y sin tapar la vieira.\n\n🥬 Espárrago blanco con masa madre, sobrasada y yuca – 9,25/10  \nBastante simple, pero muy rico si te gustan los espárragos.\n\n🦐 Tartar de gamba con kolrabi, eneldo y crème fraîche – 9,25/10  \nEl acompañamiento tapa un poco la gamba, pero está muy bueno.\n\n🥔 Espuma de patata con ragú de ciervo, kimchi, calabacín y yema –10/10  \nDe los que más nos gustaron. \n\n🐔 Pollo Lumagorri con mole negro, plátano a la brasa y cebollitas encurtidas – 7,75/10  \nEl sabor no es malo, pero el pollo un poco seco. No lo pediríamos. \n\n🍫 Chocolate con aguacate, aceite de oliva y avena – 9,25/10  \nPostre muy bien, diferente.\n\nEn resumen: sitio con ideas muy guays y bastante potencial, si os gustan cosas distintas os recomendamos ir.",
+          "instagram_url": "https://www.instagram.com/reel/DYZiHKGK_S9/?igsh=MTZsaWR0ZjZvcXYy",
+          "tiktok_url": "https://vm.tiktok.com/ZN8J8LcK1/"
         }
       ]
     },
@@ -4219,16 +4239,22 @@
       "grupo_id": null,
       "barrio": "Extramurs",
       "etiquetas_extra": [
-        "Menú del día",
-        "Take away",
-        "Sin reserva"
+        "Menú del día"
       ],
       "categorias": [
         {
-          "nombre": "Fusión Tapas",
+          "nombre": "Tapas",
           "precio": "20-35€",
           "valoracion": 4,
           "resena": null,
+          "instagram_url": null,
+          "tiktok_url": null
+        },
+        {
+          "nombre": "Paella/arroces",
+          "precio": "20-35€",
+          "valoracion": 3,
+          "resena": "",
           "instagram_url": null,
           "tiktok_url": null
         }
@@ -5537,15 +5563,17 @@
       "google_maps_url": "http://maps.google.com/?cid=13612190625087230572",
       "grupo_id": null,
       "barrio": "L'Eixample",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Pasta",
           "precio": "20-35€",
           "valoracion": 5,
           "resena": "Hemos vuelto a Alquimista. Ya hemos ido unas cuantas veces y, a día de hoy, sigue siendo el sitio donde más nos gusta comer pasta en Valencia. De hecho, ya hemos probado casi toda la carta y todavía no hemos encontrado un plato que no merezca la pena.\n\nEl local es muy pequeñito, así que os recomendamos reservar con tiempo.\n\n🍝 Esta vez probamos:\n\n🥓 Carbonara – 10/10\nDe las mejores carbonaras que hemos tomado.\n\n🍖 Ragú – 10/10\nUn clásico que nunca falla. Muchísimo sabor.\n\n🥪 Piadina de pastrami – 10/10\nEspectacular. Si os apetece algo diferente a la pasta, es una apuesta segura.\n\n🧀 Crema de parmesano – 9,75/10\nMuy intensa y perfecta para compartir.\n\n🍰 Tarta de queso gorgonzola – 9,5/10\nSi os gustan el gorgonzola, está muy rica, aunque tampoco sabe mucho a gorgonzola.\n\n🍽️ Y de otras visitas:\n\n🎃 Pasta rellena de calabaza – 10/10\n🍠 Pasta rellena de boniato – 9,5/10\n🧀 Cacio e pepe – 10/10\n🍳 Pasta de trufa y huevo – 10/10\n🥑 Tartar de aguacate – 9/10\n🐷 Piadina de porchetta – 10/10\n🥪 Piadina de mortadela – 9/10\n🌶️ Piadina picante – 9/10\n🧀 Flan de parmesano – 9,5/10\n\nLa verdad es que después de tantas visitas seguimos pensando lo mismo: es de esos restaurantes donde pidas lo que pidas sabes que vas a comer muy bien.\n",
-          "instagram_url": null,
-          "tiktok_url": null
+          "instagram_url": "https://www.instagram.com/reel/Da74RC6KOI2/?igsh=MTExNms1emJsOG9uZQ==",
+          "tiktok_url": "https://vm.tiktok.com/ZN81w8vrW/"
         }
       ]
     },
@@ -5585,7 +5613,7 @@
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 2,
           "resena": null,
           "instagram_url": null,
@@ -5609,7 +5637,7 @@
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 2,
           "resena": null,
           "instagram_url": null,
@@ -5745,7 +5773,7 @@
     },
     {
       "id": "9e4c3620-1939-4d71-a573-1f7855a99222",
-      "nombre": "KOKORO speciality coffee",
+      "nombre": "KOKORO specialty coffee",
       "lat": 39.4664155,
       "lng": -0.3666399,
       "direccion": "Carrer del Comte d'Altea, 34, L'Eixample, 46005 València, Valencia, España",
@@ -5756,27 +5784,27 @@
       "categorias": [
         {
           "nombre": "Brunch",
-          "precio": "0-10€",
-          "valoracion": 3,
-          "resena": null,
-          "instagram_url": null,
-          "tiktok_url": null
+          "precio": "10-20€",
+          "valoracion": 5,
+          "resena": "Hemos ido a Kokoro y hacen un brunch bastante distinto a lo típico. Tienen dos opciones: una más asiática y original, y otra más clásica por si vas con alguien que no quiere experimentar mucho 😅\n\nNosotros recomendamos el desayuno 1, porque es lo que hace diferente al sitio.\n\n🍚 Desayuno 1\nBase de arroz con sésamo y furikake + sopa miso.\nLe añadimos kimchi, huevos revueltos con gochujang y espinacas salteadas con aceite de sésamo. Muy rico todo y bastante diferente a cualquier brunch típico.\n\n🍞 Desayuno 2\nMás clásico, con tostada de masa madre y extras.\nNosotros pedimos mantequilla, huevo y aguacate. Muy bueno también, pero menos original.\n\n🍵 A destacar el matcha, que nos dijeron que lo compran en Caté (sitio que también nos encanta). Muy bueno.\n☕ Y el café de especialidad , de dorigen, también nos gustó bastante.\n\nEn general, un sitio súper chulo para hacer un brunch diferente en Valencia.",
+          "instagram_url": "https://vm.tiktok.com/ZN8J884wf/",
+          "tiktok_url": "https://vm.tiktok.com/ZN8J884wf/"
         },
         {
           "nombre": "Café",
           "precio": "0-5€",
-          "valoracion": 5,
-          "resena": null,
-          "instagram_url": null,
-          "tiktok_url": null
+          "valoracion": 3,
+          "resena": "Hemos ido a Kokoro y hacen un brunch bastante distinto a lo típico. Tienen dos opciones: una más asiática y original, y otra más clásica por si vas con alguien que no quiere experimentar mucho 😅\n\nNosotros recomendamos el desayuno 1, porque es lo que hace diferente al sitio.\n\n🍚 Desayuno 1\nBase de arroz con sésamo y furikake + sopa miso.\nLe añadimos kimchi, huevos revueltos con gochujang y espinacas salteadas con aceite de sésamo. Muy rico todo y bastante diferente a cualquier brunch típico.\n\n🍞 Desayuno 2\nMás clásico, con tostada de masa madre y extras.\nNosotros pedimos mantequilla, huevo y aguacate. Muy bueno también, pero menos original.\n\n🍵 A destacar el matcha, que nos dijeron que lo compran en Caté (sitio que también nos encanta). Muy bueno.\n☕ Y el café de especialidad , de dorigen, también nos gustó bastante.\n\nEn general, un sitio súper chulo para hacer un brunch diferente en Valencia.",
+          "instagram_url": "https://www.instagram.com/reel/DYu0MpFK1Mt/?igsh=MWVqZ3RsdnVsdzFmNg==",
+          "tiktok_url": "https://vm.tiktok.com/ZN8J884wf/"
         },
         {
           "nombre": "Matcha",
-          "precio": "10-25€",
-          "valoracion": 3,
-          "resena": null,
-          "instagram_url": null,
-          "tiktok_url": null
+          "precio": "0-5€",
+          "valoracion": 5,
+          "resena": "Hemos ido a Kokoro y hacen un brunch bastante distinto a lo típico. Tienen dos opciones: una más asiática y original, y otra más clásica por si vas con alguien que no quiere experimentar mucho 😅\n\nNosotros recomendamos el desayuno 1, porque es lo que hace diferente al sitio.\n\n🍚 Desayuno 1\nBase de arroz con sésamo y furikake + sopa miso.\nLe añadimos kimchi, huevos revueltos con gochujang y espinacas salteadas con aceite de sésamo. Muy rico todo y bastante diferente a cualquier brunch típico.\n\n🍞 Desayuno 2\nMás clásico, con tostada de masa madre y extras.\nNosotros pedimos mantequilla, huevo y aguacate. Muy bueno también, pero menos original.\n\n🍵 A destacar el matcha, que nos dijeron que lo compran en Caté (sitio que también nos encanta). Muy bueno.\n☕ Y el café de especialidad , de dorigen, también nos gustó bastante.\n\nEn general, un sitio súper chulo para hacer un brunch diferente en Valencia.",
+          "instagram_url": "https://www.instagram.com/reel/DYu0MpFK1Mt/?igsh=MWVqZ3RsdnVsdzFmNg==",
+          "tiktok_url": "https://vm.tiktok.com/ZN8J884wf/"
         }
       ]
     },
@@ -5813,15 +5841,17 @@
       "google_maps_url": "http://maps.google.com/?cid=4716789048899281365",
       "grupo_id": null,
       "barrio": "L'Eixample",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Menú del día"
+      ],
       "categorias": [
         {
-          "nombre": "Fusión Tapas",
-          "precio": "35-60€",
+          "nombre": "Tapas",
+          "precio": "35-50€",
           "valoracion": 4,
-          "resena": null,
-          "instagram_url": null,
-          "tiktok_url": null
+          "resena": "Hemos ido a Habitual, de Ricard Camarena. Ya hemos estado en todos sus restaurantes y, a día de hoy, sigue siendo nuestro cocinero favorito de Valencia.\n\nEsta vez fuimos a probar el menú del día y la verdad es que salimos bastante contentos.\n\n🥔 Ensaladilla rusa “Ricard Camarena” con espuma de aceituna verde – 9/10\nProbablemente la mejor ensaladilla que hemos tomado de Ricard. Aun así, no es de los platos que más sorprenden comparado con otras cosas que hace.\n\n🌼 Flor de calabacín en tempura rellena de quesos y piparra dulce con jalapeños y cebolla encurtida – 9/10\nMuy rica. Entraba sola.\n\n🍆 Berenjena asada a la llama, salsa holandesa, queso feta y piñones – 1000/10\nEl mejor plato del menú. No sabemos cómo lo hace, pero todas las berenjenas que hemos probado de Ricard están buenísimas. Además, cada una es completamente distinta a la anterior.\n\n🥕 Zanahorias asadas con salsa stroganoff, avellanas, nata amostazada y anisados – 9/10\nMuy rico también. Otro ejemplo de cómo consigue hacer especiales verduras que normalmente pasarían desapercibidas.\n\n🐟 Merluza en semisalazón asada con patata al pil-pil y velouté de hierbas – 8,5/10\nQuizá el plato que menos nos gustó. Estaba buena, pero al lado del resto se queda un poco sin más.\n\n🐖 Cerdo ibérico a la brasa con yogur, col asada y vinagreta de semillas – 9,75/10\nSúper rico de sabor. De nuestros favoritos del menú.\n\n🍞 Torrija caramelizada con helado de mantecado – 10/10\nDe las mejores torrijas que hemos tomado.\n\n🍒 Cerezas de las montañas de Alicante con helado de yogur, hibiscus y almendra laminada – 9/10\nMuy fresco y muy rico para terminar.",
+          "instagram_url": "https://www.instagram.com/reel/DZIhTR0q0pd/?igsh=MXFuNnY0cmpvem9xcw==",
+          "tiktok_url": "https://vm.tiktok.com/ZN8J8j186/"
         }
       ]
     },
@@ -5834,15 +5864,17 @@
       "google_maps_url": "http://maps.google.com/?cid=5385056342896018330",
       "grupo_id": null,
       "barrio": "Extramurs",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Menú del día"
+      ],
       "categorias": [
         {
-          "nombre": "Fusión Tapas",
+          "nombre": "Tapas",
           "precio": "20-35€",
           "valoracion": 4,
-          "resena": null,
-          "instagram_url": null,
-          "tiktok_url": null
+          "resena": "Hemos ido a Bar Badis, del grupo Camaleón, pero con una propuesta más enfocada al producto de mar. Salimos bastante contentos y, además, acabamos llenísimos.\n\nEsto fue lo que probamos:\n\n🥐 Croqueta de jamón – 9,5/10\nRiquísima. Por ponerle una pega, un pelín aceitosa.\n\n🍲 Croqueta de cocido – 9/10\nMuy buena también, aunque algo menos cremosa que la de jamón. Nos quedaríamos con la otra.\n\n🥪 Bikini de lomo ibérico Joselito, mahonesa de trufa y queso Comté 36 meses – 9/10\nMuy rico en general. De esos platos que entran solos.\n\n🐟 Bandeja de huevos fritos con tataki de atún rojo y patatas fritas – 9/10\nMucho sabor a atún y una combinación que funciona muy bien.\n\n🦐 Gambas al ajillo – 1000/10\nSúper original y espectacular de sabor. Pedidlo sí o sí.\n\n🍫 Tarta de chocolate – 9,75/10\nComo casi todos los postres del grupo Camaleón: difícil fallar con ella.\n\n\nEn resumen, un sitio que nos gustó mucho, con platos bastante originales y donde las gambas al ajillo justifican por sí solas la visita.",
+          "instagram_url": "https://www.instagram.com/reel/DZAyRbUK-4f/?igsh=cXk4YmU3anZmbGIy",
+          "tiktok_url": "https://vm.tiktok.com/ZN8J8uWKt/"
         }
       ]
     },
@@ -6491,11 +6523,11 @@
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": "0-30€",
+          "precio": "20-35€",
           "valoracion": 3,
-          "resena": null,
-          "instagram_url": null,
-          "tiktok_url": null
+          "resena": "Rengo es un restaurante de sushi fusión bastante nuevo en Valencia, con propuestas que mezclan técnicas y sabores japoneses con toques originales. El local es pequeño pero acogedor, y el servicio muy atento.\n\nProbamos varios platos:\n\t•\tGyozas de pollo – 7/10: Nos las pusieron por error, pero las cambiaron sin problema. Aun así, nos quedamos con las de rabo de toro.\n\t•\tGyozas de rabo de toro – 9,75/10: Superricas, aunque con un poco poco relleno.\n\t•\tTosto japo de atún – 8,5/10: Muy rica la combinación, equilibrada y sabrosa.\n\t•\tBao de kobe – 9/10: Como una mini hamburguesa con pan de bao, carne correcta, aunque no al nivel de las mejores hamburgueserías.\n\t•\tUramaki Osaka trufado – 9,75/10: Muy rico y equilibrado, nuestro favorito del menú.\n\t•\tNigiri pez escolar – 9/10: Delicioso, la salsa lo potencia muy bien.\n\t•\tNigiri de anguila – 9/10: Ahumado y no braseado, nos gustó mucho el sabor.\n\nLos postres no nos convencieron, así que no pedimos ninguno.",
+          "instagram_url": "https://www.instagram.com/reel/DXmt9iIiuGJ/?igsh=NnQ4dTRqajNha21j",
+          "tiktok_url": "https://vm.tiktok.com/ZN8J8oJoK/"
         }
       ]
     },
