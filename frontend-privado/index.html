@@ -203,15 +203,14 @@
 </div>
 
 <div id="places-overlay" style="display:none; position:fixed; inset:0; background:rgba(35,36,31,0.35); z-index:900; align-items:center; justify-content:center;">
-  <div style="background:white; border-radius:12px; width:380px; max-height:75vh; overflow-y:auto; padding:20px;">
+  <div style="background:white; border-radius:12px; width:380px; padding:20px;">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
       <strong style="font-size:14px;">Añadir restaurante</strong>
       <button onclick="cerrarPlacesOverlay()" style="border:none; background:none; font-size:16px; cursor:pointer; color:var(--text-muted);">✕</button>
     </div>
-    <input id="places-nombre-input" type="text" placeholder="Nombre del restaurante" style="width:100%; padding:7px 9px; border:1px solid var(--border); border-radius:6px; font-size:13px; margin-bottom:8px;">
     <div style="position:relative;">
-      <input id="places-direccion-input" type="text" placeholder="Empieza a escribir la dirección..." autocomplete="off" oninput="onEscribirDireccionPlaces(this.value)" style="width:100%; padding:7px 9px; border:1px solid var(--border); border-radius:6px; font-size:13px;">
-      <div id="places-sugerencias" style="display:none; position:absolute; top:100%; left:0; right:0; background:white; border:1px solid var(--border); border-radius:6px; margin-top:2px; max-height:200px; overflow-y:auto; z-index:10; box-shadow:0 2px 6px rgba(0,0,0,0.1);"></div>
+      <input id="places-direccion-input" type="text" placeholder="Escribe el nombre o la dirección..." autocomplete="off" oninput="onEscribirDireccionPlaces(this.value)" style="width:100%; padding:7px 9px; border:1px solid var(--border); border-radius:6px; font-size:13px;">
+      <div id="places-sugerencias" style="display:none; position:absolute; top:100%; left:0; right:0; background:white; border:1px solid var(--border); border-radius:6px; margin-top:2px; max-height:260px; overflow-y:auto; z-index:10; box-shadow:0 4px 12px rgba(0,0,0,0.15);"></div>
     </div>
     <button onclick="confirmarAñadirPorDireccion()" style="margin-top:10px; width:100%; padding:9px; background:var(--text); color:white; border:none; border-radius:6px; font-size:13px; cursor:pointer;">Añadir restaurante</button>
   </div>
@@ -249,23 +248,36 @@ async function buscarSugerenciasPlaces(texto) {
     const data = await res.json();
     return (data.suggestions || [])
       .filter(s => s.placePrediction)
-      .map(s => ({ placeId: s.placePrediction.placeId, texto: s.placePrediction.text.text }));
+      .map(s => {
+        const p = s.placePrediction;
+        return {
+          placeId: p.placeId,
+          texto: p.text.text,
+          principal: (p.structuredFormat && p.structuredFormat.mainText) ? p.structuredFormat.mainText.text : p.text.text,
+          secundario: (p.structuredFormat && p.structuredFormat.secondaryText) ? p.structuredFormat.secondaryText.text : ''
+        };
+      });
   } catch (e) {
     console.error('Error buscando sugerencias de Places', e);
     return [];
   }
 }
 
-// Dado el ID de un lugar elegido, pide a Google sus coordenadas y su dirección completa
+// Dado el ID de un lugar elegido, pide a Google su nombre, coordenadas y dirección completa
 async function obtenerDetallePlace(placeId) {
   const res = await fetch(`https://places.googleapis.com/v1/places/${placeId}`, {
     headers: {
       'X-Goog-Api-Key': GOOGLE_PLACES_API_KEY,
-      'X-Goog-FieldMask': 'location,formattedAddress'
+      'X-Goog-FieldMask': 'location,formattedAddress,displayName'
     }
   });
   const data = await res.json();
-  return { lat: data.location.latitude, lng: data.location.longitude, direccion: data.formattedAddress };
+  return {
+    lat: data.location.latitude,
+    lng: data.location.longitude,
+    direccion: data.formattedAddress,
+    nombre: (data.displayName && data.displayName.text) ? data.displayName.text : 'Nuevo restaurante'
+  };
 }
 let token = localStorage.getItem('token');
 let restaurantes = [];
@@ -981,10 +993,9 @@ function ordenar(lista) {
 }
 
 let placesTimeoutId = null;
-let placesSeleccionado = null; // { lat, lng, direccion } del lugar elegido en las sugerencias
+let placesSeleccionado = null; // { lat, lng, direccion, nombre } del lugar elegido en las sugerencias
 
 function añadirPorDireccion() {
-  document.getElementById('places-nombre-input').value = '';
   document.getElementById('places-direccion-input').value = '';
   document.getElementById('places-sugerencias').innerHTML = '';
   document.getElementById('places-sugerencias').style.display = 'none';
@@ -1012,8 +1023,22 @@ function pintarSugerenciasPlaces(sugerencias) {
   if (!sugerencias.length) { cont.style.display = 'none'; return; }
   sugerencias.forEach(s => {
     const item = document.createElement('div');
-    item.textContent = s.texto;
-    item.style.cssText = 'padding:8px 9px; font-size:12.5px; cursor:pointer; border-bottom:1px solid var(--border);';
+    item.style.cssText = 'padding:9px 10px; cursor:pointer; border-bottom:1px solid var(--border);';
+    item.onmouseenter = () => item.style.background = 'var(--accent-soft)';
+    item.onmouseleave = () => item.style.background = 'transparent';
+
+    const principal = document.createElement('div');
+    principal.textContent = s.principal;
+    principal.style.cssText = 'font-size:13px; font-weight:500; color:var(--text);';
+    item.appendChild(principal);
+
+    if (s.secundario) {
+      const secundario = document.createElement('div');
+      secundario.textContent = s.secundario;
+      secundario.style.cssText = 'font-size:11.5px; color:var(--text-muted); margin-top:1px;';
+      item.appendChild(secundario);
+    }
+
     item.onclick = () => seleccionarSugerenciaPlaces(s.placeId, s.texto);
     cont.appendChild(item);
   });
@@ -1027,8 +1052,8 @@ async function seleccionarSugerenciaPlaces(placeId, texto) {
 }
 
 async function confirmarAñadirPorDireccion() {
-  if (!placesSeleccionado) { alert('Elige una dirección de la lista de sugerencias antes de añadir.'); return; }
-  const nombre = document.getElementById('places-nombre-input').value.trim() || 'Nuevo restaurante';
+  if (!placesSeleccionado) { alert('Elige una opción de la lista de sugerencias antes de añadir.'); return; }
+  const nombre = placesSeleccionado.nombre || 'Nuevo restaurante';
 
   try {
     const r = await fetch(`${API}/restaurantes`, {
