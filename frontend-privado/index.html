@@ -205,13 +205,13 @@
 <div id="places-overlay" style="display:none; position:fixed; inset:0; background:rgba(35,36,31,0.35); z-index:900; align-items:center; justify-content:center;">
   <div style="background:white; border-radius:12px; width:380px; padding:20px;">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-      <strong style="font-size:14px;">Añadir restaurante</strong>
+      <strong id="places-overlay-titulo" style="font-size:14px;">Añadir restaurante</strong>
       <button onclick="cerrarPlacesOverlay()" style="border:none; background:none; font-size:16px; cursor:pointer; color:var(--text-muted);">✕</button>
     </div>
     <div style="position:relative;">
-      <input id="places-direccion-input" type="text" placeholder="Escribe el nombre o la dirección..." autocomplete="off" oninput="onEscribirDireccionPlaces(this, 'add')" style="width:100%; padding:7px 9px; border:1px solid var(--border); border-radius:6px; font-size:13px;">
+      <input id="places-direccion-input" type="text" placeholder="Escribe el nombre o la dirección..." autocomplete="off" oninput="onEscribirDireccionPlaces(this)" style="width:100%; padding:7px 9px; border:1px solid var(--border); border-radius:6px; font-size:13px;">
     </div>
-    <button onclick="confirmarAñadirPorDireccion()" style="margin-top:10px; width:100%; padding:9px; background:var(--text); color:white; border:none; border-radius:6px; font-size:13px; cursor:pointer;">Añadir restaurante</button>
+    <button id="places-overlay-boton" onclick="confirmarSeleccionPlaces()" style="margin-top:10px; width:100%; padding:9px; background:var(--text); color:white; border:none; border-radius:6px; font-size:13px; cursor:pointer;">Añadir restaurante</button>
   </div>
 </div>
 
@@ -264,12 +264,12 @@ async function buscarSugerenciasPlaces(texto) {
   }
 }
 
-// Dado el ID de un lugar elegido, pide a Google su nombre, coordenadas, dirección y enlace de Maps
+// Dado el ID de un lugar elegido, pide a Google su nombre, coordenadas, dirección, barrio y enlace de Maps
 async function obtenerDetallePlace(placeId) {
   const res = await fetch(`https://places.googleapis.com/v1/places/${placeId}`, {
     headers: {
       'X-Goog-Api-Key': GOOGLE_PLACES_API_KEY,
-      'X-Goog-FieldMask': 'location,formattedAddress,displayName,googleMapsUri'
+      'X-Goog-FieldMask': 'location,formattedAddress,displayName,googleMapsUri,addressComponents'
     }
   });
   const data = await res.json();
@@ -278,8 +278,20 @@ async function obtenerDetallePlace(placeId) {
     lng: data.location.longitude,
     direccion: data.formattedAddress,
     nombre: (data.displayName && data.displayName.text) ? data.displayName.text : 'Nuevo restaurante',
-    mapsUrl: data.googleMapsUri || null
+    mapsUrl: data.googleMapsUri || null,
+    barrio: extraerBarrioDeComponentes(data.addressComponents) || extraerBarrioLocal(data.formattedAddress)
   };
+}
+
+// Busca el barrio en los datos estructurados que da Google (más fiable que adivinarlo del texto)
+function extraerBarrioDeComponentes(componentes) {
+  if (!componentes) return null;
+  const tiposPreferidos = ['sublocality_level_1', 'sublocality', 'neighborhood'];
+  for (const tipo of tiposPreferidos) {
+    const encontrado = componentes.find(c => c.types && c.types.includes(tipo));
+    if (encontrado) return encontrado.longText || encontrado.shortText;
+  }
+  return null;
 }
 let token = localStorage.getItem('token');
 let restaurantes = [];
@@ -995,14 +1007,30 @@ function ordenar(lista) {
 }
 
 let placesTimeoutId = null;
-let placesSeleccionado = null; // { lat, lng, direccion, nombre, mapsUrl } del lugar elegido en las sugerencias
+let placesSeleccionado = null; // { lat, lng, direccion, nombre, mapsUrl, barrio } del lugar elegido en las sugerencias
 let placesInputActivo = null;  // el <input> sobre el que se están mostrando sugerencias ahora mismo
-let placesModo = null;         // 'add' (modal de añadir) o 'edit' (ficha de un restaurante existente)
+let placesModo = null;         // 'add' (añadir restaurante nuevo) o 'edit' (cambiar dirección de uno existente)
 
 function añadirPorDireccion() {
+  placesModo = 'add';
+  placesSeleccionado = null;
+  document.getElementById('places-overlay-titulo').textContent = 'Añadir restaurante';
+  document.getElementById('places-overlay-boton').textContent = 'Añadir restaurante';
   document.getElementById('places-direccion-input').value = '';
   document.getElementById('places-sugerencias-flotante').style.display = 'none';
+  document.getElementById('places-overlay').style.display = 'flex';
+  document.getElementById('places-direccion-input').focus();
+}
+
+function abrirModalCambiarDireccion() {
+  const r = restaurantes.find(x => x.id === selectedId);
+  if (!r) return;
+  placesModo = 'edit';
   placesSeleccionado = null;
+  document.getElementById('places-overlay-titulo').textContent = 'Cambiar dirección';
+  document.getElementById('places-overlay-boton').textContent = 'Guardar dirección';
+  document.getElementById('places-direccion-input').value = '';
+  document.getElementById('places-sugerencias-flotante').style.display = 'none';
   document.getElementById('places-overlay').style.display = 'flex';
   document.getElementById('places-direccion-input').focus();
 }
@@ -1022,9 +1050,7 @@ window.addEventListener('scroll', () => {
   document.getElementById('places-sugerencias-flotante').style.display = 'none';
 }, true);
 
-// modo: 'add' (modal de añadir) o 'edit' (campo de dirección de la ficha)
-function onEscribirDireccionPlaces(inputEl, modo) {
-  placesModo = modo;
+function onEscribirDireccionPlaces(inputEl) {
   placesInputActivo = inputEl;
   placesSeleccionado = null; // si sigue escribiendo, invalidamos la selección anterior
   clearTimeout(placesTimeoutId);
@@ -1077,19 +1103,28 @@ async function seleccionarSugerenciaPlaces(placeId, texto) {
   if (placesInputActivo) placesInputActivo.value = texto;
   document.getElementById('places-sugerencias-flotante').style.display = 'none';
   placesSeleccionado = await obtenerDetallePlace(placeId);
-  if (placesModo === 'edit') {
+}
+
+async function confirmarSeleccionPlaces() {
+  if (!placesSeleccionado) { alert('Elige una opción de la lista de sugerencias.'); return; }
+  if (placesModo === 'add') {
+    await guardarNuevoRestaurantePorPlaces();
+  } else if (placesModo === 'edit') {
     await guardarDireccionSeleccionadaEdit();
   }
 }
 
-async function confirmarAñadirPorDireccion() {
-  if (!placesSeleccionado) { alert('Elige una opción de la lista de sugerencias antes de añadir.'); return; }
+async function guardarNuevoRestaurantePorPlaces() {
   const nombre = placesSeleccionado.nombre || 'Nuevo restaurante';
-
   try {
     const r = await fetch(`${API}/restaurantes`, {
       method: 'POST', headers: authHeaders(),
-      body: JSON.stringify({ nombre, lat: placesSeleccionado.lat, lng: placesSeleccionado.lng, direccion: placesSeleccionado.direccion, google_maps_url: placesSeleccionado.mapsUrl || undefined })
+      body: JSON.stringify({
+        nombre, lat: placesSeleccionado.lat, lng: placesSeleccionado.lng,
+        direccion: placesSeleccionado.direccion,
+        google_maps_url: placesSeleccionado.mapsUrl || undefined,
+        barrio: placesSeleccionado.barrio || undefined
+      })
     });
     const nuevo = await r.json();
     restaurantes.push(nuevo);
@@ -1120,7 +1155,10 @@ function abrirDetalle(id) {
     <div id="detail-header">
       <button id="detail-close" onclick="cerrarDetalle()">✕</button>
       <div id="detail-nombre" class="editable" contenteditable oninput="marcarCambio()" onblur="guardarCampo('nombre', this.textContent).then(() => actualizarPendienteRevisar())">${r.nombre || ''}</div>
-      <input id="detail-direccion" class="editable" type="text" autocomplete="off" value="${(r.direccion || '').replace(/"/g, '&quot;')}" placeholder="Añadir dirección" oninput="onEscribirDireccionPlaces(this, 'edit')" style="width:100%; font-family:inherit;">
+      <div style="display:flex; align-items:center; gap:2px;">
+        <div id="detail-direccion" class="editable" contenteditable onblur="guardarDireccionTextoLibre(this.textContent).then(() => actualizarPendienteRevisar())" style="flex:1;">${r.direccion || 'Añadir dirección'}</div>
+        <button onclick="abrirModalCambiarDireccion()" title="Buscar dirección con Google Maps" style="border:none; background:none; cursor:pointer; font-size:13px; color:var(--text-muted); padding:4px; flex-shrink:0;">✏️</button>
+      </div>
       <input type="text" class="editable" value="${r.barrio || ''}" placeholder="Barrio (ej: Ruzafa, El Carmen...)" style="width:100%; font-size:12px; margin-top:4px;" onblur="guardarBarrioManual(this.value).then(() => actualizarPendienteRevisar())">
       <input type="text" class="editable" value="${r.google_maps_url || ''}" placeholder="Pegar enlace de Google Maps..." style="width:100%; font-size:12px; margin-top:4px; color:var(--accent);" onblur="guardarCampo('google_maps_url', this.value).then(() => actualizarPendienteRevisar())">
       ${r.google_maps_url ? `<a class="maps-link" href="${r.google_maps_url}" target="_blank">Abrir en Google Maps →</a>` : ''}
@@ -1376,9 +1414,9 @@ async function guardarDireccionSeleccionadaEdit() {
     cuerpo.google_maps_url = placesSeleccionado.mapsUrl;
   }
 
-  if (!r.barrio_manual) {
-    const posible = extraerBarrioLocal(r.direccion);
-    if (posible) { r.barrio = posible; cuerpo.barrio = posible; }
+  if (!r.barrio_manual && placesSeleccionado.barrio) {
+    r.barrio = placesSeleccionado.barrio;
+    cuerpo.barrio = placesSeleccionado.barrio;
   }
 
   await fetch(`${API}/restaurantes/${r.id}`, {
@@ -1388,7 +1426,27 @@ async function guardarDireccionSeleccionadaEdit() {
   map.panTo([r.lat, r.lng]);
   renderList();
   await actualizarPendienteRevisar();
+  cerrarPlacesOverlay();
   abrirDetalle(r.id); // refresca la ficha para mostrar barrio, enlace de maps, etc. ya actualizados
+}
+
+// Guarda la dirección tal cual la ha escrito ella, sin pasar por Google (edición de texto libre)
+async function guardarDireccionTextoLibre(nuevaDireccion) {
+  const r = restaurantes.find(x => x.id === selectedId);
+  if (!r || nuevaDireccion === r.direccion) return;
+  r.direccion = nuevaDireccion;
+  const cuerpo = { direccion: nuevaDireccion };
+
+  if (!r.barrio_manual) {
+    const posible = extraerBarrioLocal(nuevaDireccion);
+    if (posible) { r.barrio = posible; cuerpo.barrio = posible; }
+  }
+
+  await fetch(`${API}/restaurantes/${r.id}`, {
+    method: 'PUT', headers: authHeaders(), body: JSON.stringify(cuerpo)
+  });
+  renderList();
+  if (cuerpo.barrio) abrirDetalle(r.id);
 }
 
 // ---------- PUBLICAR PARA SEGUIDORES ----------
