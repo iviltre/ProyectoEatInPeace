@@ -202,12 +202,71 @@
   </div>
 </div>
 
+<div id="places-overlay" style="display:none; position:fixed; inset:0; background:rgba(35,36,31,0.35); z-index:900; align-items:center; justify-content:center;">
+  <div style="background:white; border-radius:12px; width:380px; max-height:75vh; overflow-y:auto; padding:20px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+      <strong style="font-size:14px;">Añadir restaurante</strong>
+      <button onclick="cerrarPlacesOverlay()" style="border:none; background:none; font-size:16px; cursor:pointer; color:var(--text-muted);">✕</button>
+    </div>
+    <input id="places-nombre-input" type="text" placeholder="Nombre del restaurante" style="width:100%; padding:7px 9px; border:1px solid var(--border); border-radius:6px; font-size:13px; margin-bottom:8px;">
+    <div style="position:relative;">
+      <input id="places-direccion-input" type="text" placeholder="Empieza a escribir la dirección..." autocomplete="off" oninput="onEscribirDireccionPlaces(this.value)" style="width:100%; padding:7px 9px; border:1px solid var(--border); border-radius:6px; font-size:13px;">
+      <div id="places-sugerencias" style="display:none; position:absolute; top:100%; left:0; right:0; background:white; border:1px solid var(--border); border-radius:6px; margin-top:2px; max-height:200px; overflow-y:auto; z-index:10; box-shadow:0 2px 6px rgba(0,0,0,0.1);"></div>
+    </div>
+    <button onclick="confirmarAñadirPorDireccion()" style="margin-top:10px; width:100%; padding:9px; background:var(--text); color:white; border:none; border-radius:6px; font-size:13px; cursor:pointer;">Añadir restaurante</button>
+  </div>
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 window.scrollTo(0, 0);
 const API = 'https://proyectoeatinpeace-backend.onrender.com/api';
+
+// ---------- GOOGLE PLACES API (New) — autocompletado de direcciones ----------
+const GOOGLE_PLACES_API_KEY = AIzaSyDp_1CrvfOyOc5oq40PE6oTgxfXPdIf1sE; // ⚠️ sustituye esto por tu clave real
+
+// Pide a Google una lista de sugerencias de dirección a partir de lo que se ha escrito
+async function buscarSugerenciasPlaces(texto) {
+  if (!texto || texto.trim().length < 3) return [];
+  try {
+    const res = await fetch('https://places.googleapis.com/v1/places:autocomplete', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Goog-Api-Key': GOOGLE_PLACES_API_KEY
+      },
+      body: JSON.stringify({
+        input: texto,
+        languageCode: 'es',
+        includedRegionCodes: ['es'],
+        locationBias: {
+          circle: { center: { latitude: 39.4699, longitude: -0.3763 }, radius: 15000.0 } // Valencia
+        }
+      })
+    });
+    const data = await res.json();
+    return (data.suggestions || [])
+      .filter(s => s.placePrediction)
+      .map(s => ({ placeId: s.placePrediction.placeId, texto: s.placePrediction.text.text }));
+  } catch (e) {
+    console.error('Error buscando sugerencias de Places', e);
+    return [];
+  }
+}
+
+// Dado el ID de un lugar elegido, pide a Google sus coordenadas y su dirección completa
+async function obtenerDetallePlace(placeId) {
+  const res = await fetch(`https://places.googleapis.com/v1/places/${placeId}`, {
+    headers: {
+      'X-Goog-Api-Key': GOOGLE_PLACES_API_KEY,
+      'X-Goog-FieldMask': 'location,formattedAddress'
+    }
+  });
+  const data = await res.json();
+  return { lat: data.location.latitude, lng: data.location.longitude, direccion: data.formattedAddress };
+}
 let token = localStorage.getItem('token');
 let restaurantes = [];
 let markers = {};
@@ -921,22 +980,60 @@ function ordenar(lista) {
   return copia;
 }
 
-async function añadirPorDireccion() {
-  const direccion = prompt('Escribe la dirección del restaurante (cuanto más completa, mejor):');
-  if (!direccion || !direccion.trim()) return;
-  const nombre = prompt('¿Nombre del restaurante?') || 'Nuevo restaurante';
+let placesTimeoutId = null;
+let placesSeleccionado = null; // { lat, lng, direccion } del lugar elegido en las sugerencias
+
+function añadirPorDireccion() {
+  document.getElementById('places-nombre-input').value = '';
+  document.getElementById('places-direccion-input').value = '';
+  document.getElementById('places-sugerencias').innerHTML = '';
+  document.getElementById('places-sugerencias').style.display = 'none';
+  placesSeleccionado = null;
+  document.getElementById('places-overlay').style.display = 'flex';
+  document.getElementById('places-direccion-input').focus();
+}
+
+function cerrarPlacesOverlay() {
+  document.getElementById('places-overlay').style.display = 'none';
+}
+
+function onEscribirDireccionPlaces(texto) {
+  placesSeleccionado = null; // si sigue escribiendo, invalidamos la selección anterior
+  clearTimeout(placesTimeoutId);
+  placesTimeoutId = setTimeout(async () => {
+    const sugerencias = await buscarSugerenciasPlaces(texto);
+    pintarSugerenciasPlaces(sugerencias);
+  }, 300); // esperamos un poco a que deje de teclear, para no saturar la API
+}
+
+function pintarSugerenciasPlaces(sugerencias) {
+  const cont = document.getElementById('places-sugerencias');
+  cont.innerHTML = '';
+  if (!sugerencias.length) { cont.style.display = 'none'; return; }
+  sugerencias.forEach(s => {
+    const item = document.createElement('div');
+    item.textContent = s.texto;
+    item.style.cssText = 'padding:8px 9px; font-size:12.5px; cursor:pointer; border-bottom:1px solid var(--border);';
+    item.onclick = () => seleccionarSugerenciaPlaces(s.placeId, s.texto);
+    cont.appendChild(item);
+  });
+  cont.style.display = 'block';
+}
+
+async function seleccionarSugerenciaPlaces(placeId, texto) {
+  document.getElementById('places-direccion-input').value = texto;
+  document.getElementById('places-sugerencias').style.display = 'none';
+  placesSeleccionado = await obtenerDetallePlace(placeId);
+}
+
+async function confirmarAñadirPorDireccion() {
+  if (!placesSeleccionado) { alert('Elige una dirección de la lista de sugerencias antes de añadir.'); return; }
+  const nombre = document.getElementById('places-nombre-input').value.trim() || 'Nuevo restaurante';
 
   try {
-    const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=es&q=${encodeURIComponent(direccion)}`);
-    const resultados = await res.json();
-    if (!resultados.length) {
-      alert('No he encontrado esa dirección. Prueba a escribirla de forma más completa, o créalo haciendo clic en el mapa.');
-      return;
-    }
-    const { lat, lon } = resultados[0];
     const r = await fetch(`${API}/restaurantes`, {
       method: 'POST', headers: authHeaders(),
-      body: JSON.stringify({ nombre, lat: parseFloat(lat), lng: parseFloat(lon), direccion })
+      body: JSON.stringify({ nombre, lat: placesSeleccionado.lat, lng: placesSeleccionado.lng, direccion: placesSeleccionado.direccion })
     });
     const nuevo = await r.json();
     restaurantes.push(nuevo);
@@ -944,9 +1041,10 @@ async function añadirPorDireccion() {
     renderList();
     selectedId = nuevo.id;
     await actualizarPendienteRevisar();
+    cerrarPlacesOverlay();
     abrirDetalle(nuevo.id);
   } catch (e) {
-    alert('Hubo un problema buscando esa dirección. Prueba de nuevo o créalo desde el mapa.');
+    alert('Hubo un problema guardando el restaurante. Prueba de nuevo.');
   }
 }
 
