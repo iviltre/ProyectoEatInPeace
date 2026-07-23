@@ -5654,11 +5654,13 @@
       "google_maps_url": "http://maps.google.com/?cid=1213995268965628575",
       "grupo_id": "3c0736a3-2ca0-44f5-be5e-15cdba84b07d",
       "barrio": "Ciutat Vella",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Mexicano",
-          "precio": "0-15€",
+          "precio": "10-20€",
           "valoracion": 3,
           "resena": null,
           "instagram_url": null,
@@ -5675,11 +5677,13 @@
       "google_maps_url": "http://maps.google.com/?cid=9460277388980283948",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Mexicano",
-          "precio": "0-15€",
+          "precio": "10-20€",
           "valoracion": 3,
           "resena": null,
           "instagram_url": null,
@@ -5696,11 +5700,13 @@
       "google_maps_url": "http://maps.google.com/?cid=7107970471120362560",
       "grupo_id": null,
       "barrio": "L'Eixample",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Mexicano",
-          "precio": "0-15€",
+          "precio": "10-20€",
           "valoracion": 3,
           "resena": null,
           "instagram_url": null,
@@ -5717,11 +5723,13 @@
       "google_maps_url": "http://maps.google.com/?cid=4443962016424242390",
       "grupo_id": "3c0736a3-2ca0-44f5-be5e-15cdba84b07d",
       "barrio": "Algirós",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Mexicano",
-          "precio": "0-15€",
+          "precio": "10-20€",
           "valoracion": 3,
           "resena": null,
           "instagram_url": null,
@@ -5738,11 +5746,13 @@
       "google_maps_url": "http://maps.google.com/?cid=1459032781324318493",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "categorias": [
         {
           "nombre": "Mexicano",
-          "precio": "0-15€",
+          "precio": "10-20€",
           "valoracion": 3,
           "resena": null,
           "instagram_url": null,
