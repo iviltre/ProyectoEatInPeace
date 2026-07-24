@@ -206,19 +206,17 @@
 </div>
 
 <div id="places-overlay" style="display:none; position:fixed; inset:0; background:rgba(35,36,31,0.35); z-index:900; align-items:center; justify-content:center; padding:12px; box-sizing:border-box;">
-  <div style="background:white; border-radius:12px; width:380px; max-width:100%; box-sizing:border-box; padding:20px;">
+  <div id="places-overlay-card" style="background:white; border-radius:12px; width:380px; max-width:100%; max-height:85vh; overflow-y:auto; box-sizing:border-box; padding:20px;">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
       <strong id="places-overlay-titulo" style="font-size:14px;">Añadir restaurante</strong>
       <button onclick="cerrarPlacesOverlay()" style="border:none; background:none; font-size:16px; cursor:pointer; color:var(--text-muted);">✕</button>
     </div>
-    <div style="position:relative;">
-      <input id="places-direccion-input" type="text" placeholder="Escribe el nombre o la dirección..." autocomplete="off" oninput="onEscribirDireccionPlaces(this)" style="width:100%; padding:7px 9px; border:1px solid var(--border); border-radius:6px; font-size:16px; box-sizing:border-box;">
-    </div>
+    <input id="places-direccion-input" type="text" placeholder="Escribe el nombre o la dirección..." autocomplete="off" oninput="onEscribirDireccionPlaces(this)" style="width:100%; padding:7px 9px; border:1px solid var(--border); border-radius:6px; font-size:16px; box-sizing:border-box;">
+    <div id="places-sugerencias-flotante" style="display:none; margin-top:6px; border:1px solid var(--border); border-radius:6px; max-height:45vh; overflow-y:auto;"></div>
     <button id="places-overlay-boton" onclick="confirmarSeleccionPlaces()" style="margin-top:10px; width:100%; padding:9px; background:var(--text); color:white; border:none; border-radius:6px; font-size:13px; cursor:pointer;">Añadir restaurante</button>
   </div>
 </div>
 
-<div id="places-sugerencias-flotante" style="display:none; position:fixed; background:white; border:1px solid var(--border); border-radius:6px; max-height:260px; overflow-y:auto; z-index:2000; box-shadow:0 4px 12px rgba(0,0,0,0.15);"></div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
@@ -1065,9 +1063,6 @@ document.addEventListener('click', (e) => {
   if (e.target === placesInputActivo || cont.contains(e.target)) return;
   cont.style.display = 'none';
 });
-window.addEventListener('scroll', () => {
-  document.getElementById('places-sugerencias-flotante').style.display = 'none';
-}, true);
 
 function onEscribirDireccionPlaces(inputEl) {
   placesInputActivo = inputEl;
@@ -1078,31 +1073,6 @@ function onEscribirDireccionPlaces(inputEl) {
     const sugerencias = await buscarSugerenciasPlaces(texto);
     pintarSugerenciasPlaces(sugerencias);
   }, 300); // esperamos un poco a que deje de teclear, para no saturar la API
-}
-
-function posicionarSugerenciasFlotantes() {
-  if (!placesInputActivo) return;
-  const rect = placesInputActivo.getBoundingClientRect();
-  const cont = document.getElementById('places-sugerencias-flotante');
-  const margen = 8;
-  const ancho = Math.min(rect.width, window.innerWidth - margen * 2);
-  let left = rect.left;
-  if (left + ancho > window.innerWidth - margen) left = window.innerWidth - ancho - margen;
-  if (left < margen) left = margen;
-  cont.style.top = (rect.bottom + 4) + 'px';
-  cont.style.left = left + 'px';
-  cont.style.width = ancho + 'px';
-}
-
-window.addEventListener('resize', () => {
-  const cont = document.getElementById('places-sugerencias-flotante');
-  if (cont.style.display !== 'none') posicionarSugerenciasFlotantes();
-});
-if (window.visualViewport) {
-  window.visualViewport.addEventListener('resize', () => {
-    const cont = document.getElementById('places-sugerencias-flotante');
-    if (cont.style.display !== 'none') posicionarSugerenciasFlotantes();
-  });
 }
 
 function pintarSugerenciasPlaces(sugerencias) {
@@ -1130,7 +1100,6 @@ function pintarSugerenciasPlaces(sugerencias) {
     item.onclick = () => seleccionarSugerenciaPlaces(s.placeId, s.texto);
     cont.appendChild(item);
   });
-  posicionarSugerenciasFlotantes();
   cont.style.display = 'block';
 }
 
