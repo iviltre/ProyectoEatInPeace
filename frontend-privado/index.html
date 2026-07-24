@@ -140,6 +140,7 @@
       <input id="search" placeholder="Buscar por nombre..." oninput="renderList(); pintarMarcadores();" />
       <button onclick="toggleFiltros()" style="width:100%; text-align:left; background:none; border:none; padding:6px 0; font-size:12.5px; color:var(--text-muted); cursor:pointer; display:flex; justify-content:space-between; align-items:center;">Filtros <span id="filtros-flecha" style="font-size:19px; display:inline-block; transition:transform 0.15s ease;">▾</span></button>
       <div id="filters" style="display:none; max-height:38vh; overflow-y:auto;"></div>
+      <button id="btn-filtro-revisar" onclick="toggleFiltroRevisar()" style="width:100%; text-align:center; border:1px solid var(--border); border-radius:6px; padding:7px; margin-top:6px; font-size:12.5px; cursor:pointer; background:white; color:var(--text);">🔎 Solo pendientes de revisar</button>
       <button class="add-cat-btn" onclick="abrirGestionCategorias()" style="margin-top:4px;">⚙ Gestionar categorías</button>
       <button class="add-cat-btn" onclick="añadirPorDireccion()" style="width:100%; text-align:center; border:1px solid var(--border); border-radius:6px; padding:7px; margin-top:6px;">📍 Añadir escribiendo la dirección</button>
       <select id="orden" onchange="renderList()" style="width:100%; margin-top:8px; padding:7px; border:1px solid var(--border); border-radius:6px; font-size:12.5px;">
@@ -305,6 +306,7 @@ let filtroProbado = null;
 let filtroBarrios = new Set();
 let filtroEtiquetas = new Set();
 let filtroZonaActivo = false;
+let filtroRevisar = false;
 let limitesZona = null;
 const PRECIOS_FIJOS = ['0-5€', '5-10€', '10-20€', '20-35€', '35-50€', '50-80€', '>80€'];
 
@@ -622,7 +624,8 @@ async function actualizarPendienteRevisar() {
     await fetch(`${API}/restaurantes/${r.id}`, {
       method: 'PUT', headers: authHeaders(), body: JSON.stringify({ pendiente_revisar: incompleto })
     });
-    abrirDetalle(r.id);
+    const toggle = document.getElementById('detail-pendiente-toggle');
+    if (toggle) toggle.checked = incompleto; // actualiza el interruptor sin redibujar toda la ficha (eso quitaba el foco al escribir)
     renderList();
     pintarMarcadores();
   }
@@ -951,6 +954,15 @@ function confirmarQuitarCategoria(nombre) {
   renderListaCategoriasMaestro();
 }
 
+function toggleFiltroRevisar() {
+  filtroRevisar = !filtroRevisar;
+  const btn = document.getElementById('btn-filtro-revisar');
+  btn.style.background = filtroRevisar ? 'var(--text)' : 'white';
+  btn.style.color = filtroRevisar ? 'white' : 'var(--text)';
+  renderList();
+  pintarMarcadores();
+}
+
 function restaurantesFiltrados() {
   const q = document.getElementById('search').value.toLowerCase();
   return restaurantes.filter(r => {
@@ -962,7 +974,8 @@ function restaurantesFiltrados() {
     const coincideBarrio = filtroBarrios.size === 0 || filtroBarrios.has(r.barrio);
     const coincideZona = !filtroZonaActivo || !limitesZona || limitesZona.contains([r.lat, r.lng]);
     const coincideEtiquetas = filtroEtiquetas.size === 0 || (r.etiquetas_extra || []).some(e => filtroEtiquetas.has(e));
-    return coincideNombre && coincideCat && coincidePrecio && coincideVal && coincideProbado && coincideBarrio && coincideZona && coincideEtiquetas;
+    const coincideRevisar = !filtroRevisar || r.pendiente_revisar;
+    return coincideNombre && coincideCat && coincidePrecio && coincideVal && coincideProbado && coincideBarrio && coincideZona && coincideEtiquetas && coincideRevisar;
   });
 }
 
@@ -1149,12 +1162,10 @@ function abrirDetalle(id) {
   if (window.innerWidth > 860) centrarConOffset(r.lat, r.lng, map.getZoom(), 200);
   else map.panTo([r.lat, r.lng]);
 
-  const sedes = restaurantes.filter(x => x.grupo_id && x.grupo_id === r.grupo_id && x.id !== r.id);
-
   document.getElementById('detail').innerHTML = `
     <div id="detail-header">
       <button id="detail-close" onclick="cerrarDetalle()">✕</button>
-      <div id="detail-nombre" class="editable" contenteditable oninput="marcarCambio()" onblur="guardarCampo('nombre', this.textContent).then(() => actualizarPendienteRevisar())">${r.nombre || ''}</div>
+      <div id="detail-nombre" class="editable" contenteditable onblur="guardarCampo('nombre', this.textContent).then(() => actualizarPendienteRevisar())">${r.nombre || ''}</div>
       <div style="display:flex; align-items:center; gap:2px;">
         <div id="detail-direccion" class="editable" contenteditable onblur="guardarDireccionTextoLibre(this.textContent).then(() => actualizarPendienteRevisar())" style="flex:1;">${r.direccion || 'Añadir dirección'}</div>
         <button onclick="abrirModalCambiarDireccion()" title="Buscar dirección con Google Maps" style="border:none; background:none; cursor:pointer; font-size:13px; color:var(--text-muted); padding:4px; flex-shrink:0;">✏️</button>
@@ -1162,7 +1173,6 @@ function abrirDetalle(id) {
       <input type="text" class="editable" value="${r.barrio || ''}" placeholder="Barrio (ej: Ruzafa, El Carmen...)" style="width:100%; font-size:12px; margin-top:4px;" onblur="guardarBarrioManual(this.value).then(() => actualizarPendienteRevisar())">
       <input type="text" class="editable" value="${r.google_maps_url || ''}" placeholder="Pegar enlace de Google Maps..." style="width:100%; font-size:12px; margin-top:4px; color:var(--accent);" onblur="guardarCampo('google_maps_url', this.value).then(() => actualizarPendienteRevisar())">
       ${r.google_maps_url ? `<a class="maps-link" href="${r.google_maps_url}" target="_blank">Abrir en Google Maps →</a>` : ''}
-      ${sedes.length ? `<div style="margin-top:8px; font-size:12px; color:var(--text-muted);">Otras sedes: ${sedes.map(s => `<a href="#" onclick="abrirDetalle('${s.id}'); return false;" style="color:var(--accent);">${s.nombre}</a>`).join(', ')}</div>` : ''}
     </div>
 
     <div class="section">
@@ -1176,7 +1186,7 @@ function abrirDetalle(id) {
       </div>
       <div class="toggle-row">
         <span>Pendiente de revisar</span>
-        <label class="switch"><input type="checkbox" ${r.pendiente_revisar ? 'checked' : ''} onchange="guardarCampo('pendiente_revisar', this.checked)"><span class="slider"></span></label>
+        <label class="switch"><input id="detail-pendiente-toggle" type="checkbox" ${r.pendiente_revisar ? 'checked' : ''} onchange="guardarCampo('pendiente_revisar', this.checked)"><span class="slider"></span></label>
       </div>
       ${!r.probado ? '<div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Un restaurante no probado no puede estar visible para seguidores.</div>' : ''}
     </div>
@@ -1328,21 +1338,6 @@ async function guardarCategoria(catId, campo, valor) {
     method: 'PUT', headers: authHeaders(),
     body: JSON.stringify({ nombre: cat.nombre, precio: cat.precio, valoracion: cat.valoracion, resena: cat.resena, instagram_url: cat.instagram_url, tiktok_url: cat.tiktok_url })
   });
-
-  // Si es una valoración y el restaurante pertenece a una cadena, la igualamos en las demás sedes
-  if (campo === 'valoracion' && r.grupo_id) {
-    const sedes = restaurantes.filter(x => x.grupo_id === r.grupo_id && x.id !== r.id);
-    for (const sede of sedes) {
-      const catHermana = sede.categorias.find(c => c.nombre === cat.nombre);
-      if (catHermana && catHermana.valoracion !== valor) {
-        catHermana.valoracion = valor;
-        await fetch(`${API}/categorias/${catHermana.id}`, {
-          method: 'PUT', headers: authHeaders(),
-          body: JSON.stringify({ nombre: catHermana.nombre, precio: catHermana.precio, valoracion: valor, resena: catHermana.resena, instagram_url: catHermana.instagram_url, tiktok_url: catHermana.tiktok_url })
-        });
-      }
-    }
-  }
 
   renderCategorias(r);
   renderList();
