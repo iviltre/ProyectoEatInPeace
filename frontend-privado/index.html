@@ -650,10 +650,34 @@ function centrarConOffset(lat, lng, zoom, offsetXpx) {
 function pintarMarcadores() {
   cluster.clearLayers();
   markers = {};
-  restaurantesFiltrados().forEach(r => {
+  const lista = restaurantesFiltrados();
+
+  // Si dos (o más) restaurantes tienen exactamente las mismas coordenadas, sus puntos quedarían
+  // uno encima del otro y solo se vería/pincharía el de arriba. Los separamos un poquito (unos
+  // metros) en círculo alrededor del punto real, para que se vean y se puedan pinchar todos.
+  const grupos = {};
+  lista.forEach(r => {
+    const clave = `${r.lat.toFixed(5)},${r.lng.toFixed(5)}`;
+    (grupos[clave] = grupos[clave] || []).push(r);
+  });
+  const OFFSET = 0.00006; // unos pocos metros, imperceptible en el mapa pero suficiente para separarlos
+  const posiciones = {};
+  Object.values(grupos).forEach(grupo => {
+    if (grupo.length === 1) {
+      posiciones[grupo[0].id] = [grupo[0].lat, grupo[0].lng];
+      return;
+    }
+    grupo.forEach((r, i) => {
+      const angulo = (2 * Math.PI * i) / grupo.length;
+      posiciones[r.id] = [r.lat + OFFSET * Math.cos(angulo), r.lng + OFFSET * Math.sin(angulo)];
+    });
+  });
+
+  lista.forEach(r => {
+    const [lat, lng] = posiciones[r.id];
     const m = modoCaptura
-      ? L.marker([r.lat, r.lng], { icon: emojiIconoPara(r) })
-      : L.circleMarker([r.lat, r.lng], circuloPara(r));
+      ? L.marker([lat, lng], { icon: emojiIconoPara(r) })
+      : L.circleMarker([lat, lng], circuloPara(r));
     m.on('click', () => abrirDetalle(r.id));
     markers[r.id] = m;
     cluster.addLayer(m);
