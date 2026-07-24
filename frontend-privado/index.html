@@ -660,7 +660,7 @@ function pintarMarcadores() {
     const clave = `${r.lat.toFixed(5)},${r.lng.toFixed(5)}`;
     (grupos[clave] = grupos[clave] || []).push(r);
   });
-  const OFFSET = 0.00006; // unos pocos metros, imperceptible en el mapa pero suficiente para separarlos
+  const OFFSET = 0.00003; // unos pocos metros, imperceptible en el mapa pero suficiente para separarlos
   const posiciones = {};
   Object.values(grupos).forEach(grupo => {
     if (grupo.length === 1) {
