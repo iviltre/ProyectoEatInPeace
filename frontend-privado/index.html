@@ -140,7 +140,6 @@
       <input id="search" placeholder="Buscar por nombre..." oninput="renderList(); pintarMarcadores();" />
       <button onclick="toggleFiltros()" style="width:100%; text-align:left; background:none; border:none; padding:6px 0; font-size:12.5px; color:var(--text-muted); cursor:pointer; display:flex; justify-content:space-between; align-items:center;">Filtros <span id="filtros-flecha" style="font-size:19px; display:inline-block; transition:transform 0.15s ease;">▾</span></button>
       <div id="filters" style="display:none; max-height:38vh; overflow-y:auto;"></div>
-      <button id="btn-filtro-revisar" onclick="toggleFiltroRevisar()" style="width:100%; text-align:center; border:1px solid var(--border); border-radius:6px; padding:7px; margin-top:6px; font-size:12.5px; cursor:pointer; background:white; color:var(--text);">🔎 Solo pendientes de revisar</button>
       <button class="add-cat-btn" onclick="abrirGestionCategorias()" style="margin-top:4px;">⚙ Gestionar categorías</button>
       <button class="add-cat-btn" onclick="añadirPorDireccion()" style="width:100%; text-align:center; border:1px solid var(--border); border-radius:6px; padding:7px; margin-top:6px;">📍 Añadir escribiendo la dirección</button>
       <select id="orden" onchange="renderList()" style="width:100%; margin-top:8px; padding:7px; border:1px solid var(--border); border-radius:6px; font-size:12.5px;">
@@ -148,10 +147,13 @@
         <option value="precio">Ordenar por precio</option>
         <option value="valoracion">Ordenar por valoración</option>
       </select>
-      <button id="publish-btn" onclick="publicarCambios()">📤 Publicar cambios para seguidores</button>
-      <button id="backup-btn" onclick="descargarBackup()" style="margin-top:6px; width:100%; padding:9px; background:none; border:1px solid var(--border); color:var(--text-muted); border-radius:6px; font-size:12.5px; cursor:pointer;">💾 Descargar copia de seguridad completa</button>
-      <button id="captura-btn" onclick="activarModoCaptura()" style="margin-top:6px; width:100%; padding:9px; background:none; border:1px solid var(--border); color:var(--text-muted); border-radius:6px; font-size:12.5px; cursor:pointer;">📸 Modo captura (para vídeos)</button>
-      <button onclick="abrirEditorEmojis()" style="margin-top:6px; width:100%; padding:7px; background:none; border:none; color:var(--text-muted); font-size:11.5px; cursor:pointer; text-decoration:underline;">Editar emoticonos del modo captura</button>
+      <button onclick="toggleHerramientas()" style="width:100%; text-align:left; background:none; border:none; padding:6px 0; font-size:12.5px; color:var(--text-muted); cursor:pointer; display:flex; justify-content:space-between; align-items:center; margin-top:4px;">Herramientas <span id="herramientas-flecha" style="font-size:19px; display:inline-block; transition:transform 0.15s ease;">▾</span></button>
+      <div id="herramientas-panel" style="display:none;">
+        <button id="publish-btn" onclick="publicarCambios()">📤 Publicar cambios para seguidores</button>
+        <button id="backup-btn" onclick="descargarBackup()" style="margin-top:6px; width:100%; padding:9px; background:none; border:1px solid var(--border); color:var(--text-muted); border-radius:6px; font-size:12.5px; cursor:pointer;">💾 Descargar copia de seguridad completa</button>
+        <button id="captura-btn" onclick="activarModoCaptura()" style="margin-top:6px; width:100%; padding:9px; background:none; border:1px solid var(--border); color:var(--text-muted); border-radius:6px; font-size:12.5px; cursor:pointer;">📸 Modo captura (para vídeos)</button>
+        <button onclick="abrirEditorEmojis()" style="margin-top:6px; width:100%; padding:7px; background:none; border:none; color:var(--text-muted); font-size:11.5px; cursor:pointer; text-decoration:underline;">Editar emoticonos del modo captura</button>
+      </div>
     </div>
     <div id="list"></div>
   </div>
@@ -676,9 +678,22 @@ function toggleFiltros() {
   document.getElementById('filtros-flecha').style.transform = abierto ? 'rotate(0deg)' : 'rotate(180deg)';
 }
 
+function toggleHerramientas() {
+  const el = document.getElementById('herramientas-panel');
+  const abierto = el.style.display !== 'none';
+  el.style.display = abierto ? 'none' : 'block';
+  document.getElementById('herramientas-flecha').style.transform = abierto ? 'rotate(0deg)' : 'rotate(180deg)';
+}
+
 function pintarFiltros() {
   const el = document.getElementById('filters');
   el.innerHTML = '';
+
+  const filaRevisar = document.createElement('div');
+  filaRevisar.style.cssText = 'display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; font-size:12.5px;';
+  filaRevisar.innerHTML = `<span>🔎 Solo pendientes de revisar</span><label class="switch"><input type="checkbox" ${filtroRevisar ? 'checked' : ''}><span class="slider"></span></label>`;
+  filaRevisar.querySelector('input').addEventListener('change', (e) => { filtroRevisar = e.target.checked; renderList(); pintarMarcadores(); });
+  el.appendChild(filaRevisar);
 
   const labelCat = document.createElement('div');
   labelCat.className = 'filtro-label';
@@ -952,15 +967,6 @@ function confirmarQuitarCategoria(nombre) {
   if (!confirm(`¿Quitar "${nombre}" de la lista? (los restaurantes que ya la tengan la conservan, pero no podrás volver a elegirla)`)) return;
   quitarCategoriaMaestro(nombre);
   renderListaCategoriasMaestro();
-}
-
-function toggleFiltroRevisar() {
-  filtroRevisar = !filtroRevisar;
-  const btn = document.getElementById('btn-filtro-revisar');
-  btn.style.background = filtroRevisar ? 'var(--text)' : 'white';
-  btn.style.color = filtroRevisar ? 'white' : 'var(--text)';
-  renderList();
-  pintarMarcadores();
 }
 
 function restaurantesFiltrados() {
@@ -1339,7 +1345,7 @@ async function guardarCategoria(catId, campo, valor) {
     body: JSON.stringify({ nombre: cat.nombre, precio: cat.precio, valoracion: cat.valoracion, resena: cat.resena, instagram_url: cat.instagram_url, tiktok_url: cat.tiktok_url })
   });
 
-  renderCategorias(r);
+  if (campo === 'valoracion') renderCategorias(r); // solo hace falta redibujar para pintar las estrellas
   renderList();
 }
 
