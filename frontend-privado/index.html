@@ -98,6 +98,8 @@
   .stars span.filled { color: var(--warn); }
   .del-cat { background: none; border: none; color: var(--danger); cursor: pointer; font-size: 12px; margin-left: auto; }
   .add-cat-btn { font-size: 12.5px; color: var(--accent); background: none; border: none; cursor: pointer; padding: 4px 0; }
+  .icon-btn-edit { border: none; background: none; cursor: pointer; padding: 5px; color: var(--text-muted); display: inline-flex; align-items: center; justify-content: center; border-radius: 5px; flex-shrink: 0; }
+  .icon-btn-edit:hover { background: var(--accent-soft); color: var(--accent); }
   #delete-restaurante { width: 100%; padding: 10px; background: none; border: 1px solid var(--danger); color: var(--danger); border-radius: 6px; font-size: 13px; cursor: pointer; margin: 16px 18px; width: calc(100% - 36px); }
   .maps-link { font-size: 12.5px; color: var(--accent); text-decoration: none; }
 
@@ -114,6 +116,7 @@
     #toggle-agrupar { display: none; }
     #map.mobile-visible ~ #toggle-agrupar { display: flex; }
     input, select, textarea { font-size: 16px !important; color: var(--text) !important; -webkit-text-fill-color: var(--text); }
+    input::placeholder, textarea::placeholder { color: var(--text-muted) !important; opacity: 1 !important; -webkit-text-fill-color: var(--text-muted); }
     .leaflet-control-zoom { display: none; }
     .cat-card-top { flex-wrap: wrap; }
     .cat-card-top select:first-child { flex: 1 1 100%; }
@@ -1164,7 +1167,9 @@ function abrirDetalle(id) {
       <div id="detail-nombre" class="editable" contenteditable onblur="guardarCampo('nombre', this.textContent).then(() => actualizarPendienteRevisar())">${r.nombre || ''}</div>
       <div style="display:flex; align-items:center; gap:2px;">
         <div id="detail-direccion" class="editable" contenteditable onblur="guardarDireccionTextoLibre(this.textContent).then(() => actualizarPendienteRevisar())" style="flex:1;">${r.direccion || 'Añadir dirección'}</div>
-        <button onclick="abrirModalCambiarDireccion()" title="Buscar dirección con Google Maps" style="border:none; background:none; cursor:pointer; font-size:13px; color:var(--text-muted); padding:4px; flex-shrink:0;">✏️</button>
+        <button onclick="abrirModalCambiarDireccion()" title="Buscar dirección con Google Maps" class="icon-btn-edit">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+        </button>
       </div>
       <input type="text" class="editable" value="${r.barrio || ''}" placeholder="Barrio (ej: Ruzafa, El Carmen...)" style="width:100%; font-size:12px; margin-top:4px;" onblur="guardarBarrioManual(this.value).then(() => actualizarPendienteRevisar())">
       <input type="text" class="editable" value="${r.google_maps_url || ''}" placeholder="Pegar enlace de Google Maps..." style="width:100%; font-size:12px; margin-top:4px; color:var(--accent);" onblur="guardarCampo('google_maps_url', this.value).then(() => actualizarPendienteRevisar())">
