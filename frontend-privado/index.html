@@ -205,14 +205,14 @@
   </div>
 </div>
 
-<div id="places-overlay" style="display:none; position:fixed; inset:0; background:rgba(35,36,31,0.35); z-index:900; align-items:center; justify-content:center;">
-  <div style="background:white; border-radius:12px; width:380px; padding:20px;">
+<div id="places-overlay" style="display:none; position:fixed; inset:0; background:rgba(35,36,31,0.35); z-index:900; align-items:center; justify-content:center; padding:12px; box-sizing:border-box;">
+  <div style="background:white; border-radius:12px; width:380px; max-width:100%; box-sizing:border-box; padding:20px;">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
       <strong id="places-overlay-titulo" style="font-size:14px;">Añadir restaurante</strong>
       <button onclick="cerrarPlacesOverlay()" style="border:none; background:none; font-size:16px; cursor:pointer; color:var(--text-muted);">✕</button>
     </div>
     <div style="position:relative;">
-      <input id="places-direccion-input" type="text" placeholder="Escribe el nombre o la dirección..." autocomplete="off" oninput="onEscribirDireccionPlaces(this)" style="width:100%; padding:7px 9px; border:1px solid var(--border); border-radius:6px; font-size:13px;">
+      <input id="places-direccion-input" type="text" placeholder="Escribe el nombre o la dirección..." autocomplete="off" oninput="onEscribirDireccionPlaces(this)" style="width:100%; padding:7px 9px; border:1px solid var(--border); border-radius:6px; font-size:16px; box-sizing:border-box;">
     </div>
     <button id="places-overlay-boton" onclick="confirmarSeleccionPlaces()" style="margin-top:10px; width:100%; padding:9px; background:var(--text); color:white; border:none; border-radius:6px; font-size:13px; cursor:pointer;">Añadir restaurante</button>
   </div>
@@ -1084,9 +1084,25 @@ function posicionarSugerenciasFlotantes() {
   if (!placesInputActivo) return;
   const rect = placesInputActivo.getBoundingClientRect();
   const cont = document.getElementById('places-sugerencias-flotante');
+  const margen = 8;
+  const ancho = Math.min(rect.width, window.innerWidth - margen * 2);
+  let left = rect.left;
+  if (left + ancho > window.innerWidth - margen) left = window.innerWidth - ancho - margen;
+  if (left < margen) left = margen;
   cont.style.top = (rect.bottom + 4) + 'px';
-  cont.style.left = rect.left + 'px';
-  cont.style.width = rect.width + 'px';
+  cont.style.left = left + 'px';
+  cont.style.width = ancho + 'px';
+}
+
+window.addEventListener('resize', () => {
+  const cont = document.getElementById('places-sugerencias-flotante');
+  if (cont.style.display !== 'none') posicionarSugerenciasFlotantes();
+});
+if (window.visualViewport) {
+  window.visualViewport.addEventListener('resize', () => {
+    const cont = document.getElementById('places-sugerencias-flotante');
+    if (cont.style.display !== 'none') posicionarSugerenciasFlotantes();
+  });
 }
 
 function pintarSugerenciasPlaces(sugerencias) {
@@ -1298,6 +1314,9 @@ function renderListaEtiquetasMaestro() {
       await fetch(`${API}/etiquetas-maestro/${encodeURIComponent(nombre)}`, { method: 'DELETE', headers: authHeaders() });
       await cargarEtiquetasMaestro();
       renderListaEtiquetasMaestro();
+      pintarFiltros();
+      const r = restaurantes.find(x => x.id === selectedId);
+      if (r) renderEtiquetasChips(r);
     });
     fila.appendChild(span);
     fila.appendChild(btn);
@@ -1315,6 +1334,8 @@ async function confirmarAñadirEtiqueta() {
   await cargarEtiquetasMaestro();
   renderListaEtiquetasMaestro();
   pintarFiltros();
+  const r = restaurantes.find(x => x.id === selectedId);
+  if (r) renderEtiquetasChips(r); // para que la nueva etiqueta aparezca ya en la ficha abierta, sin salir y volver a entrar
 }
 
 function cerrarDetalle() {
