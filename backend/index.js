@@ -87,6 +87,30 @@ function extraerBarrio(direccion) {
   return posible || null;
 }
 
+// Traslada la reseña que ya hubiera escrita en alguna categoría (modelo antiguo) a la
+// reseña general del restaurante (modelo nuevo). Solo actúa sobre restaurantes que
+// todavía no tengan reseña general, así que es seguro que se ejecute en cada arranque.
+async function migrarResenasAGeneral() {
+  const { rows } = await db.execute(`SELECT id, resena_general FROM restaurantes`);
+  let movidos = 0;
+  for (const fila of rows) {
+    if (fila.resena_general) continue;
+    const { rows: cats } = await db.execute({
+      sql: `SELECT id, resena FROM categorias WHERE restaurante_id = ? AND resena IS NOT NULL AND resena != ''`,
+      args: [fila.id]
+    });
+    if (!cats.length) continue;
+    // si hay varias, nos quedamos con la más larga (la que de verdad parece una reseña)
+    const elegida = cats.reduce((a, b) => (b.resena.length > a.resena.length ? b : a));
+    await db.execute({ sql: 'UPDATE restaurantes SET resena_general = ? WHERE id = ?', args: [elegida.resena, fila.id] });
+    for (const c of cats) {
+      await db.execute({ sql: 'UPDATE categorias SET resena = NULL WHERE id = ?', args: [c.id] });
+    }
+    movidos++;
+  }
+  if (movidos) console.log(`Reseñas trasladadas a reseña general: ${movidos} restaurantes.`);
+}
+
 async function migrarBarrios() {
   const { rows } = await db.execute(`SELECT id, direccion, barrio, barrio_manual FROM restaurantes`);
   console.log(`Revisando barrios: ${rows.length} restaurantes en total.`);
@@ -414,6 +438,7 @@ process.on('unhandledRejection', (err) => {
 const PORT = process.env.PORT || 3001;
 prepararBaseDeDatos()
   .then(() => migrarBarrios())
+  .then(() => migrarResenasAGeneral())
   .then(() => migrarCategoriasMaestro())
   .then(() => migrarEtiquetasMaestro())
   .then(() => rellenarOrdenFaltante())

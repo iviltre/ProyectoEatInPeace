@@ -733,6 +733,12 @@ function pintarMarcadores() {
     markers[r.id] = m;
     cluster.addLayer(m);
   });
+
+  // El marcador seleccionado se dibuja más grande; lo traemos al frente para que no quede
+  // tapado por los círculos de alrededor.
+  if (markers[selectedId] && typeof markers[selectedId].bringToFront === 'function') {
+    markers[selectedId].bringToFront();
+  }
 }
 
 // ---------- CARGAR DATOS ----------
