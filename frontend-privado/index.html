@@ -262,7 +262,9 @@ const ICONOS = {
   camara: '<path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2Z"/><circle cx="12" cy="13" r="4"/>',
   buscar: '<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>',
   cerrar: '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>',
-  rayo: '<polygon points="13 2 3 14 11 14 10 22 21 10 13 10 13 2"/>'
+  rayo: '<polygon points="13 2 3 14 11 14 10 22 21 10 13 10 13 2"/>',
+  copiar: '<rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>',
+  pegar: '<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>'
 };
 function icono(nombre, tam) {
   tam = tam || 14;
@@ -1295,6 +1297,7 @@ function renderCategorias(r) {
   r.categorias.forEach(cat => {
     const div = document.createElement('div');
     div.className = 'cat-card';
+    div.setAttribute('data-cat-id', cat.id);
     div.innerHTML = `
       <div class="cat-card-top">
         <select onchange="guardarCategoria('${cat.id}', 'nombre', this.value)" style="flex:1;">
@@ -1308,9 +1311,13 @@ function renderCategorias(r) {
         <button class="del-cat" onclick="borrarCategoria('${cat.id}')">Quitar</button>
       </div>
       <div class="stars" data-cat="${cat.id}">${[1,2,3,4,5].map(n => `<span class="${n <= (cat.valoracion||0) ? 'filled' : ''}" onclick="guardarCategoria('${cat.id}', 'valoracion', ${n})">★</span>`).join('')}</div>
-      <textarea placeholder="Tu reseña..." onblur="guardarCategoria('${cat.id}', 'resena', this.value)">${cat.resena || ''}</textarea>
-      <input type="text" value="${cat.instagram_url || ''}" placeholder="Enlace al reel de Instagram (opcional)" style="width:100%; margin-top:6px; font-size:12px;" onblur="guardarCategoria('${cat.id}', 'instagram_url', this.value)">
-      <input type="text" value="${cat.tiktok_url || ''}" placeholder="Enlace al vídeo de TikTok (opcional)" style="width:100%; margin-top:6px; font-size:12px;" onblur="guardarCategoria('${cat.id}', 'tiktok_url', this.value)">
+      <div style="display:flex; justify-content:flex-end; gap:4px; margin-top:4px;">
+        <button data-copiar-cat="${cat.id}" onclick="copiarCategoria('${cat.id}')" title="Copiar reseña y enlaces" class="icon-btn-edit">${icono('copiar', 13)}</button>
+        <button onclick="pegarCategoria('${cat.id}')" title="Pegar reseña y enlaces" class="icon-btn-edit">${icono('pegar', 13)}</button>
+      </div>
+      <textarea class="campo-resena" placeholder="Tu reseña..." onblur="guardarCategoria('${cat.id}', 'resena', this.value)">${cat.resena || ''}</textarea>
+      <input type="text" class="campo-instagram" value="${cat.instagram_url || ''}" placeholder="Enlace al reel de Instagram (opcional)" style="width:100%; margin-top:6px; font-size:12px;" onblur="guardarCategoria('${cat.id}', 'instagram_url', this.value)">
+      <input type="text" class="campo-tiktok" value="${cat.tiktok_url || ''}" placeholder="Enlace al vídeo de TikTok (opcional)" style="width:100%; margin-top:6px; font-size:12px;" onblur="guardarCategoria('${cat.id}', 'tiktok_url', this.value)">
     `;
     el.appendChild(div);
   });
@@ -1426,6 +1433,35 @@ async function guardarCategoria(catId, campo, valor) {
   renderList();
 }
 
+// ---------- COPIAR / PEGAR reseña + enlaces entre categorías ----------
+let portapapelesCategoria = null; // { resena, instagram_url, tiktok_url }
+
+function copiarCategoria(catId) {
+  let cat = null;
+  for (const r of restaurantes) {
+    const encontrada = (r.categorias || []).find(c => c.id === catId);
+    if (encontrada) { cat = encontrada; break; }
+  }
+  if (!cat) return;
+  portapapelesCategoria = { resena: cat.resena || '', instagram_url: cat.instagram_url || '', tiktok_url: cat.tiktok_url || '' };
+  document.querySelectorAll(`[data-copiar-cat="${catId}"]`).forEach(btn => {
+    btn.innerHTML = '✓';
+    setTimeout(() => { btn.innerHTML = icono('copiar', 13); }, 1200);
+  });
+}
+
+async function pegarCategoria(catId) {
+  if (!portapapelesCategoria) { alert('Primero copia la reseña y los enlaces desde otra categoría.'); return; }
+  await guardarCategoria(catId, 'resena', portapapelesCategoria.resena);
+  await guardarCategoria(catId, 'instagram_url', portapapelesCategoria.instagram_url);
+  await guardarCategoria(catId, 'tiktok_url', portapapelesCategoria.tiktok_url);
+  // Reflejamos los valores pegados en los campos visibles, sin redibujar toda la tarjeta
+  // (para no repetir el bug de perder el foco al escribir en otros campos).
+  document.querySelectorAll(`[data-cat-id="${catId}"] .campo-resena`).forEach(el => el.value = portapapelesCategoria.resena);
+  document.querySelectorAll(`[data-cat-id="${catId}"] .campo-instagram`).forEach(el => el.value = portapapelesCategoria.instagram_url);
+  document.querySelectorAll(`[data-cat-id="${catId}"] .campo-tiktok`).forEach(el => el.value = portapapelesCategoria.tiktok_url);
+}
+
 // ---------- EDICIÓN RÁPIDA (reseñas, Instagram, TikTok, todas las categorías juntas) ----------
 function abrirEdicionRapida() {
   document.getElementById('rapida-buscar').value = '';
@@ -1462,11 +1498,17 @@ function renderEdicionRapida() {
   // el foco al escribir); las filas que ya completes seguirán visibles hasta que busques de nuevo
   // o cierres y abras el panel.
   cont.innerHTML = filas.map(({ r, cat }) => `
-    <div class="cat-card" style="margin-bottom:10px;">
-      <div style="font-size:12px; color:var(--text-muted); margin-bottom:6px; font-weight:500;">${r.nombre} · ${cat.nombre || 'Sin categoría'}</div>
-      <textarea placeholder="Reseña..." style="width:100%; min-height:56px; box-sizing:border-box;" onblur="guardarCategoria('${cat.id}', 'resena', this.value)">${cat.resena || ''}</textarea>
-      <input type="text" placeholder="Enlace de Instagram" value="${(cat.instagram_url || '').replace(/"/g, '&quot;')}" style="width:100%; margin-top:6px; box-sizing:border-box;" onblur="guardarCategoria('${cat.id}', 'instagram_url', this.value)">
-      <input type="text" placeholder="Enlace de TikTok" value="${(cat.tiktok_url || '').replace(/"/g, '&quot;')}" style="width:100%; margin-top:6px; box-sizing:border-box;" onblur="guardarCategoria('${cat.id}', 'tiktok_url', this.value)">
+    <div class="cat-card" data-cat-id="${cat.id}" style="margin-bottom:10px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+        <div style="font-size:12px; color:var(--text-muted); font-weight:500;">${r.nombre} · ${cat.nombre || 'Sin categoría'}</div>
+        <div style="display:flex; gap:4px;">
+          <button data-copiar-cat="${cat.id}" onclick="copiarCategoria('${cat.id}')" title="Copiar reseña y enlaces" class="icon-btn-edit">${icono('copiar', 13)}</button>
+          <button onclick="pegarCategoria('${cat.id}')" title="Pegar reseña y enlaces" class="icon-btn-edit">${icono('pegar', 13)}</button>
+        </div>
+      </div>
+      <textarea class="campo-resena" placeholder="Reseña..." style="width:100%; min-height:56px; box-sizing:border-box;" onblur="guardarCategoria('${cat.id}', 'resena', this.value)">${cat.resena || ''}</textarea>
+      <input type="text" class="campo-instagram" placeholder="Enlace de Instagram" value="${(cat.instagram_url || '').replace(/"/g, '&quot;')}" style="width:100%; margin-top:6px; box-sizing:border-box;" onblur="guardarCategoria('${cat.id}', 'instagram_url', this.value)">
+      <input type="text" class="campo-tiktok" placeholder="Enlace de TikTok" value="${(cat.tiktok_url || '').replace(/"/g, '&quot;')}" style="width:100%; margin-top:6px; box-sizing:border-box;" onblur="guardarCategoria('${cat.id}', 'tiktok_url', this.value)">
     </div>
   `).join('');
 }
