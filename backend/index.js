@@ -29,6 +29,9 @@ async function prepararBaseDeDatos() {
   `);
   try { await db.execute(`ALTER TABLE restaurantes ADD COLUMN barrio TEXT`); } catch (e) {}
   try { await db.execute(`ALTER TABLE restaurantes ADD COLUMN barrio_manual INTEGER DEFAULT 0`); } catch (e) {}
+  try { await db.execute(`ALTER TABLE restaurantes ADD COLUMN resena_general TEXT`); } catch (e) {}
+  try { await db.execute(`ALTER TABLE restaurantes ADD COLUMN instagram_url TEXT`); } catch (e) {}
+  try { await db.execute(`ALTER TABLE restaurantes ADD COLUMN tiktok_url TEXT`); } catch (e) {}
   await db.execute(`
     CREATE TABLE IF NOT EXISTS categorias (
       id TEXT PRIMARY KEY, restaurante_id TEXT NOT NULL, nombre TEXT, precio TEXT,
@@ -202,11 +205,10 @@ async function construirRestaurante(fila, soloPublico) {
   const obj = {
     id: fila.id, nombre: fila.nombre, lat: fila.lat, lng: fila.lng,
     direccion: fila.direccion, google_maps_url: fila.google_maps_url, grupo_id: fila.grupo_id,
-    barrio: fila.barrio,
+    barrio: fila.barrio, resena_general: fila.resena_general, instagram_url: fila.instagram_url, tiktok_url: fila.tiktok_url,
     probado: !!fila.probado, etiquetas_extra: JSON.parse(fila.etiquetas_extra || '[]'),
     categorias: categorias.map(c => ({
-      id: c.id, nombre: c.nombre, precio: c.precio, valoracion: c.valoracion,
-      resena: c.resena, instagram_url: c.instagram_url, subcategoria: c.subcategoria, tiktok_url: c.tiktok_url
+      id: c.id, nombre: c.nombre, precio: c.precio, valoracion: c.valoracion, comentario: c.resena
     })),
   };
   if (!soloPublico) {
@@ -264,7 +266,7 @@ app.post('/api/restaurantes', requiereAuth, async (req, res) => {
 
 app.put('/api/restaurantes/:id', requiereAuth, async (req, res) => {
   const campos = ['nombre', 'lat', 'lng', 'direccion', 'google_maps_url', 'barrio', 'barrio_manual',
-    'notas_generales', 'probado', 'pendiente_revisar', 'visible_publico'];
+    'notas_generales', 'probado', 'pendiente_revisar', 'visible_publico', 'resena_general', 'instagram_url', 'tiktok_url'];
   const { rows } = await db.execute({ sql: 'SELECT * FROM restaurantes WHERE id = ?', args: [req.params.id] });
   if (!rows[0]) return res.status(404).json({ error: 'No encontrado' });
 
@@ -274,13 +276,15 @@ app.put('/api/restaurantes/:id', requiereAuth, async (req, res) => {
 
   await db.execute({
     sql: `UPDATE restaurantes SET nombre=?, lat=?, lng=?, direccion=?, google_maps_url=?,
-            notas_generales=?, probado=?, pendiente_revisar=?, visible_publico=?, etiquetas_extra=?, barrio=?, barrio_manual=?
+            notas_generales=?, probado=?, pendiente_revisar=?, visible_publico=?, etiquetas_extra=?, barrio=?, barrio_manual=?,
+            resena_general=?, instagram_url=?, tiktok_url=?
           WHERE id=?`,
     args: [actualizados.nombre, actualizados.lat, actualizados.lng, actualizados.direccion,
       actualizados.google_maps_url, actualizados.notas_generales,
       actualizados.probado ? 1 : 0, actualizados.pendiente_revisar ? 1 : 0,
       actualizados.visible_publico ? 1 : 0, actualizados.etiquetas_extra, actualizados.barrio,
-      actualizados.barrio_manual ? 1 : 0, req.params.id]
+      actualizados.barrio_manual ? 1 : 0, actualizados.resena_general, actualizados.instagram_url,
+      actualizados.tiktok_url, req.params.id]
   });
   const { rows: nuevaFila } = await db.execute({ sql: 'SELECT * FROM restaurantes WHERE id = ?', args: [req.params.id] });
   res.json(await construirRestaurante(nuevaFila[0], false));
@@ -294,22 +298,22 @@ app.delete('/api/restaurantes/:id', requiereAuth, async (req, res) => {
 
 app.post('/api/restaurantes/:id/categorias', requiereAuth, async (req, res) => {
   const id = randomUUID();
-  const { nombre, precio, valoracion, resena, instagram_url, subcategoria, tiktok_url } = req.body;
+  const { nombre, precio, valoracion, comentario } = req.body;
   await db.execute({
-    sql: `INSERT INTO categorias (id, restaurante_id, nombre, precio, valoracion, resena, instagram_url, subcategoria, tiktok_url)
-          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-    args: [id, req.params.id, nombre, precio, valoracion, resena, instagram_url || null, subcategoria || null, tiktok_url || null]
+    sql: `INSERT INTO categorias (id, restaurante_id, nombre, precio, valoracion, resena)
+          VALUES (?, ?, ?, ?, ?, ?)`,
+    args: [id, req.params.id, nombre, precio, valoracion, comentario || null]
   });
-  res.status(201).json({ id, nombre, precio, valoracion, resena, instagram_url, subcategoria, tiktok_url });
+  res.status(201).json({ id, nombre, precio, valoracion, comentario });
 });
 
 app.put('/api/categorias/:catId', requiereAuth, async (req, res) => {
-  const { nombre, precio, valoracion, resena, instagram_url, subcategoria, tiktok_url } = req.body;
+  const { nombre, precio, valoracion, comentario } = req.body;
   await db.execute({
-    sql: `UPDATE categorias SET nombre=?, precio=?, valoracion=?, resena=?, instagram_url=?, subcategoria=?, tiktok_url=? WHERE id=?`,
-    args: [nombre, precio, valoracion, resena, instagram_url || null, subcategoria || null, tiktok_url || null, req.params.catId]
+    sql: `UPDATE categorias SET nombre=?, precio=?, valoracion=?, resena=? WHERE id=?`,
+    args: [nombre, precio, valoracion, comentario || null, req.params.catId]
   });
-  res.json({ id: req.params.catId, nombre, precio, valoracion, resena, instagram_url, subcategoria, tiktok_url });
+  res.json({ id: req.params.catId, nombre, precio, valoracion, comentario });
 });
 
 app.delete('/api/categorias/:catId', requiereAuth, async (req, res) => {

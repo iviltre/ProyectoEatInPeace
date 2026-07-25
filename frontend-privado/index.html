@@ -1050,10 +1050,14 @@ function confirmarQuitarCategoria(nombre) {
   renderListaCategoriasMaestro();
 }
 
+function normalizarTexto(s) {
+  return (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+}
+
 function restaurantesFiltrados() {
-  const q = document.getElementById('search').value.toLowerCase();
+  const q = normalizarTexto(document.getElementById('search').value);
   return restaurantes.filter(r => {
-    const coincideNombre = r.nombre.toLowerCase().includes(q);
+    const coincideNombre = normalizarTexto(r.nombre).includes(q);
     const coincideCat = filtroCategorias.size === 0 || r.categorias.some(c => categoriaCoincideFiltro(c.nombre, filtroCategorias));
     const coincidePrecio = filtroPrecios.size === 0 || r.categorias.some(c => filtroPrecios.has(c.precio));
     const coincideVal = filtroValoracionMin === null || r.categorias.some(c => (c.valoracion || 0) >= filtroValoracionMin);
@@ -1267,6 +1271,19 @@ function abrirDetalle(id) {
       ${!r.probado ? '<div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Un restaurante no probado no puede estar visible para seguidores.</div>' : ''}
     </div>
 
+    <div class="section" id="seccion-resena-general">
+      <div class="section-label" style="display:flex; justify-content:space-between; align-items:center;">
+        <span>Reseña general</span>
+        <div style="display:flex; gap:4px;">
+          <button data-copiar-cat="restaurante" onclick="copiarResenaRestaurante()" title="Copiar reseña y enlaces" class="icon-btn-edit">${icono('copiar', 13)}</button>
+          <button onclick="pegarResenaRestaurante()" title="Pegar reseña y enlaces" class="icon-btn-edit">${icono('pegar', 13)}</button>
+        </div>
+      </div>
+      <textarea class="editable campo-resena-general" style="width:100%; min-height:90px;" placeholder="Reseña general del restaurante..." onblur="guardarCampo('resena_general', this.value)">${r.resena_general || ''}</textarea>
+      <input type="text" class="editable campo-instagram-general" value="${r.instagram_url || ''}" placeholder="Enlace al reel de Instagram (opcional)" style="width:100%; margin-top:6px; font-size:12px;" onblur="guardarCampo('instagram_url', this.value)">
+      <input type="text" class="editable campo-tiktok-general" value="${r.tiktok_url || ''}" placeholder="Enlace al vídeo de TikTok (opcional)" style="width:100%; margin-top:6px; font-size:12px;" onblur="guardarCampo('tiktok_url', this.value)">
+    </div>
+
     <div class="section">
       <div class="section-label">Categorías</div>
       <div id="cat-list"></div>
@@ -1311,13 +1328,7 @@ function renderCategorias(r) {
         <button class="del-cat" onclick="borrarCategoria('${cat.id}')">Quitar</button>
       </div>
       <div class="stars" data-cat="${cat.id}">${[1,2,3,4,5].map(n => `<span class="${n <= (cat.valoracion||0) ? 'filled' : ''}" onclick="guardarCategoria('${cat.id}', 'valoracion', ${n})">★</span>`).join('')}</div>
-      <div style="display:flex; justify-content:flex-end; gap:4px; margin-top:4px;">
-        <button data-copiar-cat="${cat.id}" onclick="copiarCategoria('${cat.id}')" title="Copiar reseña y enlaces" class="icon-btn-edit">${icono('copiar', 13)}</button>
-        <button onclick="pegarCategoria('${cat.id}')" title="Pegar reseña y enlaces" class="icon-btn-edit">${icono('pegar', 13)}</button>
-      </div>
-      <textarea class="campo-resena" placeholder="Tu reseña..." onblur="guardarCategoria('${cat.id}', 'resena', this.value)">${cat.resena || ''}</textarea>
-      <input type="text" class="campo-instagram" value="${cat.instagram_url || ''}" placeholder="Enlace al reel de Instagram (opcional)" style="width:100%; margin-top:6px; font-size:12px;" onblur="guardarCategoria('${cat.id}', 'instagram_url', this.value)">
-      <input type="text" class="campo-tiktok" value="${cat.tiktok_url || ''}" placeholder="Enlace al vídeo de TikTok (opcional)" style="width:100%; margin-top:6px; font-size:12px;" onblur="guardarCategoria('${cat.id}', 'tiktok_url', this.value)">
+      <input type="text" value="${(cat.comentario || '').replace(/"/g, '&quot;')}" placeholder="Comentario para esta categoría (opcional)" style="width:100%; margin-top:6px; font-size:12px;" onblur="guardarCategoria('${cat.id}', 'comentario', this.value)">
     `;
     el.appendChild(div);
   });
@@ -1416,6 +1427,37 @@ async function guardarCampo(campo, valor) {
   renderList();
 }
 
+// ---------- COPIAR / PEGAR reseña general + enlaces entre restaurantes ----------
+let portapapelesRestaurante = null; // { resena_general, instagram_url, tiktok_url }
+
+function copiarResenaRestaurante() {
+  const r = restaurantes.find(x => x.id === selectedId);
+  if (!r) return;
+  portapapelesRestaurante = { resena_general: r.resena_general || '', instagram_url: r.instagram_url || '', tiktok_url: r.tiktok_url || '' };
+  document.querySelectorAll(`[data-copiar-cat="restaurante"]`).forEach(btn => {
+    btn.innerHTML = '✓';
+    setTimeout(() => { btn.innerHTML = icono('copiar', 13); }, 1200);
+  });
+}
+
+async function pegarResenaRestaurante() {
+  if (!portapapelesRestaurante) { alert('Primero copia la reseña y los enlaces desde otro restaurante.'); return; }
+  const r = restaurantes.find(x => x.id === selectedId);
+  if (!r) return;
+  r.resena_general = portapapelesRestaurante.resena_general;
+  r.instagram_url = portapapelesRestaurante.instagram_url;
+  r.tiktok_url = portapapelesRestaurante.tiktok_url;
+  await fetch(`${API}/restaurantes/${r.id}`, {
+    method: 'PUT', headers: authHeaders(), body: JSON.stringify(portapapelesRestaurante)
+  });
+  const seccion = document.getElementById('seccion-resena-general');
+  if (seccion) {
+    seccion.querySelector('.campo-resena-general').value = portapapelesRestaurante.resena_general;
+    seccion.querySelector('.campo-instagram-general').value = portapapelesRestaurante.instagram_url;
+    seccion.querySelector('.campo-tiktok-general').value = portapapelesRestaurante.tiktok_url;
+  }
+}
+
 async function guardarCategoria(catId, campo, valor) {
   let r = null, cat = null;
   for (const restaurante of restaurantes) {
@@ -1426,43 +1468,14 @@ async function guardarCategoria(catId, campo, valor) {
   cat[campo] = valor;
   await fetch(`${API}/categorias/${catId}`, {
     method: 'PUT', headers: authHeaders(),
-    body: JSON.stringify({ nombre: cat.nombre, precio: cat.precio, valoracion: cat.valoracion, resena: cat.resena, instagram_url: cat.instagram_url, tiktok_url: cat.tiktok_url })
+    body: JSON.stringify({ nombre: cat.nombre, precio: cat.precio, valoracion: cat.valoracion, comentario: cat.comentario })
   });
 
   if (campo === 'valoracion' && r.id === selectedId) renderCategorias(r); // solo hace falta redibujar para pintar las estrellas
   renderList();
 }
 
-// ---------- COPIAR / PEGAR reseña + enlaces entre categorías ----------
-let portapapelesCategoria = null; // { resena, instagram_url, tiktok_url }
-
-function copiarCategoria(catId) {
-  let cat = null;
-  for (const r of restaurantes) {
-    const encontrada = (r.categorias || []).find(c => c.id === catId);
-    if (encontrada) { cat = encontrada; break; }
-  }
-  if (!cat) return;
-  portapapelesCategoria = { resena: cat.resena || '', instagram_url: cat.instagram_url || '', tiktok_url: cat.tiktok_url || '' };
-  document.querySelectorAll(`[data-copiar-cat="${catId}"]`).forEach(btn => {
-    btn.innerHTML = '✓';
-    setTimeout(() => { btn.innerHTML = icono('copiar', 13); }, 1200);
-  });
-}
-
-async function pegarCategoria(catId) {
-  if (!portapapelesCategoria) { alert('Primero copia la reseña y los enlaces desde otra categoría.'); return; }
-  await guardarCategoria(catId, 'resena', portapapelesCategoria.resena);
-  await guardarCategoria(catId, 'instagram_url', portapapelesCategoria.instagram_url);
-  await guardarCategoria(catId, 'tiktok_url', portapapelesCategoria.tiktok_url);
-  // Reflejamos los valores pegados en los campos visibles, sin redibujar toda la tarjeta
-  // (para no repetir el bug de perder el foco al escribir en otros campos).
-  document.querySelectorAll(`[data-cat-id="${catId}"] .campo-resena`).forEach(el => el.value = portapapelesCategoria.resena);
-  document.querySelectorAll(`[data-cat-id="${catId}"] .campo-instagram`).forEach(el => el.value = portapapelesCategoria.instagram_url);
-  document.querySelectorAll(`[data-cat-id="${catId}"] .campo-tiktok`).forEach(el => el.value = portapapelesCategoria.tiktok_url);
-}
-
-// ---------- EDICIÓN RÁPIDA (reseñas, Instagram, TikTok, todas las categorías juntas) ----------
+// ---------- EDICIÓN RÁPIDA (reseña general, Instagram, TikTok, todos los restaurantes juntos) ----------
 function abrirEdicionRapida() {
   document.getElementById('rapida-buscar').value = '';
   document.getElementById('rapida-solo-incompletas').checked = true;
@@ -1474,41 +1487,43 @@ function cerrarEdicionRapida() {
   document.getElementById('rapida-overlay').style.display = 'none';
 }
 
+// Guarda un campo general (resena_general, instagram_url o tiktok_url) de un restaurante concreto,
+// sea cual sea el que tenga abierto en la ficha ahora mismo (no depende de selectedId).
+async function guardarCampoRestaurante(id, campo, valor) {
+  const r = restaurantes.find(x => x.id === id);
+  if (!r) return;
+  r[campo] = valor;
+  await fetch(`${API}/restaurantes/${id}`, {
+    method: 'PUT', headers: authHeaders(), body: JSON.stringify({ [campo]: valor })
+  });
+  renderList();
+}
+
 function renderEdicionRapida() {
   const cont = document.getElementById('rapida-lista');
-  const texto = document.getElementById('rapida-buscar').value.trim().toLowerCase();
+  const texto = normalizarTexto(document.getElementById('rapida-buscar').value.trim());
   const soloIncompletas = document.getElementById('rapida-solo-incompletas').checked;
 
-  const filas = [];
-  restaurantes.forEach(r => {
-    if (texto && !r.nombre.toLowerCase().includes(texto)) return;
-    (r.categorias || []).forEach(cat => {
-      const incompleta = !cat.resena || !cat.instagram_url || !cat.tiktok_url;
-      if (soloIncompletas && !incompleta) return;
-      filas.push({ r, cat });
-    });
+  const filas = restaurantes.filter(r => {
+    if (texto && !normalizarTexto(r.nombre).includes(texto)) return false;
+    const incompleto = !r.resena_general || !r.instagram_url || !r.tiktok_url;
+    return !soloIncompletas || incompleto;
   });
 
   if (!filas.length) {
-    cont.innerHTML = `<p style="color:var(--text-muted); font-size:13px;">No hay categorías que coincidan con la búsqueda.</p>`;
+    cont.innerHTML = `<p style="color:var(--text-muted); font-size:13px;">No hay restaurantes que coincidan con la búsqueda.</p>`;
     return;
   }
 
   // Nota: al guardar un campo no se redibuja la lista entera (para no repetir el bug de perder
   // el foco al escribir); las filas que ya completes seguirán visibles hasta que busques de nuevo
   // o cierres y abras el panel.
-  cont.innerHTML = filas.map(({ r, cat }) => `
-    <div class="cat-card" data-cat-id="${cat.id}" style="margin-bottom:10px;">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-        <div style="font-size:12px; color:var(--text-muted); font-weight:500;">${r.nombre} · ${cat.nombre || 'Sin categoría'}</div>
-        <div style="display:flex; gap:4px;">
-          <button data-copiar-cat="${cat.id}" onclick="copiarCategoria('${cat.id}')" title="Copiar reseña y enlaces" class="icon-btn-edit">${icono('copiar', 13)}</button>
-          <button onclick="pegarCategoria('${cat.id}')" title="Pegar reseña y enlaces" class="icon-btn-edit">${icono('pegar', 13)}</button>
-        </div>
-      </div>
-      <textarea class="campo-resena" placeholder="Reseña..." style="width:100%; min-height:56px; box-sizing:border-box;" onblur="guardarCategoria('${cat.id}', 'resena', this.value)">${cat.resena || ''}</textarea>
-      <input type="text" class="campo-instagram" placeholder="Enlace de Instagram" value="${(cat.instagram_url || '').replace(/"/g, '&quot;')}" style="width:100%; margin-top:6px; box-sizing:border-box;" onblur="guardarCategoria('${cat.id}', 'instagram_url', this.value)">
-      <input type="text" class="campo-tiktok" placeholder="Enlace de TikTok" value="${(cat.tiktok_url || '').replace(/"/g, '&quot;')}" style="width:100%; margin-top:6px; box-sizing:border-box;" onblur="guardarCategoria('${cat.id}', 'tiktok_url', this.value)">
+  cont.innerHTML = filas.map(r => `
+    <div class="cat-card" style="margin-bottom:10px;">
+      <div style="font-size:12px; color:var(--text-muted); font-weight:500; margin-bottom:6px;">${r.nombre}</div>
+      <textarea placeholder="Reseña general..." style="width:100%; min-height:56px; box-sizing:border-box;" onblur="guardarCampoRestaurante('${r.id}', 'resena_general', this.value)">${r.resena_general || ''}</textarea>
+      <input type="text" placeholder="Enlace de Instagram" value="${(r.instagram_url || '').replace(/"/g, '&quot;')}" style="width:100%; margin-top:6px; box-sizing:border-box;" onblur="guardarCampoRestaurante('${r.id}', 'instagram_url', this.value)">
+      <input type="text" placeholder="Enlace de TikTok" value="${(r.tiktok_url || '').replace(/"/g, '&quot;')}" style="width:100%; margin-top:6px; box-sizing:border-box;" onblur="guardarCampoRestaurante('${r.id}', 'tiktok_url', this.value)">
     </div>
   `).join('');
 }
@@ -1517,7 +1532,7 @@ async function añadirCategoria() {
   const r = restaurantes.find(x => x.id === selectedId);
   const res = await fetch(`${API}/restaurantes/${r.id}/categorias`, {
     method: 'POST', headers: authHeaders(),
-    body: JSON.stringify({ nombre: '', precio: '', valoracion: null, resena: '', instagram_url: '', tiktok_url: ''})
+    body: JSON.stringify({ nombre: '', precio: '', valoracion: null, comentario: ''})
   });
   const nueva = await res.json();
   r.categorias.push(nueva);
@@ -1622,7 +1637,8 @@ function publicarCambios() {
       id: r.id, nombre: r.nombre, lat: r.lat, lng: r.lng,
       direccion: r.direccion, google_maps_url: r.google_maps_url,
       grupo_id: r.grupo_id, barrio: r.barrio, etiquetas_extra: r.etiquetas_extra || [],
-      categorias: r.categorias.map(c => ({ nombre: c.nombre, precio: c.precio, valoracion: c.valoracion, resena: c.resena, instagram_url: c.instagram_url, tiktok_url: c.tiktok_url }))
+      resena_general: r.resena_general, instagram_url: r.instagram_url, tiktok_url: r.tiktok_url,
+      categorias: r.categorias.map(c => ({ nombre: c.nombre, precio: c.precio, valoracion: c.valoracion, comentario: c.comentario }))
     }));
   const paquete = { arbol: categoriasMaestro(), etiquetas: etiquetasMaestroCache, restaurantes: publicos };
   const blob = new Blob([JSON.stringify(paquete, null, 2)], { type: 'application/json' });

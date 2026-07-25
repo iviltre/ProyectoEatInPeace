@@ -249,26 +249,6 @@
       "nombre": "Vegano",
       "padre": "Vegetariano",
       "orden": 49
-    },
-    {
-      "nombre": "de Restaurante",
-      "padre": "Tarta de queso",
-      "orden": 50
-    },
-    {
-      "nombre": "de Sitio especializado",
-      "padre": "Tarta de queso",
-      "orden": 51
-    },
-    {
-      "nombre": "Empanadas argentinas",
-      "padre": "Latino",
-      "orden": 52
-    },
-    {
-      "nombre": "Vietnamita",
-      "padre": "Asiatico",
-      "orden": 53
     }
   ],
   "etiquetas": [
@@ -292,7 +272,7 @@
       "categorias": [
         {
           "nombre": "Buñuelos",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 4,
           "comentario": null
         }
@@ -314,7 +294,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 4,
           "comentario": null
         },
@@ -366,7 +346,7 @@
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": "30-50€",
+          "precio": "35-50€",
           "valoracion": 2,
           "comentario": null
         }
@@ -390,12 +370,12 @@
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": ">40€",
+          "precio": "35-50€",
           "valoracion": 5,
           "comentario": null
         }
       ],
-      "resena_general": "Llevábamos muchísimo tiempo queriendo ir a Nozomi Sushi Bar. Es uno de esos sitios de los que todo el mundo habla, con cola constante y reservas con casi un mes de antelación. La expectativa era alta… y aun así la experiencia la superó. \n\n🍽️ Lo que probamos\n\t•\tDashi de clochina valenciana y pepino – 9,25/10\nMuy fino, limpio y elegante. Ideal para abrir boca.\n\t•\tPulpo con base de dashi de mejillón y algas – 9,5/10\nPulpo perfecto de punto y un fondo con muchísimo sabor.\n\t•\tSopa de miso blanco con berberechos – 100/10\nIncreíble. Profunda, reconfortante y llena de matices. Uno de los mejores platos de la noche.\n\t•\tSashimi de corvina – 9,5/10\nProducto impecable, textura perfecta.\n\t•\tSashimi de jurel – 10/10\nBrutal. Graso, limpio y muy bien tratado.\n\t•\tTartar de atún rojo picante – 10/10\nEquilibrado, intenso y muy elegante.\n\t•\tUsuzukuri de dorada con aceite trufado – 10/10\nFinísimo, aromático y muy bien integrado.\n\n🍣 Nigiris:\n\t•\tCalamar – 8/10\nCorrecto, aunque eclipsado por el resto.\n\t•\tQuisquilla con consomé de sus cabezas – 9,5/10\nPuro sabor a mar, muy fino.\n\t•\tToro – 100/10\nSimplemente espectacular. Tiene algo que otros niguiris de atún no tienen.\n\t•\tJurel con aceite de humo – 9,5/10\nMuy elegante.\n\t•\tRodaballo – 100/10\nPerfecto. Uno de los mejores nigiris que hemos probado.\n\t•\tSalmonete con ralladura de lima – 9,5/10\nFresco y equilibrado.\n\t•\tSalmón flambeado con ikura – 9,75/10\nMuy redondo, graso y sabroso.\n\t•\tAnguila y foie – 10/10\nIntensidad máxima, sorprendente y adictivo.\n\t•\tSardina – 8,5/10\nBuena, pero menos memorable.\n\t•\tCorvina con crema de miso, mantequilla y trufa negra – 9,75/10\nMuy elegante y bien integrado.\n\t•\tTemaki de atún – 9/10\nMuy bueno, con gran equilibrio.\n\n🍨 Postre:\n\t•\tCrema de jengibre con helado de dulce de leche y granizado de manzana – 10/10\nRefrescante, diferente y un cierre perfecto.\n\n🔝 Conclusión:\nNozomi Sushi Bar es uno de los restaurantes más especiales que hemos probado. Producto excepcional, técnica impecable y una experiencia total.\n\n#comerenvalencia #planesvalencia #valenciafoodies #nozomi #sushivalencia",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -414,12 +394,12 @@
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": ">40€",
+          "precio": "35-50€",
           "valoracion": 5,
           "comentario": null
         }
       ],
-      "resena_general": "Si buscas una experiencia japonesa especial en Valencia, Hocho es una apuesta segura 🍣\n\n@restaurantehocho es un restaurante donde los nigiris son los grandes protagonistas, pero donde absolutamente todos los platos destacan por una elaboración muy cuidada, con sabores suaves, equilibrados y, sobre todo, memorables. Nos encanta que, aunque mantienen una base bastante tradicional, se permiten innovar con combinaciones muy interesantes.\n\nEsto fue lo que probamos 👇\n\n✨ Usuzukuri de trufa (8/10): pescado con muy buen sabor, aunque la trufa resultó algo intensa. \n🐟 Nigiri de caballa cítrica (1000/10): uno de nuestros favoritos, suave, fresco y perfecto. \n🔥 Nigiri de toro con dijon (10/10): atún de gran calidad con ese toque de mostaza que suma muchísimo. \n🦪 Nigiri de vieira con foie (100/10): el más popular, y con razón… simplemente increíble. \n🐉 Nigiri de anguila (1000/10): posiblemente nuestro nigiri de anguila favorito del mundo. \n\n🥩 Nigiri steak tartar (9/10): muy curioso, aunque esperábamos un sabor más potente. \n🍣 Nigiri de salmón flambeado (9/10): bueno, pero menos sorprendente que otros. \n🌶️ Uramaki de atún picante (9,5/10): jugosidad del atún + frescura del aguacate = combinación perfecta. \n🍤 Tempura ebi (10/10): rebozado impecable y gamba muy sabrosa. \n🎃 Buñuelos de calabaza (10/10): textura y sabor muy originales.\n\n(En anteriores visitas)\n\n🐟 Tartar de atún rojo picante (10/10): muy intenso y bien balanceado.\n🥚 Nigiri de huevo de codorniz y trufa (9/10): muy mítico del sitio, aunque nos quedamos con otros.\n🦑 Usuzukuri de calamar estilo bocata de calamares (9,5/10): muy original y sorprendente.\n🍚 Arroz frito (9,5/10): no te lo esperas, pero está muy bueno si quieres algo distinto.\n\n💬 En resumen: una experiencia que merece totalmente la pena y que recomendamos especialmente para ocasiones especiales.",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -436,7 +416,7 @@
       "categorias": [
         {
           "nombre": "Horchata",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 4,
           "comentario": null
         }
@@ -460,7 +440,7 @@
       "categorias": [
         {
           "nombre": "Pizza",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 5,
           "comentario": null
         }
@@ -484,12 +464,12 @@
       "categorias": [
         {
           "nombre": "Esmorzar",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 4,
-          "comentario": "Bocadillos y producto de mucha calidad si quieres subir un poco el nivel del esmorzaret."
+          "comentario": "Hemos ido a esmorzar"
         }
       ],
-      "resena_general": "Hemos ido a esmorzar",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -508,18 +488,18 @@
       "categorias": [
         {
           "nombre": "Pasta",
-          "precio": "0-15€",
+          "precio": "5-10€",
           "valoracion": 2,
-          "comentario": null
+          "comentario": "Recomendamos pasta"
         },
         {
           "nombre": "Pizza",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 4,
           "comentario": null
         }
       ],
-      "resena_general": "Un restaurante italiano que nos ha sorprendido en valencia es No es lo mimmo, ya que somos escépticos cuando combinan pizza y pasta pero este nos ha parecido una opción súper guay! Cerca de torres de quart y por 20€ aprox por persona tienes una cena para todos los gustos #planesvalencia #comerenvalencia #comerbaratovalencia #pizzavalencia #pastavalencia @noeslomimmo_ristorante",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -539,12 +519,12 @@
       "categorias": [
         {
           "nombre": "Esmorzar",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 4,
           "comentario": null
         }
       ],
-      "resena_general": "Probamos los almuerzos de @centralbarvlc de @ricardcamarena , un puesto del @mercadocentralvalencia que se ha convertido en un must si vas por Valencia! Productos frescos , de temporada y combinaciones super innovadoras. Volveremos!!! #Comerenvalencia #comerbaratovalencia #valenciafood #esmorzaretvalencià #Valencia",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -561,7 +541,7 @@
       "categorias": [
         {
           "nombre": "Saludables",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
         }
@@ -585,12 +565,12 @@
       "categorias": [
         {
           "nombre": "Esmorzar",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 3,
-          "comentario": null
+          "comentario": "Hemos ido esmorzar"
         }
       ],
-      "resena_general": "Hemos ido esmorzar",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -607,7 +587,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 1,
           "comentario": null
         }
@@ -629,7 +609,7 @@
       "categorias": [
         {
           "nombre": "Brunch",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 3,
           "comentario": null
         },
@@ -659,12 +639,12 @@
       "categorias": [
         {
           "nombre": "Esmorzar",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 4,
-          "comentario": "Bocadillo de pulled pork y torreznos: sabor, textura y un punto goloso."
+          "comentario": null
         }
       ],
-      "resena_general": "✨ Cal Carrero – Almuerzos en Patraix, Valencia ✨\nUn sitio que destaca por sus bocadillos originales y bien ejecutados. Nuestra experiencia fue bastante buena, con algunos platos más destacados que otros.\n\n🍴 Lo que probamos:\n\t•\t🥔 Bravas – 6/10\nTienen buena pinta, pero ni la salsa ni las patatas terminan de sorprender. Correctas, pero no imprescindibles.\n\t•\t🥪 Bocadillo de longaniza de pascua y pesto – 8/10\nEs el bocadillo estrella. El pan estaba muy bien, y la longaniza de pascua también. El pesto podría mejorar, y quizá añadir un poco más de relleno le daría un extra, pero sigue siendo un bocadillo recomendable.\n\t•\t🥓 Bocata de pulled pork y torreznos – 9,5/10\nMuy equilibrado, lleno de sabor y perfecto para repetir. \n\n🔝 Valoración final: 8,5/10\nUn lugar ideal para almuerzos más originales , con bocadillos que se disfrutan de principio a fin. También tienen orxata en los meses de verano, nos dijeron que estaría de vuelta en mayo.\n#planesvalencia #comerenvalencia #comerbaratovalencia #esmorzar #almuerzo #valenciafood #valenciafoodies #valencia #restaurantesvalencia #streetfoodvalencia",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -681,7 +661,7 @@
       "categorias": [
         {
           "nombre": "Brunch",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 3,
           "comentario": null
         },
@@ -717,7 +697,7 @@
         },
         {
           "nombre": "Hamburguesa",
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
         }
@@ -811,7 +791,7 @@
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -835,13 +815,13 @@
       "categorias": [
         {
           "nombre": "Fusión Tapas",
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
         },
         {
           "nombre": "Tarta de queso",
-          "precio": "35-60€",
+          "precio": "35-50€",
           "valoracion": 5,
           "comentario": null
         }
@@ -862,13 +842,13 @@
       "etiquetas_extra": [],
       "categorias": [
         {
-          "nombre": "Ramen Japones",
-          "precio": "20-35€",
-          "valoracion": 4,
+          "nombre": null,
+          "precio": null,
+          "valoracion": null,
           "comentario": null
         }
       ],
-      "resena_general": "Mañana subiremos nuestro TOP ramen chino y japonés a tiktok e insta, pero si hay uno que sabe coger lo mejor de las 2 gastronomías es @damura_ramen_bar ! Tienen tanto Baos como ramen suuuper guays, usando la cocina fusión para dar platos sabrosos y originales! #comerenvalencia #planesvalencia #comerbaratovalencia #valenciafood #eatinpeace #valenciafoodies #valencia #ramen #ramenvalencia #japonesvalencia #restaurantefusión",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -884,13 +864,13 @@
       "etiquetas_extra": [],
       "categorias": [
         {
-          "nombre": "Ramen Japones",
+          "nombre": "Ramen",
           "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
         }
       ],
-      "resena_general": "Mañana subiremos nuestro TOP ramen chino y japonés a tiktok e insta, pero si hay uno que sabe coger lo mejor de las 2 gastronomías es @damura_ramen_bar ! Tienen tanto Baos como ramen suuuper guays, usando la cocina fusión para dar platos sabrosos y originales! #comerenvalencia #planesvalencia #comerbaratovalencia #valenciafood #eatinpeace #valenciafoodies #valencia #ramen #ramenvalencia #japonesvalencia #restaurantefusión",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -907,7 +887,7 @@
       "categorias": [
         {
           "nombre": "Ramen",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 1,
           "comentario": null
         }
@@ -931,7 +911,7 @@
       "categorias": [
         {
           "nombre": "Pizza",
-          "precio": "15-25€",
+          "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
         }
@@ -956,7 +936,7 @@
       "categorias": [
         {
           "nombre": "Pizza",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 4,
           "comentario": null
         }
@@ -980,7 +960,7 @@
       "categorias": [
         {
           "nombre": "Pizza",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 4,
           "comentario": null
         }
@@ -1004,13 +984,13 @@
       "categorias": [
         {
           "nombre": "Saludables",
-          "precio": "0-20€",
+          "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
         },
         {
           "nombre": "Vegetariano vegano",
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
         }
@@ -1032,13 +1012,13 @@
       "categorias": [
         {
           "nombre": "Pasta",
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 1,
           "comentario": null
         },
         {
           "nombre": "Pizza",
-          "precio": ">25€",
+          "precio": "20-35€",
           "valoracion": 1,
           "comentario": null
         }
@@ -1060,7 +1040,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 3,
           "comentario": null
         }
@@ -1084,12 +1064,12 @@
       "categorias": [
         {
           "nombre": "Esmorzar",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 3,
-          "comentario": null
+          "comentario": "Solo esmorzar"
         }
       ],
-      "resena_general": "Solo esmorzar",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -1108,7 +1088,7 @@
       "categorias": [
         {
           "nombre": "Esmorzar",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 3,
           "comentario": null
         }
@@ -1132,7 +1112,7 @@
       "categorias": [
         {
           "nombre": null,
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 3,
           "comentario": null
         }
@@ -1147,7 +1127,7 @@
       "lat": 39.4621985,
       "lng": -0.3695985,
       "direccion": "C/ de Pere III el Gran, 12, L'Eixample, 46005 València, Valencia, España",
-      "google_maps_url": "https://maps.google.com/?cid=2639939698447232582&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "google_maps_url": "http://maps.google.com/?cid=2639939698447232582",
       "grupo_id": null,
       "barrio": "L'Eixample",
       "etiquetas_extra": [],
@@ -1156,12 +1136,12 @@
           "nombre": "Tapas",
           "precio": "20-35€",
           "valoracion": 4,
-          "comentario": null
+          "comentario": "Antes incluso de tener redes ya nos encantaba salir a descubrir sitios para comer, y hoy queríamos recordar uno de esos restaurantes que nos conquistó desde la primera visita.\n\nSe trata de Bar Trinchera, en Ruzafa. Nos encantó por la sencillez de su carta, la originalidad de sus platos y lo bien que se come sin gastarse una barbaridad. Si buscáis un sitio para tapear diferente, apuntadlo.\n\nEsto fue lo que probamos:\n\n🥨 Marineras – 8/10 (4€ unidad)\nUna marinera con ensaladilla, anchoa y una salsa de alcaparras y mostaza. Nos pareció el plato más flojo de la comida, pero solo porque el nivel del resto era muy alto. La ensaladilla estaba buena (7/10) y las anchoas eran de mucha calidad (9/10).\n\n🥙 Pan con cordero – 1000/10 (12€)\nSin exagerar, de los mejores platos que hemos comido en Valencia. Lleva cordero, alubias, cebolla, piparras y una salsa espectacular. Todo estaba perfectamente equilibrado y cada bocado era mejor que el anterior. Imprescindible.\n\n🍳 Huevos rotos con atún marinado – 10/10 (15€)\nNunca habíamos probado unos huevos rotos con atún y nos sorprendieron muchísimo. Las patatas estaban increíbles y, aunque cada ingrediente tenía un sabor muy potente por separado, juntos funcionaban de maravilla.\n\nEn resumen, un sitio al que volveríamos sin pensarlo. Una carta sencilla pero muy bien ejecutada, platos originales y precios que hacen que apetezca pedir un poco de todo. Si vais, el pan con cordero es obligatorio."
         }
       ],
-      "resena_general": "Antes incluso de tener redes ya nos encantaba salir a descubrir sitios para comer, y hoy queríamos recordar uno de esos restaurantes que nos conquistó desde la primera visita.\n\nSe trata de Bar Trinchera, en Ruzafa. Nos encantó por la sencillez de su carta, la originalidad de sus platos y lo bien que se come sin gastarse una barbaridad. Si buscáis un sitio para tapear diferente, apuntadlo.\n\nEsto fue lo que probamos:\n\n🥨 Marineras – 8/10 (4€ unidad)\nUna marinera con ensaladilla, anchoa y una salsa de alcaparras y mostaza. Nos pareció el plato más flojo de la comida, pero solo porque el nivel del resto era muy alto. La ensaladilla estaba buena (7/10) y las anchoas eran de mucha calidad (9/10).\n\n🥙 Pan con cordero – 1000/10 (12€)\nSin exagerar, de los mejores platos que hemos comido en Valencia. Lleva cordero, alubias, cebolla, piparras y una salsa espectacular. Todo estaba perfectamente equilibrado y cada bocado era mejor que el anterior. Imprescindible.\n\n🍳 Huevos rotos con atún marinado – 10/10 (15€)\nNunca habíamos probado unos huevos rotos con atún y nos sorprendieron muchísimo. Las patatas estaban increíbles y, aunque cada ingrediente tenía un sabor muy potente por separado, juntos funcionaban de maravilla.\n\nEn resumen, un sitio al que volveríamos sin pensarlo. Una carta sencilla pero muy bien ejecutada, platos originales y precios que hacen que apetezca pedir un poco de todo. Si vais, el pan con cordero es obligatorio.",
-      "instagram_url": "https://www.instagram.com/p/Dala9o5imfQ/?igsh=MXZjc2IxcHlmNXl4Zw==",
-      "tiktok_url": "https://vm.tiktok.com/ZN81w1bGx/"
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null
     },
     {
       "id": "b5e70aa2-7069-40da-9258-b400efdcc343",
@@ -1176,7 +1156,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
         }
@@ -1198,7 +1178,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
         }
@@ -1220,7 +1200,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 1,
           "comentario": null
         }
@@ -1242,7 +1222,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
         }
@@ -1360,7 +1340,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 1,
           "comentario": null
         }
@@ -1382,7 +1362,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 1,
           "comentario": null
         }
@@ -1404,12 +1384,12 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 4,
-          "comentario": null
+          "comentario": "No le ponemos un 5 porque tiene rebeldes en carta pero el que es de otra marca en espresso top"
         }
       ],
-      "resena_general": "No le ponemos un 5 porque tiene rebeldes en carta pero el que es de otra marca en espresso top",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -1426,7 +1406,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 1,
           "comentario": null
         }
@@ -1448,7 +1428,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 1,
           "comentario": null
         }
@@ -1470,7 +1450,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 1,
           "comentario": null
         }
@@ -1492,7 +1472,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 1,
           "comentario": null
         }
@@ -1514,7 +1494,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 1,
           "comentario": null
         }
@@ -1536,7 +1516,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 4,
           "comentario": null
         }
@@ -1558,7 +1538,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 4,
           "comentario": null
         },
@@ -1586,7 +1566,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 4,
           "comentario": null
         }
@@ -1608,7 +1588,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 1,
           "comentario": null
         }
@@ -1630,7 +1610,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
         },
@@ -1658,7 +1638,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
         },
@@ -1686,7 +1666,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 4,
           "comentario": null
         }
@@ -1708,7 +1688,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 5,
           "comentario": null
         }
@@ -1730,7 +1710,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 5,
           "comentario": null
         }
@@ -1752,7 +1732,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 1,
           "comentario": null
         }
@@ -1774,7 +1754,7 @@
       "categorias": [
         {
           "nombre": "Brunch",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
         },
@@ -1786,7 +1766,7 @@
         },
         {
           "nombre": "Matcha",
-          "precio": ">10€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -1808,7 +1788,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 1,
           "comentario": null
         }
@@ -1832,7 +1812,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 1,
           "comentario": null
         }
@@ -1859,7 +1839,7 @@
           "comentario": null
         }
       ],
-      "resena_general": "Uno de los menús del día más buenos y completos que hemos probado es el de @restauranteblauet ! Es una opción genial en la zona de cortes, ya que fusiona muy bien los platos de siempre con toques innovadores . Se lo hemos visto un montón a @soyguirinotonto y confirmamos que nunca fallan recomendando! #comerenvalencia #planesvalencia #comerbaratovalencia #valenciafood #eatinpeace #blauet #menudeldia  #menudeldiavalencia",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -1878,7 +1858,7 @@
       "categorias": [
         {
           "nombre": "Matcha",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 5,
           "comentario": null
         }
@@ -1900,7 +1880,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 1,
           "comentario": null
         }
@@ -1922,7 +1902,7 @@
       "categorias": [
         {
           "nombre": "Brunch",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 1,
           "comentario": null
         },
@@ -1950,7 +1930,7 @@
       "categorias": [
         {
           "nombre": "Brunch",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 1,
           "comentario": null
         },
@@ -1978,7 +1958,7 @@
       "categorias": [
         {
           "nombre": "Brunch",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 1,
           "comentario": null
         },
@@ -2006,7 +1986,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 3,
           "comentario": null
         }
@@ -2028,7 +2008,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 1,
           "comentario": null
         }
@@ -2050,7 +2030,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 1,
           "comentario": null
         },
@@ -2078,7 +2058,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
         }
@@ -2122,7 +2102,7 @@
       "categorias": [
         {
           "nombre": "Fusión Tapas",
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
         }
@@ -2168,12 +2148,12 @@
       "categorias": [
         {
           "nombre": "Pizza",
-          "precio": "0-15€",
+          "precio": "5-10€",
           "valoracion": 4,
-          "comentario": null
+          "comentario": "Focaccias"
         }
       ],
-      "resena_general": "Focaccias",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -2192,12 +2172,12 @@
       "categorias": [
         {
           "nombre": "Pizza",
-          "precio": "0-15€",
+          "precio": "5-10€",
           "valoracion": 4,
-          "comentario": "Focaccias italianas con muy buen pan y rellenos muy bien equilibrados."
+          "comentario": "Focaccias"
         }
       ],
-      "resena_general": "Si estás por el centro de Valencia y quieres una cena buena bonita y barata, @focacceriamercat no defrauda! Hypeados con la cantidad de gente que iba quisimos probarla y la verdad es que nos ha sorprendido lo buena que está! Próximamente haremos top focaccias Valencia así que si tienes recomendaciones te leemos en comments !!! #planesvalencia #comerbaratovalencia #comerenvalencia #valenciafood #valenciafoodies #focaccieriamercat #focaccia #italianovalencia",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -2219,18 +2199,18 @@
           "nombre": "Sushi",
           "precio": "20-35€",
           "valoracion": 4,
-          "comentario": null
+          "comentario": "Hemos ido a Kibo, y probamos su menú del día. En general, nos gustó bastante: platos bien pensados, sabores claros y buena relación calidad-precio.\n\nKibo\n\n🍽️ Lo que probamos:\n\n🥟 Gyozas de curry verde – 10/10\nMuy top, de los platos que más nos gustaron.\n\n🥔 Causa limeña – 9/10\nFresca y bien equilibrada.\n\n🥬 Col al miso – 10/10\nSorpresa total, muy rico.\n\n🐟 Tartar de salmón – 8,5/10\nCorrecto, aunque más sencillo que otros platos, el frito de arroz no nos convenció.\n\n🍣 Maki – 9,25/10\nBien ejecutado y con buen producto, muy fresco y se agradece.\n\n🍏 Tatin de manzana – 9,5/10\nMuy buen cierre, equilibrado y nada pesado.\n\n🍰 Bizcocho – 9,5/10\nMuy bien acompañado el bizcocho.\n\n🔝 Conclusión:\nUn menú muy sólido, con varios platos que destacan bastante. Buen sitio si buscas algo diferente sin irte mucho de precio en Valencia."
         },
         {
           "nombre": "Asiatico mediterraneo",
           "precio": "20-35€",
           "valoracion": 3,
-          "comentario": null
+          "comentario": "Hemos ido a Kibo, y probamos su menú del día. En general, nos gustó bastante: platos bien pensados, sabores claros y buena relación calidad-precio.\n\nKibo\n\n🍽️ Lo que probamos:\n\n🥟 Gyozas de curry verde – 10/10\nMuy top, de los platos que más nos gustaron.\n\n🥔 Causa limeña – 9/10\nFresca y bien equilibrada.\n\n🥬 Col al miso – 10/10\nSorpresa total, muy rico.\n\n🐟 Tartar de salmón – 8,5/10\nCorrecto, aunque más sencillo que otros platos, el frito de arroz no nos convenció.\n\n🍣 Maki – 9,25/10\nBien ejecutado y con buen producto, muy fresco y se agradece.\n\n🍏 Tatin de manzana – 9,5/10\nMuy buen cierre, equilibrado y nada pesado.\n\n🍰 Bizcocho – 9,5/10\nMuy bien acompañado el bizcocho.\n\n🔝 Conclusión:\nUn menú muy sólido, con varios platos que destacan bastante. Buen sitio si buscas algo diferente sin irte mucho de precio en Valencia."
         }
       ],
-      "resena_general": "Hemos ido a Kibo, y probamos su menú del día. En general, nos gustó bastante: platos bien pensados, sabores claros y buena relación calidad-precio.\n\n@kibo_valencia \n\n🍽️ Lo que probamos:\n\n🥟 Gyozas de curry verde – 10/10\nMuy top, de los platos que más nos gustaron.\n\n🥔 Causa limeña – 9/10\nFresca y bien equilibrada.\n\n🥬 Col al miso – 10/10\nSorpresa total, muy rico.\n\n🐟 Tartar de salmón – 8,5/10\nCorrecto, aunque más sencillo que otros platos, el frito de arroz no nos convenció.\n\n🍣 Maki – 9,25/10\nBien ejecutado y con buen producto, muy fresco y se agradece.\n\n🍏 Tatin de manzana – 9,5/10\nMuy buen cierre, equilibrado y nada pesado.\n\n🍰 Bizcocho – 9,5/10\nMuy bien acompañado el bizcocho.\n\n🔝 Conclusión:\nUn menú muy sólido, con varios platos que destacan bastante. Buen sitio si buscas algo diferente sin irte mucho de precio en Valencia.\n\n#comerenvalencia #planesvalencia #valenciafood #sushivalencia #menudeldiavalencia",
-      "instagram_url": "https://www.instagram.com/reel/DYXMct9q7YR/?igsh=MWs0bDI3dW9yazkwbg==",
-      "tiktok_url": "https://vm.tiktok.com/ZN8J8K3nL/"
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null
     },
     {
       "id": "8a95446c-d4b1-41fb-a885-9b2b85abd436",
@@ -2250,18 +2230,18 @@
           "nombre": "Pasta",
           "precio": "20-35€",
           "valoracion": 4,
-          "comentario": null
+          "comentario": "Hemos ido a Bottega Marsengo, uno de esos sitios que consiguen hacer muy bien tanto la pizza como la pasta, algo que no es tan habitual.\n\nFuimos con ganas de probar un poco de todo y salimos muy contentos.\n\n🍽️ Esto fue lo que pedimos:\n\n🧀 Sferas – 8/10\nEstaban buenas, pero si volviéramos probablemente pediríamos otros entrantes.\n\n🍕 Pizza Zucchina – 9,5/10\nNuestra favorita. La masa, con un toque más integral, nos gustó muchísimo.\n\n🌶️ Pizza de salami picante – 9/10\nMuy rica también, aunque nos quedamos con la otra masa.\n\n🍝 Pasta Marsengo – 9,5/10\nOriginal y muy buena. De esos platos que pediríamos otra vez sin pensarlo.\n\n🥄 Tiramisú de pistacho – 9/10\nRico, aunque no nos pareció de los postres que más destacan.\n\n🍮 Tarta Marsengo de caramelo – 9,75/10\nMuy distinta a lo habitual y nos encantó. Nuestro postre favorito.\n\nEn general, un italiano que nos sorprendió para bien. Si sois de los que nunca sabéis si pedir pizza o pasta, aquí no hace falta elegir porque las dos cosas merecen la pena."
         },
         {
           "nombre": "Pizza",
           "precio": "20-35€",
           "valoracion": 4,
-          "comentario": null
+          "comentario": "Hemos ido a Bottega Marsengo, uno de esos sitios que consiguen hacer muy bien tanto la pizza como la pasta, algo que no es tan habitual.\n\nFuimos con ganas de probar un poco de todo y salimos muy contentos.\n\n🍽️ Esto fue lo que pedimos:\n\n🧀 Sferas – 8/10\nEstaban buenas, pero si volviéramos probablemente pediríamos otros entrantes.\n\n🍕 Pizza Zucchina – 9,5/10\nNuestra favorita. La masa, con un toque más integral, nos gustó muchísimo.\n\n🌶️ Pizza de salami picante – 9/10\nMuy rica también, aunque nos quedamos con la otra masa.\n\n🍝 Pasta Marsengo – 9,5/10\nOriginal y muy buena. De esos platos que pediríamos otra vez sin pensarlo.\n\n🥄 Tiramisú de pistacho – 9/10\nRico, aunque no nos pareció de los postres que más destacan.\n\n🍮 Tarta Marsengo de caramelo – 9,75/10\nMuy distinta a lo habitual y nos encantó. Nuestro postre favorito.\n\nEn general, un italiano que nos sorprendió para bien. Si sois de los que nunca sabéis si pedir pizza o pasta, aquí no hace falta elegir porque las dos cosas merecen la pena."
         }
       ],
-      "resena_general": "Hemos ido a Bottega Marsengo - @bottegamarsengo , uno de esos sitios que consiguen hacer muy bien tanto la pizza como la pasta, algo que no es tan habitual.\n\nFuimos con ganas de probar un poco de todo y salimos muy contentos.\n\n🍽️ Esto fue lo que pedimos:\n\n🧀 Sferas – 8/10\nEstaban buenas, pero si volviéramos probablemente pediríamos otros entrantes.\n\n🍕 Pizza Zucchina – 9,5/10\nNuestra favorita. La masa, con un toque más integral, nos gustó muchísimo.\n\n🌶️ Pizza de salami picante – 9/10\nMuy rica también, aunque nos quedamos con la otra masa.\n\n🐣Pizza Carbonara - 9,25/10\nDe la masa con un toque integral y muy intensa, un clásico que nunca falla.\n\n🍝 Pasta Marsengo – 9,5/10\nOriginal y muy buena. De esos platos que pediríamos otra vez sin pensarlo.\n\n💚Tiramisú de pistacho – 9/10\nRico, aunque no nos pareció de los postres que más destacan.\n\n🍮 Tarta Marsengo de caramelo – 9,75/10\nMuy distinta a lo habitual y nos encantó. Nuestro postre favorito.\n\nEn general, un italiano que nos sorprendió para bien. Si sois de los que nunca sabéis si pedir pizza o pasta, aquí no hace falta elegir porque las dos cosas merecen la pena.\n #planesvalencia #comerenvalencia #valenciafood #pizzavalencia #pastavalencia",
-      "instagram_url": "https://www.instagram.com/reel/DaJLuqYKd_g/?igsh=cGxrbDVib3FleTd3",
-      "tiktok_url": "https://vm.tiktok.com/ZN81wRbTf/"
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null
     },
     {
       "id": "3781d939-07f2-4808-a943-c65bde8710ba",
@@ -2276,18 +2256,18 @@
       "categorias": [
         {
           "nombre": "Helados",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
         },
         {
           "nombre": "Horchata",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 5,
           "comentario": null
         }
       ],
-      "resena_general": "Volvimos de fallas y seguimos buscando el mejor restaurante de Valencia… y esta vez toca algo muy nuestro: la mejor horchatería.\n\nY para nosotros, lo tenemos claro: Subies.\n\nNo es solo que tengan de las mejores horchatas que hemos probado, con opción incluso sin azúcar y con un sabor muy puro. Es que además juegan en otra liga con los fartons.\n\n🥐 Fartons hojaldrados – 100/10 \nPara nosotros, los mejores fartons de Valencia con diferencia. Nada que ver con los clásicos: más ligeros, crujientes por fuera y perfectos para mojar. También nos parece el producto estrella de Subies, ya que aportan esa diferencia y originalidad con respecto a otros sitios. \n\n🥤 Orxata clásica – 10/10 \nNi muy dulce ni muy amarga, el punto perfecto de sabor y textura. Sabor a chufa muy balanceado y la mixta es la mejor combinación. \n\n🥤 Orxata sin azúcar – 9,5/10 \nAl principio es extraño por la ausencia de azúcar, pero tiene más potencia a chufa. Tal vez un poco menos densa que la original. \n\n🍨 Helado de orxata – 9/10 \nSabor más suave que las horchatas, pero muy bueno. \n\n🍨 Helado de turrón – 9,5/10 \nEl mejor helado. Sabe a turrón de Xixona y tiene trozos con muchísimo sabor. De los mejores que hemos probado. \n\n🍨 Helado de pistacho – 8/10 \nSabor a pistacho suave y muy balanceado, queda genial combinado con el de turrón.\n\n🍩 Buñuelos de calabaza – 8/10 \nSabor intenso a calabaza , buena textura y muy grandes. Hemos de decir que los probamos en un evento de la UPV, entonces posiblemente en el local estén aún mejor! \n#comerenvalencia #planesvalencia #orxata #horchatavalenciana #valenciafood",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -2306,12 +2286,12 @@
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 5,
           "comentario": null
         }
       ],
-      "resena_general": "Si buscas un japonés top en Valencia, Momiji es una apuesta muy seria. Producto de calidad, cortes precisos y equilibrio en cada plato a un precio relativamente asequible.\n\n🍣 Lo que probamos y nuestras notas:\n\n• Ceviche – 9,5\nEl acompañamiento poco intrusivo dejando protagonismo al pescado.\n\n• Nigiri de toro – 10\nEspectacular. Muy graso, meloso y con un corte perfecto.\n\n• Nigiri de hamachi – 9,75\nMuy fino.\n\n• Nigiri de salmón flambeado – 9,5\nMuy rico pero quizá sorprende menos.\n\n• Uramaki de atún rojo con kimchi picante, aguacate y pepino – 9,5\nEquilibrado, con el picante justo.\n\n• Temaki de anguila – 9,5\nCrujiente, sabroso y muy bien ejecutado.\n\n🍮 Crème brûlée de té matcha y vainilla – 10\nAunque no somos fans del caramelo de arriba tenemos que ponerle un diez. \n\nEn conjunto, un restaurante japonés con producto serio y ejecución muy cuidada. Ideal si buscas sushi con más nivel en Valencia.\n#comerenvalencia #planesvalencia #sushivalencia #valenciafoodies #valenciafood",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -2328,12 +2308,12 @@
       "categorias": [
         {
           "nombre": "Pasta",
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
         }
       ],
-      "resena_general": "Seguimos buscando los mejores restaurantes de Valencia y esta vez fuimos a Sardo, un local muy pequeño pero con muchísimo encanto.\n\nPrecisamente al ser tan pequeño pudimos hablar con ellos y nos contaron que van cambiando bastante la carta. Se nota que les gusta probar cosas distintas y hacer platos de pasta bastante originales, mezclando sabores italianos con otros más modernos.\n\nLo que probamos:\n\t•\tHuevos poché con coliflor al miso – 8/10. Muy rico, aunque quizá no destacaba tanto comparado con otros platos de la mesa.\n\t•\tKatsu sando a la piamontesa – 8/10. Muy buen sabor, pero la textura de la carne nos pareció un poco dura.\n\t•\tOrecchiette a la carbonara de alcachofas – 10/10. Para parte de la mesa fue el mejor plato. Muy cremosa y diferente.\n\t•\tPasta rellena de codillo de cerdo – 8/10. Rica, pero nos quedamos claramente con otras opciones.\n\t•\tPasta rellena de pescado de roca y curry verde – 10/10. La favorita para la otra parte de la mesa. Muy original y con muchísimo sabor.\n\t•\tPasta de patata y queso Berzain – 8,5/10. Muy buena también.\n\t•\tPasta con trufa – 9,5/10. Muy bien hecha y con mucho sabor.\n\nPostres:\n\t•\tBuñuelos de calabaza y mascarpone – 8,5/10. Muy buenos en general.\n\t•\tPera al moscatel – 6,5/10. No nos terminó de convencer.\n\nUn sitio muy recomendable si buscas una pasta diferente en Valencia y te gusta salir un poco de los platos italianos más clásicos.\n\n#comerenvalencia #planesvalencia #comerbaratovalencia #valenciafood #pastavalencia",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -2358,12 +2338,12 @@
         },
         {
           "nombre": "Tarta de queso",
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
         }
       ],
-      "resena_general": "Si buscas un sitio con muy buena calidad precio en Valencia, apunta este nombre: Piscolabis Barra. Un concepto informal, moderno y con platos originales que sorprenden, especialmente si te gusta el tapeo creativo con producto bien trabajado.\n\nNosotros fuimos con ganas de probar varias cosas y la experiencia fue bastante top, sobre todo en relación calidad-precio.\n\n🍽️ Lo que probamos y nuestras notas:\n\n🔥 Montadito de tartar de gamba roja y mantequilla – 100/10\nBrutal. Muy fino, equilibrado y con un sabor espectacular.\n\n🔥 Croqueta de rabo de toro y kimchi – 100/10\nOriginal y diferente. Muy bien ejecutada.\n\n🔥 Croqueta de gamba roja – 100/10\nSabor intenso a gamba, de las que recuerdas.\n\n⚖️ Figatell de sepia con salsa satay de cacahuetes – 6/10\nNo repetiríamos. Predomina demasiado la salsa y se pierde el sabor de la sepia.\n\n👌 Bikini de cecina y queso de tetilla – 8/10\nNada revolucionario, pero rico.\n\n🍰 Tarta de queso Stilton – 9/10\nNo muy potente a queso azul, pero muy rica y equilibrada.\n\nAv. del Regne de València, 23, L’Eixample – Valencia - @piscolabis_barra \n\n#restaurantesvalencia #comerenvalencia #valenciafoodie #tapeovalencia #planesvalencia",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -2382,7 +2362,7 @@
       "categorias": [
         {
           "nombre": null,
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
         }
@@ -2406,7 +2386,7 @@
       "categorias": [
         {
           "nombre": null,
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 4,
           "comentario": null
         }
@@ -2436,18 +2416,12 @@
         },
         {
           "nombre": "Fusión Tapas",
-          "precio": "25-40€",
-          "valoracion": 3,
-          "comentario": null
-        },
-        {
-          "nombre": "Tapas",
           "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
         }
       ],
-      "resena_general": "✨Tapeo Fusión en Veneno Concept✨\n\nHemos ido a Veneno Concept (@venenoconcept) y, aunque la carta es corta, tiene platos interesantes y bien ejecutados. En general, disfrutamos más de las tapas que de los postres. Además hacen eventos, ya que el local es muy chulo.\n\nTosta de sardina – 9/10\nLo mejor de la noche. Muy recomendable: todo está equilibrado y con mucho sabor.\n\nBravas – 8,5/10\nMuy buenas, pero no destacan tanto como otros platos de la carta.\n\nFartón con tartar de atún y titaina – 8/10\nBien conseguido, aunque el sabor del pimiento se lleva demasiado protagonismo.\n\nMadrileño en pan brioche – 8,5/10\nSabroso y bien hecho. Bastante disfrutable.\n\nTarta de queso – 7/10\nCorrecta pero muy estándar. Nada que sorprenda.\n\nFlan de café – 7/10\nEsperábamos más cremosidad y personalidad. Está bien, pero no llega a destacar.\n\nNota general: 8/10\nEn general, mejor pedir tapas que postres, porque los postres nos parecieron caros para lo que ofrecen.\n\n#comerenvalencia #planesvalencia #comerbaratovalencia #valenciafood #valenciafoodies #eatinpeace #valencia #streetfoodvalencia #venenovalencia",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -2466,12 +2440,12 @@
       "categorias": [
         {
           "nombre": "Asiático",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
         }
       ],
-      "resena_general": "✨ Xiong He Jia – Cocina asiática ✨\n@xiong_he_jia es un local que combina platos clásicos del sudeste asiático con opciones más difíciles de encontrar en otros restaurantes similares de Valencia. Todo muy bien ejecutado, con buena relación calidad-precio.\n\n🍴 Lo que probamos:\n\t•\t🥟 Bao clásico – 8/10\nUn bao correcto, tierno y con un relleno sabroso. Exactamente lo que esperas de un buen bao.\n\t•\t🥣 Xiaolongbao – 9/10\nNos encantó el relleno, muy equilibrado y jugoso. Uno de los imprescindibles.\n\t•\t🥢 Jiaozi – 9/10\nQuizá el plato más distinto respecto a lo que solemos probar. Nos sorprendió y además estaba muy rico.\n\t•\t🍗 Pollo frito – 8/10\nCrujiente y sabroso, aunque no lo repetiríamos porque no es especialmente original.\n\t•\t🍛 Arroz lurou – 9,5/10\nEl plato que más nos gustó. La carne tierna, con un guiso muy sabroso y reconfortante.\n\n🔝 Valoración final: 8,5/10\nPlatos muy bien elaborados, sabores auténticos y un precio más que justo. Un sitio ideal para descubrir nuevas texturas y matices asiáticos sin dejar de disfrutar.\n\n#planesvalencia #comerenvalencia #comerbaratovalencia #valenciafoodie #eatinpeace #xionghejia #Ruzafa #tapeoruzafa",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -2490,12 +2464,12 @@
       "categorias": [
         {
           "nombre": "Asiático",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
         }
       ],
-      "resena_general": "✨ Xiong He Jia – Cocina asiática ✨\n@xiong_he_jia es un local que combina platos clásicos del sudeste asiático con opciones más difíciles de encontrar en otros restaurantes similares de Valencia. Todo muy bien ejecutado, con buena relación calidad-precio.\n\n🍴 Lo que probamos:\n\t•\t🥟 Bao clásico – 8/10\nUn bao correcto, tierno y con un relleno sabroso. Exactamente lo que esperas de un buen bao.\n\t•\t🥣 Xiaolongbao – 9/10\nNos encantó el relleno, muy equilibrado y jugoso. Uno de los imprescindibles.\n\t•\t🥢 Jiaozi – 9/10\nQuizá el plato más distinto respecto a lo que solemos probar. Nos sorprendió y además estaba muy rico.\n\t•\t🍗 Pollo frito – 8/10\nCrujiente y sabroso, aunque no lo repetiríamos porque no es especialmente original.\n\t•\t🍛 Arroz lurou – 9,5/10\nEl plato que más nos gustó. La carne tierna, con un guiso muy sabroso y reconfortante.\n\n🔝 Valoración final: 8,5/10\nPlatos muy bien elaborados, sabores auténticos y un precio más que justo. Un sitio ideal para descubrir nuevas texturas y matices asiáticos sin dejar de disfrutar.\n\n#planesvalencia #comerenvalencia #comerbaratovalencia #valenciafoodie #eatinpeace #xionghejia #Ruzafa #tapeoruzafa",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -2514,7 +2488,7 @@
       "categorias": [
         {
           "nombre": null,
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 5,
           "comentario": null
         }
@@ -2538,7 +2512,7 @@
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 1,
           "comentario": null
         }
@@ -2562,12 +2536,12 @@
       "categorias": [
         {
           "nombre": "Asiático",
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 5,
-          "comentario": "Gyoza Almussafes: el dumpling más sorprendente y sabroso de la carta."
+          "comentario": null
         }
       ],
-      "resena_general": "✨ Nuevo en Valencia: Vapor Dumpling Bar ✨\n\nEl local abrió hace poco y ya se ha convertido en un punto de referencia: las colas son habituales, ya que no aceptan reservas. Dudábamos si valía la pena esperar, pero la experiencia lo justificó con creces.\n\n🍴 Lo que probamos:\n\n🥗 Ensaladilla con ají amarillo – 8/10\nMuy original, con un toque picante y fresco. La ensaladilla en sí podría estar algo más cuidada, pero el ají y la guarnición elevan el plato. Las cortezas de trigo, en cambio, no nos convencieron.\n\n🥟 Shoronpo Thai – 9,5/10\nUn dumpling relleno de caldo con sabores tailandeses. Divertido de comer y con un perfil de sabor distinto a lo habitual. Fue uno de los platos más destacados de la noche.\n\n🌮 Gyoza tacos al pastor – 9/10\nJugosos, especiados y con una fusión muy acertada entre la gyoza y el taco. Una propuesta original y recomendable.\n\n🎃 Gyoza de calabaza y curry – 8/10\nCorrecto, con el dulzor de la calabaza y el contraste del curry. Sin embargo, guarda similitudes en matices con el shoronpo, por lo que, de repetir, optaríamos por este último.\n\n🥟 Gyoza Almussafes – 10/10\nEl plato estrella de la carta. Intenso, equilibrado y sorprendente. Una fusión muy bien pensada que se convierte en la mejor recomendación de la experiencia.\n\n🍮 Flan de toffee y miso – 10/10\nAntes de pedir flan siempre fijaros si tiene burbujas en la pared del flan, que suelen indicar una cocción menos cuidada. Este estaba liso, cremoso, perfecto. El sabor a toffee y a miso redondea un postre espectacular.\n\n🔝 Valoración final: 9/10\nEs una experiencia diferente a otros restaurantes fusión, con combinaciones muy originales y es mucho más que un local bonito con buen branding.\n\n🌆 Ruzafa, 25€ por persona. NO admite reservas! @vapor.dumplingbar \n\n#comerenvalencia #planesvalencia #nuevorestaurantevalencia #vaporvalencia #streetfoodvalencia #comerbaratovalencia #valenciafood #eatinpeace #valenciafoodies #valencia #comidafusion #dumplings",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -2587,12 +2561,12 @@
       "categorias": [
         {
           "nombre": "Asiático",
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
         }
       ],
-      "resena_general": "🇯🇵 Tora – Taberna japonesa @toratabernajaponesa 🇯🇵\n\nHemos ido a probar Tora, una taberna japonesa con una carta corta pero bastante bien ejecutada. No reservan, el local es pequeño y suele llenarse bastante, pero la rotación es rápida y no se hace demasiado pesada la espera.\n\nTataki de bonito – 7/10\nEstaba bueno, pero nos quedamos con las ganas de que fuera sashimi como tal. El plato cumple, pero no destaca.\n\nTakoyaki – 9/10\nNo sabe demasiado a pulpo, pero la masa es de las mejores que hemos tomado. Muy tierna, y con muy buen sabor.\n\nYakisoba – 9/10\nMuy buenos, de los platos que más disfrutamos de la noche.\n\nKaraage de pollo – 8/10\nCrujiente y sabroso, pero al final es “solo pollo”. Correcto, aunque no es de los que repetiríamos.\n\nOkonomiyaki – 7/10\nEstaba bien, pero las salsas se apoderaron demasiado del conjunto.\n\n🔝Valoración final : 8,5/10\n\nPD: queremos agradecer a @roma.bordercollie.vlc por la recomendación, nos encanta que nos digáis sitios e intentamos probarlos todos siempreee!!! \n\n#comerenvalencia #planesvalencia #comerbaratovalencia #valenciafood #eatinpeace #valenciafoodies #valencia #streetfoodvalencia #toravalencia #toratabernajaponesa #japonés #japonesvalencia",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -2611,7 +2585,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 5,
           "comentario": null
         }
@@ -2635,12 +2609,12 @@
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": "30-50€",
+          "precio": "35-50€",
           "valoracion": 4,
           "comentario": null
         }
       ],
-      "resena_general": "Fuimos a probar los menús degustación de @kamon_valencia , un restaurante japonés con toques mediterráneos fusión ! Nos recomendaron el ramen de rabo de toro y acierto absoluto! Ideal para un plan diferente por Valencia #comerenvalencia #planesvalencia #valenciafood #sushivalencia #menudegustacion #valencia #kamon #kamonvalencia",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -2661,12 +2635,12 @@
           "nombre": "Sushi",
           "precio": "35-50€",
           "valoracion": 2,
-          "comentario": null
+          "comentario": "Hemos ido a Kawori, un sitio bastante conocido en Valencia y muy recomendado por guías como Guía Repsol o Macarfi. Íbamos con expectativas altas, pero la experiencia no nos terminó de convencer del todo.\n\n🍽️ Lo que probamos:\n\n🐟 Uramaki de dorada – 8/10\n🐚 Zamburiña – 8/10\n🐟 Tartar de salmón – 7/10\n🧀 Buñuelos de queso Idiazábal con hamachi – 9/10\n🦆 Maki de pato y foie – 7,5/10\n🦐 Dim sum de gamba roja – 9/10\n\n🍣 Nigiris:\n🥩 Vaca madurada – 8,5/10\n🐟 Hamachi – 9,25/10\n🐟 Salmón – 8,5/10\n🐟 Ventresca de atún – 8/10\n🐟 Dorada – 8,5/10\n\n🍰 Matcha cheesecake – 8,5/10\n\nEs un sitio donde todo está bien y hay platos que destacan, pero en conjunto no nos pareció al nivel de las expectativas que llevábamos. Probablemente repetiríamos algunos platos sueltos más que la experiencia completa."
         }
       ],
-      "resena_general": "Hemos ido a Kawori, un sitio bastante conocido en Valencia y muy recomendado por guías como Guía Repsol o Macarfi. Íbamos con expectativas altas, pero la experiencia no nos terminó de convencer del todo.\n\n🍽️ Lo que probamos:\n\n🐟 Uramaki de dorada – 8/10\n🐚 Zamburiña – 8/10\n🐟 Tartar de salmón – 7/10\n🧀 Buñuelos de queso Idiazábal con hamachi – 9/10\n🦆 Maki de pato y foie – 7,5/10\n🦐 Dim sum de gamba roja – 9/10\n\n🍣 Nigiris:\n🥩 Vaca madurada – 8,5/10\n🐟 Hamachi – 9,25/10\n🐟 Salmón – 8,5/10\n🐟 Ventresca de atún – 8/10\n🐟 Dorada – 8,5/10\n\n🍰 Matcha cheesecake – 8,5/10\n\n💰 Nota general: 8,25/10\n\nEs un sitio donde todo está bien y hay platos que destacan, pero en conjunto no nos pareció al nivel de las expectativas que llevábamos. Probablemente repetiríamos algunos platos sueltos más que la experiencia completa.\n#Kawori #planesvalencia #comerenvalencia #valenciafood #sushivalencia",
-      "instagram_url": "https://www.instagram.com/reel/DXr4vf-ClbY/?igsh=MXY1NTdseGlicnp3dA==",
-      "tiktok_url": "https://vm.tiktok.com/ZN8J8neES/"
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null
     },
     {
       "id": "9d832238-8104-4030-a555-b048102e891b",
@@ -2681,12 +2655,12 @@
       "categorias": [
         {
           "nombre": "Pasta",
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
         }
       ],
-      "resena_general": "Fuimos a Osteria da Gianni buscando cocina italiana clásica, bien hecha y sin artificios, y la experiencia fue bastante sólida. Un sitio donde se nota el producto y donde algunos platos brillan claramente por encima del resto.\n\n🍽️ Lo que probamos:\n\t•\tCroqueta de jamón – 9/10\nMuy buena. Cremosa, sabrosa y con un sabor a jamón bien marcado.\n\t•\tCroqueta de pulpo – 8/10\nCorrecta y diferente, aunque menos intensa que otras de la mesa.\n\t•\tCroqueta de queso y nueces – 9,5/10\nLa sorpresa. Equilibrio perfecto entre el queso y el toque de la nuez. Probablemente la mejor croqueta de la noche.\n\t•\tPasta al pistacho – 9/10\nMuy rica, cremosa y con el pistacho bien integrado. Plato muy redondo.\n\t•\tPasta a la trufa – 8/10\nBuena, pero más discreta. \n\t•\tTiramisú – 7,5/10\nCorrecto, bien hecho, pero sin destacar especialmente frente al resto de la comida.\n\n🔝 Nota final: 8/10\nUna osteria muy recomendable, con platos bien ejecutados y algunos realmente destacables. Ideal para los que buscan un italiano clásico de calidad.\n\n#comerenvalencia #planesvalencia #valenciafood #pastavalencia #italianosvalencia",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -2705,13 +2679,13 @@
       "categorias": [
         {
           "nombre": "Asiático",
-          "precio": "0-15€",
+          "precio": "5-10€",
           "valoracion": 5,
           "comentario": null
         },
         {
           "nombre": "Ramen",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 5,
           "comentario": null
         }
@@ -2736,7 +2710,7 @@
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 5,
           "comentario": null
         }
@@ -2763,7 +2737,7 @@
           "comentario": null
         }
       ],
-      "resena_general": "Tapas fusión en Gran via a buen precio con @studio.barvlc ! Nos encantó el brioche de carrillera , aunque pidas lo que pidas vas a tener sabores equilibrados, intensos y una comida muuuy guay !!! #comerenvalencia #valenciafood #comerbaratovalencia #planesvalencia #valenciafusion",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -2782,12 +2756,12 @@
       "categorias": [
         {
           "nombre": "Helados",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 5,
           "comentario": null
         }
       ],
-      "resena_general": "Si nos preguntan por la mejor heladería de Valencia, lo tenemos claro: La Romana. Y no solo en Valencia, también en Roma. Gelato artesanal, cremosidad perfecta y sabores muy bien trabajados. Cada vez que venimos cuesta elegir… así que hoy os contamos qué sabores merece más la pena pedir según nuestra experiencia.\n\n🍨 Los helados que hemos probado y nuestras notas:\n\n🔥 10/10\n\t•\tCrema di nocciola al cioccolato bianco – 10/10\nSimplemente perfecta. Equilibrio brutal entre la avellana y el chocolate blanco.\n\n⭐ 9,75/10\n\t•\tCrema dal 1947 – 9,75/10\nClásico absoluto de la casa, cremoso y muy elegante.\n\t•\tPesto di pistacchio – 9,75/10\nIntensísimo, sabor real a pistacho.\n\n✨ 9,25/10\n\t•\tCaramelo salato con noci pecan – 9,25/10\nMuy adictivo, dulce y salado en su punto.\n\n💥 9/10\n\t•\tPesto di nocciola trilobata – 9/10\n\t•\tDoppia arachide salata – 9/10\n\t•\tCioccolato fondente monorigine Ecuador – 9/10\n\t•\tBacio di dama con mandorle tostate – 9/10\n\t•\tCrumbles pralinato alla mandorla – 9/10\nTodos muy sólidos, con sabores muy bien definidos.\n\n👌 8,5/10\n\t•\tStracciatella Grand Cru – 8,5/10\n\t•\tMascarpone al caffè con cioccolato fondente – 8,5/10\n\t•\tBiscotto della nonna – 8,5/10\n\t•\tCremolata al cioccolato – 8,5/10\n\n🙂 8/10\n\t•\tTortino al dulce de leche – 8/10\n\t•\tZabaione come una volta – 8/10\n\n😐 7/10\n\t•\tCocoa and Co – 7/10\nCorrecto, pero nos convenció menos que el resto.\n\n\t•\tC/ de Sant Vicent Màrtir, 8 – Ciutat Vella\n\t•\tCarrer de Joaquín Costa, 2 – L’Eixample\n\n#heladeriavalencia #mejorheladovalencia #gelatoartesanal #laromana #foodievalencia",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -2806,12 +2780,12 @@
       "categorias": [
         {
           "nombre": "Helados",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 5,
           "comentario": null
         }
       ],
-      "resena_general": "Si nos preguntan por la mejor heladería de Valencia, lo tenemos claro: La Romana. Y no solo en Valencia, también en Roma. Gelato artesanal, cremosidad perfecta y sabores muy bien trabajados. Cada vez que venimos cuesta elegir… así que hoy os contamos qué sabores merece más la pena pedir según nuestra experiencia.\n\n🍨 Los helados que hemos probado y nuestras notas:\n\n🔥 10/10\n\t•\tCrema di nocciola al cioccolato bianco – 10/10\nSimplemente perfecta. Equilibrio brutal entre la avellana y el chocolate blanco.\n\n⭐ 9,75/10\n\t•\tCrema dal 1947 – 9,75/10\nClásico absoluto de la casa, cremoso y muy elegante.\n\t•\tPesto di pistacchio – 9,75/10\nIntensísimo, sabor real a pistacho.\n\n✨ 9,25/10\n\t•\tCaramelo salato con noci pecan – 9,25/10\nMuy adictivo, dulce y salado en su punto.\n\n💥 9/10\n\t•\tPesto di nocciola trilobata – 9/10\n\t•\tDoppia arachide salata – 9/10\n\t•\tCioccolato fondente monorigine Ecuador – 9/10\n\t•\tBacio di dama con mandorle tostate – 9/10\n\t•\tCrumbles pralinato alla mandorla – 9/10\nTodos muy sólidos, con sabores muy bien definidos.\n\n👌 8,5/10\n\t•\tStracciatella Grand Cru – 8,5/10\n\t•\tMascarpone al caffè con cioccolato fondente – 8,5/10\n\t•\tBiscotto della nonna – 8,5/10\n\t•\tCremolata al cioccolato – 8,5/10\n\n🙂 8/10\n\t•\tTortino al dulce de leche – 8/10\n\t•\tZabaione come una volta – 8/10\n\n😐 7/10\n\t•\tCocoa and Co – 7/10\nCorrecto, pero nos convenció menos que el resto.\n\n\t•\tC/ de Sant Vicent Màrtir, 8 – Ciutat Vella\n\t•\tCarrer de Joaquín Costa, 2 – L’Eixample\n\n#heladeriavalencia #mejorheladovalencia #gelatoartesanal #laromana #foodievalencia",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -2831,12 +2805,12 @@
       "categorias": [
         {
           "nombre": "Tarta de queso",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 3,
-          "comentario": "Solo probamos la versión clásica y estaba bastante buena."
+          "comentario": null
         }
       ],
-      "resena_general": "Tienda especializada en tarta de queso.",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -2856,7 +2830,7 @@
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
         }
@@ -2881,7 +2855,7 @@
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
         }
@@ -2905,18 +2879,18 @@
       "categorias": [
         {
           "nombre": "Fusión Tapas",
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
         },
         {
           "nombre": "Tarta de queso",
-          "precio": "35-60€",
+          "precio": "35-50€",
           "valoracion": 4,
           "comentario": null
         }
       ],
-      "resena_general": "Hace unos meses abrió @maestrobar.valencia y nos parece un must para tapear con sabores nuevos y tradicionales de muy buena calidad.\nLos platos de pescado son super innovadores y la fusión de sabores nos encantó !!! #eatinpeace #comerenvalencia #planesvalencia #valenciafood #comerbaratovalencia #valenciafusion",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -2938,7 +2912,7 @@
           "comentario": null
         }
       ],
-      "resena_general": "Nos encanta la comida fusión y darle una segunda vuelta a las tapas típicas. En la negri, en Benimaclet, tienen un concepto maravilloso para ello y nos encantó el sitio !!! #comerenvalencia #planesvalencia #comerbaratovalencia #valenciafood #eatinpeace #valenciafoodies #recetasfaciles #valencia #tapasvalencia #lanegri #comidafusionvalencia",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -2957,7 +2931,7 @@
       "categorias": [
         {
           "nombre": null,
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 4,
           "comentario": null
         }
@@ -2983,12 +2957,12 @@
           "nombre": "Tapas",
           "precio": "20-35€",
           "valoracion": 3,
-          "comentario": null
+          "comentario": "A huevo🍳\n\nHemos ido a probar este sitio con una propuesta bastante equilibrada entre cocina clásica bien ejecutada y algún toque más creativo. En general, es un restaurante donde se come bien, con platos reconocibles y sabores claros, sin grandes riesgos pero con buena técnica.\n\n🍽️ Lo que probamos:\n\t•\tCroquetas – 8/10\nCorrectas, cremosas y bien fritas. Cumplen, aunque no son lo más destacable de la comida.\n\t•\tHuevos rotos – 9/10\nMuy buenos. Buen punto del huevo y patata bien hecha. Un plato sencillo pero muy bien ejecutado.\n\t•\tSalmón con couscous – 9,5/10\nDe lo mejor del menú. El salmón estaba en su punto y el couscous acompañaba perfectamente. Plato muy equilibrado y sabroso.\n\t•\tCarne sobre puré de calabaza – 8,5/10\nBuena carne y puré suave, con un contraste dulce interesante. Quizá no sorprende, pero funciona muy bien.\n\t•\tTarta de queso azul – 8/10\nOriginal por el toque de queso azul, bien integrada, aunque sin llegar a ser espectacular.\n\t•\tBizcocho de calabaza – 7/10\nCorrecto, pero es el postre que menos nos convenció. Rico, pero algo más plano.\n\nUna experiencia sólida, con platos bien hechos y alguno realmente destacable. Un sitio recomendable si buscas comer bien sin complicaciones.\n"
         }
       ],
-      "resena_general": "A huevo🍳\n\nHemos ido a probar este sitio con una propuesta bastante equilibrada entre cocina clásica bien ejecutada y algún toque más creativo. En general, es un restaurante donde se come bien, con platos reconocibles y sabores claros, sin grandes riesgos pero con buena técnica.\n\n🍽️ Lo que probamos:\n\t•\tCroquetas – 8/10\nCorrectas, cremosas y bien fritas. Cumplen, aunque no son lo más destacable de la comida.\n\t•\tHuevos rotos – 9/10\nMuy buenos. Buen punto del huevo y patata bien hecha. Un plato sencillo pero muy bien ejecutado.\n\t•\tSalmón con couscous – 9,5/10\nDe lo mejor del menú. El salmón estaba en su punto y el couscous acompañaba perfectamente. Plato muy equilibrado y sabroso.\n\t•\tCarne sobre puré de calabaza – 8,5/10\nBuena carne y puré suave, con un contraste dulce interesante. Quizá no sorprende, pero funciona muy bien.\n\t•\tTarta de queso azul – 8/10\nOriginal por el toque de queso azul, bien integrada, aunque sin llegar a ser espectacular.\n\t•\tBizcocho de calabaza – 7/10\nCorrecto, pero es el postre que menos nos convenció. Rico, pero algo más plano.\n\n🔝 Nota final: 8,25/10\nUna experiencia sólida, con platos bien hechos y alguno realmente destacable. Un sitio recomendable si buscas comer bien sin complicaciones.\n\n🍽️ Menú del día 18€\n\n#comerenvalencia #planesvalencia #comerbaratovalencia #valenciafood #ahuevo",
-      "instagram_url": "https://www.instagram.com/reel/DS0XBKuCgO_/?igsh=MWpkb2I3cnNsOGI3bw==",
-      "tiktok_url": "https://vm.tiktok.com/ZN81wYKRg/"
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null
     },
     {
       "id": "0a79eae4-c071-4086-8e71-6a74a7f1d3eb",
@@ -3005,7 +2979,7 @@
       "categorias": [
         {
           "nombre": null,
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 5,
           "comentario": null
         }
@@ -3027,12 +3001,12 @@
       "categorias": [
         {
           "nombre": null,
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
         }
       ],
-      "resena_general": "Probamos Pope Deli (@popedeli), el nuevo restaurante de @pope.ultramarinos ! Si o si tenéis que pediros un Pope, que a nosotros el de rabo de toro nos encantó! Es un plan diferente y que mantiene muy guay la esencia del original con un toque a deli americano 🇺🇸#comerenvalencia #planesvalencia #valenciafood #popedeli #pastrami #streetfoodvalencia",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -3099,7 +3073,7 @@
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -3121,7 +3095,7 @@
       "categorias": [
         {
           "nombre": null,
-          "precio": ">40€",
+          "precio": "35-50€",
           "valoracion": 3,
           "comentario": null
         }
@@ -3145,7 +3119,7 @@
       "categorias": [
         {
           "nombre": "Helados",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
         }
@@ -3169,7 +3143,7 @@
       "categorias": [
         {
           "nombre": "Helados",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
         }
@@ -3191,7 +3165,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
         }
@@ -3215,12 +3189,12 @@
       "categorias": [
         {
           "nombre": null,
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 4,
-          "comentario": "El mochi de miso es un gran infravalorado, destaca por su equilibrio entre dulce y salado."
+          "comentario": null
         }
       ],
-      "resena_general": "✨ Mochisan – Valencia ✨\nNo solemos ser fans de los mochis, sobre todo porque en muchos sitios el relleno suele ser helado y la textura no termina de acompañar al sabor. En @mochisan_mochis , sin embargo, la experiencia fue completamente distinta: el interior es más parecido a una mousse y se sirve a temperatura templada, lo que cambia por completo la sensación en boca.\n\n🍡 Lo que probamos:\n\t•\tMiso – 9/10\nMuy original. Combina toques dulces y salados gracias al caramelo, y el resultado es sorprendentemente equilibrado.\n\t•\tPistacho – 8/10\nBueno, con un sabor intenso y agradable, aunque algo más pesado que el resto.\n\t•\tTarta de queso – 8,5/10\nSi no llevara frambuesa sería un 9,5/10, pero aun así es un mochi muy logrado, con una textura cremosa y un sabor redondo.\n\nNo pudimos probar el de yuzu, pero nos lo han recomendado muchísimo, así que volveremos seguro para hacerlo.\n\nDurante la visita nos dieron un yogur con maracuyá por la espera, un detalle muy amable. El postre estaba equilibrado y fresco, aunque esperábamos un punto más de sabor frutal (8,5/10).\n\n\t•\tExtramurs: calle Martín Humano, 4\n\t•\tPatraix: calle Callosa d’En Sarrià, 2B\n\n🔝 Valoración final: 8,5/10\nUna propuesta diferente que cambia la forma de entender los mochis. Textura, sabor y atención al cliente, todo muy cuidado.\n#comerenvalencia #planesvalencia #comerbaratovalencia #valenciafood #eatinpeace #valenciafoodies #valencia #streetfoodvalencia #mochisvalencia #mochisan #patraix #comerenpatraix",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -3239,7 +3213,7 @@
       "categorias": [
         {
           "nombre": "Ramen",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 1,
           "comentario": null
         }
@@ -3263,7 +3237,7 @@
       "categorias": [
         {
           "nombre": "Ramen",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 1,
           "comentario": null
         }
@@ -3287,7 +3261,7 @@
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": "0-30€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -3311,7 +3285,7 @@
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": "0-30€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -3335,13 +3309,13 @@
       "categorias": [
         {
           "nombre": "Fusión Tapas",
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
         },
         {
           "nombre": "Tarta de queso",
-          "precio": "35-60€",
+          "precio": "35-50€",
           "valoracion": 4,
           "comentario": null
         }
@@ -3365,7 +3339,7 @@
       "categorias": [
         {
           "nombre": null,
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 3,
           "comentario": null
         }
@@ -3389,12 +3363,12 @@
           "nombre": "Coreano",
           "precio": "20-35€",
           "valoracion": 5,
-          "comentario": "Mousse de té matcha: equilibrada, suave y con el punto justo de sabor."
+          "comentario": "✨ Hemos vuelto a La Taula de Yoon ✨\n\nEs uno de esos sitios que nos encantó la primera vez que fuimos y al que llevábamos tiempo queriendo volver. Aprovechamos que habían cambiado a la carta de verano para probar platos nuevos y la sensación sigue siendo la misma: cocina coreana casera, auténtica y hecha con muchísimo cariño. De esos restaurantes pequeños que no llaman la atención desde fuera, pero a los que siempre apetece volver.\n\n🍴 Esta vez probamos:\n\n🌶️ Tteokbokki con omuktwigim – 9,25/10\nPasta de arroz en salsa de gochujang acompañada de pasta de pescado frita. Muy rico, pero te tiene que gustar el gochujang porque tiene bastante protagonismo y además pica bastante.\n\n🥞 Kimchijeon – 10/10\nTortita de kimchi. Nos encantó. Crujiente, sabrosa y de esos platos que volveríamos a pedir siempre.\n\n🥓 Suyuk Bossam Kimchi – 10/10\nPanceta cocida con kimchi bossam y hojas de lechuga. La panceta estaba increíblemente tierna y todos los acompañamientos funcionaban genial.\n\n🍵 Mousse de té matcha – 10/10\nEl único plato que repetimos. No nos podíamos ir sin volver a pedirlo.\n\n🍫 Mousse de chocolate – 9,5/10\nSi sois de los que no disfrutan tanto el matcha, esta es una apuesta segura. Aun así, nosotros seguimos quedándonos con la de té matcha.\n\n📋 Y por si os perdisteis nuestra primera visita:\n\n🥟 Kimchi Mandu – 8,5/10\n🍜 Buchu Japchae – 9/10\n🍗 Cheese Dakgalbi con Ssammu – 9,5/10\n🍵 Mousse de té matcha – 10/10\n\n"
         }
       ],
-      "resena_general": "✨ La Taula de Yoon – Valencia ✨\nUn pequeño restaurante coreano llevado por una pareja formada por un valenciano y una coreana. Cocina casera, sabores auténticos y una experiencia que destaca por su equilibrio entre tradición y toques personales. El espacio es muy reducido, por lo que conviene reservar con bastante antelación (nosotros reservamos 2 semanas antes de ir), pero la visita realmente vale la pena.\n\n🍴 Lo que probamos:\n\t•\t🥟 Kimchi Mandu – 8,5/10\nDumplings de cerdo y kimchi, sabrosos y bien elaborados. El kimchi tiene un punto de fermentación muy agradable. Aunque nos gustaron, no fueron el mejor plato de la noche.\n\t•\t🍜 Buchu Japchae – 9/10\nFideos de boniato salteados con verduras. Muy buen fondo de sésamo, textura perfecta y sabor equilibrado. Uno de los imprescindibles de la carta.\n\t•\t🍗 Cheese Dakgalbi con Ssammu – 9,5/10\nPollo con queso y una salsa realmente deliciosa. La única pega: el queso resulta un poco excesivo. De no ser por eso, rozaría el 10.\n\t•\t🍵 Mousse de té matcha – 10/10\nSabor a matcha justo, sin resultar pesado. Textura suave y final delicado. Un postre excelente.\n\n🔝 Valoración final: 9/10\nUna propuesta coreana con mucho mimo, sabores equilibrados y platos que se disfrutan de principio a fin. Pequeño, acogedor y con alma: uno de esos sitios que merece descubrirse. Cuesta 25€ por persona aproximadamente y las raciones son bastante grandes. #planesvalencia #comerenvalencia #comerbaratovalencia #latauladeyoon #ruzafa #comerenruzafa #coreanovalencia",
-      "instagram_url": "https://www.instagram.com/reel/DZ3BQKdqIqd/?igsh=MTA4aG0zNG03eGcxdQ==",
-      "tiktok_url": "https://vm.tiktok.com/ZN81w2gJN/"
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null
     },
     {
       "id": "73e624d2-0953-4d57-b9d1-15fe134df3da",
@@ -3409,9 +3383,9 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 3,
-          "comentario": null
+          "comentario": "Mejor café que matcha"
         },
         {
           "nombre": "Matcha",
@@ -3420,7 +3394,7 @@
           "comentario": null
         }
       ],
-      "resena_general": "Mejor café que matcha",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -3437,13 +3411,13 @@
       "categorias": [
         {
           "nombre": "Pasta",
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
         },
         {
           "nombre": "Pizza",
-          "precio": ">25€",
+          "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
         }
@@ -3467,12 +3441,12 @@
       "categorias": [
         {
           "nombre": "Pasta",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 4,
-          "comentario": null
+          "comentario": "Para cocinar en casa"
         }
       ],
-      "resena_general": "Para cocinar en casa",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -3517,7 +3491,7 @@
         },
         {
           "nombre": "Vegetariano vegano",
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
         }
@@ -3542,7 +3516,7 @@
       "categorias": [
         {
           "nombre": "Pizza",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
         }
@@ -3567,7 +3541,7 @@
       "categorias": [
         {
           "nombre": "Pizza",
-          "precio": "0-15€",
+          "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
         }
@@ -3589,7 +3563,7 @@
       "categorias": [
         {
           "nombre": "Matcha",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 4,
           "comentario": null
         }
@@ -3611,7 +3585,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 4,
           "comentario": null
         },
@@ -3639,7 +3613,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 4,
           "comentario": null
         },
@@ -3667,7 +3641,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 4,
           "comentario": null
         },
@@ -3695,7 +3669,7 @@
       "categorias": [
         {
           "nombre": "Matcha",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 1,
           "comentario": null
         }
@@ -3720,7 +3694,7 @@
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 4,
           "comentario": null
         }
@@ -3745,7 +3719,7 @@
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -3795,7 +3769,7 @@
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
         }
@@ -3820,7 +3794,7 @@
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 4,
           "comentario": null
         }
@@ -3845,12 +3819,12 @@
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 5,
-          "comentario": "Para nosotros, la mejor hamburguesa de Valencia y probablemente del mundo. Burgers muy potentes y siempre un acierto."
+          "comentario": null
         }
       ],
-      "resena_general": "Parte 3 | Hundred: la mejor burger de Valencia, Madrid y del mundo 🍔\nHoy hablamos de nuestra hamburguesería favorita, un sitio al que volvemos una y otra vez sin cansarnos: Hundred. Para nosotros es un valor seguro, tanto si vas por primera vez como si ya eres habitual. Burgers muy bien pensadas y un nivel muy alto en todo.\n\n🍔 Nuestras hamburguesas favoritas (y para quién es cada una):\n\t•\tSingular – 10/10\nLa que le gusta a todo el mundo y la más famosa de Hundred. Perfecta si es tu primera vez: equilibrada, sabrosa y sin riesgos.\n\t•\tPaul Finch – 100/10\nNuestra favorita absoluta. Para los que buscan sabores intensos, contundentes y sin medias tintas.\n\t•\tLoser – 9/10\nIdeal para amantes del picante. Pica lo justo para disfrutarla sin tapar el resto de sabores.\n\t•\tShowdown – 9,75/10\nSi te encanta el contraste dulce–salado, esta es tu burger. Muy adictiva.\n\t•\tSatisfaction – 8,5/10\nLa más estándar. Recomendable si no te gusta la carne muy grande o prefieres algo más ligero.\n\t•\tCheeseburger – 8/10\nSuave, clásica y con mucho sabor a queso. Cumple perfectamente.\n\t•\tLa madre de Stifler – 7/10\nPara los que quieren experimentar muchos sabores a la vez. Curiosa, pero no nuestra favorita.\n\t•\tJohnny Drama – 8,5/10\nToque fresco y perfil más american burger. Muy equilibrada.\n\t•\tCarlton Banks – 8/10\nLa opción perfecta si prefieres pollo en lugar de carne.\n\n🍔 Burgers del mes que destacamos:\n\t•\tLa Anoche Foie\n\t•\tLa Pedro Pedro\nSuelen merecer mucho la pena y cambian bastante el juego.\n\n🍟 Entrantes:\n\t•\tPatatas – 9/10\n\t•\tSweet potatoes – 9/10\n\t•\tBacon cheese fries – 9/10\n\t•\tPulled pork fries – 8/10\n\t•\tAll in nachos – 8/10\n\t•\tBbq ribs – 9/10\n\n🍰 Postres:\n\t•\tCheesecake – 9/10\n\t•\tSammy loves Reese’s – 8/10\n\t•\tBorxito de Kinder – 9/10\n\nConclusión:\nHundred sigue siendo, para nosotros, la hamburguesería más completa y consistente. Da igual cuántas veces vayamos: siempre salimos con ganas de volver. Ideal tanto para clásicos como para los que buscan algo más atrevido.\n\n💰15-20€ por persona\n@HUNDRED #hundredburgers #valenciaburgers #comerenvalencia #comerbaratovalencia #valenciafoodies",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -3870,7 +3844,7 @@
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 5,
           "comentario": null
         }
@@ -3895,12 +3869,12 @@
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 5,
-          "comentario": "Para nosotros, la mejor hamburguesa de Valencia y probablemente del mundo. Burgers muy potentes y siempre un acierto."
+          "comentario": null
         }
       ],
-      "resena_general": "Parte 3 | Hundred: la mejor burger de Valencia, Madrid y del mundo 🍔\nHoy hablamos de nuestra hamburguesería favorita, un sitio al que volvemos una y otra vez sin cansarnos: Hundred. Para nosotros es un valor seguro, tanto si vas por primera vez como si ya eres habitual. Burgers muy bien pensadas y un nivel muy alto en todo.\n\n🍔 Nuestras hamburguesas favoritas (y para quién es cada una):\n\t•\tSingular – 10/10\nLa que le gusta a todo el mundo y la más famosa de Hundred. Perfecta si es tu primera vez: equilibrada, sabrosa y sin riesgos.\n\t•\tPaul Finch – 100/10\nNuestra favorita absoluta. Para los que buscan sabores intensos, contundentes y sin medias tintas.\n\t•\tLoser – 9/10\nIdeal para amantes del picante. Pica lo justo para disfrutarla sin tapar el resto de sabores.\n\t•\tShowdown – 9,75/10\nSi te encanta el contraste dulce–salado, esta es tu burger. Muy adictiva.\n\t•\tSatisfaction – 8,5/10\nLa más estándar. Recomendable si no te gusta la carne muy grande o prefieres algo más ligero.\n\t•\tCheeseburger – 8/10\nSuave, clásica y con mucho sabor a queso. Cumple perfectamente.\n\t•\tLa madre de Stifler – 7/10\nPara los que quieren experimentar muchos sabores a la vez. Curiosa, pero no nuestra favorita.\n\t•\tJohnny Drama – 8,5/10\nToque fresco y perfil más american burger. Muy equilibrada.\n\t•\tCarlton Banks – 8/10\nLa opción perfecta si prefieres pollo en lugar de carne.\n\n🍔 Burgers del mes que destacamos:\n\t•\tLa Anoche Foie\n\t•\tLa Pedro Pedro\nSuelen merecer mucho la pena y cambian bastante el juego.\n\n🍟 Entrantes:\n\t•\tPatatas – 9/10\n\t•\tSweet potatoes – 9/10\n\t•\tBacon cheese fries – 9/10\n\t•\tPulled pork fries – 8/10\n\t•\tAll in nachos – 8/10\n\t•\tBbq ribs – 9/10\n\n🍰 Postres:\n\t•\tCheesecake – 9/10\n\t•\tSammy loves Reese’s – 8/10\n\t•\tBorxito de Kinder – 9/10\n\nConclusión:\nHundred sigue siendo, para nosotros, la hamburguesería más completa y consistente. Da igual cuántas veces vayamos: siempre salimos con ganas de volver. Ideal tanto para clásicos como para los que buscan algo más atrevido.\n\n💰15-20€ por persona\n@HUNDRED #hundredburgers #valenciaburgers #comerenvalencia #comerbaratovalencia #valenciafoodies",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -3943,7 +3917,7 @@
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": ">15€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -4011,9 +3985,9 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 3,
-          "comentario": null
+          "comentario": "Café con sabor distinto. Matcha bueno."
         },
         {
           "nombre": "Matcha",
@@ -4022,7 +3996,7 @@
           "comentario": null
         }
       ],
-      "resena_general": "Café con sabor distinto. Matcha bueno.",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -4071,12 +4045,12 @@
           "nombre": "Tapas",
           "precio": "35-50€",
           "valoracion": 3,
-          "comentario": null
+          "comentario": "Hemos ido a Fiveo Bar, el nuevo sitio de los de Fiveo Coffee. Acaban de abrir y se nota en algunos detalles, pero también en lo bueno: platos bastante originales y diferentes a lo típico.\n\nEn general nos gustó. Hay cosas a mejorar, pero la idea está muy bien y varios platos destacan bastante. Eso sí, nos pareció un pelín caro.\n\nEsto fue lo que probamos:\n\n🐰 Croqueta de conejo con jengibre y cebollino japonés – 8,5/10  \nSi no te gusta el jengibre, este no es tu plato. Aun así, rica y original.\n\n🦪 Vieira con coliflor y oxalis – 9,75/10  \nDe lo mejor. La salsa muy buena y sin tapar la vieira.\n\n🥬 Espárrago blanco con masa madre, sobrasada y yuca – 9,25/10  \nBastante simple, pero muy rico si te gustan los espárragos.\n\n🦐 Tartar de gamba con kolrabi, eneldo y crème fraîche – 9,25/10  \nEl acompañamiento tapa un poco la gamba, pero está muy bueno.\n\n🥔 Espuma de patata con ragú de ciervo, kimchi, calabacín y yema –10/10  \nDe los que más nos gustaron. \n\n🐔 Pollo Lumagorri con mole negro, plátano a la brasa y cebollitas encurtidas – 7,75/10  \nEl sabor no es malo, pero el pollo un poco seco. No lo pediríamos. \n\n🍫 Chocolate con aguacate, aceite de oliva y avena – 9,25/10  \nPostre muy bien, diferente.\n\nEn resumen: sitio con ideas muy guays y bastante potencial, si os gustan cosas distintas os recomendamos ir."
         }
       ],
-      "resena_general": "Hemos ido a Fiveo Bar, el nuevo sitio de los de Fiveo Coffee. Acaban de abrir y se nota en algunos detalles, pero también en lo bueno: platos bastante originales y diferentes a lo típico.\n\nEn general nos gustó. Hay cosas a mejorar, pero la idea está muy bien y varios platos destacan bastante. Eso sí, nos pareció un pelín caro.\n\nEsto fue lo que probamos:\n\n🐰 Croqueta de conejo con jengibre y cebollino japonés – 8,5/10 \nSi no te gusta el jengibre, este no es tu plato. Aun así, rica y original.\n\n🦪 Vieira con coliflor y oxalis – 9,75/10 \nDe lo mejor. La salsa muy buena y sin tapar la vieira.\n\n🥬 Espárrago blanco con masa madre, sobrasada y yuca – 9,25/10 \nBastante simple, pero muy rico si te gustan los espárragos.\n\n🦐 Tartar de gamba con kolrabi, eneldo y crème fraîche – 9,25/10 \nEl acompañamiento tapa un poco la gamba, pero está muy bueno.\n\n🥔 Espuma de patata con ragú de ciervo, kimchi, calabacín y yema –10/10 \nDe los que más nos gustaron. \n\n🐔 Pollo Lumagorri con mole negro, plátano a la brasa y cebollitas encurtidas – 7,75/10 \nEl sabor no es malo, pero el pollo un poco seco. No lo pediríamos. \n\n🍫 Chocolate con aguacate, aceite de oliva y avena – 9,25/10 \nPostre muy bien, diferente.\n\nEn resumen: sitio con ideas muy guays y bastante potencial, si os gustan cosas distintas os recomendamos ir.\n\n@fiveo___ @fiveostore.vlc @fiveo.bar \n\n#comerenvalencia #planesvalencia #valenciafood #Fiveo #tapasvalencia",
-      "instagram_url": "https://www.instagram.com/reel/DYZiHKGK_S9/?igsh=MTZsaWR0ZjZvcXYy",
-      "tiktok_url": "https://vm.tiktok.com/ZN8J8LcK1/"
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null
     },
     {
       "id": "02c7ea98-7f79-4d72-9845-10221455c31c",
@@ -4099,7 +4073,7 @@
         },
         {
           "nombre": "Tarta de queso",
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
         }
@@ -4124,7 +4098,7 @@
       "categorias": [
         {
           "nombre": "Tarta de queso",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
         }
@@ -4149,7 +4123,7 @@
       "categorias": [
         {
           "nombre": "Tarta de queso",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
         }
@@ -4174,19 +4148,19 @@
       "categorias": [
         {
           "nombre": "Fusión Tapas",
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
         },
         {
           "nombre": "Hamburguesa",
-          "precio": "35-60€",
+          "precio": "35-50€",
           "valoracion": 4,
           "comentario": null
         },
         {
           "nombre": "Tarta de queso",
-          "precio": ">15€",
+          "precio": "10-20€",
           "valoracion": 4,
           "comentario": null
         }
@@ -4211,7 +4185,7 @@
       "categorias": [
         {
           "nombre": "Tarta de queso",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
         }
@@ -4235,13 +4209,13 @@
       "categorias": [
         {
           "nombre": "Fusión Tapas",
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
         },
         {
           "nombre": "Tarta de queso",
-          "precio": "35-60€",
+          "precio": "35-50€",
           "valoracion": 4,
           "comentario": null
         }
@@ -4265,7 +4239,7 @@
       "categorias": [
         {
           "nombre": "Pizza",
-          "precio": "0-15€",
+          "precio": "5-10€",
           "valoracion": 1,
           "comentario": null
         }
@@ -4289,7 +4263,7 @@
       "categorias": [
         {
           "nombre": "Pasta",
-          "precio": "0-15€",
+          "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
         }
@@ -4313,7 +4287,7 @@
       "categorias": [
         {
           "nombre": "Pasta",
-          "precio": "0-15€",
+          "precio": "5-10€",
           "valoracion": 3,
           "comentario": null
         }
@@ -4337,7 +4311,7 @@
       "categorias": [
         {
           "nombre": "Pasta",
-          "precio": "0-15€",
+          "precio": "5-10€",
           "valoracion": 3,
           "comentario": null
         }
@@ -4369,7 +4343,7 @@
           "nombre": "Paella/arroces",
           "precio": "20-35€",
           "valoracion": 3,
-          "comentario": null
+          "comentario": ""
         }
       ],
       "resena_general": null,
@@ -4413,12 +4387,12 @@
       "categorias": [
         {
           "nombre": "Esmorzar",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 5,
-          "comentario": "Bocadillos y producto de mucha calidad si quieres subir un poco el nivel del esmorzaret."
+          "comentario": "Esmorzar solo"
         }
       ],
-      "resena_general": "Esmorzar solo",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -4437,7 +4411,7 @@
       "categorias": [
         {
           "nombre": "Esmorzar",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 4,
           "comentario": null
         }
@@ -4461,10 +4435,10 @@
           "nombre": "Fusión Tapas",
           "precio": "20-35€",
           "valoracion": 3,
-          "comentario": "Alitas de pollo picantes y lima: el mejor plato del restaurante sin duda, jugosas y con un toque cítrico irresistible."
+          "comentario": null
         }
       ],
-      "resena_general": "✨ Matador – Valencia ✨\n@ruzafamatador es un restaurante de tapas modernas con toques de fusión. Propuestas interesantes y bien presentadas, con algunos platos que destacan especialmente.\n\n🍴 Lo que probamos:\n\t•\t🥔 Ensaladilla con trufa – 8/10\nUn toque de trufa muy sutil, dejando que la patata sea la protagonista. Correcta y equilibrada.\n\t•\t🥟 Croqueta de rabo de toro – 8/10\n\t•\t🦑 Croqueta de chipirones – 8/10\n\t•\t🐖 Croqueta de jamón – 8,25/10\nLas tres croquetas estaban buenas, con rebozado crujiente y sabores bien definidos. La de jamón fue ligeramente nuestra favorita, aunque ninguna llegó a sorprender.\n\t•\t🍗 Alitas picantes con lima – 10/10\nEl mejor plato de la noche. Perfecto equilibrio entre el picante y el punto ácido de la lima. Jugosas, sabrosas y adictivas.\n\t•\t🌭 Hot Dog XXL – 8/10\nMuy grande y bien presentado. El sabor está correcto, aunque no aporta algo especialmente distinto.\n\n🔝 Valoración final: 8/10\nUn local con una propuesta moderna y cuidada. Platos bien elaborados, buen ambiente y una mención especial a las alitas, que justifican por sí solas la visita.\n\n#planesvalencia #comerenvalencia #comerbaratovalencia #valenciafoodie #eatinpeace #ruzafa #valenciatapas #comerenruzafa",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -4481,7 +4455,7 @@
       "categorias": [
         {
           "nombre": "Fusión Tapas",
-          "precio": ">40€",
+          "precio": "35-50€",
           "valoracion": 5,
           "comentario": null
         }
@@ -4527,7 +4501,7 @@
       "categorias": [
         {
           "nombre": "Pizza",
-          "precio": "0-15€",
+          "precio": "5-10€",
           "valoracion": 1,
           "comentario": null
         }
@@ -4542,7 +4516,7 @@
       "lat": 39.4621985,
       "lng": -0.3695985,
       "direccion": "C/ de Pere III el Gran, 12, L'Eixample, 46005 València, Valencia, España",
-      "google_maps_url": "https://maps.google.com/?cid=2317889559675442080&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "google_maps_url": "http://maps.google.com/?cid=2317889559675442080",
       "grupo_id": "9e556e05-7b2f-44e7-83aa-42d22f0d339d",
       "barrio": "L'Eixample",
       "etiquetas_extra": [
@@ -4551,7 +4525,7 @@
       "categorias": [
         {
           "nombre": null,
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 3,
           "comentario": null
         }
@@ -4575,7 +4549,7 @@
       "categorias": [
         {
           "nombre": null,
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 3,
           "comentario": null
         }
@@ -4597,7 +4571,7 @@
       "categorias": [
         {
           "nombre": "Fusión Tapas",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 4,
           "comentario": null
         }
@@ -4621,13 +4595,13 @@
       "categorias": [
         {
           "nombre": "Esmorzar",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
         },
         {
           "nombre": "Fusión Tapas",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
         }
@@ -4651,7 +4625,7 @@
       "categorias": [
         {
           "nombre": "Esmorzar",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 3,
           "comentario": null
         }
@@ -4675,7 +4649,7 @@
       "categorias": [
         {
           "nombre": "Horchata",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 4,
           "comentario": null
         }
@@ -4699,7 +4673,7 @@
       "categorias": [
         {
           "nombre": "Pasta",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 3,
           "comentario": null
         }
@@ -4721,7 +4695,7 @@
       "categorias": [
         {
           "nombre": "Brunch",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
         },
@@ -4749,12 +4723,12 @@
       "categorias": [
         {
           "nombre": "Ramen",
-          "precio": "0-15€",
+          "precio": "5-10€",
           "valoracion": 5,
           "comentario": null
         }
       ],
-      "resena_general": "Parte 1 | Natsu Ramen: el mejor ramen de Valencia 🍜\n\nSi buscas el mejor ramen de Valencia, Natsu Ramen es nuestro ganador absoluto. Un local donde cada caldo está cuidado al detalle, con sabores profundos, texturas perfectas y una variedad de opciones que se adaptan a cualquier gusto. Tras varias visitas, podemos afirmar que es uno de los sitios imprescindibles para los amantes del ramen en la ciudad.\n\n⸻\n\n⭐ Entrantes recomendados\n\t•\tTakoyaki – 8/10\nCremosos, bien hechos y con un toque irresistible de salsa y katsuobushi.\n\t•\tBrochetas – 7/10\nBuenas, pero menos sorprendentes que el resto de la carta.\n\t•\tGyozas – 8/10\nJugosas, con masa fina y un sellado perfecto.\n\t•\tPollo karaage – 8,5/10\nCrujiente por fuera, tierno por dentro. De los mejores karaage que hemos probado en Valencia.\n\n⸻\n\n🍜 Qué ramen pedir según tus gustos\n\n⭐ Miso Ramen – 10/10 (El mejor de Valencia)\n\nEl más cremoso, intenso y lleno de umami. Si te gustan los sabores fuertes, este es tu ramen.\n👉 Recomendación: nivel 2 de picante, aunque sin picante también está espectacular.\n\n🌱 Vegan / Veg Ramen – 9,5/10\n\nOpción vegetal sorprendente. Aromas frutales y toque tipo curry/coco. Nada que envidiar a los de carne.\n\n🐖 Tonkotsu – 9/10\n\nSuave, equilibrado y perfecto para quien busca un ramen clásico sin complicaciones.\n\n🍜 Toryufu – 8/10\n\nMás europeo y menos caldoso. Ideal si te gustan los sabores suaves o quieres algo diferente.\n\n🍥 Tsukemen – 8,5/10\n\nPerfecto para quienes disfrutan mojando los fideos en un caldo potente y sabroso.\n\n⸻\n\n🍡 Postres\n\t•\tDorayaki y Mochi – 8/10\nBuen colofón a la comida, dulce pero sin empalagar.\n\n⸻\n\n🔚 Conclusión\n\nNatsu Ramen destaca por encima del resto gracias a su caldo profundo, su miso ramen extraordinario y una selección de platos que nunca falla. Si buscas dónde comer el mejor ramen de Valencia, este es tu sitio sin duda.\n\n⸻\n\n#comerenvalencia #planesvalencia #comerbaratovalencia #valenciafood #eatinpeace #valenciafoodies #valencia #streetfoodvalencia #natsuramen #ramenvalencia #misoramen",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -4773,7 +4747,7 @@
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": ">15€",
+          "precio": "10-20€",
           "valoracion": 4,
           "comentario": null
         }
@@ -4797,7 +4771,7 @@
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": ">15€",
+          "precio": "10-20€",
           "valoracion": 4,
           "comentario": null
         }
@@ -4822,7 +4796,7 @@
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 4,
           "comentario": null
         }
@@ -4869,7 +4843,7 @@
       "categorias": [
         {
           "nombre": "Ramen",
-          "precio": "0-15€",
+          "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
         }
@@ -4891,7 +4865,7 @@
       "categorias": [
         {
           "nombre": "Ramen",
-          "precio": "0-15€",
+          "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
         }
@@ -4913,7 +4887,7 @@
       "categorias": [
         {
           "nombre": "Ramen",
-          "precio": "0-15€",
+          "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
         }
@@ -4937,7 +4911,7 @@
       "categorias": [
         {
           "nombre": "Pizza",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 3,
           "comentario": null
         }
@@ -4983,7 +4957,7 @@
       "categorias": [
         {
           "nombre": "Horchata",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 3,
           "comentario": null
         }
@@ -5007,7 +4981,7 @@
       "categorias": [
         {
           "nombre": "Horchata",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 3,
           "comentario": null
         }
@@ -5051,7 +5025,7 @@
       "categorias": [
         {
           "nombre": "Fusión Tapas",
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
         }
@@ -5075,7 +5049,7 @@
       "categorias": [
         {
           "nombre": "Buñuelos",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 3,
           "comentario": null
         }
@@ -5100,7 +5074,7 @@
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -5124,7 +5098,7 @@
       "categorias": [
         {
           "nombre": "Buñuelos",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 5,
           "comentario": null
         }
@@ -5146,7 +5120,7 @@
       "categorias": [
         {
           "nombre": "Fusión Tapas",
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
         }
@@ -5190,7 +5164,7 @@
       "categorias": [
         {
           "nombre": "Fusión Tapas",
-          "precio": "35-60€",
+          "precio": "35-50€",
           "valoracion": 4,
           "comentario": null
         }
@@ -5212,7 +5186,7 @@
       "categorias": [
         {
           "nombre": "Fusión Tapas",
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 5,
           "comentario": null
         }
@@ -5234,7 +5208,7 @@
       "categorias": [
         {
           "nombre": "Fusión Tapas",
-          "precio": "35-60€",
+          "precio": "35-50€",
           "valoracion": 5,
           "comentario": null
         }
@@ -5258,7 +5232,7 @@
       "categorias": [
         {
           "nombre": "Pizza",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
         }
@@ -5283,7 +5257,7 @@
       "categorias": [
         {
           "nombre": "Pizza",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
         }
@@ -5329,7 +5303,7 @@
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": "0-30€",
+          "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
         }
@@ -5395,7 +5369,7 @@
       "categorias": [
         {
           "nombre": "Ramen",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 5,
           "comentario": null
         }
@@ -5417,7 +5391,7 @@
       "categorias": [
         {
           "nombre": "Fusión Tapas",
-          "precio": "0-20€",
+          "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
         }
@@ -5549,7 +5523,7 @@
       "categorias": [
         {
           "nombre": "Fusión Tapas",
-          "precio": "35-60€",
+          "precio": "35-50€",
           "valoracion": 4,
           "comentario": null
         }
@@ -5574,7 +5548,7 @@
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -5598,12 +5572,12 @@
       "categorias": [
         {
           "nombre": "Esmorzar",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 3,
-          "comentario": null
+          "comentario": "Esmorzar"
         }
       ],
-      "resena_general": "Esmorzar",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -5624,7 +5598,7 @@
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 4,
           "comentario": null
         }
@@ -5646,7 +5620,7 @@
       "categorias": [
         {
           "nombre": "Fusión Tapas",
-          "precio": "0-20€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -5668,7 +5642,7 @@
       "categorias": [
         {
           "nombre": "Fusión Tapas",
-          "precio": "0-20€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -5693,12 +5667,12 @@
       "categorias": [
         {
           "nombre": "Pizza",
-          "precio": "15-25€",
+          "precio": "20-35€",
           "valoracion": 5,
-          "comentario": "Pizza de muchísimo nivel; si quieres algo rápido para llevar, el portafoglio es perfecto para comer por la calle."
+          "comentario": null
         }
       ],
-      "resena_general": "Parte 2 | Raíces : la mejor pizza de Valencia 🍕\n\nRaíces es un pequeño restaurante en la plaza de la virgen de Valencia. Su filosofía de pizzas contemporáneas, con recetas clásicas e innovadoras, hacen que sea un planazo que llevamos años haciendo. Hemos probado tantas pizzas que te recomendamos cuál escoger dependiendo de los gustos.\n\nMargherita — 9/10\nLa más típica, perfecta para todos los gustos.\n\nMargherita picante — 10/10 ❤️‍🔥\nNuestra favorita. Ideal para quienes buscan intensidad con un equilibrio juguetón.\n\nMargherita burrata — 9,5/10\nSuave y elegante. Burrata de buena calidad y un tomate fino y agradable. Perfecta para amantes de sabores delicados y platos aesthetic.\n\nCosacca — 9,5/10\nExplosión pura de tomate y pecorino. Ideal para fans del tomate y de productos italianos de calidad.\n\nMiel y trufa — 9,25/10\nAlternativa dulce y sin tomate. Muy original y bien balanceada.\n\nPizzas de temporada 🍂\nProbamos la Zucca Speck (2024) — 9,75/10\nMuy recomendables si vas a menudo: suelen tener las combinaciones más originales.\n\nPizza de pistacho (postre) 🍰\n9,5/10\nPistacho muy rico, ideal para compartir (es grande).\n\nHemos ido a este sitio tres veces, en 2023, 2024 y 2025, y sigue siendo, sin duda, nuestra pizzería favorita de Valencia.\n\nPrecisamente por eso notamos los cambios. En esta última visita, la masa nos ha parecido bastante distinta: mucho menos aireada. Antes recordábamos una pizza más estilo canotto, con ese borde alto y alveolado, y ahora la sentimos más cercana a una masa tradicional. No sabemos si se debe a un cambio de harina o simplemente a una evolución del estilo que ellos prefieren.\n\nA nivel personal, nos gustaba más la masa de antes.\n\nDicho esto, la calidad de los ingredientes sigue siendo excelente, el conjunto de la pizza sigue funcionando muy bien y, aun con ese cambio, para nosotros sigue siendo un 10.\n\nSeguirá siendo nuestra pizza de referencia en Valencia, aunque nos quede esa pequeña espinita de echar de menos la masa que nos enamoró al principio.\n#pizzavalencia #planesvalencia #comerenvalencia #comerbaratovalencia #valenciafood #valenciafoodies #eatinpeace #valenciapizza #restaurantesvalencia",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -5741,12 +5715,12 @@
           "nombre": "Pasta",
           "precio": "20-35€",
           "valoracion": 5,
-          "comentario": null
+          "comentario": "Hemos vuelto a Alquimista. Ya hemos ido unas cuantas veces y, a día de hoy, sigue siendo el sitio donde más nos gusta comer pasta en Valencia. De hecho, ya hemos probado casi toda la carta y todavía no hemos encontrado un plato que no merezca la pena.\n\nEl local es muy pequeñito, así que os recomendamos reservar con tiempo.\n\n🍝 Esta vez probamos:\n\n🥓 Carbonara – 10/10\nDe las mejores carbonaras que hemos tomado.\n\n🍖 Ragú – 10/10\nUn clásico que nunca falla. Muchísimo sabor.\n\n🥪 Piadina de pastrami – 10/10\nEspectacular. Si os apetece algo diferente a la pasta, es una apuesta segura.\n\n🧀 Crema de parmesano – 9,75/10\nMuy intensa y perfecta para compartir.\n\n🍰 Tarta de queso gorgonzola – 9,5/10\nSi os gustan el gorgonzola, está muy rica, aunque tampoco sabe mucho a gorgonzola.\n\n🍽️ Y de otras visitas:\n\n🎃 Pasta rellena de calabaza – 10/10\n🍠 Pasta rellena de boniato – 9,5/10\n🧀 Cacio e pepe – 10/10\n🍳 Pasta de trufa y huevo – 10/10\n🥑 Tartar de aguacate – 9/10\n🐷 Piadina de porchetta – 10/10\n🥪 Piadina de mortadela – 9/10\n🌶️ Piadina picante – 9/10\n🧀 Flan de parmesano – 9,5/10\n\nLa verdad es que después de tantas visitas seguimos pensando lo mismo: es de esos restaurantes donde pidas lo que pidas sabes que vas a comer muy bien.\n"
         }
       ],
-      "resena_general": "Hemos vuelto a L’Alquimista @alquimistangram . Ya hemos ido unas cuantas veces y, a día de hoy, sigue siendo el sitio donde más nos gusta comer pasta en Valencia. De hecho, ya hemos probado casi toda la carta y todavía no hemos encontrado un plato que no merezca la pena.\n\nEl local es muy pequeñito, así que os recomendamos reservar con tiempo.\n\n🍝 Esta vez probamos:\n\n🥓 Carbonara – 10/10\nDe las mejores carbonaras que hemos tomado.\n\n🍖 Ragú – 10/10\nUn clásico que nunca falla. Muchísimo sabor.\n\n🥪 Piadina de pastrami – 10/10\nEspectacular. Si os apetece algo diferente a la pasta, es una apuesta segura.\n\n🧀 Crema de parmesano – 9,75/10\nMuy intensa y perfecta para compartir.\n\n🍰 Tarta de queso gorgonzola – 9,5/10\nSi os gustan el gorgonzola, está muy rica, aunque tampoco sabe mucho a gorgonzola.\n\n🍽️ Y de otras visitas:\n\n🎃 Pasta rellena de calabaza – 10/10\n🍠 Pasta rellena de boniato – 9,5/10\n🧀 Cacio e pepe – 10/10\n🍳 Pasta de trufa y huevo – 10/10\n🥑 Tartar de aguacate – 9/10\n🐷 Piadina de porchetta – 10/10\n🥪 Piadina de mortadela – 9/10\n🌶️ Piadina picante – 9/10\n🧀 Flan de parmesano – 9,5/10\n\nLa verdad es que después de tantas visitas seguimos pensando lo mismo: es de esos restaurantes donde pidas lo que pidas sabes que vas a comer muy bien.\n\n#comerenvalencia #planesvalencia #valenciafood #alquimista #pastavalencia",
-      "instagram_url": "https://www.instagram.com/reel/Da74RC6KOI2/?igsh=MTExNms1emJsOG9uZQ==",
-      "tiktok_url": "https://vm.tiktok.com/ZN81w8vrW/"
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null
     },
     {
       "id": "7070b9ba-9513-4c69-836e-3c357d62803e",
@@ -5761,12 +5735,12 @@
       "categorias": [
         {
           "nombre": "Fusión Tapas",
-          "precio": "35-60€",
+          "precio": "35-50€",
           "valoracion": 4,
           "comentario": null
         }
       ],
-      "resena_general": "nuestro restaurante favorito de junio fue @canallabistro con su menú degustación lleno de fusiones de sabores! Una idea innovadora para tener una cena en ocasiones especiales en Valencia #comerenvalencia #planesvalencia #valenciafoodie #valenciafood #comervalencia #fusionvalencia #menudegustacion",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -5952,7 +5926,7 @@
       "categorias": [
         {
           "nombre": "Mexicano",
-          "precio": "15-30€",
+          "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
         }
@@ -5976,24 +5950,24 @@
           "nombre": "Brunch",
           "precio": "10-20€",
           "valoracion": 5,
-          "comentario": null
+          "comentario": "Hemos ido a Kokoro y hacen un brunch bastante distinto a lo típico. Tienen dos opciones: una más asiática y original, y otra más clásica por si vas con alguien que no quiere experimentar mucho 😅\n\nNosotros recomendamos el desayuno 1, porque es lo que hace diferente al sitio.\n\n🍚 Desayuno 1\nBase de arroz con sésamo y furikake + sopa miso.\nLe añadimos kimchi, huevos revueltos con gochujang y espinacas salteadas con aceite de sésamo. Muy rico todo y bastante diferente a cualquier brunch típico.\n\n🍞 Desayuno 2\nMás clásico, con tostada de masa madre y extras.\nNosotros pedimos mantequilla, huevo y aguacate. Muy bueno también, pero menos original.\n\n🍵 A destacar el matcha, que nos dijeron que lo compran en Caté (sitio que también nos encanta). Muy bueno.\n☕ Y el café de especialidad , de dorigen, también nos gustó bastante.\n\nEn general, un sitio súper chulo para hacer un brunch diferente en Valencia."
         },
         {
           "nombre": "Café",
           "precio": "0-5€",
           "valoracion": 3,
-          "comentario": null
+          "comentario": "Hemos ido a Kokoro y hacen un brunch bastante distinto a lo típico. Tienen dos opciones: una más asiática y original, y otra más clásica por si vas con alguien que no quiere experimentar mucho 😅\n\nNosotros recomendamos el desayuno 1, porque es lo que hace diferente al sitio.\n\n🍚 Desayuno 1\nBase de arroz con sésamo y furikake + sopa miso.\nLe añadimos kimchi, huevos revueltos con gochujang y espinacas salteadas con aceite de sésamo. Muy rico todo y bastante diferente a cualquier brunch típico.\n\n🍞 Desayuno 2\nMás clásico, con tostada de masa madre y extras.\nNosotros pedimos mantequilla, huevo y aguacate. Muy bueno también, pero menos original.\n\n🍵 A destacar el matcha, que nos dijeron que lo compran en Caté (sitio que también nos encanta). Muy bueno.\n☕ Y el café de especialidad , de dorigen, también nos gustó bastante.\n\nEn general, un sitio súper chulo para hacer un brunch diferente en Valencia."
         },
         {
           "nombre": "Matcha",
           "precio": "0-5€",
           "valoracion": 5,
-          "comentario": null
+          "comentario": "Hemos ido a Kokoro y hacen un brunch bastante distinto a lo típico. Tienen dos opciones: una más asiática y original, y otra más clásica por si vas con alguien que no quiere experimentar mucho 😅\n\nNosotros recomendamos el desayuno 1, porque es lo que hace diferente al sitio.\n\n🍚 Desayuno 1\nBase de arroz con sésamo y furikake + sopa miso.\nLe añadimos kimchi, huevos revueltos con gochujang y espinacas salteadas con aceite de sésamo. Muy rico todo y bastante diferente a cualquier brunch típico.\n\n🍞 Desayuno 2\nMás clásico, con tostada de masa madre y extras.\nNosotros pedimos mantequilla, huevo y aguacate. Muy bueno también, pero menos original.\n\n🍵 A destacar el matcha, que nos dijeron que lo compran en Caté (sitio que también nos encanta). Muy bueno.\n☕ Y el café de especialidad , de dorigen, también nos gustó bastante.\n\nEn general, un sitio súper chulo para hacer un brunch diferente en Valencia."
         }
       ],
-      "resena_general": "Hemos ido a Kokoro y hacen un brunch bastante distinto a lo típico. Tienen dos opciones: una más asiática y original, y otra más clásica por si vas con alguien que no quiere experimentar mucho 😅\n\nNosotros recomendamos el desayuno 1, porque es lo que hace diferente al sitio.\n\n🍚 Desayuno 1\nBase de arroz con sésamo y furikake + sopa miso.\nLe añadimos kimchi, huevos revueltos con gochujang y espinacas salteadas con aceite de sésamo. Muy rico todo y bastante diferente a cualquier brunch típico.\n\n🍞 Desayuno 2\nMás clásico, con tostada de masa madre y extras.\nNosotros pedimos mantequilla, huevo y aguacate. Muy bueno también, pero menos original.\n\n🍵 A destacar el matcha, que nos dijeron que lo compran en Caté - @cate_cafeyte (sitio que también nos encanta). Muy bueno.\n☕ Y el café de especialidad , de dorigen - @dorigencoffee , también nos gustó bastante.\n\nEn general, @kokoro.core es un sitio súper chulo para hacer un brunch diferente en Valencia.\n\n💰 15€ por persona\n#planesvalencia #comerenvalencia #valenciafood #brunchvalencia #matchavalencia",
-      "instagram_url": "https://www.instagram.com/reel/DYu0MpFK1Mt/?igsh=MWVqZ3RsdnVsdzFmNg==",
-      "tiktok_url": "https://vm.tiktok.com/ZN8J884wf/"
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null
     },
     {
       "id": "86fb85ed-4377-429a-b6f5-6d98896e7e95",
@@ -6011,7 +5985,7 @@
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": "0-30€",
+          "precio": "10-20€",
           "valoracion": 4,
           "comentario": null
         }
@@ -6037,12 +6011,12 @@
           "nombre": "Tapas",
           "precio": "35-50€",
           "valoracion": 4,
-          "comentario": null
+          "comentario": "Hemos ido a Habitual, de Ricard Camarena. Ya hemos estado en todos sus restaurantes y, a día de hoy, sigue siendo nuestro cocinero favorito de Valencia.\n\nEsta vez fuimos a probar el menú del día y la verdad es que salimos bastante contentos.\n\n🥔 Ensaladilla rusa “Ricard Camarena” con espuma de aceituna verde – 9/10\nProbablemente la mejor ensaladilla que hemos tomado de Ricard. Aun así, no es de los platos que más sorprenden comparado con otras cosas que hace.\n\n🌼 Flor de calabacín en tempura rellena de quesos y piparra dulce con jalapeños y cebolla encurtida – 9/10\nMuy rica. Entraba sola.\n\n🍆 Berenjena asada a la llama, salsa holandesa, queso feta y piñones – 1000/10\nEl mejor plato del menú. No sabemos cómo lo hace, pero todas las berenjenas que hemos probado de Ricard están buenísimas. Además, cada una es completamente distinta a la anterior.\n\n🥕 Zanahorias asadas con salsa stroganoff, avellanas, nata amostazada y anisados – 9/10\nMuy rico también. Otro ejemplo de cómo consigue hacer especiales verduras que normalmente pasarían desapercibidas.\n\n🐟 Merluza en semisalazón asada con patata al pil-pil y velouté de hierbas – 8,5/10\nQuizá el plato que menos nos gustó. Estaba buena, pero al lado del resto se queda un poco sin más.\n\n🐖 Cerdo ibérico a la brasa con yogur, col asada y vinagreta de semillas – 9,75/10\nSúper rico de sabor. De nuestros favoritos del menú.\n\n🍞 Torrija caramelizada con helado de mantecado – 10/10\nDe las mejores torrijas que hemos tomado.\n\n🍒 Cerezas de las montañas de Alicante con helado de yogur, hibiscus y almendra laminada – 9/10\nMuy fresco y muy rico para terminar."
         }
       ],
-      "resena_general": "Hemos ido a Habitual, de Ricard Camarena. Ya hemos estado en todos sus restaurantes y, a día de hoy, @ricardcamarena sigue siendo nuestro cocinero favorito de Valencia.\n\nEsta vez fuimos a probar el menú del día de @habitualrestaurante , que está en @mercadocolonvlc , y la verdad es que salimos bastante contentos. Esto fue todo lo que probamos:\n\n🥔 Ensaladilla rusa “Ricard Camarena” con espuma de aceituna verde – 9/10\nProbablemente la mejor ensaladilla que hemos tomado de Ricard. Aun así, no es de los platos que más sorprenden comparado con otras cosas que hace.\n\n🌼 Flor de calabacín en tempura rellena de quesos y piparra dulce con jalapeños y cebolla encurtida – 9/10\nMuy rica. Entraba sola.\n\n🍆 Berenjena asada a la llama, salsa holandesa, queso feta y piñones – 1000/10\nEl mejor plato del menú. No sabemos cómo lo hace, pero todas las berenjenas que hemos probado de Ricard están buenísimas. Además, cada una es completamente distinta a la anterior.\n\n🥕 Zanahorias asadas con salsa stroganoff, avellanas, nata amostazada y anisados – 9/10\nMuy rico también. Otro ejemplo de cómo consigue hacer especiales verduras que normalmente pasarían desapercibidas.\n\n🐟 Merluza en semisalazón asada con patata al pil-pil y velouté de hierbas – 8,5/10\nQuizá el plato que menos nos gustó. Estaba buena, pero al lado del resto se queda un poco sin más.\n\n🐖 Cerdo ibérico a la brasa con yogur, col asada y vinagreta de semillas – 9,75/10\nSúper rico de sabor. De nuestros favoritos del menú.\n\n🍞 Torrija caramelizada con helado de mantecado – 10/10\nDe las mejores torrijas que hemos tomado.\n\n🍒 Cerezas de las montañas de Alicante con helado de yogur, hibiscus y almendra laminada – 9/10\nMuy fresco y muy rico para terminar.\n\n💰 45€ por persona\n\nPD: si quieres probar otros restaurantes con precios más ajustados de Ricard Camarena ya tienes vídeo en nuestro perfil de @barxricardcamarena y @nobarvalencia by @ricardcamarenaeventos \n#comerenvalencia #planesvalencia #valenciafood #habitual #ricardcamarena",
-      "instagram_url": "https://www.instagram.com/reel/DZIhTR0q0pd/?igsh=MXFuNnY0cmpvem9xcw==",
-      "tiktok_url": "https://vm.tiktok.com/ZN8J8j186/"
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null
     },
     {
       "id": "0ff60883-c154-42af-9790-2a4e19f71db2",
@@ -6061,12 +6035,12 @@
           "nombre": "Tapas",
           "precio": "20-35€",
           "valoracion": 4,
-          "comentario": null
+          "comentario": "Hemos ido a Bar Badis, del grupo Camaleón, pero con una propuesta más enfocada al producto de mar. Salimos bastante contentos y, además, acabamos llenísimos.\n\nEsto fue lo que probamos:\n\n🥐 Croqueta de jamón – 9,5/10\nRiquísima. Por ponerle una pega, un pelín aceitosa.\n\n🍲 Croqueta de cocido – 9/10\nMuy buena también, aunque algo menos cremosa que la de jamón. Nos quedaríamos con la otra.\n\n🥪 Bikini de lomo ibérico Joselito, mahonesa de trufa y queso Comté 36 meses – 9/10\nMuy rico en general. De esos platos que entran solos.\n\n🐟 Bandeja de huevos fritos con tataki de atún rojo y patatas fritas – 9/10\nMucho sabor a atún y una combinación que funciona muy bien.\n\n🦐 Gambas al ajillo – 1000/10\nSúper original y espectacular de sabor. Pedidlo sí o sí.\n\n🍫 Tarta de chocolate – 9,75/10\nComo casi todos los postres del grupo Camaleón: difícil fallar con ella.\n\n\nEn resumen, un sitio que nos gustó mucho, con platos bastante originales y donde las gambas al ajillo justifican por sí solas la visita."
         }
       ],
-      "resena_general": "Hemos ido a @bar__badis , un sitio del grupo Camaleón by @restaurantecamaleon @ardachotaberna , pero con una propuesta más enfocada al producto de mar. Salimos bastante contentos y, además, acabamos llenísimos.\n\nEsto fue lo que probamos:\n\n🥐 Croqueta de jamón – 9,5/10\nRiquísima. Por ponerle una pega, un pelín aceitosa.\n\n🍲 Croqueta de cocido – 9/10\nMuy buena también, aunque algo menos cremosa que la de jamón. Nos quedaríamos con la otra.\n\n🥪 Bikini de lomo ibérico Joselito, mahonesa de trufa y queso Comté 36 meses – 9/10\nMuy rico en general. De esos platos que entran solos.\n\n🐟 Bandeja de huevos fritos con tataki de atún rojo y patatas fritas – 9/10\nMucho sabor a atún y una combinación que funciona muy bien.\n\n🦐 Gambas al ajillo – 1000/10\nSúper original y espectacular de sabor. Pedidlo sí o sí.\n\n🍫 Tarta de chocolate – 9,75/10\nComo casi todos los postres del grupo Camaleón: difícil fallar con ella.\n\nEn resumen, bar badis es un sitio que nos gustó mucho, con platos bastante originales y donde las gambas al ajillo justifican por sí solas la visita.\n\n#planesvalencia #comerenvalencia #valenciafood #barbadis #valencia",
-      "instagram_url": "https://www.instagram.com/reel/DZAyRbUK-4f/?igsh=cXk4YmU3anZmbGIy",
-      "tiktok_url": "https://vm.tiktok.com/ZN8J8uWKt/"
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null
     },
     {
       "id": "76137837-668b-4bab-a407-a2883a83adb4",
@@ -6081,13 +6055,13 @@
       "categorias": [
         {
           "nombre": "Fusión Tapas",
-          "precio": "0-20€",
+          "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
         },
         {
           "nombre": "Vegetariano vegano",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
         }
@@ -6111,13 +6085,13 @@
       "categorias": [
         {
           "nombre": "Brunch",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 1,
           "comentario": null
         },
         {
           "nombre": "Fusión Tapas",
-          "precio": "15-25€",
+          "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
         },
@@ -6129,7 +6103,7 @@
         },
         {
           "nombre": "Saludables",
-          "precio": ">10€",
+          "precio": "10-20€",
           "valoracion": 1,
           "comentario": null
         }
@@ -6153,13 +6127,13 @@
       "categorias": [
         {
           "nombre": "Brunch",
-          "precio": "0-15€",
+          "precio": "5-10€",
           "valoracion": 1,
           "comentario": null
         },
         {
           "nombre": "Fusión Tapas",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         },
@@ -6171,7 +6145,7 @@
         },
         {
           "nombre": "Saludables",
-          "precio": ">10€",
+          "precio": "10-20€",
           "valoracion": 1,
           "comentario": null
         }
@@ -6193,13 +6167,13 @@
       "categorias": [
         {
           "nombre": "Brunch",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         },
         {
           "nombre": "Fusión Tapas",
-          "precio": "15-25€",
+          "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
         },
@@ -6211,7 +6185,7 @@
         },
         {
           "nombre": "Saludables",
-          "precio": ">10€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -6233,7 +6207,7 @@
       "categorias": [
         {
           "nombre": "Brunch",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -6257,13 +6231,13 @@
       "categorias": [
         {
           "nombre": "Brunch",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         },
         {
           "nombre": "Fusión Tapas",
-          "precio": "15-25€",
+          "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
         },
@@ -6275,7 +6249,7 @@
         },
         {
           "nombre": "Saludables",
-          "precio": ">10€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -6344,7 +6318,7 @@
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
         }
@@ -6366,7 +6340,7 @@
       "categorias": [
         {
           "nombre": "Brunch",
-          "precio": ">10€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -6388,7 +6362,7 @@
       "categorias": [
         {
           "nombre": "Brunch",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -6412,9 +6386,9 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 2,
-          "comentario": null
+          "comentario": "Recomendamos cafe, matcha no."
         },
         {
           "nombre": "Matcha",
@@ -6423,7 +6397,7 @@
           "comentario": null
         }
       ],
-      "resena_general": "Recomendamos cafe, matcha no.",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -6442,7 +6416,7 @@
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
         }
@@ -6466,12 +6440,12 @@
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": "30-50€",
+          "precio": "35-50€",
           "valoracion": 4,
           "comentario": null
         }
       ],
-      "resena_general": "Probando la comida fusion japonesa y peruana en @ryokovalencia , un restaurante en la zona Cánovas. Este nikkei sushi bar tiene platos muy curiosos con sabores que no habíamos probado antes y todo estaba buenísimo !!! #Ryoko #nikkei #sushivalencia #comerenvalencia #planesvalencia #valenciafood #valenciafusion",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -6490,7 +6464,7 @@
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": "0-30€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -6514,7 +6488,7 @@
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": "0-30€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -6538,7 +6512,7 @@
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": "0-30€",
+          "precio": "10-20€",
           "valoracion": 1,
           "comentario": null
         }
@@ -6562,7 +6536,7 @@
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": "0-30€",
+          "precio": "10-20€",
           "valoracion": 1,
           "comentario": null
         }
@@ -6586,7 +6560,7 @@
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": "0-30€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -6611,7 +6585,7 @@
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": "0-30€",
+          "precio": "10-20€",
           "valoracion": 1,
           "comentario": null
         }
@@ -6635,7 +6609,7 @@
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": "0-30€",
+          "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
         }
@@ -6660,7 +6634,7 @@
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": "0-30€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -6684,7 +6658,7 @@
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": "0-30€",
+          "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
         }
@@ -6710,12 +6684,12 @@
           "nombre": "Sushi",
           "precio": "20-35€",
           "valoracion": 3,
-          "comentario": null
+          "comentario": "Rengo es un restaurante de sushi fusión bastante nuevo en Valencia, con propuestas que mezclan técnicas y sabores japoneses con toques originales. El local es pequeño pero acogedor, y el servicio muy atento.\n\nProbamos varios platos:\n\t•\tGyozas de pollo – 7/10: Nos las pusieron por error, pero las cambiaron sin problema. Aun así, nos quedamos con las de rabo de toro.\n\t•\tGyozas de rabo de toro – 9,75/10: Superricas, aunque con un poco poco relleno.\n\t•\tTosto japo de atún – 8,5/10: Muy rica la combinación, equilibrada y sabrosa.\n\t•\tBao de kobe – 9/10: Como una mini hamburguesa con pan de bao, carne correcta, aunque no al nivel de las mejores hamburgueserías.\n\t•\tUramaki Osaka trufado – 9,75/10: Muy rico y equilibrado, nuestro favorito del menú.\n\t•\tNigiri pez escolar – 9/10: Delicioso, la salsa lo potencia muy bien.\n\t•\tNigiri de anguila – 9/10: Ahumado y no braseado, nos gustó mucho el sabor.\n\nLos postres no nos convencieron, así que no pedimos ninguno."
         }
       ],
-      "resena_general": "Rengo es un restaurante de sushi fusión bastante nuevo en Valencia, con propuestas que mezclan técnicas y sabores japoneses con toques originales. El local es pequeño pero acogedor, y el servicio muy atento.\n\nProbamos varios platos:\n\t•\tGyozas de pollo – 7/10: Nos las pusieron por error, pero las cambiaron sin problema. Aun así, nos quedamos con las de rabo de toro.\n\t•\tGyozas de rabo de toro – 9,75/10: Superricas, aunque con un poco poco relleno.\n\t•\tTosto japo de atún – 8,5/10: Muy rica la combinación, equilibrada y sabrosa.\n\t•\tBao de kobe – 9/10: Como una mini hamburguesa con pan de bao, carne correcta, aunque no al nivel de las mejores hamburgueserías.\n\t•\tUramaki Osaka trufado – 9,75/10: Muy rico y equilibrado, nuestro favorito del menú.\n\t•\tNigiri pez escolar – 9/10: Delicioso, la salsa lo potencia muy bien.\n\t•\tNigiri de anguila – 9/10: Ahumado y no braseado, nos gustó mucho el sabor.\n\nLos postres no nos convencieron, así que no pedimos ninguno.\n\n@rengovlc #comerenvalencia #planesvalencia #valenciafood #sushivalencia #japonesvalencia",
-      "instagram_url": "https://www.instagram.com/reel/DXmt9iIiuGJ/?igsh=NnQ4dTRqajNha21j",
-      "tiktok_url": "https://vm.tiktok.com/ZN8J8oJoK/"
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null
     },
     {
       "id": "7d61a146-649a-4e34-91ef-8418d76e6da6",
@@ -6738,7 +6712,7 @@
         },
         {
           "nombre": "Tarta de queso",
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 5,
           "comentario": null
         }
@@ -6764,13 +6738,13 @@
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": "0-4,5€",
+          "precio": "0-5€",
           "valoracion": 2,
           "comentario": null
         },
         {
           "nombre": "Tarta de queso",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 4,
           "comentario": null
         }
@@ -6794,7 +6768,7 @@
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
         }
@@ -6813,23 +6787,17 @@
       "grupo_id": null,
       "barrio": "Ciutat Vella",
       "etiquetas_extra": [
-        "Menú del día"
+        "Take away"
       ],
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Fusión Tapas",
           "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
-        },
-        {
-          "nombre": "Paella/arroces",
-          "precio": "20-35€",
-          "valoracion": 2,
-          "comentario": null
         }
       ],
-      "resena_general": "Hemos ido a Vaqueta gastromercat, del grupo Gastrotrinquet. Este es el mismo grupo que Pelayo Gastro Trinquet y Casa Baldo, dos sitios que nos encantan. Tienen una carta enorme, menú del día, sushi por la noche y un montón de arroces. Nosotros fuimos a probar alguno de estos últimos.\n\n🥟 Bunyols de anguila – 11/10\nAbsolutamente increíbles. Para nosotros, el plato que hay que pedir sí o sí.\n\n🥔 Bravas – 9/10\nMuy buenas, pero bastante tradicionales. Nos suelen gustar más las versiones algo diferentes.\n\n🐟 Atún – 8,5/10\nLlevaba salsa de aguacate y salsa trufada. Por separado nos gustaban mucho, pero juntas la combinación nos resultó un poco rara.\n\n🥘 Arroz de gamba roja y boletus – 8/10\nEstaba bueno, pero creemos que este mismo arroz en versión melosa nos habría gustado más. Si volviéramos, probablemente probaríamos otro de la carta.\n\n🍞 Torrija de fartons y horchata – 10/10\nMuy, muy buena. Un postre muy valenciano y de los que merece la pena dejar hueco.\n\nEn general creemos que fue muy difícil decantarnos para pedir los mejores platos. Quitando los bunyols y la torrija, que nos parecieron espectaculares, la carta tenía muchísimas cosas que nos llamaban la atención y nos quedamos con ganas de volver para probar otras. Muchísimas gracias por la invitación, ha sido súper guay!\n\n#planesvalencia #comerenvalencia #valenciafood #paellavalencia #valenciatapas",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
     },
@@ -6848,620 +6816,14 @@
       "categorias": [
         {
           "nombre": "Fusión Tapas",
-          "precio": "10-25€",
-          "valoracion": 5,
-          "comentario": null
-        }
-      ],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null
-    },
-    {
-      "id": "301f0efc-52fc-4556-8844-c87b35270fdd",
-      "nombre": "Restaurante Hōchō",
-      "lat": 39.4674895,
-      "lng": -0.3595739,
-      "direccion": "Pg. de l'Albereda, 32, El Pla del Real, 46023 València, Valencia, España",
-      "google_maps_url": "https://maps.google.com/?cid=310833639009033940&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
-      "grupo_id": null,
-      "barrio": "El Pla del Real",
-      "etiquetas_extra": [],
-      "categorias": [
-        {
-          "nombre": "Sushi",
-          "precio": "50-80€",
-          "valoracion": 5,
-          "comentario": null
-        }
-      ],
-      "resena_general": "Si buscas una experiencia japonesa especial en Valencia, Hocho es una apuesta segura 🍣\n\n@restaurantehocho es un restaurante donde los nigiris son los grandes protagonistas, pero donde absolutamente todos los platos destacan por una elaboración muy cuidada, con sabores suaves, equilibrados y, sobre todo, memorables. Nos encanta que, aunque mantienen una base bastante tradicional, se permiten innovar con combinaciones muy interesantes.\n\nEsto fue lo que probamos 👇\n\n✨ Usuzukuri de trufa (8/10): pescado con muy buen sabor, aunque la trufa resultó algo intensa. \n🐟 Nigiri de caballa cítrica (1000/10): uno de nuestros favoritos, suave, fresco y perfecto. \n🔥 Nigiri de toro con dijon (10/10): atún de gran calidad con ese toque de mostaza que suma muchísimo. \n🦪 Nigiri de vieira con foie (100/10): el más popular, y con razón… simplemente increíble. \n🐉 Nigiri de anguila (1000/10): posiblemente nuestro nigiri de anguila favorito del mundo. \n\n🥩 Nigiri steak tartar (9/10): muy curioso, aunque esperábamos un sabor más potente. \n🍣 Nigiri de salmón flambeado (9/10): bueno, pero menos sorprendente que otros. \n🌶️ Uramaki de atún picante (9,5/10): jugosidad del atún + frescura del aguacate = combinación perfecta. \n🍤 Tempura ebi (10/10): rebozado impecable y gamba muy sabrosa. \n🎃 Buñuelos de calabaza (10/10): textura y sabor muy originales.\n\n(En anteriores visitas)\n\n🐟 Tartar de atún rojo picante (10/10): muy intenso y bien balanceado.\n🥚 Nigiri de huevo de codorniz y trufa (9/10): muy mítico del sitio, aunque nos quedamos con otros.\n🦑 Usuzukuri de calamar estilo bocata de calamares (9,5/10): muy original y sorprendente.\n🍚 Arroz frito (9,5/10): no te lo esperas, pero está muy bueno si quieres algo distinto.\n\n💬 En resumen: una experiencia que merece totalmente la pena y que recomendamos especialmente para ocasiones especiales.",
-      "instagram_url": null,
-      "tiktok_url": null
-    },
-    {
-      "id": "f1c58d47-9db2-403a-8747-415654a31c87",
-      "nombre": "Restaurante Hōchō",
-      "lat": 39.4674895,
-      "lng": -0.3595739,
-      "direccion": "Pg. de l'Albereda, 32, El Pla del Real, 46023 València, Valencia, España",
-      "google_maps_url": "https://maps.google.com/?cid=310833639009033940&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
-      "grupo_id": null,
-      "barrio": "El Pla del Real",
-      "etiquetas_extra": [],
-      "categorias": [],
-      "resena_general": "Si buscas una experiencia japonesa especial en Valencia, Hocho es una apuesta segura 🍣\n\n@restaurantehocho es un restaurante donde los nigiris son los grandes protagonistas, pero donde absolutamente todos los platos destacan por una elaboración muy cuidada, con sabores suaves, equilibrados y, sobre todo, memorables. Nos encanta que, aunque mantienen una base bastante tradicional, se permiten innovar con combinaciones muy interesantes.\n\nEsto fue lo que probamos 👇\n\n✨ Usuzukuri de trufa (8/10): pescado con muy buen sabor, aunque la trufa resultó algo intensa. \n🐟 Nigiri de caballa cítrica (1000/10): uno de nuestros favoritos, suave, fresco y perfecto. \n🔥 Nigiri de toro con dijon (10/10): atún de gran calidad con ese toque de mostaza que suma muchísimo. \n🦪 Nigiri de vieira con foie (100/10): el más popular, y con razón… simplemente increíble. \n🐉 Nigiri de anguila (1000/10): posiblemente nuestro nigiri de anguila favorito del mundo. \n\n🥩 Nigiri steak tartar (9/10): muy curioso, aunque esperábamos un sabor más potente. \n🍣 Nigiri de salmón flambeado (9/10): bueno, pero menos sorprendente que otros. \n🌶️ Uramaki de atún picante (9,5/10): jugosidad del atún + frescura del aguacate = combinación perfecta. \n🍤 Tempura ebi (10/10): rebozado impecable y gamba muy sabrosa. \n🎃 Buñuelos de calabaza (10/10): textura y sabor muy originales.\n\n(En anteriores visitas)\n\n🐟 Tartar de atún rojo picante (10/10): muy intenso y bien balanceado.\n🥚 Nigiri de huevo de codorniz y trufa (9/10): muy mítico del sitio, aunque nos quedamos con otros.\n🦑 Usuzukuri de calamar estilo bocata de calamares (9,5/10): muy original y sorprendente.\n🍚 Arroz frito (9,5/10): no te lo esperas, pero está muy bueno si quieres algo distinto.\n\n💬 En resumen: una experiencia que merece totalmente la pena y que recomendamos especialmente para ocasiones especiales.",
-      "instagram_url": null,
-      "tiktok_url": null
-    },
-    {
-      "id": "351ae237-29b5-474b-8d28-cd8225b80ef1",
-      "nombre": "BAR X by Ricard Camarena",
-      "lat": 39.4689064,
-      "lng": -0.368377,
-      "direccion": "Mercado de Colon, 46004, L'Eixample, 46004 València, Valencia, España",
-      "google_maps_url": "https://maps.google.com/?cid=6473151289717987853&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
-      "grupo_id": null,
-      "barrio": "L'Eixample",
-      "etiquetas_extra": [
-        "Sin reserva",
-        "Restaurante"
-      ],
-      "categorias": [
-        {
-          "nombre": "Tapas",
-          "precio": "20-35€",
-          "valoracion": 5,
-          "comentario": null
-        },
-        {
-          "nombre": "de Restaurante",
-          "precio": "5-10€",
-          "valoracion": 5,
-          "comentario": null
-        }
-      ],
-      "resena_general": "Pocas veces damos sobresaliente a un restaurante… pero @barxricardcamarena se merece un 10/10 !!! Si es un restaurante de @ricardcamarena va a estar bueno, pero este combina recetas tradicionales con ingredientes muy originales con matrícula de honor!!! Platos increíbles a precios asequibles, combinaciones de sabores que nunca hemos probado y una experiencia que recomendamos mil ! Está en @mercadocolonvlc y no se puede reservar #comerenvalencia #comerbaratovalencia #planesvalencia #ricardcamarena #barx #comidafusión #mercadocolón (se nota que es de los primeros videos que hicimos jajaj)",
-      "instagram_url": null,
-      "tiktok_url": null
-    },
-    {
-      "id": "4d2f233b-456e-4047-bbc4-8a01f13e374b",
-      "nombre": "NO BAR by Ricard Camarena",
-      "lat": 39.4648,
-      "lng": -0.3347943,
-      "direccion": "de Kora Lluna, C/ de l'Arquitecte Alfaro, 44, Planta inferior, Poblats Marítims, 46011 València, Valencia, España",
-      "google_maps_url": "https://maps.google.com/?cid=17510641268996110615&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
-      "grupo_id": null,
-      "barrio": "Poblats Marítims",
-      "etiquetas_extra": [
-        "Sin reserva"
-      ],
-      "categorias": [
-        {
-          "nombre": "Tapas",
-          "precio": "20-35€",
-          "valoracion": 5,
-          "comentario": null
-        },
-        {
-          "nombre": "Premium",
           "precio": "10-20€",
           "valoracion": 5,
           "comentario": null
-        },
-        {
-          "nombre": "de Restaurante",
-          "precio": "5-10€",
-          "valoracion": 5,
-          "comentario": null
         }
       ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null
-    },
-    {
-      "id": "4b73b7d5-8dd4-4764-bec0-a569cacc50c3",
-      "nombre": "DURO",
-      "lat": 39.4629159,
-      "lng": -0.3678928,
-      "direccion": "C/ de Pere III el Gran, 36, L'Eixample, 46005 València, Valencia, España",
-      "google_maps_url": "https://maps.google.com/?cid=16809301659414916695&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
-      "grupo_id": null,
-      "barrio": "L'Eixample",
-      "etiquetas_extra": [
-        "Take away"
-      ],
-      "categorias": [
-        {
-          "nombre": "Kebab premium",
-          "precio": "5-10€",
-          "valoracion": 2,
-          "comentario": null
-        }
-      ],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null
-    },
-    {
-      "id": "b2d7a4d3-a267-4ab9-bf99-ce2afcc6e16d",
-      "nombre": "AlPaso Takeaway",
-      "lat": 39.4621851,
-      "lng": -0.3656085,
-      "direccion": "Carrer de Matias Perelló, 50 esquina, L'Eixample, 46005 València, Valencia, España",
-      "google_maps_url": "https://maps.google.com/?cid=14799617874688045362&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
-      "grupo_id": null,
-      "barrio": "L'Eixample",
-      "etiquetas_extra": [
-        "Take away"
-      ],
-      "categorias": [
-        {
-          "nombre": "Peruano",
-          "precio": "10-20€",
-          "valoracion": 4,
-          "comentario": null
-        }
-      ],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null
-    },
-    {
-      "id": "14ec53ba-f645-4dc7-bc79-1c0c43d2ba68",
-      "nombre": "Empanadas Malvón - Saler",
-      "lat": 39.4525752,
-      "lng": -0.3563018,
-      "direccion": "Centro Comercial Saler, Av. del Professor López Piñero, 16, Quatre Carreres, 46013 València, Valencia, España",
-      "google_maps_url": "https://maps.google.com/?cid=5395913143278269105&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
-      "grupo_id": null,
-      "barrio": "Quatre Carreres",
-      "etiquetas_extra": [
-        "Take away"
-      ],
-      "categorias": [
-        {
-          "nombre": "Empanadas argentinas",
-          "precio": "5-10€",
-          "valoracion": 3,
-          "comentario": null
-        }
-      ],
-      "resena_general": "Si estás buscando restaurantes baratos en Valencia donde comer bien sin gastar mucho, apunta este sitio: Malvón. Especializados en empanadas argentinas, es una opción muy fácil para comer rápido, variado y a buen precio.\n\nNosotros probamos un pack de 12 empanadas y esto fue lo que más nos gustó 👇\n\n🥟 Empanadas y notas:\n\n🧀 4 quesos – 6/10: Muy suave, se queda corta de intensidad.\n🥓 Cheese bacon – 7,5/10: Clásica, fácil y para todos los gustos.\n🐐 Oh my goat! – 8,5/10: Queso de cabra potente, bastante interesante.\n🌮 Cochinita – 8,5/10: Muy bien de sabor, el toque mexicano funciona.\n🥩 Philly cheesesteak – 7,5/10: Carne y queso al estilo americano, correcta.\n🌶️ Carne picante – 8/10: Si te gusta el picante, esta es buena opción.\n🍅 Provolone y tomate seco – 7/10: Sabores bastante suaves.\n🔥 Barbacoa – 9,5/10: Muy top en textura y sabor, de las mejores.\n🇦🇷 Asado especial – 8,5/10: Sabor muy fiel a lo que esperas de una empanada argentina.\n🍔 Cheeseburger – 7/10: Bien lograda, pero no es nuestro estilo.\n🍖 Carrillera – 10/10: Increíble. Sabor, textura y ese toque dulce la hacen la mejor.\n🐂 Rabo de toro – 9,5/10: Muy intensa, muy bien conseguida.\n\n🍫 Postre:\nFranui – Muy bueno el chocolate y sorprende el contraste con el ácido de la fruta.\n\n🔝 Conclusión:\nMalvón es una opción muy recomendable si buscas comer barato en Valencia, con variedad, rapidez y sabores que funcionan. Perfecto para un plan informal o para probar varias cosas sin gastar mucho.\n\n👇\nEstán celebrando que han llegado a 100 tiendas en España y están regalando experiencias con sus packs de 8, 12 y 16 empanadas. A nosotros nos dieron el pack de 12 y estas fueron las que probamos, muchísimas gracias @empanadasmalvon por la invitación, estaban riquísimas !!!\n\n#comerbaratovalencia #restaurantesvalencia #malvon #valenciafoodie #planesvalencia",
-      "instagram_url": null,
-      "tiktok_url": null
-    },
-    {
-      "id": "7a1ec6c7-8c70-409a-8ffa-29e6f531d82a",
-      "nombre": "Empanadas Malvón - San Vicente Màrtir",
-      "lat": 39.467078,
-      "lng": -0.3809601,
-      "direccion": "Carrer de Sant Vicent Màrtir, 106, Extramurs, 46007 València, Valencia, España",
-      "google_maps_url": "https://maps.google.com/?cid=2115239179673841644&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
-      "grupo_id": null,
-      "barrio": "Extramurs",
-      "etiquetas_extra": [
-        "Take away"
-      ],
-      "categorias": [
-        {
-          "nombre": "Empanadas argentinas",
-          "precio": "5-10€",
-          "valoracion": 3,
-          "comentario": null
-        }
-      ],
-      "resena_general": "Si estás buscando restaurantes baratos en Valencia donde comer bien sin gastar mucho, apunta este sitio: Malvón. Especializados en empanadas argentinas, es una opción muy fácil para comer rápido, variado y a buen precio.\n\nNosotros probamos un pack de 12 empanadas y esto fue lo que más nos gustó 👇\n\n🥟 Empanadas y notas:\n\n🧀 4 quesos – 6/10: Muy suave, se queda corta de intensidad.\n🥓 Cheese bacon – 7,5/10: Clásica, fácil y para todos los gustos.\n🐐 Oh my goat! – 8,5/10: Queso de cabra potente, bastante interesante.\n🌮 Cochinita – 8,5/10: Muy bien de sabor, el toque mexicano funciona.\n🥩 Philly cheesesteak – 7,5/10: Carne y queso al estilo americano, correcta.\n🌶️ Carne picante – 8/10: Si te gusta el picante, esta es buena opción.\n🍅 Provolone y tomate seco – 7/10: Sabores bastante suaves.\n🔥 Barbacoa – 9,5/10: Muy top en textura y sabor, de las mejores.\n🇦🇷 Asado especial – 8,5/10: Sabor muy fiel a lo que esperas de una empanada argentina.\n🍔 Cheeseburger – 7/10: Bien lograda, pero no es nuestro estilo.\n🍖 Carrillera – 10/10: Increíble. Sabor, textura y ese toque dulce la hacen la mejor.\n🐂 Rabo de toro – 9,5/10: Muy intensa, muy bien conseguida.\n\n🍫 Postre:\nFranui – Muy bueno el chocolate y sorprende el contraste con el ácido de la fruta.\n\n🔝 Conclusión:\nMalvón es una opción muy recomendable si buscas comer barato en Valencia, con variedad, rapidez y sabores que funcionan. Perfecto para un plan informal o para probar varias cosas sin gastar mucho.\n\n👇\nEstán celebrando que han llegado a 100 tiendas en España y están regalando experiencias con sus packs de 8, 12 y 16 empanadas. A nosotros nos dieron el pack de 12 y estas fueron las que probamos, muchísimas gracias @empanadasmalvon por la invitación, estaban riquísimas !!!\n\n#comerbaratovalencia #restaurantesvalencia #malvon #valenciafoodie #planesvalencia",
-      "instagram_url": null,
-      "tiktok_url": null
-    },
-    {
-      "id": "b690e4de-72ea-4fa2-8d9c-4a92459306ee",
-      "nombre": "Empanadas Malvón - Plaza de la Reina",
-      "lat": 39.4736567,
-      "lng": -0.3753389,
-      "direccion": "Pça. de la Reina, 4, Ciutat Vella, 46002 València, Valencia, España",
-      "google_maps_url": "https://maps.google.com/?cid=13742433878466935049&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
-      "grupo_id": null,
-      "barrio": "Ciutat Vella",
-      "etiquetas_extra": [
-        "Take away"
-      ],
-      "categorias": [
-        {
-          "nombre": "Empanadas argentinas",
-          "precio": "5-10€",
-          "valoracion": 3,
-          "comentario": null
-        }
-      ],
-      "resena_general": "Si estás buscando restaurantes baratos en Valencia donde comer bien sin gastar mucho, apunta este sitio: Malvón. Especializados en empanadas argentinas, es una opción muy fácil para comer rápido, variado y a buen precio.\n\nNosotros probamos un pack de 12 empanadas y esto fue lo que más nos gustó 👇\n\n🥟 Empanadas y notas:\n\n🧀 4 quesos – 6/10: Muy suave, se queda corta de intensidad.\n🥓 Cheese bacon – 7,5/10: Clásica, fácil y para todos los gustos.\n🐐 Oh my goat! – 8,5/10: Queso de cabra potente, bastante interesante.\n🌮 Cochinita – 8,5/10: Muy bien de sabor, el toque mexicano funciona.\n🥩 Philly cheesesteak – 7,5/10: Carne y queso al estilo americano, correcta.\n🌶️ Carne picante – 8/10: Si te gusta el picante, esta es buena opción.\n🍅 Provolone y tomate seco – 7/10: Sabores bastante suaves.\n🔥 Barbacoa – 9,5/10: Muy top en textura y sabor, de las mejores.\n🇦🇷 Asado especial – 8,5/10: Sabor muy fiel a lo que esperas de una empanada argentina.\n🍔 Cheeseburger – 7/10: Bien lograda, pero no es nuestro estilo.\n🍖 Carrillera – 10/10: Increíble. Sabor, textura y ese toque dulce la hacen la mejor.\n🐂 Rabo de toro – 9,5/10: Muy intensa, muy bien conseguida.\n\n🍫 Postre:\nFranui – Muy bueno el chocolate y sorprende el contraste con el ácido de la fruta.\n\n🔝 Conclusión:\nMalvón es una opción muy recomendable si buscas comer barato en Valencia, con variedad, rapidez y sabores que funcionan. Perfecto para un plan informal o para probar varias cosas sin gastar mucho.\n\n👇\nEstán celebrando que han llegado a 100 tiendas en España y están regalando experiencias con sus packs de 8, 12 y 16 empanadas. A nosotros nos dieron el pack de 12 y estas fueron las que probamos, muchísimas gracias @empanadasmalvon por la invitación, estaban riquísimas !!!\n\n#comerbaratovalencia #restaurantesvalencia #malvon #valenciafoodie #planesvalencia",
-      "instagram_url": null,
-      "tiktok_url": null
-    },
-    {
-      "id": "1f481f53-f496-42ab-9419-65dcab1c36d2",
-      "nombre": "Empanadas Malvón - Ciutat Vella",
-      "lat": 39.4687709,
-      "lng": -0.3755188,
-      "direccion": "Pg. de Russafa, 2, Ciutat Vella, 46002 València, Valencia, España",
-      "google_maps_url": "https://maps.google.com/?cid=10193270974021129113&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
-      "grupo_id": null,
-      "barrio": "Ciutat Vella",
-      "etiquetas_extra": [
-        "Take away"
-      ],
-      "categorias": [
-        {
-          "nombre": "Empanadas argentinas",
-          "precio": "5-10€",
-          "valoracion": 3,
-          "comentario": null
-        }
-      ],
-      "resena_general": "Si estás buscando restaurantes baratos en Valencia donde comer bien sin gastar mucho, apunta este sitio: Malvón. Especializados en empanadas argentinas, es una opción muy fácil para comer rápido, variado y a buen precio.\n\nNosotros probamos un pack de 12 empanadas y esto fue lo que más nos gustó 👇\n\n🥟 Empanadas y notas:\n\n🧀 4 quesos – 6/10: Muy suave, se queda corta de intensidad.\n🥓 Cheese bacon – 7,5/10: Clásica, fácil y para todos los gustos.\n🐐 Oh my goat! – 8,5/10: Queso de cabra potente, bastante interesante.\n🌮 Cochinita – 8,5/10: Muy bien de sabor, el toque mexicano funciona.\n🥩 Philly cheesesteak – 7,5/10: Carne y queso al estilo americano, correcta.\n🌶️ Carne picante – 8/10: Si te gusta el picante, esta es buena opción.\n🍅 Provolone y tomate seco – 7/10: Sabores bastante suaves.\n🔥 Barbacoa – 9,5/10: Muy top en textura y sabor, de las mejores.\n🇦🇷 Asado especial – 8,5/10: Sabor muy fiel a lo que esperas de una empanada argentina.\n🍔 Cheeseburger – 7/10: Bien lograda, pero no es nuestro estilo.\n🍖 Carrillera – 10/10: Increíble. Sabor, textura y ese toque dulce la hacen la mejor.\n🐂 Rabo de toro – 9,5/10: Muy intensa, muy bien conseguida.\n\n🍫 Postre:\nFranui – Muy bueno el chocolate y sorprende el contraste con el ácido de la fruta.\n\n🔝 Conclusión:\nMalvón es una opción muy recomendable si buscas comer barato en Valencia, con variedad, rapidez y sabores que funcionan. Perfecto para un plan informal o para probar varias cosas sin gastar mucho.\n\n👇\nEstán celebrando que han llegado a 100 tiendas en España y están regalando experiencias con sus packs de 8, 12 y 16 empanadas. A nosotros nos dieron el pack de 12 y estas fueron las que probamos, muchísimas gracias @empanadasmalvon por la invitación, estaban riquísimas !!!\n\n#comerbaratovalencia #restaurantesvalencia #malvon #valenciafoodie #planesvalencia",
-      "instagram_url": null,
-      "tiktok_url": null
-    },
-    {
-      "id": "156a249e-46bd-45ea-a26a-557f160b0b52",
-      "nombre": "Restaurante copenhagen",
-      "lat": 39.460775,
-      "lng": -0.373545,
-      "direccion": "Carrer del Literat Azorín, 8, L'Eixample, 46006 València, Valencia, España",
-      "google_maps_url": "https://maps.google.com/?cid=3986923285640358732&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
-      "grupo_id": null,
-      "barrio": "L'Eixample",
-      "etiquetas_extra": [
-        "Menú del día"
-      ],
-      "categorias": [
-        {
-          "nombre": "Vegetariano",
-          "precio": "20-35€",
-          "valoracion": 5,
-          "comentario": null
-        },
-        {
-          "nombre": "Saludables",
-          "precio": "20-35€",
-          "valoracion": 5,
-          "comentario": null
-        }
-      ],
-      "resena_general": "Hemos ido a Copenhagen, un restaurante vegetariano y saludable que lleva años haciendo las cosas con mucho sentido. Trabajan con producto de calidad, de temporada, ecológico y de proximidad, y eso se nota tanto en el sabor como en el precio. La propuesta es sencilla pero muy bien pensada: cocina sana, fresca, vibrante y sabrosa.\n\nLo que más nos gusta de Copenhagen es que no intentan imitar platos de carne en versión vegana. Aquí no hay “falsos” nada. Simplemente hacen platos ricos con lo que tienen, bien ejecutados y con combinaciones que funcionan.\n\n🍽️ Probamos el menú del día (16 €):\n\n🥣 Vichyssoise de puerro, patata y pera – 7/10\nCorrecta, fresca y agradable, pero algo simplona, sobre todo sabiendo que en este sitio hacen cremas mucho mejores.\n\n🥗 Ensaladas (a elegir):\n\t•\tEnsalada de pistacho, fresa y parmesano – 8/10\nSimple, pero muy rica y bien equilibrada.\n\t•\tEnsalada de hinojo horneado, brotes, naranja, queso feta y vinagreta de mostaza, agave y cúrcuma – 10/10\nLa mejor del menú. La vinagreta estaba espectacular y elevaba todo el plato.\n\n🍠 Platos principales (a elegir):\n\t•\tBoniato asado con chile vegano, mousse de aguacate, queso cheddar y pico de gallo – 9/10\nMuy rico, sabroso y bien balanceado. Plato muy completo.\n\t•\tEstofado de garbanzos con acelgas, boniato blanco, caldo de verduras con especias y dukkah – 8/10\nSi te gustan los garbanzos, es un plato muy reconfortante y lleno de sabor.\n\n🍰 Postres (a elegir):\n\t•\tFlan de chufa con canela y salsa de caramelo – 8/10\nTextura más gelatinosa al no llevar huevo, con un sabor muy marcado a horchata gracias a la chufa.\n\t•\tCarrot cake con nuez, aceite de oliva, canela y crema de queso – 8/10\nNada empalagosa, muy ligera y fácil de comer.\n\n🔝 Conclusión:\n@restaurantecopenhagen es un sitio ideal si buscas comer saludable sin renunciar al sabor, con platos honestos, bien pensados y a muy buen precio. Un vegetariano que convence incluso a los que no lo son.\n\n#comerenvalencia #planesvalencia #comerbaratovalencia #valenciafood #vegetariano",
-      "instagram_url": null,
-      "tiktok_url": null
-    },
-    {
-      "id": "70063671-dc56-413c-89e3-e1624ae218c3",
-      "nombre": "Restaurante Vuelve Carolina",
-      "lat": 39.4697744,
-      "lng": -0.37452920000000006,
-      "direccion": "C/ de Correus, 8, Ciutat Vella, 46002 València, Valencia, España",
-      "google_maps_url": "https://maps.google.com/?cid=4235866296083508803&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
-      "grupo_id": null,
-      "barrio": "Ciutat Vella",
-      "etiquetas_extra": [
-        "Menú del día"
-      ],
-      "categorias": [
-        {
-          "nombre": "Tapas",
-          "precio": "35-50€",
-          "valoracion": 3,
-          "comentario": "Templado de foie: el mejor plato del mes para nosotros."
-        },
-        {
-          "nombre": "Paella/arroces",
-          "precio": "35-50€",
-          "valoracion": 4,
-          "comentario": null
-        }
-      ],
-      "resena_general": "✨ Vuelve Carolina – Valencia ✨\nUn restaurante de Quique Dacosta que mezcla tradición y modernidad con platos pensados para compartir. La experiencia fue positiva, aunque con altibajos, lo que nos lleva a una nota general de 8/10.\n\n🍴 Lo que probamos:\n\t•\t🥔 Patatas soufflé con trufa – 6,5/10\nUn plato que no sorprendió. Lo hemos tomado antes en versiones muy similares y, considerando la cantidad en relación con el precio, no lo recomendaríamos.\n\t•\t🦆 Templado de Foie – 10/10\nUna mousse de foie realmente sorprendente, suave y deliciosa, para comer a cucharadas. Uno de los imprescindibles.\n\t•\t🥟 Croqueta carolina – 8/10\nCorrectas, sabrosas, pero sin llegar a destacar frente a otras.\n\t•\t🥗 Ensaladilla con atún rojo – 8/10\nBuena, aunque hemos probado versiones más finas en la ejecución. Cumple, pero no brilla.\n\t•\t🌮 Taco de costilla des mechada – 10/10\nUno de los favoritos. La carne desmigada estaba jugosa y llena de sabor. Muy recomendable.\n\t•\t🍆 Berenjena al mismo – 7/10\nUn plato centrado casi exclusivamente en la berenjena. Entendemos la intención de hacerla protagonista, pero no terminó de convencernos.\n\t•\t🍚 Arroz de ibérico con setas – 9/10\nImpecable en punto y sabor. Difícil encontrarle un pero.\n\t•\t🍫 Brownie – 8/10\nCorrecto y rico, aunque sin llegar a ser memorable.\n\n🔝 Valoración final: 8/10\nUna experiencia interesante, con momentos brillantes —como el foie, el taco o el arroz— pero también con propuestas que se quedan cortas frente a las expectativas.\n#comerenvalencia #restaurantemichelin #quiquedacosta #comidafusion #menudeldiavalencia #planesvalencia #valenciafood #eatinpeace #valenciafoodies #valencia",
-      "instagram_url": null,
-      "tiktok_url": null
-    },
-    {
-      "id": "b99b1daf-fd25-4c45-a45b-5c189665ded5",
-      "nombre": "Banh Mi by Ma Khin",
-      "lat": 39.468833499999995,
-      "lng": -0.368194,
-      "direccion": "Mercado Colón Sótano, L'Eixample, 46004 València, Valencia, España",
-      "google_maps_url": "https://maps.google.com/?cid=8449017178501403491&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
-      "grupo_id": null,
-      "barrio": "L'Eixample",
-      "etiquetas_extra": [
-        "Take away"
-      ],
-      "categorias": [
-        {
-          "nombre": "Vietnamita",
-          "precio": "10-20€",
-          "valoracion": 4,
-          "comentario": null
-        }
-      ],
-      "resena_general": "Si hay algo mejor que un bocadillo y la comida vietnamita es juntar ambas con un menú disponible 24/7! Esta es la propuesta del restaurante Ma Khin (@makhin_valencia ) en su nuevo local streetfood bahn mi (@banhmi_valencia ), que puedes encontrar en el mercado colón (@mercadocolonvlc ) ! Bocadillos con recetas vietnamitas a muy buena relación calidad precio! #planesvalencia #comerenvalencia #streetfoodvalencia #comerbaratovalencia #menudeldia #valenciafoodies #eatinpeace #valenciafusion",
-      "instagram_url": null,
-      "tiktok_url": null
-    },
-    {
-      "id": "51377097-c13c-4fa8-a50c-c4bb3559a049",
-      "nombre": "Pizza natura",
-      "lat": 39.4712147,
-      "lng": -0.3781206,
-      "direccion": "Carrer del Mestre Clavé, 8, Ciutat Vella, 46001 València, Valencia, España",
-      "google_maps_url": "https://maps.google.com/?cid=11746512312614206176&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
-      "grupo_id": null,
-      "barrio": "Ciutat Vella",
-      "etiquetas_extra": [],
-      "categorias": [
-        {
-          "nombre": "Pizza romana y otros tipos",
-          "precio": "20-35€",
-          "valoracion": 3,
-          "comentario": null
-        },
-        {
-          "nombre": "Saludables",
-          "precio": "20-35€",
-          "valoracion": 5,
-          "comentario": null
-        }
-      ],
-      "resena_general": "Hemos ido a Pizza Natura, @pizzanaturaa , un sitio bastante distinto a lo típico: pizzas saludables y sin gluten, con una masa hecha de mijo, quinoa y agua. La masa es fina, ligera y la verdad que está muy buena. Los toppings también muy cuidados. Además el trato por parte de Leo y Flor fue muy cercano que se agradece.\n\nA nosotros nos gustó bastante el concepto y cómo lo ejecutan.\n\n🍽️ Lo que probamos:\n\n🍠 Boniatos sin filtro – 9/10\nNos gustaron bastante, sobre todo la salsa de aguacate. Dulces por dentro, dorados por fuera y con varias salsas que funcionan muy bien.\n\n🍕 Menorquina – 9,5/10\nDe nuestras favoritas, pero mejor para compartir. Es bastante contundente y con sabores intensos (sobrasada, queso Mahón, miel…), te puede cansar si es para uno solo.\n\n🍕 Huevo trufado – 9/10\nMuy rica, la trufa le queda genial. Nosotros quizá le quitaríamos el tomate, pero en general muy top.\n\n🍰 Cheesecake de pistacho – 8/10\nLo único que no repetiríamos. Demasiado sabor a dátil, tapa bastante el resto.\n\n🥥 Coco lima – 9/10\nMuy rico, suave y bastante equilibrado.\n\n🍋 Lemon fresh – 9/10\nMuy refrescante, de los que apetecen siempre.\n\nEn resumen: sitio diferente, con una propuesta más healthy que funciona. Si buscas pizza sin gluten en Valencia, es una opción muy sólida. También tienen restaurante para comer en Madrid y Barcelona. Mil gracias por la invitación !\n\n#pizzanatura #comerenvalencia #planesvalencia #valenciafood #pizzavalencia",
-      "instagram_url": null,
-      "tiktok_url": null
-    },
-    {
-      "id": "e291e270-93b0-4a0b-8ce8-e6340d6b30f3",
-      "nombre": "Kiosko La Pérgola",
-      "lat": 39.476593,
-      "lng": -0.3667435,
-      "direccion": "Pg. de l'Albereda, 1, El Pla del Real, 46010 València, Valencia, España",
-      "google_maps_url": "https://maps.google.com/?cid=10103957787110960474&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
-      "grupo_id": null,
-      "barrio": "El Pla del Real",
-      "etiquetas_extra": [],
-      "categorias": [
-        {
-          "nombre": "Tradicional",
-          "precio": "5-10€",
-          "valoracion": 5,
-          "comentario": null
-        }
-      ],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null
-    },
-    {
-      "id": "4a67859a-e55b-484a-a092-f9abe9098cdc",
-      "nombre": "Norico Brunch & Sushi",
-      "lat": 39.4780418,
-      "lng": -0.3749048,
-      "direccion": "Pl. de Sant Llorenç, 2B, Ciutat Vella, 46003 València, Valencia, España",
-      "google_maps_url": "https://www.google.com/maps/place/?q=place_id:ChIJz3RagM9PYA0RZ86OkFtYqRk",
-      "grupo_id": null,
-      "barrio": "Ciutat Vella",
-      "etiquetas_extra": [],
-      "resena_general": "Hemos ido a Norico - @norico.valencia , un restaurante bastante nuevo en Valencia de la mano de @norico.barcelona y @nori.spain que apuesta por un sushi fusión con un punto más premium. Nos llamó la atención porque, además de los clásicos, tienen platos diferentes y una presentación muy cuidada. También nos pareció una buena opción para pedir a domicilio o take away si buscáis algo un poco distinto al típico sushi.\n\n🍹 Matcha Yuzu Tonic – 9/10\nMuy equilibrado. El matcha se nota, pero el yuzu le aporta un toque cítrico que hace que sea una bebida muy fresca.\n\n🍸 Prn Star Martini 0.0 – 9/10\nNos sorprendió bastante. Muy conseguido para ser una versión sin alcohol.\n\n🍔 Sushi Burger de atún – 9/10\nUna propuesta divertida y con una relación calidad-precio muy buena. No sustituye a un buen roll, pero nos pareció una opción diferente y perfecta para compartir o pedir a domicilio.\n\n🥗 Poke Bowl de vieira – 8,5/10\nEsperábamos que la vieira tuviera un sabor un poco más intenso, pero el conjunto estaba muy equilibrado y se hacía muy agradable de comer.\n\n🍣 Roll Norico – 9,5/10\nNuestro favorito del día. Es bastante grande, el salmón tenía muy buena calidad y la salsa acompañaba sin tapar el sabor del pescado. Sin duda repetiríamos este roll.\n\nEn general nos pareció un sitio interesante si buscáis un restaurante de sushi en Valencia con propuestas algo diferentes a las habituales. Quizá no es el japonés más tradicional, pero precisamente ahí está su gracia. Si volviéramos, pediríamos otra vez el Roll Norico y probaríamos más especialidades de la carta.\n\nMil gracias por la invitación ! @norico.valencia \n\n#sushivalencia #restaurantesvalencia #comerenvalencia #valenciafood #sushifusion",
-      "instagram_url": null,
-      "tiktok_url": null,
-      "categorias": [
-        {
-          "nombre": "Sushi",
-          "precio": "30-40€",
-          "valoracion": 5,
-          "comentario": null
-        }
-      ]
-    },
-    {
-      "id": "2cca2a23-a513-41f3-b02e-09bdea6ff5ff",
-      "nombre": "Nori Valencia",
-      "lat": 39.4691813,
-      "lng": -0.3776356,
-      "direccion": "C/ del Convent de Sant Francesc, 3, Ciutat Vella, 46002 València, Valencia, España",
-      "google_maps_url": "https://www.google.com/maps/place/?q=place_id:ChIJCW98p4VPYA0RcI8Gydj8vKw",
-      "grupo_id": null,
-      "barrio": "Ciutat Vella",
-      "etiquetas_extra": [
-        "Take away"
-      ],
-      "resena_general": "Hemos pedido Nori a domicilio, un sushi algo más premium que está tanto en Valencia como en Barcelona.\n\nLa verdad es que nos sorprendió para bien. No es fácil encontrar sushi para llevar que llegue en tan buenas condiciones.\n\n🍣 Philadelphia Parrilla Deluxe (salmón) – 9,75/10\nNuestro favorito de todo el pedido. Muy equilibrado y con muchísimo sabor.\n\n🐟 Atún Negro – 9,5/10\nNos encantó. De los rolls que repetiríamos sin pensarlo. Llevaba demasiado queso por ponerle una pega.\n\n🐍 Abby Unagi – 8,5/10\nSomos muy fans de la anguila y solemos pedirla siempre. Estaba bueno, pero no es de nuestros rolls favoritos de anguila.\n\n🍔 Hamburguesa de salmón y camarón – 8,5/10\nEstaba rica, pero nos gustaron bastante más los rolls. Si volviéramos a pedir, probablemente priorizaríamos el sushi.\n\nEn general, si os apetece dar un paso más allá del típico sushi a domicilio, nos parece una opción muy recomendable. Nos quedamos especialmente con el Philadelphia Parrilla Deluxe y el Atún Negro.\n\nMil gracias por la invitación @nori.spain !!!\n\n#SushiValencia #planesvalencia #comerenvalencia #sushinori #sushibarcelona",
-      "instagram_url": null,
-      "tiktok_url": null,
-      "categorias": [
-        {
-          "nombre": "Sushi",
-          "precio": "25-35€",
-          "valoracion": 5,
-          "comentario": "Sushi a domicilio, disponible también en Barcelona."
-        }
-      ]
-    },
-    {
-      "id": "8a467f0c-3b30-4821-a5f6-80c4ed45f47f",
-      "nombre": "Al Paso Take Away",
-      "lat": 39.4621851,
-      "lng": -0.3656085,
-      "direccion": "Carrer de Matias Perelló, 50 esquina, L'Eixample, 46005 València, Valencia, España",
-      "google_maps_url": "https://www.google.com/maps/place/?q=place_id:ChIJ2VspZypJYA0RMnFNmAvOYs0",
-      "grupo_id": null,
-      "barrio": "L'Eixample",
-      "etiquetas_extra": [
-        "Take away"
-      ],
-      "resena_general": "Si buscas comida peruana en Valencia barata y para llevar, apunta este sitio: Al Paso Take Away. Un local sencillo, enfocado al take away, pero con platos muy bien ejecutados y mucho sabor.\n\n🍽️ Lo que probamos:\n\n🐟 Ceviche tradicional – 10/10\nAbsolutamente riquísimo. Muy fresco y equilibrado, con:\nlima, cebolla roja en pluma, ají limo, cilantro fresco, apio, boniato, cancha y lechuga. De los que repetiríamos sin dudar.\n\n🐟 Chicharrones de pescado – 10/10\nMuy especiados y con muchísimo sabor. Crujientes por fuera y muy bien hechos.\n\n🥩 Lomo saltado – 8,25/10\nCarne al wok con cebolla, tomate, soja, arroz y patatas. Muy rico, aunque nos quedamos antes con el ceviche y el pescado.\n\n💰 Conclusión:\nUna opción muy recomendable si buscas comer peruano en Valencia sin gastar mucho, con platos sabrosos, bien hechos y perfectos para llevar. Mil gracias @alpaso.takeaway por la invitación!!!\n\n#comidaperuana #valenciafoodie #comerbaratovalencia #takeawayvalencia\n#foodievalencia",
-      "instagram_url": null,
-      "tiktok_url": null,
-      "categorias": [
-        {
-          "nombre": "Peruano",
-          "precio": null,
-          "valoracion": 5,
-          "comentario": null
-        }
-      ]
-    },
-    {
-      "id": "170f1346-1981-4b63-9f61-7f4da5373b93",
-      "nombre": "Nobar",
-      "lat": 39.4648,
-      "lng": -0.3347943,
-      "direccion": "de Kora Lluna, C/ de l'Arquitecte Alfaro, 44, Planta inferior, Poblats Marítims, 46011 València, Valencia, España",
-      "google_maps_url": "https://www.google.com/maps/place/?q=place_id:ChIJw499HytJYA0RF_nOc3VLAvM",
-      "grupo_id": null,
-      "barrio": "Poblats Marítims",
-      "etiquetas_extra": [],
-      "resena_general": "Seguimos buscando los mejores sitios de Valencia y esta vez hemos ido a Nobar, el nuevo bar de Ricard Camarena. Para nosotros sigue siendo el mejor cocinero de Valencia y aquí han conseguido hacer un esmorzaret más moderno pero sin perder la esencia.\n\nNobar\n\n🥖 Lo que probamos:\n\t•\tCroquetas al ast – 100/10. Absolutamente brutales. De las mejores croquetas que hemos probado.\n\t•\tBravas carbonara – 9/10. Muy ricas, aunque quizá pediríamos antes otras cosas de la carta.\n\t•\tBocadillo de pastrami ibérico – 9,75/10. El pastrami estaba un poco más seco comparado con otros sitios, pero de sabor estaba espectacular.\n\t•\tBocadillo de lomo asado con mojo rojo y queso – 10/10. Para nosotros fue la sorpresa. Estaba buenísimo y seguramente sería el bocadillo que repetiríamos.\n\n🍰 Tarta de queso a la plancha – 9,5/10. Muy rica, como todas las tartas de queso de Ricard, aunque no es nuestra versión favorita.\n\n☕ El café no es el mejor del mundo, pero comparado con lo que suelen poner en muchos bares, se agradece bastante.\n\nSi buscas un esmorzaret diferente, con producto muy bueno y un punto más creativo, Nobar merece mucho la pena\n\n#comerenvalencia #planesvalencia #valenciafood #almuerzovalenciano #esmorzar @nobarvalencia @ricardcamarena",
-      "instagram_url": null,
-      "tiktok_url": null,
-      "categorias": [
-        {
-          "nombre": "Premium",
-          "precio": "15-25€",
-          "valoracion": 4,
-          "comentario": "Nuevo bar de Ricard Camarena, esmorzaret con producto muy bueno y un punto más creativo."
-        }
-      ]
-    },
-    {
-      "id": "f21f9bcd-0a27-42eb-8d22-fcd891abb2fb",
-      "nombre": "Mercat del Roig Arena",
-      "lat": 39.4487833,
-      "lng": -0.3649849,
-      "direccion": "C/ del Bomber Ramon Duart, 12, Quatre Carreres, 46013 València, Valencia, España",
-      "google_maps_url": "https://www.google.com/maps/place/?q=place_id:ChIJH_OM5_dJYA0Rlh8G2XOG7dk",
-      "grupo_id": null,
-      "barrio": "Quatre Carreres",
-      "etiquetas_extra": [],
-      "resena_general": "El Roig arena abrió hace una semana y teníamos que ir a probar sus ofertas gastronómicas. Esta vez fuimos al Mercat del roig arena , un concepto streetfood donde puedes encontrar locales como hundred, adicto y adicta, la mesedora y muchos otros ! Es un planazo para cuando no sabes que comer si quieres picar o tener algo al alcance de todos, ya que cada uno puede pedir en un puesto y comer juntos en las mesas #comerenvalencia #comerbaratovalencia #streetfoodvalencia #roigarena #mercatroigarena #mercadogastronómico #planesvalencia #valenciafood #eatinpeace #valenciafoodies #valencia",
-      "instagram_url": null,
-      "tiktok_url": null,
-      "categorias": [
-        {
-          "nombre": "Otros",
-          "precio": null,
-          "valoracion": null,
-          "comentario": "Adicto y Adicta: bomba trufada, de lo más destacado de este mercado gastronómico."
-        }
-      ]
-    },
-    {
-      "id": "e67384e5-5aed-4e50-8afb-17c92f3ffe07",
-      "nombre": "Champions Burger",
-      "lat": 39.4746556,
-      "lng": -0.3585902,
-      "direccion": "Evento anual (Mestalla / Parc Central de Torrent, fechas variables)",
-      "google_maps_url": "https://www.google.com/maps/place/?q=place_id:ChIJS_cpIb1IYA0RST7ljQtUBHU",
-      "grupo_id": null,
-      "barrio": "El Pla del Real",
-      "etiquetas_extra": [],
-      "resena_general": "Hemos vuelto a Champions Burger y probamos algunas de las hamburguesas más comentadas de esta edición. La verdad es que el nivel nos pareció bastante alto y, aunque las hemos ordenado, cualquiera de las cuatro merece la pena.\n\n🍔 Godeo – 9,5/10\nBrioche coronado con láminas de oro, carne de wagyu, mayo coreana, crema de parmesano trufado, bacon caramelizado al bourbon, salsa tasty ahumada y bacon bits crujientes.\n\nSuele estar entre nuestras favoritas y este año también. La mayo coreana estaba espectacular y el pan muy bien. Como única pega, la carne estaba un poco más hecha de lo que nos gusta.\n\n🍔 Briochef – 9,25/10\nPan brioche de queso, carne de chuletón gallego, costilla ibérica a baja temperatura, mermelada de bacon, cheddar inglés curado, cebolla crujiente y salsa de bacon ahumado.\n\nBastante parecida a la que tienen en el restaurante. Muy rica, con un sabor más tradicional y una carne muy conseguida.\n\n🍔 Brioche Golden Cheese – 9/10\nMedallón de chuletón premium, salsa imperial, queso Monterrey Jack, panceta a baja temperatura estilo gochujang, bacon bites y salsa Big Royale.\n\nNo sabríamos decir exactamente por qué, pero nos gustó mucho. Quizá el pan era lo más mejorable, pero el conjunto funcionaba genial.\n\n🍔 The VicBros Burger – 8,75/10\nPan brioche pretzel, salsa EmmyLove, medallón de vaca Simmental, queso cheddar curado, bacon jam, mayonesa de bacon ahumada, cebolla crispy y polvo de queso pecorino.\n\nQue sea la última no significa que no nos gustara, porque estaba muy buena. Simplemente nos convenció menos que las demás. Eso sí, nos gustó más la propuesta que llevaron el año pasado.\n\n💬 En general, nos pareció una edición con muy buen nivel. Si vais, estas serían nuestras recomendaciones.\n\n💶 12,95€\n\n📅 hasta el 29 de junio \n\nDe lunes a jueves de 18:00h a 00:00h\nDe viernes a domingo de 12:00h a 00:00h\n\nMil Gracias por la invitación @thechampionsburger @godeo_es @foodcreators.agency \n\n@briochef.es @carnivaleburger @thevicbrosburger \n\n#comerenvalencia #planesvalencia #championsburger #TCB2026_G1_VALENCIA #valenciaburgers",
-      "instagram_url": null,
-      "tiktok_url": null,
-      "categorias": [
-        {
-          "nombre": "Hamburguesa",
-          "precio": "10-15€",
-          "valoracion": 5,
-          "comentario": "Festival anual de hamburguesas gourmet; cada edición reúne distintas marcas y varía de ubicación (Mestalla, Torrent...)."
-        }
-      ]
-    },
-    {
-      "id": "0732df4d-34f0-4dc3-9c23-03223138fdff",
-      "nombre": "Hasta la Pasta",
-      "lat": 39.4766072,
-      "lng": -0.3745417,
-      "direccion": "C/ del Pes de la Farina, 1, Ciutat Vella, 46003 València, Valencia, España",
-      "google_maps_url": "https://www.google.com/maps/place/?q=place_id:ChIJ00Tn8o1JYA0RTEsG-dHnrMw",
-      "grupo_id": null,
-      "barrio": "Ciutat Vella",
-      "etiquetas_extra": [],
-      "resena_general": "Pasta fresca hecha al momento, ideal si te apetece algo rápido pero muy sabroso.",
-      "instagram_url": null,
-      "tiktok_url": null,
-      "categorias": [
-        {
-          "nombre": "Pasta",
-          "precio": null,
-          "valoracion": 4,
-          "comentario": "Pasta de mucho nivel; el portafoglio es perfecto para llevar y comer por la calle."
-        }
-      ]
-    },
-    {
-      "id": "f6fef8af-ac05-4d53-adf2-8f8e9999a704",
-      "nombre": "La Pérgola",
-      "lat": 39.476593,
-      "lng": -0.3667435,
-      "direccion": "Pg. de l'Albereda, 1, El Pla del Real, 46010 València, Valencia, España",
-      "google_maps_url": "https://www.google.com/maps/place/?q=place_id:ChIJAeKj-q9IYA0RWm1KBhN4OIw",
-      "grupo_id": null,
-      "barrio": "El Pla del Real",
-      "etiquetas_extra": [],
-      "resena_general": "Uno de los sitios más míticos para almorzar en Valencia.",
-      "instagram_url": null,
-      "tiktok_url": null,
-      "categorias": [
-        {
-          "nombre": "Tradicional",
-          "precio": null,
-          "valoracion": 4,
-          "comentario": "Uno de los sitios más míticos para almorzar en Valencia."
-        }
-      ]
-    },
-    {
-      "id": "ad70b15f-edf7-44a0-89ae-88d50d5323cf",
-      "nombre": "Kaisushi",
-      "lat": 39.4569214,
-      "lng": -0.3748224,
-      "direccion": "Avinguda del Doctor Waksman, 1, Quatre Carreres, 46006 València, Valencia, España",
-      "google_maps_url": "https://www.google.com/maps/place/?q=place_id:ChIJbU1YIOJJYA0Rp1KdY_9wP3k",
-      "grupo_id": null,
-      "barrio": "Quatre Carreres",
-      "etiquetas_extra": [],
-      "resena_general": "Buffet de sushi con varias sedes en Valencia.",
-      "instagram_url": null,
-      "tiktok_url": null,
-      "categorias": [
-        {
-          "nombre": "Sushi Buffet",
-          "precio": null,
-          "valoracion": 4,
-          "comentario": "El carpaccio de salmón flambeado fue el plato que más repetimos en el buffet."
-        }
-      ]
-    },
-    {
-      "id": "7c778025-6e5b-4d1d-a0d7-c19a3ee36577",
-      "nombre": "La Casa Viva",
-      "lat": 39.4601891,
-      "lng": -0.3726102,
-      "direccion": "C/ de Cadis, 76, L'Eixample, 46006 València, Valencia, España",
-      "google_maps_url": "https://www.google.com/maps/place/?q=place_id:ChIJAQAcf8tIYA0R0TLLcCLChc4",
-      "grupo_id": null,
-      "barrio": "L'Eixample",
-      "etiquetas_extra": [],
-      "resena_general": "Restaurante vegetariano en Russafa.",
-      "instagram_url": null,
-      "tiktok_url": null,
-      "categorias": [
-        {
-          "nombre": "Vegetariano",
-          "precio": null,
-          "valoracion": 3,
-          "comentario": "La yuca frita, sencilla pero bien hecha y con sabor, de lo más destacado del restaurante."
-        }
-      ]
     }
   ]
 }
