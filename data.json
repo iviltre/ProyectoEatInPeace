@@ -2972,7 +2972,7 @@
       "etiquetas_extra": [
         "Menú del día"
       ],
-      "resena_general": "A huevo🍳\n\nHemos ido a probar este sitio con una propuesta bastante equilibrada entre cocina clásica bien ejecutada y algún toque más creativo. En general, es un restaurante donde se come bien, con platos reconocibles y sabores claros, sin grandes riesgos pero con buena técnica.\n\n🍽️ Lo que probamos:\n\t•\tCroquetas – 8/10\nCorrectas, cremosas y bien fritas. Cumplen, aunque no son lo más destacable de la comida.\n\t•\tHuevos rotos – 9/10\nMuy buenos. Buen punto del huevo y patata bien hecha. Un plato sencillo pero muy bien ejecutado.\n\t•\tSalmón con couscous – 9,5/10\nDe lo mejor del menú. El salmón estaba en su punto y el couscous acompañaba perfectamente. Plato muy equilibrado y sabroso.\n\t•\tCarne sobre puré de calabaza – 8,5/10\nBuena carne y puré suave, con un contraste dulce interesante. Quizá no sorprende, pero funciona muy bien.\n\t•\tTarta de queso azul – 8/10\nOriginal por el toque de queso azul, bien integrada, aunque sin llegar a ser espectacular.\n\t•\tBizcocho de calabaza – 7/10\nCorrecto, pero es el postre que menos nos convenció. Rico, pero algo más plano.\n\nUna experiencia sólida, con platos bien hechos y alguno realmente destacable. Un sitio recomendable si buscas comer bien sin complicaciones.\n",
+      "resena_general": "A huevo🍳\n\nHemos ido a probar este sitio con una propuesta bastante equilibrada entre cocina clásica bien ejecutada y algún toque más creativo. En general, es un restaurante donde se come bien, con platos reconocibles y sabores claros, sin grandes riesgos pero con buena técnica.\n\n🍽️ Lo que probamos:\n• Croquetas – 8/10\nCorrectas, cremosas y bien fritas. Cumplen, aunque no son lo más destacable de la comida.\n• Huevos rotos – 9/10\nMuy buenos. Buen punto del huevo y patata bien hecha. Un plato sencillo pero muy bien ejecutado.\n• Salmón con couscous – 9,5/10\nDe lo mejor del menú. El salmón estaba en su punto y el couscous acompañaba perfectamente. Plato muy equilibrado y sabroso.\n• Carne sobre puré de calabaza – 8,5/10\nBuena carne y puré suave, con un contraste dulce interesante. Quizá no sorprende, pero funciona muy bien.\n• Tarta de queso azul – 8/10\nOriginal por el toque de queso azul, bien integrada, aunque sin llegar a ser espectacular.\n• Bizcocho de calabaza – 7/10\nCorrecto, pero es el postre que menos nos convenció. Rico, pero algo más plano.\n\nUna experiencia sólida, con platos bien hechos y alguno realmente destacable. Un sitio recomendable si buscas comer bien sin complicaciones.\n",
       "instagram_url": "https://www.instagram.com/reel/DS0XBKuCgO_/?igsh=MWpkb2I3cnNsOGI3bw==",
       "tiktok_url": "https://vm.tiktok.com/ZN81wYKRg/",
       "categorias": [
@@ -4352,7 +4352,7 @@
       "etiquetas_extra": [
         "Menú del día"
       ],
-      "resena_general": null,
+      "resena_general": "",
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
@@ -7253,6 +7253,30 @@
           "nombre": "Tradicional",
           "precio": "5-10€",
           "valoracion": 5,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "64879f11-12d8-4cae-9513-8b71ea1a3997",
+      "nombre": "Norico Brunch & Sushi",
+      "lat": 39.47804180000001,
+      "lng": -0.3749048,
+      "direccion": "Pl. de Sant Llorenç, 2B, Ciutat Vella, 46003 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=1849106272302845543&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "Hemos ido a Norico - @norico.valencia , un restaurante bastante nuevo en Valencia de la mano de @norico.barcelona y @nori.spain que apuesta por un sushi fusión con un punto más premium. Nos llamó la atención porque, además de los clásicos, tienen platos diferentes y una presentación muy cuidada. También nos pareció una buena opción para pedir a domicilio o take away si buscáis algo un poco distinto al típico sushi.\n\n🍹 Matcha Yuzu Tonic – 9/10\nMuy equilibrado. El matcha se nota, pero el yuzu le aporta un toque cítrico que hace que sea una bebida muy fresca.\n\n🍸 Prn Star Martini 0.0 – 9/10\nNos sorprendió bastante. Muy conseguido para ser una versión sin alcohol.\n\n🍔 Sushi Burger de atún – 9/10\nUna propuesta divertida y con una relación calidad-precio muy buena. No sustituye a un buen roll, pero nos pareció una opción diferente y perfecta para compartir o pedir a domicilio.\n\n🥗 Poke Bowl de vieira – 8,5/10\nEsperábamos que la vieira tuviera un sabor un poco más intenso, pero el conjunto estaba muy equilibrado y se hacía muy agradable de comer.\n\n🍣 Roll Norico – 9,5/10\nNuestro favorito del día. Es bastante grande, el salmón tenía muy buena calidad y la salsa acompañaba sin tapar el sabor del pescado. Sin duda repetiríamos este roll.\n\nEn general nos pareció un sitio interesante si buscáis un restaurante de sushi en Valencia con propuestas algo diferentes a las habituales. Quizá no es el japonés más tradicional, pero precisamente ahí está su gracia. Si volviéramos, pediríamos otra vez el Roll Norico y probaríamos más especialidades de la carta.",
+      "instagram_url": "https://www.instagram.com/reel/DbEEVrFqRGu/?igsh=bm1scXA5Y3g0Nm1x",
+      "tiktok_url": "https://vm.tiktok.com/ZN8JghWBY/",
+      "categorias": [
+        {
+          "nombre": "Sushi",
+          "precio": "20-35€",
+          "valoracion": 3,
           "comentario": ""
         }
       ]

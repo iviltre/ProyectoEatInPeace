@@ -523,9 +523,15 @@ function ordenar(lista) {
   return copia;
 }
 
-function direccionCorta(direccion) {
+function direccionCorta(direccion, barrio) {
   if (!direccion) return '';
-  return direccion.replace(/,?\s*\d{5}\s*[^,]*,\s*Valencia,\s*España\s*$/i, '').replace(/,\s*España\s*$/i, '');
+  let corta = direccion.replace(/,?\s*\d{5}\s*[^,]*,\s*Valencia,\s*España\s*$/i, '').replace(/,\s*España\s*$/i, '');
+  if (barrio) {
+    // el barrio suele venir ya como un tramo de la dirección de Google; lo quitamos de aquí
+    // para no repetirlo, ya que se muestra aparte en negrita.
+    corta = corta.split(',').map(s => s.trim()).filter(s => s.toLowerCase() !== barrio.trim().toLowerCase()).join(', ');
+  }
+  return corta;
 }
 
 function renderList() {
@@ -540,7 +546,7 @@ function renderList() {
     const mejorValoracion = valoracionMostrada(r);
     div.innerHTML = `
       <div class="nombre">${r.nombre}</div>
-      <div style="color:var(--text-muted); font-size:11.5px; margin-top:2px;">${direccionCorta(r.direccion)}${r.barrio ? ` · <strong style="color:var(--text); font-weight:600;">${r.barrio}</strong>` : ''}</div>
+      <div style="color:var(--text-muted); font-size:11.5px; margin-top:2px;">${direccionCorta(r.direccion, r.barrio)}${r.barrio ? ` · <strong style="color:var(--text); font-weight:600;">${r.barrio}</strong>` : ''}</div>
       <div class="tags">${r.categorias.map(c => `<span class="tag">${c.nombre || ''}${c.precio ? ' · ' + c.precio : ''}</span>`).join('')}</div>
       ${mejorValoracion ? `<div class="stars-mini">${estrellas(mejorValoracion)}</div>` : ''}
     `;
