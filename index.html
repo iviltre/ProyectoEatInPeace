@@ -588,6 +588,7 @@ function abrirDetalle(id) {
         ${c.comentario ? `<div class="resena">${c.comentario.replace(/\n/g, '<br>')}</div>` : ''}
       </div>
     `).join('')}
+    ${(r.resena_general || r.instagram_url || r.tiktok_url) ? '<hr style="border:none; border-top:1px solid var(--border); margin:14px 0;">' : ''}
     ${r.resena_general ? `<div class="resena">${r.resena_general.replace(/\n/g, '<br>')}</div>` : ''}
     ${r.instagram_url ? `<a class="maps" href="${r.instagram_url}" target="_blank" style="display:inline-block; margin-top:6px; margin-right:12px;">Ver reel en Instagram →</a>` : ''}
     ${r.tiktok_url ? `<a class="maps" href="${r.tiktok_url}" target="_blank" style="display:inline-block; margin-top:6px;">Ver en TikTok →</a>` : ''}
