@@ -540,7 +540,7 @@ function renderList() {
     const mejorValoracion = valoracionMostrada(r);
     div.innerHTML = `
       <div class="nombre">${r.nombre}</div>
-      <div style="color:var(--text-muted); font-size:11.5px; margin-top:2px;">${direccionCorta(r.direccion)}${r.barrio ? ' · ' + r.barrio : ''}</div>
+      <div style="color:var(--text-muted); font-size:11.5px; margin-top:2px;">${direccionCorta(r.direccion)}${r.barrio ? ` · <strong style="color:var(--text); font-weight:600;">${r.barrio}</strong>` : ''}</div>
       <div class="tags">${r.categorias.map(c => `<span class="tag">${c.nombre || ''}${c.precio ? ' · ' + c.precio : ''}</span>`).join('')}</div>
       ${mejorValoracion ? `<div class="stars-mini">${estrellas(mejorValoracion)}</div>` : ''}
     `;
@@ -569,7 +569,7 @@ function abrirDetalle(id) {
   else centrarConOffset(r.lat, r.lng, map.getZoom(), 0, alturaPanelMovil / 2);
   document.getElementById('detail-body').innerHTML = `
     <h2>${r.nombre}</h2>
-    <div class="direccion">${r.direccion || ''}${r.barrio ? ' · ' + r.barrio : ''}</div>
+    <div class="direccion">${r.direccion || ''}${r.barrio ? ` · <strong style="color:var(--text); font-weight:600;">${r.barrio}</strong>` : ''}</div>
     ${(r.etiquetas_extra && r.etiquetas_extra.length) ? `<div style="margin:4px 0 8px;">${r.etiquetas_extra.map(e => `<span class="tag">${e}</span>`).join(' ')}</div>` : ''}
     ${r.google_maps_url ? `<a class="maps" href="${r.google_maps_url}" target="_blank">Ver en Google Maps →</a>` : ''}
     ${r.categorias.map(c => `
