@@ -941,6 +941,17 @@ function activarRenombrar(span, nombreActual, nivel) {
       if (!res.ok) {
         const err = await res.json();
         alert(err.error || 'No se ha podido renombrar');
+      } else {
+        // el servidor ya ha renombrado la categoría en todos los restaurantes que la tenían;
+        // actualizamos también la copia que tenemos cargada en el navegador para que no se desincronice
+        restaurantes.forEach(r => {
+          (r.categorias || []).forEach(c => { if (c.nombre === nombreActual) c.nombre = nuevo; });
+        });
+        renderList();
+        if (selectedId) {
+          const rActual = restaurantes.find(x => x.id === selectedId);
+          if (rActual) renderCategorias(rActual);
+        }
       }
       await cargarCategoriasMaestro();
     }
