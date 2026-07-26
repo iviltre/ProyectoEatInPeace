@@ -87,28 +87,54 @@ function extraerBarrio(direccion) {
   return posible || null;
 }
 
-// Traslada la reseña que ya hubiera escrita en alguna categoría (modelo antiguo) a la
-// reseña general del restaurante (modelo nuevo). Solo actúa sobre restaurantes que
-// todavía no tengan reseña general, así que es seguro que se ejecute en cada arranque.
+// Traslada la reseña y los enlaces de Instagram/TikTok que ya hubiera en alguna categoría
+// (modelo antiguo) al restaurante (modelo nuevo). Solo rellena lo que todavía esté vacío,
+// así que es seguro que se ejecute en cada arranque.
 async function migrarResenasAGeneral() {
-  const { rows } = await db.execute(`SELECT id, resena_general FROM restaurantes`);
+  const { rows } = await db.execute(`SELECT id, resena_general, instagram_url, tiktok_url FROM restaurantes`);
   let movidos = 0;
   for (const fila of rows) {
-    if (fila.resena_general) continue;
     const { rows: cats } = await db.execute({
-      sql: `SELECT id, resena FROM categorias WHERE restaurante_id = ? AND resena IS NOT NULL AND resena != ''`,
+      sql: `SELECT id, resena, instagram_url, tiktok_url FROM categorias WHERE restaurante_id = ?`,
       args: [fila.id]
     });
     if (!cats.length) continue;
-    // si hay varias, nos quedamos con la más larga (la que de verdad parece una reseña)
-    const elegida = cats.reduce((a, b) => (b.resena.length > a.resena.length ? b : a));
-    await db.execute({ sql: 'UPDATE restaurantes SET resena_general = ? WHERE id = ?', args: [elegida.resena, fila.id] });
-    for (const c of cats) {
-      await db.execute({ sql: 'UPDATE categorias SET resena = NULL WHERE id = ?', args: [c.id] });
+
+    let nuevaResena = fila.resena_general;
+    let nuevoInstagram = fila.instagram_url;
+    let nuevoTiktok = fila.tiktok_url;
+
+    if (!nuevaResena) {
+      const conResena = cats.filter(c => c.resena);
+      if (conResena.length) {
+        // si hay varias, nos quedamos con la más larga (la que de verdad parece una reseña)
+        nuevaResena = conResena.reduce((a, b) => (b.resena.length > a.resena.length ? b : a)).resena;
+      }
     }
-    movidos++;
+    if (!nuevoInstagram) {
+      const conIG = cats.find(c => c.instagram_url);
+      if (conIG) nuevoInstagram = conIG.instagram_url;
+    }
+    if (!nuevoTiktok) {
+      const conTT = cats.find(c => c.tiktok_url);
+      if (conTT) nuevoTiktok = conTT.tiktok_url;
+    }
+
+    if (nuevaResena !== fila.resena_general || nuevoInstagram !== fila.instagram_url || nuevoTiktok !== fila.tiktok_url) {
+      await db.execute({
+        sql: 'UPDATE restaurantes SET resena_general = ?, instagram_url = ?, tiktok_url = ? WHERE id = ?',
+        args: [nuevaResena, nuevoInstagram, nuevoTiktok, fila.id]
+      });
+      movidos++;
+    }
+    // limpiamos las categorías para que no se queden datos duplicados/invisibles ahí
+    for (const c of cats) {
+      if (c.resena || c.instagram_url || c.tiktok_url) {
+        await db.execute({ sql: 'UPDATE categorias SET resena = NULL, instagram_url = NULL, tiktok_url = NULL WHERE id = ?', args: [c.id] });
+      }
+    }
   }
-  if (movidos) console.log(`Reseñas trasladadas a reseña general: ${movidos} restaurantes.`);
+  if (movidos) console.log(`Datos trasladados a nivel de restaurante: ${movidos} restaurantes.`);
 }
 
 async function migrarBarrios() {
