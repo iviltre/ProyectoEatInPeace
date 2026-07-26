@@ -540,7 +540,7 @@ function renderList() {
     const mejorValoracion = valoracionMostrada(r);
     div.innerHTML = `
       <div class="nombre">${r.nombre}</div>
-      <div style="color:var(--text-muted); font-size:11.5px; margin-top:2px;">${direccionCorta(r.direccion)}</div>
+      <div style="color:var(--text-muted); font-size:11.5px; margin-top:2px;">${direccionCorta(r.direccion)}${r.barrio ? ' · ' + r.barrio : ''}</div>
       <div class="tags">${r.categorias.map(c => `<span class="tag">${c.nombre || ''}${c.precio ? ' · ' + c.precio : ''}</span>`).join('')}</div>
       ${mejorValoracion ? `<div class="stars-mini">${estrellas(mejorValoracion)}</div>` : ''}
     `;
