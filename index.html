@@ -4,6 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>eat in peace · Restaurantes en Valencia</title>
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="eat in peace">
+<meta property="og:title" content="eat in peace · Restaurantes en Valencia">
+<meta property="og:description" content="Nuestra selección de restaurantes probados en Valencia: dirección, precio, valoración y los vídeos de Instagram y TikTok de cada uno.">
+<meta property="og:image" content="https://iviltre.github.io/ProyectoEatInPeace/og-image.png">
+<meta property="og:url" content="https://iviltre.github.io/ProyectoEatInPeace/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="eat in peace · Restaurantes en Valencia">
+<meta name="twitter:description" content="Nuestra selección de restaurantes probados en Valencia.">
+<meta name="twitter:image" content="https://iviltre.github.io/ProyectoEatInPeace/og-image.png">
+
 <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png?v=2" type="image/png" sizes="32x32">
 <link rel="icon" href="favicon-16.png?v=2" type="image/png" sizes="16x16">
@@ -410,7 +422,7 @@ function pintarFiltros() {
 }
 
 function normalizarTexto(s) {
-  return (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  return (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\s+/g, '');
 }
 
 function coincide(r) {

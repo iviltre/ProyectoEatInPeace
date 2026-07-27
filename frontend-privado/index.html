@@ -1054,7 +1054,7 @@ function confirmarQuitarCategoria(nombre) {
 }
 
 function normalizarTexto(s) {
-  return (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  return (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\s+/g, '');
 }
 
 function restaurantesFiltrados() {
