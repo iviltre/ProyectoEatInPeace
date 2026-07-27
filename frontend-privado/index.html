@@ -618,7 +618,7 @@ function circuloPara(r) {
   const seleccionado = r.id === selectedId;
   return {
     radius: seleccionado ? 11 : 7,
-    fillColor: colorParaValoracion(valoracionMostrada(r)),
+    fillColor: r.probado ? colorParaValoracion(valoracionMostrada(r)) : '#9AA0A6',
     color: seleccionado ? '#1a1a1a' : 'white',
     weight: seleccionado ? 3 : 2,
     fillOpacity: 1
