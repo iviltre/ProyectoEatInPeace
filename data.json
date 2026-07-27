@@ -167,12 +167,12 @@
     },
     {
       "nombre": "Pizza napolitana",
-      "padre": "Focaccia",
+      "padre": "Pizza",
       "orden": 33
     },
     {
       "nombre": "Pizza romana y otros tipos",
-      "padre": "Focaccia",
+      "padre": "Pizza",
       "orden": 34
     },
     {
@@ -181,7 +181,7 @@
       "orden": 35
     },
     {
-      "nombre": "Premium",
+      "nombre": "Esmorzar Premium",
       "padre": "Esmorzar",
       "orden": 36
     },
@@ -241,7 +241,7 @@
       "orden": 47
     },
     {
-      "nombre": "Tradicional",
+      "nombre": "Esmorzar Tradicional",
       "padre": "Esmorzar",
       "orden": 48
     },
@@ -274,6 +274,11 @@
       "nombre": "Carne",
       "padre": null,
       "orden": 54
+    },
+    {
+      "nombre": "Açai",
+      "padre": "Dulces",
+      "orden": 55
     }
   ],
   "etiquetas": [
@@ -315,14 +320,16 @@
       "google_maps_url": "http://maps.google.com/?cid=8124552691578316441",
       "grupo_id": null,
       "barrio": "L'Eixample",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 4,
           "comentario": null
         },
@@ -336,37 +343,15 @@
     },
     {
       "id": "f0192e8d-e64b-407d-8362-6773e50a069f",
-      "nombre": "Sushitio Cánovas",
+      "nombre": "Sushitio - Cánovas",
       "lat": 39.4662151,
       "lng": -0.3677631,
       "direccion": "Carrer del Comte d'Altea, 21, L'Eixample, 46005 València, Valencia, España",
       "google_maps_url": "http://maps.google.com/?cid=12554607993396024942",
       "grupo_id": null,
       "barrio": "L'Eixample",
-      "etiquetas_extra": [],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
-      "categorias": [
-        {
-          "nombre": null,
-          "precio": null,
-          "valoracion": null,
-          "comentario": null
-        }
-      ]
-    },
-    {
-      "id": "b5a1f7d4-dd00-4c91-8a8f-421001d8ec0b",
-      "nombre": "Sushitio Centro",
-      "lat": 39.4664728,
-      "lng": -0.373229,
-      "direccion": "C/ de Ciril Amorós, 14, L'Eixample, 46004 València, Valencia, España",
-      "google_maps_url": "http://maps.google.com/?cid=15927645960128895643",
-      "grupo_id": null,
-      "barrio": "L'Eixample",
       "etiquetas_extra": [
-        "Sin buffet"
+        "Take away"
       ],
       "resena_general": null,
       "instagram_url": null,
@@ -374,7 +359,31 @@
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": "30-50€",
+          "precio": "35-50€",
+          "valoracion": 2,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "b5a1f7d4-dd00-4c91-8a8f-421001d8ec0b",
+      "nombre": "Sushitio - Centro",
+      "lat": 39.4664728,
+      "lng": -0.373229,
+      "direccion": "C/ de Ciril Amorós, 14, L'Eixample, 46004 València, Valencia, España",
+      "google_maps_url": "http://maps.google.com/?cid=15927645960128895643",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Sushi",
+          "precio": "35-50€",
           "valoracion": 2,
           "comentario": null
         }
@@ -406,7 +415,7 @@
     },
     {
       "id": "89adb010-6810-4087-a8e6-942a1bbd9058",
-      "nombre": "Restaurante Hōchō",
+      "nombre": "Hōchō",
       "lat": 39.4674895,
       "lng": -0.3595739,
       "direccion": "Pg. de l'Albereda, 32, El Pla del Real, 46023 València, Valencia, España",
@@ -422,7 +431,7 @@
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": ">40€",
+          "precio": "50-80€",
           "valoracion": 5,
           "comentario": null
         }
@@ -460,15 +469,16 @@
       "grupo_id": null,
       "barrio": "Ciutat Vella",
       "etiquetas_extra": [
-        "Tipo romana"
+        "Tipo romana",
+        "Take away"
       ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Pizza",
-          "precio": "10-25€",
+          "nombre": "Pizza romana y otros tipos",
+          "precio": "10-20€",
           "valoracion": 5,
           "comentario": null
         }
@@ -508,11 +518,12 @@
       "grupo_id": null,
       "barrio": "Extramurs",
       "etiquetas_extra": [
-        "Tipo romana"
+        "Tipo romana",
+        "Take away"
       ],
       "resena_general": "Un restaurante italiano que nos ha sorprendido en valencia es No es lo mimmo, ya que somos escépticos cuando combinan pizza y pasta pero este nos ha parecido una opción súper guay! Cerca de torres de quart y por 20€ aprox por persona tienes una cena para todos los gustos",
       "instagram_url": "https://www.instagram.com/reel/DOEBZ8BCsPj/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-      "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7544476299398597910?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
+      "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Pasta",
@@ -521,7 +532,7 @@
           "comentario": null
         },
         {
-          "nombre": "Pizza",
+          "nombre": "Pizza romana y otros tipos",
           "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
@@ -578,7 +589,7 @@
     },
     {
       "id": "ea1331e5-524a-4035-91ce-c90e11a34964",
-      "nombre": "Restaurante Gulliver Turia",
+      "nombre": "Gulliver Turia",
       "lat": 39.4809568,
       "lng": -0.3862984,
       "direccion": "Av. de Menéndez Pidal, 10, Campanar, 46009 València, Valencia, España",
@@ -588,13 +599,13 @@
       "etiquetas_extra": [
         "Tipo gourmet"
       ],
-      "resena_general": "Hemos ido esmorzar",
+      "resena_general": "",
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Esmorzar",
-          "precio": "10-25€",
+          "nombre": "Esmorzar Premium",
+          "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
         }
@@ -609,14 +620,16 @@
       "google_maps_url": "http://maps.google.com/?cid=385397663960465439",
       "grupo_id": null,
       "barrio": "Camins al Grau",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 1,
           "comentario": null
         }
@@ -631,14 +644,16 @@
       "google_maps_url": "http://maps.google.com/?cid=7545225600865801431",
       "grupo_id": null,
       "barrio": "Algirós",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Brunch",
-          "precio": "0-10€",
+          "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
         },
@@ -667,7 +682,7 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7559305453235162390?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Premium",
+          "nombre": "Esmorzar Premium",
           "precio": "10-20€",
           "valoracion": 4,
           "comentario": null
@@ -683,15 +698,17 @@
       "google_maps_url": "http://maps.google.com/?cid=9346614288472975504",
       "grupo_id": null,
       "barrio": "L'Eixample",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Brunch",
-          "precio": "0-10€",
-          "valoracion": 3,
+          "precio": "10-20€",
+          "valoracion": 4,
           "comentario": null
         },
         {
@@ -843,14 +860,14 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Fusión Tapas",
-          "precio": "25-40€",
+          "nombre": "Tapas",
+          "precio": "35-50€",
           "valoracion": 4,
           "comentario": null
         },
         {
-          "nombre": "Tarta de queso",
-          "precio": "35-60€",
+          "nombre": "de Restaurante",
+          "precio": "5-10€",
           "valoracion": 5,
           "comentario": null
         }
@@ -915,8 +932,8 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Ramen",
-          "precio": "10-25€",
+          "nombre": "Ramen Japones",
+          "precio": "10-20€",
           "valoracion": 1,
           "comentario": null
         }
@@ -924,7 +941,7 @@
     },
     {
       "id": "d237dd8e-af0f-461c-824b-626f3e9f66c1",
-      "nombre": "Pizzeria Grosso Napoletano",
+      "nombre": "Grosso Napoletano - Ciutat Vella",
       "lat": 39.4681696,
       "lng": -0.3747987,
       "direccion": "Carrer de Martínez Cubells, 4, Loc bajo derecha, Ciutat Vella, 46002 València, Valencia, España",
@@ -932,15 +949,16 @@
       "grupo_id": null,
       "barrio": "Ciutat Vella",
       "etiquetas_extra": [
+        "Take away",
         "Tipo napolitana"
       ],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
-          "nombre": "Pizza",
-          "precio": "15-25€",
+          "nombre": "Pizza napolitana",
+          "precio": "10-20€",
           "valoracion": 4,
           "comentario": null
         }
@@ -948,7 +966,7 @@
     },
     {
       "id": "2272053e-69fd-46f1-a503-d5e676f6586e",
-      "nombre": "Grosso Napoletano",
+      "nombre": "Grosso Napoletano - Algirós",
       "lat": 39.4754079,
       "lng": -0.3503867,
       "direccion": "Pça. del Xúquer, 16, Algirós, 46021 València, Valencia, España",
@@ -964,8 +982,8 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Pizza",
-          "precio": "10-25€",
+          "nombre": "Pizza napolitana",
+          "precio": "10-20€",
           "valoracion": 4,
           "comentario": null
         }
@@ -981,15 +999,16 @@
       "grupo_id": null,
       "barrio": "Benimaclet",
       "etiquetas_extra": [
-        "Tipo napolitana"
+        "Tipo napolitana",
+        "Take away"
       ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Pizza",
-          "precio": "10-25€",
+          "nombre": "Pizza napolitana",
+          "precio": "10-20€",
           "valoracion": 4,
           "comentario": null
         }
@@ -1013,13 +1032,13 @@
       "categorias": [
         {
           "nombre": "Saludables",
-          "precio": "0-20€",
+          "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
         },
         {
-          "nombre": "Vegetariano vegano",
-          "precio": "25-40€",
+          "nombre": "Vegetariano",
+          "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
         }
@@ -1034,21 +1053,23 @@
       "google_maps_url": "http://maps.google.com/?cid=11141017384890126097",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Pasta",
-          "precio": "25-40€",
-          "valoracion": 1,
+          "precio": "20-35€",
+          "valoracion": 2,
           "comentario": null
         },
         {
-          "nombre": "Pizza",
-          "precio": ">25€",
-          "valoracion": 1,
+          "nombre": "Pizza napolitana",
+          "precio": "20-35€",
+          "valoracion": 2,
           "comentario": null
         }
       ]
@@ -1062,14 +1083,16 @@
       "google_maps_url": "http://maps.google.com/?cid=17530374082256269255",
       "grupo_id": null,
       "barrio": "L'Eixample",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 3,
           "comentario": null
         }
@@ -1077,7 +1100,7 @@
     },
     {
       "id": "88f45e68-75ba-4b0f-9856-8bfe1abb71c9",
-      "nombre": "Restaurante Mesón Canela",
+      "nombre": "Mesón Canela",
       "lat": 39.4871458,
       "lng": -0.3920424,
       "direccion": "Carrer de Conchita Piquer, 9, Campanar, 46015 València, Valencia, España",
@@ -1116,8 +1139,8 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Esmorzar",
-          "precio": "0-10€",
+          "nombre": "Esmorzar Tradicional",
+          "precio": "5-10€",
           "valoracion": 3,
           "comentario": null
         }
@@ -1178,14 +1201,16 @@
       "google_maps_url": "http://maps.google.com/?cid=8748095561448154208",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 2,
           "comentario": null
         }
@@ -1200,14 +1225,16 @@
       "google_maps_url": "http://maps.google.com/?cid=12207812050992123255",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 2,
           "comentario": null
         }
@@ -1222,14 +1249,16 @@
       "google_maps_url": "http://maps.google.com/?cid=15988536970089340679",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 1,
           "comentario": null
         }
@@ -1244,14 +1273,16 @@
       "google_maps_url": "http://maps.google.com/?cid=5786613840955277618",
       "grupo_id": null,
       "barrio": "L'Eixample",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 2,
           "comentario": null
         }
@@ -1283,7 +1314,7 @@
     },
     {
       "id": "96814ca7-3231-43d8-aaea-6120b7043a0c",
-      "nombre": "Syra Coffee - Gran Via",
+      "nombre": "Syra Coffee - Gran Vía",
       "lat": 39.4670106,
       "lng": -0.3680253,
       "direccion": "Gran Via del Marqués del Túria, 54, L'Eixample, 46005 València, Valencia, España",
@@ -1362,14 +1393,16 @@
       "google_maps_url": "http://maps.google.com/?cid=314257651272869860",
       "grupo_id": null,
       "barrio": "L'Eixample",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 1,
           "comentario": null
         }
@@ -1384,14 +1417,16 @@
       "google_maps_url": "http://maps.google.com/?cid=13958552449102137194",
       "grupo_id": null,
       "barrio": "L'Eixample",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 1,
           "comentario": null
         }
@@ -1406,14 +1441,16 @@
       "google_maps_url": "http://maps.google.com/?cid=2470030154431139391",
       "grupo_id": null,
       "barrio": "Extramurs",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": "No le ponemos un 5 porque tiene rebeldes en carta pero el que es de otra marca en espresso top",
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 4,
           "comentario": null
         }
@@ -1428,14 +1465,16 @@
       "google_maps_url": "http://maps.google.com/?cid=12298633549260394440",
       "grupo_id": null,
       "barrio": "L'Eixample",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 1,
           "comentario": null
         }
@@ -1450,14 +1489,16 @@
       "google_maps_url": "http://maps.google.com/?cid=7035494363480640603",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 1,
           "comentario": null
         }
@@ -1472,14 +1513,16 @@
       "google_maps_url": "http://maps.google.com/?cid=4544547210990506857",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 1,
           "comentario": null
         }
@@ -1494,14 +1537,16 @@
       "google_maps_url": "http://maps.google.com/?cid=13715000236599759129",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 1,
           "comentario": null
         }
@@ -1516,14 +1561,16 @@
       "google_maps_url": "http://maps.google.com/?cid=8716654429927844066",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 1,
           "comentario": null
         }
@@ -1538,14 +1585,16 @@
       "google_maps_url": "http://maps.google.com/?cid=2952300036593963419",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 4,
           "comentario": null
         }
@@ -1553,21 +1602,23 @@
     },
     {
       "id": "08969295-27c0-4c63-b8f9-2d8f25ec3f64",
-      "nombre": "Elixir Café Mercado del Grao",
+      "nombre": "Elixir Café - Mercado del Grao",
       "lat": 39.4612175,
       "lng": -0.334603,
       "direccion": "C/ del Crist del Grau, C/ d'Abastos, 4, 46011 València, Valencia, España",
       "google_maps_url": "http://maps.google.com/?cid=13292090688316030817",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 4,
           "comentario": null
         },
@@ -1588,14 +1639,16 @@
       "google_maps_url": "http://maps.google.com/?cid=3679629500932306929",
       "grupo_id": null,
       "barrio": "Camins al Grau",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 4,
           "comentario": null
         }
@@ -1603,21 +1656,23 @@
     },
     {
       "id": "aa370939-5503-4551-802a-4f6c109f1d0f",
-      "nombre": "AIRES CAFÉ-café de especialidad",
+      "nombre": "AIRES CAFÉ - café de especialidad",
       "lat": 39.464415,
       "lng": -0.3407569,
       "direccion": "C. de José Aguilar, 25, Camins al Grau, 46022 València, Valencia, España",
       "google_maps_url": "http://maps.google.com/?cid=5892905980621492567",
       "grupo_id": null,
       "barrio": "Camins al Grau",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 1,
           "comentario": null
         }
@@ -1632,14 +1687,16 @@
       "google_maps_url": "http://maps.google.com/?cid=5569655710024749087",
       "grupo_id": null,
       "barrio": "Camins al Grau",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 2,
           "comentario": null
         },
@@ -1660,14 +1717,16 @@
       "google_maps_url": "http://maps.google.com/?cid=11599701841996420109",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 2,
           "comentario": null
         },
@@ -1688,14 +1747,16 @@
       "google_maps_url": "http://maps.google.com/?cid=2564475293962880436",
       "grupo_id": "b92a93f4-7191-4b2d-8bfe-3fc5b76cd0b6",
       "barrio": "La Saïdia",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 4,
           "comentario": null
         }
@@ -1703,21 +1764,23 @@
     },
     {
       "id": "48018d2d-5825-48a2-bf42-90c54059aace",
-      "nombre": "Specialty Coffee MAYAN ☕🥐",
+      "nombre": "Mayan Specialty Coffee - La Saïdia",
       "lat": 39.4822037,
       "lng": -0.3715666,
       "direccion": "Carrer d'Hug de Montcada, 19, La Saïdia, 46010 València, Valencia, España",
       "google_maps_url": "http://maps.google.com/?cid=8802642117838710057",
       "grupo_id": null,
       "barrio": "La Saïdia",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 5,
           "comentario": ""
         }
@@ -1725,23 +1788,25 @@
     },
     {
       "id": "6687d899-d375-47f6-9f5b-595492bca743",
-      "nombre": "Mayan Specialty Coffee",
+      "nombre": "Mayan Specialty Coffee - Ciutat Vella",
       "lat": 39.4755629,
       "lng": -0.3837125,
       "direccion": "C/ de Murillo, 54, Ciutat Vella, 46001 València, Valencia, España",
       "google_maps_url": "http://maps.google.com/?cid=11949694961905953449",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
-      "etiquetas_extra": [],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 5,
-          "comentario": null
+          "comentario": ""
         }
       ]
     },
@@ -1754,14 +1819,16 @@
       "google_maps_url": "http://maps.google.com/?cid=3778266095820538494",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 1,
           "comentario": null
         }
@@ -1776,14 +1843,16 @@
       "google_maps_url": "http://maps.google.com/?cid=16714125037666381000",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Brunch",
-          "precio": "0-10€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         },
@@ -1795,7 +1864,7 @@
         },
         {
           "nombre": "Matcha",
-          "precio": ">10€",
+          "precio": "0-5€",
           "valoracion": 2,
           "comentario": null
         }
@@ -1810,14 +1879,16 @@
       "google_maps_url": "http://maps.google.com/?cid=7419440916959627857",
       "grupo_id": null,
       "barrio": "El Pla del Real",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 1,
           "comentario": null
         }
@@ -1833,7 +1904,7 @@
       "grupo_id": null,
       "barrio": "El Pla del Real",
       "etiquetas_extra": [
-        "Menú del día"
+        "Take away"
       ],
       "resena_general": null,
       "instagram_url": null,
@@ -1841,7 +1912,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 1,
           "comentario": ""
         }
@@ -1897,21 +1968,23 @@
     },
     {
       "id": "8ecdc703-3f9c-4818-ac53-7418b8b9f54d",
-      "nombre": "Café Colomer Specialty Coffee Roasters y cafetería | Valencia, Facultats",
+      "nombre": "Café Colomer Specialty Coffee Roasters y cafetería",
       "lat": 39.4790881,
       "lng": -0.3525133,
       "direccion": "Plaça de Fra Lluís Colomer, 7, Bajo B, Algirós, 46021 València, Valencia, España",
       "google_maps_url": "http://maps.google.com/?cid=4473860084898567194",
       "grupo_id": null,
       "barrio": "Algirós",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 1,
           "comentario": null
         }
@@ -1919,49 +1992,53 @@
     },
     {
       "id": "7d1b4524-4e10-416c-9ad3-4a6442509aed",
-      "nombre": "Doux-Amer Centro Specialty Coffee & Brunch Valencia",
+      "nombre": "Doux-Amer Centro Specialty Coffee & Brunch",
       "lat": 39.4710223,
       "lng": -0.3791682,
       "direccion": "Carrer de les Garrigues, 15, Ciutat Vella, 46001 València, Valencia, España",
       "google_maps_url": "http://maps.google.com/?cid=8266260652301042679",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Brunch",
-          "precio": "0-10€",
+          "precio": "10-20€",
           "valoracion": 1,
           "comentario": null
         },
         {
           "nombre": "Café",
           "precio": "0-5€",
-          "valoracion": 3,
+          "valoracion": 4,
           "comentario": null
         }
       ]
     },
     {
       "id": "0d793a4c-88a1-4d77-b33a-d8846125d4b2",
-      "nombre": "Doux-Amer Cabañal | Café de especialidad & Brunch Valencia",
+      "nombre": "Doux-Amer Cabañal | Café de especialidad & Brunch",
       "lat": 39.4671484,
       "lng": -0.3301478,
       "direccion": "C/ de Just Vilar, 29, Poblats Marítims, 46011 València, Valencia, España",
       "google_maps_url": "http://maps.google.com/?cid=15530826203790172604",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Brunch",
-          "precio": "0-10€",
+          "precio": "10-20€",
           "valoracion": 1,
           "comentario": null
         },
@@ -1982,14 +2059,16 @@
       "google_maps_url": "http://maps.google.com/?cid=13420068791946653742",
       "grupo_id": null,
       "barrio": "Algirós",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Brunch",
-          "precio": "0-10€",
+          "precio": "10-20€",
           "valoracion": 1,
           "comentario": null
         },
@@ -2010,14 +2089,16 @@
       "google_maps_url": "http://maps.google.com/?cid=11216609214201490593",
       "grupo_id": null,
       "barrio": "El Pla del Real",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 3,
           "comentario": null
         }
@@ -2032,14 +2113,16 @@
       "google_maps_url": "http://maps.google.com/?cid=7008546563860690388",
       "grupo_id": null,
       "barrio": "Campanar",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 1,
           "comentario": null
         }
@@ -2054,14 +2137,16 @@
       "google_maps_url": "http://maps.google.com/?cid=119887754370455031",
       "grupo_id": null,
       "barrio": "Benicalap",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 1,
           "comentario": null
         },
@@ -2082,14 +2167,16 @@
       "google_maps_url": "http://maps.google.com/?cid=13850213593750911407",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 2,
           "comentario": null
         }
@@ -2097,20 +2184,22 @@
     },
     {
       "id": "ec86cc6f-7bc7-4894-bcfd-fec12269b3c6",
-      "nombre": "Restaurante Castellar Brasas",
+      "nombre": "Castellar Brasas",
       "lat": 39.4890045,
       "lng": -0.3897533,
       "direccion": "Av. de Burjassot, 122, Benicalap, 46025 València, Valencia, España",
       "google_maps_url": "http://maps.google.com/?cid=1506369226542909341",
       "grupo_id": null,
       "barrio": "Benicalap",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Menú del día"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Fusión Tapas",
+          "nombre": "Tapas",
           "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
@@ -2119,7 +2208,7 @@
     },
     {
       "id": "4170b690-68b1-4b97-8db2-deafbc697667",
-      "nombre": "Restaurante Escama | Cánovas",
+      "nombre": "Escama - Cánovas",
       "lat": 39.4659433,
       "lng": -0.368013,
       "direccion": "Carrer del Comte d'Altea, 22, L'Eixample, 46005 València, Valencia, España",
@@ -2132,8 +2221,8 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Fusión Tapas",
-          "precio": "25-40€",
+          "nombre": "Tapas",
+          "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
         }
@@ -2141,7 +2230,7 @@
     },
     {
       "id": "5a0e0907-6343-40a1-a5e2-998f688fb749",
-      "nombre": "Restaurante Escama | Cortes",
+      "nombre": "Escama - Cortes Valencianas",
       "lat": 39.4924408,
       "lng": -0.4001246,
       "direccion": "Av. de les Corts Valencianes, 26, Benicalap, 46015 València, Valencia, España",
@@ -2149,14 +2238,14 @@
       "grupo_id": null,
       "barrio": "Benicalap",
       "etiquetas_extra": [],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
-          "nombre": null,
-          "precio": null,
-          "valoracion": null,
+          "nombre": "Tapas",
+          "precio": "20-35€",
+          "valoracion": 2,
           "comentario": null
         }
       ]
@@ -2174,7 +2263,7 @@
         "Take away",
         "Sin reserva"
       ],
-      "resena_general": "FocacciasSi estás por el centro de Valencia y quieres una cena buena bonita y barata, @focacceriamercat no defrauda! Hypeados con la cantidad de gente que iba quisimos probarla y la verdad es que nos ha sorprendido lo buena que está! Próximamente haremos top focaccias Valencia así que si tienes recomendaciones te leemos en comments !!! ",
+      "resena_general": "Si estás por el centro de Valencia y quieres una cena buena bonita y barata, @focacceriamercat no defrauda! Hypeados con la cantidad de gente que iba quisimos probarla y la verdad es que nos ha sorprendido lo buena que está! Próximamente haremos top focaccias Valencia así que si tienes recomendaciones te leemos en comments !!! ",
       "instagram_url": "https://www.instagram.com/reel/DOTDZdMCg-u/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7509583919285587222?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
@@ -2188,7 +2277,7 @@
     },
     {
       "id": "0794b9f0-e151-40ec-87a5-cb73f9aabb71",
-      "nombre": "Focacceria Mercat",
+      "nombre": "Focacceria Mercat- Mercat Central",
       "lat": 39.4740833,
       "lng": -0.3777492,
       "direccion": "C/ d'Ercilla, 15, Ciutat Vella, 46001 València, Valencia, España",
@@ -2196,15 +2285,16 @@
       "grupo_id": null,
       "barrio": "Ciutat Vella",
       "etiquetas_extra": [
-        "Take away"
+        "Take away",
+        "Sin reserva"
       ],
-      "resena_general": "Focaccias",
-      "instagram_url": null,
-      "tiktok_url": null,
+      "resena_general": "Si estás por el centro de Valencia y quieres una cena buena bonita y barata, @focacceriamercat no defrauda! Hypeados con la cantidad de gente que iba quisimos probarla y la verdad es que nos ha sorprendido lo buena que está! Próximamente haremos top focaccias Valencia así que si tienes recomendaciones te leemos en comments !!! ",
+      "instagram_url": "https://www.instagram.com/reel/DOTDZdMCg-u/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+      "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7509583919285587222?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Pizza",
-          "precio": "0-15€",
+          "nombre": "Focaccia",
+          "precio": "5-10€",
           "valoracion": 4,
           "comentario": null
         }
@@ -2243,7 +2333,7 @@
     },
     {
       "id": "8a95446c-d4b1-41fb-a885-9b2b85abd436",
-      "nombre": "Bottega Marsengo | Pizzeria Valencia",
+      "nombre": "Bottega Marsengo",
       "lat": 39.4783189,
       "lng": -0.3796447,
       "direccion": "C/ de Sant Tomàs, 18, Ciutat Vella, 46003 València, Valencia, España",
@@ -2265,7 +2355,7 @@
           "comentario": null
         },
         {
-          "nombre": "Pizza",
+          "nombre": "Pizza romana y otros tipos",
           "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
@@ -2302,7 +2392,7 @@
     },
     {
       "id": "159e4688-cd81-491c-934d-d852ac158391",
-      "nombre": "Restaurante Japonés - MOMIJI ATELIER",
+      "nombre": "MOMIJI ATELIER",
       "lat": 39.469116,
       "lng": -0.3680306,
       "direccion": "Carrer de Jorge Juan, L'Eixample, 46004 València, Valencia, España",
@@ -2314,12 +2404,12 @@
         "Menú del día"
       ],
       "resena_general": "Si buscas un japonés top en Valencia, Momiji es una apuesta muy seria. Producto de calidad, cortes precisos y equilibrio en cada plato a un precio relativamente asequible.\n\n🍣 Lo que probamos y nuestras notas:\n\n• Ceviche – 9,5\nEl acompañamiento poco intrusivo dejando protagonismo al pescado.\n\n• Nigiri de toro – 10\nEspectacular. Muy graso, meloso y con un corte perfecto.\n\n• Nigiri de hamachi – 9,75\nMuy fino.\n\n• Nigiri de salmón flambeado – 9,5\nMuy rico pero quizá sorprende menos.\n\n• Uramaki de atún rojo con kimchi picante, aguacate y pepino – 9,5\nEquilibrado, con el picante justo.\n\n• Temaki de anguila – 9,5\nCrujiente, sabroso y muy bien ejecutado.\n\n🍮 Crème brûlée de té matcha y vainilla – 10\nAunque no somos fans del caramelo de arriba tenemos que ponerle un diez. \n\nEn conjunto, un restaurante japonés con producto serio y ejecución muy cuidada. Ideal si buscas sushi con más nivel en Valencia.\n",
-      "instagram_url": "https://www.instagram.com/reel/DVbtYQKitW-/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
+      "instagram_url": null,
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7613102564615261462?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": "25-40€",
+          "precio": "35-50€",
           "valoracion": 5,
           "comentario": null
         }
@@ -2475,7 +2565,7 @@
           "nombre": "Asiatico",
           "precio": "10-20€",
           "valoracion": 3,
-          "comentario": "Taiwanés"
+          "comentario": null
         }
       ]
     },
@@ -2499,7 +2589,7 @@
           "nombre": "Asiatico",
           "precio": "10-20€",
           "valoracion": 3,
-          "comentario": "Taiwanés"
+          "comentario": null
         }
       ]
     },
@@ -2544,8 +2634,8 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Sushi",
-          "precio": "25-40€",
+          "nombre": "Sushi Buffet",
+          "precio": "20-35€",
           "valoracion": 1,
           "comentario": null
         }
@@ -2564,7 +2654,7 @@
         "No reserva",
         "Sin reserva"
       ],
-      "resena_general": "✨ Nuevo en Valencia: Vapor Dumpling Bar ✨\n\nEl local abrió hace poco y ya se ha convertido en un punto de referencia: las colas son habituales, ya que no aceptan reservas. Dudábamos si valía la pena esperar, pero la experiencia lo justificó con creces.\n\n🍴 Lo que probamos:\n\n🥗 Ensaladilla con ají amarillo – 8/10\nMuy original, con un toque picante y fresco. La ensaladilla en sí podría estar algo más cuidada, pero el ají y la guarnición elevan el plato. Las cortezas de trigo, en cambio, no nos convencieron.\n\n🥟 Shoronpo Thai – 9,5/10\nUn dumpling relleno de caldo con sabores tailandeses. Divertido de comer y con un perfil de sabor distinto a lo habitual. Fue uno de los platos más destacados de la noche.\n\n🌮 Gyoza tacos al pastor – 9/10\nJugosos, especiados y con una fusión muy acertada entre la gyoza y el taco. Una propuesta original y recomendable.\n\n🎃 Gyoza de calabaza y curry – 8/10\nCorrecto, con el dulzor de la calabaza y el contraste del curry. Sin embargo, guarda similitudes en matices con el shoronpo, por lo que, de repetir, optaríamos por este último.\n\n🥟 Gyoza Almussafes – 10/10\nEl plato estrella de la carta. Intenso, equilibrado y sorprendente. Una fusión muy bien pensada que se convierte en la mejor recomendación de la experiencia.\n\n🍮 Flan de toffee y miso – 10/10\nAntes de pedir flan siempre fijaros si tiene burbujas en la pared del flan, que suelen indicar una cocción menos cuidada. Este estaba liso, cremoso, perfecto. El sabor a toffee y a miso redondea un postre espectacular.\n\nEs una experiencia diferente a otros restaurantes fusión, con combinaciones muy originales y es mucho más que un local bonito con buen branding.\n",
+      "resena_general": null,
       "instagram_url": "https://www.instagram.com/reel/DO33OCWCoxg/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7552594387704745238?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
@@ -2578,7 +2668,7 @@
     },
     {
       "id": "16ab2f2c-99ec-411a-9044-09f6a8839e08",
-      "nombre": "Restaurante Japonés - TORA TABERNA JAPONESA",
+      "nombre": "TORA TABERNA JAPONESA",
       "lat": 39.4626515,
       "lng": -0.3691314,
       "direccion": "C/ de Pere III el Gran, 13, L'Eixample, 46006 València, Valencia, España",
@@ -2620,7 +2710,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 5,
           "comentario": null
         }
@@ -2647,6 +2737,12 @@
           "precio": "35-50€",
           "valoracion": 4,
           "comentario": null
+        },
+        {
+          "nombre": "Ramen Japones",
+          "precio": "20-35€",
+          "valoracion": 5,
+          "comentario": ""
         }
       ]
     },
@@ -2728,7 +2824,7 @@
     },
     {
       "id": "6d08181a-dd05-4642-bbd1-46337ebe5d9a",
-      "nombre": "Street Soul | Hamburguesas Valencia",
+      "nombre": "Street Soul",
       "lat": 39.4710336,
       "lng": -0.3781172,
       "direccion": "Carrer del Mestre Clavé, 1, Ciutat Vella, 46001 València, Valencia, España",
@@ -2745,7 +2841,7 @@
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 5,
           "comentario": null
         }
@@ -2763,7 +2859,7 @@
       "etiquetas_extra": [],
       "resena_general": "Tapas fusión en Gran via a buen precio con @studio.barvlc ! Nos encantó el brioche de carrillera , aunque pidas lo que pidas vas a tener sabores equilibrados, intensos y una comida muuuy guay !!! ",
       "instagram_url": "https://www.instagram.com/reel/DLxIDuoKxgJ/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-      "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7497682034966514966?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
+      "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Tapas",
@@ -2775,7 +2871,7 @@
     },
     {
       "id": "588c7ff8-1262-4d23-9aa3-01ac20cc0bd0",
-      "nombre": "Gelateria La Romana dal 1947",
+      "nombre": "Gelateria La Romana dal 1947 - Ciutat Vella",
       "lat": 39.473121,
       "lng": -0.376291,
       "direccion": "Carrer de Sant Vicent Màrtir, 8, Ciutat Vella, 46002 València, Valencia, España",
@@ -2799,7 +2895,7 @@
     },
     {
       "id": "d25756f5-a2af-451f-9bcc-fec18bcf1e25",
-      "nombre": "Gelateria La Romana dal 1947",
+      "nombre": "Gelateria La Romana dal 1947 - Cánovas",
       "lat": 39.4669366,
       "lng": -0.3678618,
       "direccion": "Carrer de Joaquín Costa, 2, L'Eixample, 46005 València, Valencia, España",
@@ -2848,7 +2944,7 @@
     },
     {
       "id": "268d1bd9-d52a-4283-b8e2-b2790e1433b4",
-      "nombre": "Tasty American Burger",
+      "nombre": "Tasty American Burger - Ciutat Vella",
       "lat": 39.4776778,
       "lng": -0.3813158,
       "direccion": "C/ de la Corona, 7, Ciutat Vella, 46003 València, Valencia, España",
@@ -2864,8 +2960,8 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Hamburguesa",
-          "precio": "10-25€",
+          "nombre": "Smash",
+          "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
         }
@@ -2873,7 +2969,7 @@
     },
     {
       "id": "41465720-545c-40e1-afe2-6e2127045cc0",
-      "nombre": "Tasty American Burger",
+      "nombre": "Tasty American Burger - Patraix",
       "lat": 39.4586323,
       "lng": -0.3887499,
       "direccion": "Av. de Gaspar Aguilar, 13, Jesús, 46007 València, Valencia, España",
@@ -2889,8 +2985,8 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Hamburguesa",
-          "precio": "10-25€",
+          "nombre": "Smash",
+          "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
         }
@@ -3038,7 +3134,7 @@
           "nombre": "Hamburguesa",
           "precio": "10-25€",
           "valoracion": 3,
-          "comentario": "Pastrami"
+          "comentario": null
         }
       ]
     },
@@ -3066,7 +3162,7 @@
     },
     {
       "id": "8e03d66e-68a0-47eb-bca2-afef2c05b943",
-      "nombre": "Smash Hiro",
+      "nombre": "Smash Hiro - Ciutat Vella",
       "lat": 39.469015,
       "lng": -0.3776124,
       "direccion": "C/ del Convent de Sant Francesc, 5, Ciutat Vella, 46002 València, Valencia, España",
@@ -3083,15 +3179,15 @@
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": null,
-          "valoracion": 3,
+          "precio": "10-20€",
+          "valoracion": 2,
           "comentario": null
         }
       ]
     },
     {
       "id": "a2c5e26f-1b49-4ba0-8cc7-b6f12e61dbb8",
-      "nombre": "Smash Hiro | Hamburguesería Valencia",
+      "nombre": "Smash Hiro - Aragón",
       "lat": 39.4747218,
       "lng": -0.354585,
       "direccion": "C/ de Polo y Peyrolón, 53, El Pla del Real, 46021 València, Valencia, España",
@@ -3102,13 +3198,13 @@
         "Take away",
         "Tipo smash"
       ],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "https://www.tiktok.com/@eatinpeace/photo/7455420411145145632?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -3193,14 +3289,16 @@
       "google_maps_url": "http://maps.google.com/?cid=13441873389387679756",
       "grupo_id": null,
       "barrio": "L'Eixample",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 2,
           "comentario": null
         }
@@ -3226,13 +3324,13 @@
           "nombre": "Dulces",
           "precio": "0-5€",
           "valoracion": 4,
-          "comentario": "Mochis"
+          "comentario": null
         }
       ]
     },
     {
       "id": "ad92f798-f160-4704-b3da-c59318a92b13",
-      "nombre": "SUKI RAMEN - PLAZA XÚQUER",
+      "nombre": "SUKI RAMEN - Plaza Xúquer",
       "lat": 39.475601,
       "lng": -0.3490102,
       "direccion": "Carrer del Poeta Artola, 13, Bajo izquirdo, Algirós, 46021 València, Valencia, España",
@@ -3242,13 +3340,13 @@
       "etiquetas_extra": [
         "Take away"
       ],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
-          "nombre": "Ramen",
-          "precio": "10-25€",
+          "nombre": "Ramen Japones",
+          "precio": "10-20€",
           "valoracion": 1,
           "comentario": null
         }
@@ -3256,7 +3354,7 @@
     },
     {
       "id": "0bbf9da8-43d9-4567-a6ac-be6b0290c9c6",
-      "nombre": "SUKI RAMEN",
+      "nombre": "SUKI RAMEN - Ciutat Vella",
       "lat": 39.4706049,
       "lng": -0.3720033,
       "direccion": "C/ de les Monges de Santa Caterina, 8, Ciutat Vella, 46002 València, Valencia, España",
@@ -3271,8 +3369,8 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Ramen",
-          "precio": "10-25€",
+          "nombre": "Ramen Japones",
+          "precio": "10-20€",
           "valoracion": 1,
           "comentario": null
         }
@@ -3280,7 +3378,7 @@
     },
     {
       "id": "9a765b15-e8d1-48d4-a529-54731521d1eb",
-      "nombre": "KaiSushi",
+      "nombre": "KaiSushi - Quatre Carreres",
       "lat": 39.4569214,
       "lng": -0.3748224,
       "direccion": "Avinguda del Doctor Waksman, 1, 46006, Quatre Carreres, 46006 València, Valencia, España",
@@ -3304,7 +3402,7 @@
     },
     {
       "id": "dc3c0130-df33-4174-8a21-1158f2fe1769",
-      "nombre": "KaiSushi Gran Vía",
+      "nombre": "KaiSushi - Gran Vía",
       "lat": 39.4669101,
       "lng": -0.3696564,
       "direccion": "Gran Via del Marqués del Túria, 43, L'Eixample, 46005 València, Valencia, España",
@@ -3328,7 +3426,7 @@
     },
     {
       "id": "689a1b6d-7d0c-4692-af47-97e93544c62f",
-      "nombre": "Somos Raro | Restaurante diferente en Valencia - Alameda",
+      "nombre": "Somos Raro",
       "lat": 39.4751764,
       "lng": -0.364924,
       "direccion": "Pg. de l'Albereda, 10, El Pla del Real, 46010 València, Valencia, España",
@@ -3411,14 +3509,16 @@
       "google_maps_url": "http://maps.google.com/?cid=14298167549188272119",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": "Mejor café que matcha",
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 3,
           "comentario": null
         },
@@ -3446,13 +3546,13 @@
       "categorias": [
         {
           "nombre": "Pasta",
-          "precio": "25-40€",
+          "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
         },
         {
-          "nombre": "Pizza",
-          "precio": ">25€",
+          "nombre": "Pizza napolitana",
+          "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
         }
@@ -3460,7 +3560,7 @@
     },
     {
       "id": "fe7dcbab-1720-4156-a618-c21e6c53cde7",
-      "nombre": "Il mercato della pasta - Pasta fresca en Valencia",
+      "nombre": "Il mercato della pasta",
       "lat": 39.4578727,
       "lng": -0.3668704,
       "direccion": "C/ de Montitxelvo, 9, Quatre Carreres, 46006 València, Valencia, España",
@@ -3476,7 +3576,7 @@
       "categorias": [
         {
           "nombre": "Pasta",
-          "precio": "10-25€",
+          "precio": "5-10€",
           "valoracion": 4,
           "comentario": null
         }
@@ -3525,8 +3625,8 @@
           "comentario": null
         },
         {
-          "nombre": "Vegetariano vegano",
-          "precio": "25-40€",
+          "nombre": "Vegano",
+          "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
         }
@@ -3534,7 +3634,7 @@
     },
     {
       "id": "22a51f7d-5c64-4f3b-a9dd-303362f2dfa3",
-      "nombre": "FILIPPA'S - Pizzería Napolitana Ruzafa",
+      "nombre": "FILIPPA'S",
       "lat": 39.4610156,
       "lng": -0.3745877,
       "direccion": "Carrer de Sueca, 45, L'Eixample, 46006 València, Valencia, España",
@@ -3550,8 +3650,8 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Pizza",
-          "precio": "10-25€",
+          "nombre": "Pizza napolitana",
+          "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
         }
@@ -3559,7 +3659,7 @@
     },
     {
       "id": "d8b7a34d-2b13-4abb-bf54-dd1ccd8cc1f6",
-      "nombre": "Pizzería Mano a Mano",
+      "nombre": "Mano a Mano",
       "lat": 39.4671881,
       "lng": -0.367498,
       "direccion": "Gran Via del Marqués del Túria, 58, L'Eixample, 46005 València, Valencia, España",
@@ -3575,8 +3675,8 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Pizza",
-          "precio": "0-15€",
+          "nombre": "Pizza napolitana",
+          "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
         }
@@ -3613,14 +3713,16 @@
       "google_maps_url": "http://maps.google.com/?cid=17410383064073139154",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
-      "etiquetas_extra": [],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 4,
           "comentario": null
         },
@@ -3634,21 +3736,23 @@
     },
     {
       "id": "d6d2288d-029f-45f7-b5f3-2ed26d9fb6e0",
-      "nombre": "Elixir Café de Especialidad Mercado de Ruzafa",
+      "nombre": "Elixir Café de Especialidad - Mercado de Ruzafa",
       "lat": 39.4618852,
       "lng": -0.370893,
       "direccion": "Mercado de Ruzafa Casetas exteriores 112-116, 46006 València, España",
       "google_maps_url": "http://maps.google.com/?cid=13030008337921970122",
       "grupo_id": null,
       "barrio": null,
-      "etiquetas_extra": [],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 4,
           "comentario": null
         },
@@ -3662,21 +3766,23 @@
     },
     {
       "id": "b38fb831-eaff-4697-a417-fccbfc2045a8",
-      "nombre": "Elixir Café de Especialidad Arrancapins",
+      "nombre": "Elixir Café de Especialidad - Arrancapins",
       "lat": 39.4662061,
       "lng": -0.3844875,
       "direccion": "C/ de Sant Francesc de Borja, 4, Extramurs, 46007 València, Valencia, España",
       "google_maps_url": "http://maps.google.com/?cid=346872295430379493",
       "grupo_id": null,
       "barrio": "Extramurs",
-      "etiquetas_extra": [],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 4,
           "comentario": null
         },
@@ -3762,7 +3868,7 @@
     },
     {
       "id": "4a5b05d3-0c6b-4044-b45c-c89d6adf1925",
-      "nombre": "SMASH & GO (Campanar) حلال",
+      "nombre": "SMASH & GO - Campanar",
       "lat": 39.4803366,
       "lng": -0.4018677,
       "direccion": "C/ de Luis Buñuel Director de Cine, 1, Campanar, 46015 València, Valencia, España",
@@ -3773,21 +3879,21 @@
         "Take away",
         "Tipo smash"
       ],
-      "resena_general": null,
+      "resena_general": "Solo take away",
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": null,
-          "valoracion": 3,
+          "precio": "5-10€",
+          "valoracion": 2,
           "comentario": null
         }
       ]
     },
     {
       "id": "05e2d93a-02fe-486a-87f3-9689a81f1c73",
-      "nombre": "SMASH & GO (Ruzafa)",
+      "nombre": "SMASH & GO - Ruzafa",
       "lat": 39.4643897,
       "lng": -0.3719476,
       "direccion": "Av. del Regne de València, 16, L'Eixample, 46005 València, Valencia, España",
@@ -3798,13 +3904,13 @@
         "Take away",
         "Tipo smash"
       ],
-      "resena_general": null,
+      "resena_general": "Solo take away",
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": "0-10€",
+          "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
         }
@@ -3812,7 +3918,7 @@
     },
     {
       "id": "a1f14c17-41e9-4aeb-9d08-232649ce873f",
-      "nombre": "Ver exterior SCHUESSLER BURGER & MORE",
+      "nombre": "SCHUESSLER BURGER & MORE",
       "lat": 39.4632502,
       "lng": -0.3765826,
       "direccion": "Carrer de Sueca, 4, L'Eixample, 46006 València, Valencia, España",
@@ -3829,7 +3935,7 @@
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": "10-25€",
+          "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
         }
@@ -3912,7 +4018,7 @@
     },
     {
       "id": "4af537f7-6589-4381-8374-77a4fdb3ec8f",
-      "nombre": "The Fitzgerald Co. Gran Vía",
+      "nombre": "The Fitzgerald Co. - Gran Vía",
       "lat": 39.4734299,
       "lng": -0.3876157,
       "direccion": "Gran Via de Ferran el Catòlic, 43, Extramurs, 46008 València, Valencia, España",
@@ -3922,13 +4028,13 @@
       "etiquetas_extra": [
         "Tipo normal"
       ],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
-          "nombre": "Hamburguesa",
-          "precio": null,
+          "nombre": "Normal",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -3936,7 +4042,7 @@
     },
     {
       "id": "21d52674-4e1d-4867-b5b8-c230118c1616",
-      "nombre": "The Fitzgerald Co. Alfahuir",
+      "nombre": "The Fitzgerald Co. - Alfahuir",
       "lat": 39.4885933,
       "lng": -0.3628288,
       "direccion": "C/ de l'Assagador d'Alboraia, 14, bajo 7 y 8, Benimaclet, 46020 València, Valencia, España",
@@ -3951,8 +4057,8 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Hamburguesa",
-          "precio": ">15€",
+          "nombre": "Normal",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -3960,7 +4066,7 @@
     },
     {
       "id": "05393df4-fc17-4c95-af8c-f43861d993a2",
-      "nombre": "The Fitzgerald Co. Bélgica",
+      "nombre": "The Fitzgerald Co. - Bélgica",
       "lat": 39.4735746,
       "lng": -0.3556723,
       "direccion": "Carrer de Bèlgica, 14, El Pla del Real, 46021 València, Valencia, España",
@@ -3970,13 +4076,13 @@
       "etiquetas_extra": [
         "Tipo normal"
       ],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
-          "nombre": "Hamburguesa",
-          "precio": null,
+          "nombre": "Normal",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -3984,22 +4090,24 @@
     },
     {
       "id": "fe16cc9c-b6a7-4e88-852f-b4c61990b7ff",
-      "nombre": "The Fitzgerald Co. Malilla",
+      "nombre": "The Fitzgerald Co. - Malilla",
       "lat": 39.4558669,
       "lng": -0.3754871,
       "direccion": "Av. d'Ausiàs March, 6, Quatre Carreres, 46006 València, Valencia, España",
       "google_maps_url": "http://maps.google.com/?cid=6839958861989987395",
       "grupo_id": null,
       "barrio": "Quatre Carreres",
-      "etiquetas_extra": [],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "etiquetas_extra": [
+        "Tipo normal"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
-          "nombre": null,
-          "precio": null,
-          "valoracion": null,
+          "nombre": "Normal",
+          "precio": "10-20€",
+          "valoracion": 2,
           "comentario": null
         }
       ]
@@ -4013,14 +4121,16 @@
       "google_maps_url": "http://maps.google.com/?cid=6404520077173857099",
       "grupo_id": null,
       "barrio": "L'Eixample",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": "Café con sabor distinto. Matcha bueno.",
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 3,
           "comentario": null
         },
@@ -4117,7 +4227,7 @@
     },
     {
       "id": "bc56dca5-f37b-4028-a6be-30202947c2e5",
-      "nombre": "Quesarte by Néstor Chacón",
+      "nombre": "Quesarte by Néstor Chacón - Plaza de la Virgen",
       "lat": 39.4764293,
       "lng": -0.3761643,
       "direccion": "C/ dels Cavallers, 7, Ciutat Vella, 46001 València, Valencia, España",
@@ -4133,8 +4243,8 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Tarta de queso",
-          "precio": "0-10€",
+          "nombre": "de Sitio especializado",
+          "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
         }
@@ -4142,7 +4252,7 @@
     },
     {
       "id": "5d32a945-7805-4f4f-a7fd-278fc8d954fb",
-      "nombre": "Quesarte by Nestor Chacon",
+      "nombre": "Quesarte by Néstor Chacón - El Pilar",
       "lat": 39.4719204,
       "lng": -0.3801346,
       "direccion": "Roger de la Flor, 3, Ciutat Vella, 46001 València, Valencia, España",
@@ -4158,8 +4268,8 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Tarta de queso",
-          "precio": "0-10€",
+          "nombre": "de Sitio especializado",
+          "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
         }
@@ -4229,7 +4339,7 @@
     },
     {
       "id": "516cdf95-1bfc-49bd-ad83-eca9ba6e194c",
-      "nombre": "Vermúdez - Restaurante Ruzafa",
+      "nombre": "Vermúdez",
       "lat": 39.4639744,
       "lng": -0.3752595,
       "direccion": "Gran Via de les Germanies, 21, L'Eixample, 46006 València, Valencia, España",
@@ -4244,14 +4354,14 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Fusión Tapas",
-          "precio": "25-40€",
+          "nombre": "Tapas",
+          "precio": "35-50€",
           "valoracion": 4,
           "comentario": null
         },
         {
-          "nombre": "Tarta de queso",
-          "precio": "35-60€",
+          "nombre": "de Restaurante",
+          "precio": "5-10€",
           "valoracion": 4,
           "comentario": null
         }
@@ -4274,16 +4384,22 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Pizza",
-          "precio": "0-15€",
+          "nombre": "Pizza romana y otros tipos",
+          "precio": "10-20€",
           "valoracion": 1,
           "comentario": null
+        },
+        {
+          "nombre": "Tapas",
+          "precio": "10-20€",
+          "valoracion": 1,
+          "comentario": ""
         }
       ]
     },
     {
       "id": "5b9027c6-ea8f-4bdd-af7c-9e840cb90043",
-      "nombre": "Piero Ronconi - Auténtica Pasta Fresca",
+      "nombre": "Piero Ronconi",
       "lat": 39.4730815,
       "lng": -0.37026,
       "direccion": "C. del Mar, 60, Ciutat Vella, 46003 València, Valencia, España",
@@ -4293,13 +4409,13 @@
       "etiquetas_extra": [
         "Take away"
       ],
-      "resena_general": null,
+      "resena_general": "Solo take away",
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Pasta",
-          "precio": "0-15€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -4307,7 +4423,7 @@
     },
     {
       "id": "3caec18a-bbc5-4395-af15-9e32e519e782",
-      "nombre": "Subito pasta",
+      "nombre": "Subito Pasta - El Pilar",
       "lat": 39.4712648,
       "lng": -0.3818512,
       "direccion": "Carrer de Recared, 31, e2, Ciutat Vella, 46001 València, Valencia, España",
@@ -4323,7 +4439,7 @@
       "categorias": [
         {
           "nombre": "Pasta",
-          "precio": "0-15€",
+          "precio": "5-10€",
           "valoracion": 3,
           "comentario": null
         }
@@ -4331,7 +4447,7 @@
     },
     {
       "id": "1df3ad90-eb71-414e-8be3-d4b7f34fbfde",
-      "nombre": "Subito The Fresh Pasta Bar",
+      "nombre": "Subito Pasta - Estació del Nord",
       "lat": 39.4683436,
       "lng": -0.376533,
       "direccion": "C/ del Convent de Sta. Clara, 12, Ciutat Vella, 46002 València, Valencia, España",
@@ -4347,7 +4463,7 @@
       "categorias": [
         {
           "nombre": "Pasta",
-          "precio": "0-15€",
+          "precio": "5-10€",
           "valoracion": 3,
           "comentario": null
         }
@@ -4398,7 +4514,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Fusión Tapas",
+          "nombre": "Tapas",
           "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
@@ -4446,8 +4562,8 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Esmorzar",
-          "precio": "10-25€",
+          "nombre": "Esmorzar Premium",
+          "precio": "10-20€",
           "valoracion": 4,
           "comentario": null
         }
@@ -4477,7 +4593,7 @@
     },
     {
       "id": "53ac26a5-84fa-4f15-9f7c-c2c5824dca3c",
-      "nombre": "Restaurante Flama",
+      "nombre": "Flama",
       "lat": 39.4680319,
       "lng": -0.3672223,
       "direccion": "Gran Via del Marqués del Túria, 63, Bajo Derecha, Ensanche, 46005 València, Valencia, España",
@@ -4490,8 +4606,8 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Fusión Tapas",
-          "precio": ">40€",
+          "nombre": "Tapas",
+          "precio": "50-80€",
           "valoracion": 5,
           "comentario": null
         }
@@ -4529,15 +4645,16 @@
       "grupo_id": null,
       "barrio": "Algirós",
       "etiquetas_extra": [
-        "Tipo romana"
+        "Tipo romana",
+        "Take away"
       ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Pizza",
-          "precio": "0-15€",
+          "nombre": "Pizza napolitana",
+          "precio": "10-20€",
           "valoracion": 1,
           "comentario": null
         }
@@ -4545,7 +4662,7 @@
     },
     {
       "id": "0dbd4804-4c6a-4ec5-8bec-4e6c34c5f856",
-      "nombre": "Juliet",
+      "nombre": "Juliet - Ruzafa",
       "lat": 39.4621985,
       "lng": -0.3695985,
       "direccion": "C/ de Pere III el Gran, 12, L'Eixample, 46005 València, Valencia, España",
@@ -4555,13 +4672,13 @@
       "etiquetas_extra": [
         "Take away"
       ],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
-          "nombre": null,
-          "precio": "0-10€",
+          "nombre": "Dulces",
+          "precio": "5-10€",
           "valoracion": 3,
           "comentario": null
         }
@@ -4569,7 +4686,7 @@
     },
     {
       "id": "7515773c-c41a-446e-85cb-247de3522e84",
-      "nombre": "Juliet",
+      "nombre": "Juliet - Ciutat Vella",
       "lat": 39.4721338,
       "lng": -0.3716947,
       "direccion": "C/ de Bonaire, 22, Ciutat Vella, 46003 València, Valencia, España",
@@ -4584,8 +4701,8 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": null,
-          "precio": "0-10€",
+          "nombre": "Dulces",
+          "precio": "5-10€",
           "valoracion": 3,
           "comentario": null
         }
@@ -4653,15 +4770,16 @@
       "grupo_id": null,
       "barrio": "Poblats Marítims",
       "etiquetas_extra": [
-        "Tipo tradicional"
+        "Tipo tradicional",
+        "Take away"
       ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Esmorzar",
-          "precio": "0-10€",
+          "nombre": "Esmorzar Tradicional",
+          "precio": "5-10€",
           "valoracion": 3,
           "comentario": null
         }
@@ -4731,12 +4849,12 @@
       "categorias": [
         {
           "nombre": "Brunch",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
         },
         {
-          "nombre": "Fusión Tapas",
+          "nombre": "Tapas",
           "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
@@ -4769,7 +4887,7 @@
     },
     {
       "id": "5aa50fd6-ac4e-435c-9739-3b1f9e591d3c",
-      "nombre": "Jenkins Gran Vía | Hamburguesa Valencia",
+      "nombre": "Jenkin's - Gran Vía",
       "lat": 39.4678506,
       "lng": -0.3675976,
       "direccion": "Gran Via del Marqués del Túria, 59, L'Eixample, 46004 València, Valencia, España",
@@ -4777,15 +4895,16 @@
       "grupo_id": null,
       "barrio": "L'Eixample",
       "etiquetas_extra": [
+        "Take away",
         "Tipo normal"
       ],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": ">15€",
+          "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
         }
@@ -4793,7 +4912,7 @@
     },
     {
       "id": "6f38f88e-a959-4937-a79f-d5fac8fc2581",
-      "nombre": "Jenkin's - Cortes Valencianas | Hamburguesa Valencia",
+      "nombre": "Jenkin's - Cortes Valencianas",
       "lat": 39.4911568,
       "lng": -0.399221,
       "direccion": "Av. de les Corts Valencianes, 20, Benicalap, 46015 València, Valencia, España",
@@ -4801,15 +4920,16 @@
       "grupo_id": null,
       "barrio": "Benicalap",
       "etiquetas_extra": [
+        "Take away",
         "Tipo normal"
       ],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": ">15€",
+          "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
         }
@@ -4817,7 +4937,7 @@
     },
     {
       "id": "ccafa2f1-b289-4b04-b79d-2dc4bf1955e8",
-      "nombre": "Jenkin's - Blasco Ibáñez | Hamburguesa Valencia",
+      "nombre": "Jenkin's - Blasco Ibáñez",
       "lat": 39.4735209,
       "lng": -0.3440722,
       "direccion": "Av. de Blasco Ibáñez, 115, Algirós, 46022 València, Valencia, España",
@@ -4834,7 +4954,7 @@
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": "10-25€",
+          "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
         }
@@ -4842,7 +4962,7 @@
     },
     {
       "id": "2c1e1d99-ade2-4473-b66e-eed43e753dfa",
-      "nombre": "Jenkin's - Cabañal | Hamburguesa Valencia",
+      "nombre": "Jenkin's - Cabañal",
       "lat": 39.4695524,
       "lng": -0.3341351,
       "direccion": "C/ de Joan Mercader, 16, Poblats Marítims, 46011 València, Valencia, España",
@@ -4850,16 +4970,16 @@
       "grupo_id": null,
       "barrio": "Poblats Marítims",
       "etiquetas_extra": [
-        "No reserva",
+        "Take away",
         "Tipo normal"
       ],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": null,
+          "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
         }
@@ -4875,13 +4995,13 @@
       "grupo_id": null,
       "barrio": "Benimaclet",
       "etiquetas_extra": [],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
-          "nombre": "Ramen",
-          "precio": "0-15€",
+          "nombre": "Ramen Japones",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -4902,8 +5022,8 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Ramen",
-          "precio": "0-15€",
+          "nombre": "Ramen Japones",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -4919,13 +5039,13 @@
       "grupo_id": null,
       "barrio": "Ciutat Vella",
       "etiquetas_extra": [],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
-          "nombre": "Ramen",
-          "precio": "0-15€",
+          "nombre": "Ramen Japones",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -4948,8 +5068,8 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Pizza",
-          "precio": "0-10€",
+          "nombre": "Pizza romana y otros tipos",
+          "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
         }
@@ -4957,7 +5077,7 @@
     },
     {
       "id": "046cdd55-ac98-4f3a-b54d-ac4c28b39df0",
-      "nombre": "Restaurante La Diva",
+      "nombre": "La Diva",
       "lat": 39.4701533,
       "lng": -0.3657276,
       "direccion": "C/ de Sorní, 42, L'Eixample, 46004 València, Valencia, España",
@@ -4979,7 +5099,7 @@
     },
     {
       "id": "48d3af33-1eda-42b6-87a5-a0653b1732dd",
-      "nombre": "Horchatería Daniel",
+      "nombre": "Horchatería Daniel - Ciutat Vella",
       "lat": 39.474009,
       "lng": -0.3749191,
       "direccion": "C. del Mar, 4, Ciutat Vella, 46003 València, Valencia, España",
@@ -5003,7 +5123,7 @@
     },
     {
       "id": "99417be4-53d8-414c-b180-8f0e7c3a9f58",
-      "nombre": "Horchateria Daniel",
+      "nombre": "Horchateria Daniel - Colón",
       "lat": 39.4689183,
       "lng": -0.368252,
       "direccion": "Mercado de Colón, Carrer de Jorge Juan, 19, Ensanche, 46004 València, Valencia, España",
@@ -5062,8 +5182,8 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Fusión Tapas",
-          "precio": "25-40€",
+          "nombre": "Tapas",
+          "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
         }
@@ -5232,7 +5352,7 @@
     },
     {
       "id": "91727685-3675-447b-a4ff-7279e4b41d4b",
-      "nombre": "Restaurante Yarza",
+      "nombre": "Yarza",
       "lat": 39.4642235,
       "lng": -0.3642268,
       "direccion": "Carrer de Ciscar, 47, L'Eixample, 46005 València, Valencia, España",
@@ -5245,8 +5365,8 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Fusión Tapas",
-          "precio": "35-60€",
+          "nombre": "Tapas",
+          "precio": "50-80€",
           "valoracion": 5,
           "comentario": null
         }
@@ -5254,7 +5374,7 @@
     },
     {
       "id": "219c329b-3edc-45d4-90f5-b2b020737fb0",
-      "nombre": "Caprizza - Pizzería Restaurante Napolitano",
+      "nombre": "Caprizza",
       "lat": 39.4628899,
       "lng": -0.3574666,
       "direccion": "Pg. de l'Albereda, 39, Camins al Grau, 46023 València, Valencia, España",
@@ -5269,9 +5389,9 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Pizza",
-          "precio": "10-25€",
-          "valoracion": 3,
+          "nombre": "Pizza napolitana",
+          "precio": "20-35€",
+          "valoracion": 4,
           "comentario": null
         }
       ]
@@ -5294,8 +5414,8 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Pizza",
-          "precio": "10-25€",
+          "nombre": "Pizza napolitana",
+          "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
         }
@@ -5303,7 +5423,7 @@
     },
     {
       "id": "f12bd075-2e46-4a28-afdd-72e2577d0624",
-      "nombre": "Voltereta Bali | Valencia",
+      "nombre": "Voltereta Bali",
       "lat": 39.4678506,
       "lng": -0.3675976,
       "direccion": "Gran Via del Marqués del Túria, 59, L'Eixample, 46005 València, Valencia, España",
@@ -5316,16 +5436,16 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": null,
-          "precio": null,
-          "valoracion": null,
+          "nombre": "Asiatico mediterraneo",
+          "precio": "20-35€",
+          "valoracion": 3,
           "comentario": null
         }
       ]
     },
     {
       "id": "19375c10-2a6d-429b-b98b-8793ef229452",
-      "nombre": "Voltereta Kioto | Valencia",
+      "nombre": "Voltereta Kioto",
       "lat": 39.4568632,
       "lng": -0.3483273,
       "direccion": "Pg. de l'Albereda, 51, Camins al Grau, 46023 València, Valencia, España",
@@ -5341,7 +5461,7 @@
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": "0-30€",
+          "precio": "35-50€",
           "valoracion": 3,
           "comentario": null
         }
@@ -5349,7 +5469,7 @@
     },
     {
       "id": "2d46d04c-cf70-40cc-abb2-cadc5bb61c42",
-      "nombre": "Voltereta Casa | Valencia",
+      "nombre": "Voltereta Casa",
       "lat": 39.4926185,
       "lng": -0.4002606,
       "direccion": "Av. de les Corts Valencianes, 26, Benicalap, 46015 València, Valencia, España",
@@ -5362,16 +5482,22 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Fusión Tapas",
+          "nombre": "Tapas",
           "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
+        },
+        {
+          "nombre": "Tortilla de patatas",
+          "precio": "10-20€",
+          "valoracion": 2,
+          "comentario": ""
         }
       ]
     },
     {
       "id": "389619b8-358d-4c15-a564-ee77dcddd69e",
-      "nombre": "Voltereta Manhattan - Valencia",
+      "nombre": "Voltereta Manhattan",
       "lat": 39.4690324,
       "lng": -0.3705314,
       "direccion": "Carrer d'Isabel la Catòlica, 11, L'Eixample, 46004 València, Valencia, España",
@@ -5379,15 +5505,21 @@
       "grupo_id": null,
       "barrio": "L'Eixample",
       "etiquetas_extra": [],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
-          "nombre": "Fusión Tapas",
+          "nombre": "Tapas",
           "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
+        },
+        {
+          "nombre": "Tortilla de patatas",
+          "precio": "10-20€",
+          "valoracion": 2,
+          "comentario": ""
         }
       ]
     },
@@ -5406,8 +5538,8 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Ramen",
-          "precio": "10-25€",
+          "nombre": "Ramen Japones",
+          "precio": "10-20€",
           "valoracion": 5,
           "comentario": null
         }
@@ -5415,21 +5547,23 @@
     },
     {
       "id": "87edade4-305e-4e08-ac0d-f85b1efe2efa",
-      "nombre": "Saona Císcar",
+      "nombre": "Saona - Císcar",
       "lat": 39.4663188,
       "lng": -0.3660329,
       "direccion": "Carrer de Ciscar, 20, L'Eixample, 46005 València, Valencia, España",
       "google_maps_url": "http://maps.google.com/?cid=11839703952079550819",
       "grupo_id": null,
       "barrio": "L'Eixample",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Menú del día"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Fusión Tapas",
-          "precio": "0-20€",
+          "nombre": "Tapas",
+          "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
         }
@@ -5437,110 +5571,120 @@
     },
     {
       "id": "993bdc3a-1876-4ac4-a466-f564c2650773",
-      "nombre": "Saona Martínez Cubells",
+      "nombre": "Saona - Martínez Cubells",
       "lat": 39.4684323,
       "lng": -0.3744302,
       "direccion": "Carrer de Martínez Cubells, 7, Ciutat Vella, 46002 València, Valencia, España",
       "google_maps_url": "http://maps.google.com/?cid=7326139438181368575",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
-      "etiquetas_extra": [],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "etiquetas_extra": [
+        "Menú del día"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
-          "nombre": null,
-          "precio": null,
-          "valoracion": null,
+          "nombre": "Tapas",
+          "precio": "10-20€",
+          "valoracion": 3,
           "comentario": null
         }
       ]
     },
     {
       "id": "81045c67-26a0-4058-86ce-5a01ee256467",
-      "nombre": "Saona Blasco Ibáñez",
+      "nombre": "Saona - Blasco Ibáñez",
       "lat": 39.4751624,
       "lng": -0.3501935,
       "direccion": "Av. de Blasco Ibáñez, 59-61, Algirós, 46021 València, Valencia, España",
       "google_maps_url": "http://maps.google.com/?cid=6642405912049264432",
       "grupo_id": null,
       "barrio": "Algirós",
-      "etiquetas_extra": [],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "etiquetas_extra": [
+        "Menú del día"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
-          "nombre": null,
-          "precio": null,
-          "valoracion": null,
+          "nombre": "Tapas",
+          "precio": "10-20€",
+          "valoracion": 3,
           "comentario": null
         }
       ]
     },
     {
       "id": "abdd9f00-4d84-440e-93e6-5b7676c120d2",
-      "nombre": "Saona Casino",
+      "nombre": "Saona - Casino",
       "lat": 39.4731259,
       "lng": -0.3725788,
       "direccion": "C/ de la Pau, 30, Ciutat Vella, 46002 València, Valencia, España",
       "google_maps_url": "http://maps.google.com/?cid=1578072214495465370",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
-      "etiquetas_extra": [],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "etiquetas_extra": [
+        "Menú del día"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
-          "nombre": null,
-          "precio": null,
-          "valoracion": null,
+          "nombre": "Tapas",
+          "precio": "10-20€",
+          "valoracion": 3,
           "comentario": null
         }
       ]
     },
     {
       "id": "00079308-8863-4b8c-a4dc-972655a966ff",
-      "nombre": "Saona Cortes Valencianas",
+      "nombre": "Saona - Cortes Valencianas",
       "lat": 39.4918007,
       "lng": -0.3996606,
       "direccion": "Av. de les Corts Valencianes, 26, Bajo 1, Benicalap, 46015 València, Valencia, España",
       "google_maps_url": "http://maps.google.com/?cid=4158104906474278633",
       "grupo_id": null,
       "barrio": "Benicalap",
-      "etiquetas_extra": [],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "etiquetas_extra": [
+        "Menú del día"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
-          "nombre": null,
-          "precio": null,
-          "valoracion": null,
+          "nombre": "Tapas",
+          "precio": "10-20€",
+          "valoracion": 3,
           "comentario": null
         }
       ]
     },
     {
       "id": "e90c78f5-0ef3-404f-bd07-c853dc5d49ef",
-      "nombre": "Saona Alameda",
+      "nombre": "Saona - Alameda",
       "lat": 39.4592463,
       "lng": -0.3517805,
       "direccion": "Pg. de l'Albereda, 41, Camins al Grau, 46023 València, Valencia, España",
       "google_maps_url": "http://maps.google.com/?cid=8704633972500618235",
       "grupo_id": null,
       "barrio": "Camins al Grau",
-      "etiquetas_extra": [],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "etiquetas_extra": [
+        "Menú del día"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
-          "nombre": null,
-          "precio": null,
-          "valoracion": null,
+          "nombre": "Tapas",
+          "precio": "10-20€",
+          "valoracion": 3,
           "comentario": null
         }
       ]
@@ -5635,16 +5779,22 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Hamburguesa",
-          "precio": "10-25€",
+          "nombre": "Normal",
+          "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
+        },
+        {
+          "nombre": "Smash",
+          "precio": "20-35€",
+          "valoracion": 4,
+          "comentario": ""
         }
       ]
     },
     {
       "id": "3675d34e-ecb9-471a-a507-ce8acc1b4bb9",
-      "nombre": "La Pichurrita Cedro",
+      "nombre": "La Pichurrita - Cedro",
       "lat": 39.4720811,
       "lng": -0.3450487,
       "direccion": "C/ del Poeta Durán i Tortajada, 7, Algirós, 46022 València, Valencia, España",
@@ -5657,8 +5807,8 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Fusión Tapas",
-          "precio": "0-20€",
+          "nombre": "Tortilla de patatas",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -5666,7 +5816,7 @@
     },
     {
       "id": "19dd4d14-5d6b-4027-a879-007f39e3f5dd",
-      "nombre": "La Pichurrita Reino de Valencia",
+      "nombre": "La Pichurrita - Reino de Valencia",
       "lat": 39.4630254,
       "lng": -0.3655017,
       "direccion": "Av. del Regne de València, 66, L'Eixample, 46005 València, Valencia, España",
@@ -5674,13 +5824,13 @@
       "grupo_id": null,
       "barrio": "L'Eixample",
       "etiquetas_extra": [],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
-          "nombre": "Fusión Tapas",
-          "precio": "0-20€",
+          "nombre": "Tortilla de patatas",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -5705,7 +5855,7 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7584540557989498134?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Pizza",
+          "nombre": "Pizza napolitana",
           "precio": "20-35€",
           "valoracion": 5,
           "comentario": null
@@ -5727,7 +5877,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Fusión Tapas",
+          "nombre": "Tapas",
           "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
@@ -5772,7 +5922,7 @@
       ],
       "resena_general": "Menú degustación lleno de fusiones de sabores! Una idea innovadora para tener una cena en ocasiones especiales en Valencia ",
       "instagram_url": "https://www.instagram.com/reel/DMQI0gvK-Jg/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
-      "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7528424465722658070?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
+      "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Tapas",
@@ -5784,7 +5934,7 @@
     },
     {
       "id": "50ceeb93-1030-4887-b737-7005a0eecd54",
-      "nombre": "CIRCO BURGER la Virgen",
+      "nombre": "CIRCO BURGER - Plaza de la Virgen",
       "lat": 39.4766225,
       "lng": -0.3746493,
       "direccion": "plaza de l'escolania de la mare de deu dels desamparats numero 3, bajo 02, 46003 València, Valencia, España",
@@ -5808,7 +5958,7 @@
     },
     {
       "id": "869914fc-f823-4a31-a910-2c19cb3cd93b",
-      "nombre": "CIRCO BURGER Gran Via",
+      "nombre": "CIRCO BURGER - Gran Vía",
       "lat": 39.4661057,
       "lng": -0.3717999,
       "direccion": "Gran Via del Marqués del Túria, 25, L'Eixample, 46005 València, Valencia, España",
@@ -5833,7 +5983,7 @@
     },
     {
       "id": "1b96ccc8-5315-45e8-9007-024c32b2a378",
-      "nombre": "TKO Tacos",
+      "nombre": "TKO Tacos - Ciutat Vella",
       "lat": 39.475088,
       "lng": -0.3797156,
       "direccion": "Pl. del Mercat, 19, Ciutat Vella, 46001 València, Valencia, España",
@@ -5857,7 +6007,7 @@
     },
     {
       "id": "6fe1f821-6a7f-49d9-8ae7-cccb70397867",
-      "nombre": "TKO Tacos San Vicente",
+      "nombre": "TKO Tacos - San Vicente",
       "lat": 39.4727504,
       "lng": -0.3765341,
       "direccion": "Carrer de Sant Vicent Màrtir, 12, Ciutat Vella, 46002 València, Valencia, España",
@@ -5881,7 +6031,7 @@
     },
     {
       "id": "d04cd6ea-c63a-4695-a7dd-9d0f198012a0",
-      "nombre": "TKO Tacos Gran Vía",
+      "nombre": "TKO Tacos - Gran Vía",
       "lat": 39.4671947,
       "lng": -0.36769,
       "direccion": "Gran Via del Marqués del Túria, 56, L'Eixample, 46005 València, Valencia, España",
@@ -5905,7 +6055,7 @@
     },
     {
       "id": "57d8ddaa-1fd0-44d7-9b15-72f56974453c",
-      "nombre": "TKO Tacos",
+      "nombre": "TKO Tacos - Algirós",
       "lat": 39.4756002,
       "lng": -0.3474215,
       "direccion": "Carrer de Ramon Llull, 7, bajo izquierdo Algirós, Algirós, 46021 València, Valencia, España",
@@ -5929,7 +6079,7 @@
     },
     {
       "id": "4f888831-86a5-4088-9735-7488fe30da71",
-      "nombre": "TKO Tacos Ruzafa",
+      "nombre": "TKO Tacos - Ruzafa",
       "lat": 39.4688719,
       "lng": -0.3753524,
       "direccion": "Pg. de Russafa, 1, Ciutat Vella, 46002 València, Valencia, España",
@@ -5982,7 +6132,9 @@
       "google_maps_url": "http://maps.google.com/?cid=6165944780750569350",
       "grupo_id": null,
       "barrio": "L'Eixample",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": "Hemos ido a Kokoro y hacen un brunch bastante distinto a lo típico. Tienen dos opciones: una más asiática y original, y otra más clásica por si vas con alguien que no quiere experimentar mucho 😅\n\nNosotros recomendamos el desayuno 1, porque es lo que hace diferente al sitio.\n\n🍚 Desayuno 1\nBase de arroz con sésamo y furikake + sopa miso.\nLe añadimos kimchi, huevos revueltos con gochujang y espinacas salteadas con aceite de sésamo. Muy rico todo y bastante diferente a cualquier brunch típico.\n\n🍞 Desayuno 2\nMás clásico, con tostada de masa madre y extras.\nNosotros pedimos mantequilla, huevo y aguacate. Muy bueno también, pero menos original.\n\n🍵 A destacar el matcha, que nos dijeron que lo compran en Caté (sitio que también nos encanta). Muy bueno.\n☕ Y el café de especialidad , de dorigen, también nos gustó bastante.\n\nEn general, un sitio súper chulo para hacer un brunch diferente en Valencia.",
       "instagram_url": "https://vm.tiktok.com/ZN8J884wf/",
       "tiktok_url": "https://vm.tiktok.com/ZN8J884wf/",
@@ -6026,7 +6178,7 @@
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": "0-30€",
+          "precio": "10-20€",
           "valoracion": 4,
           "comentario": null
         }
@@ -6082,35 +6234,49 @@
     },
     {
       "id": "76137837-668b-4bab-a407-a2883a83adb4",
-      "nombre": "Begin Profundidades Marinas - Valencia",
+      "nombre": "Begin Profundidades Marinas - Pascual i Genís",
       "lat": 39.469584,
       "lng": -0.3737861,
       "direccion": "C/ de Pascual i Genís, 11, Ciutat Vella, 46002 València, Valencia, España",
       "google_maps_url": "http://maps.google.com/?cid=7635378951394661916",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
-      "etiquetas_extra": [],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "etiquetas_extra": [
+        "Menú del día"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
-          "nombre": "Fusión Tapas",
-          "precio": "0-20€",
-          "valoracion": 3,
+          "nombre": "Brunch",
+          "precio": "10-20€",
+          "valoracion": 2,
           "comentario": null
         },
         {
-          "nombre": "Vegetariano vegano",
-          "precio": "10-25€",
-          "valoracion": 3,
+          "nombre": "Tapas",
+          "precio": "20-35€",
+          "valoracion": 2,
+          "comentario": null
+        },
+        {
+          "nombre": "Pizza romana y otros tipos",
+          "precio": "20-35€",
+          "valoracion": 2,
+          "comentario": null
+        },
+        {
+          "nombre": "Saludables",
+          "precio": "20-35€",
+          "valoracion": 2,
           "comentario": null
         }
       ]
     },
     {
       "id": "2934dcfd-5f96-41cd-9a8e-c0bff0de3827",
-      "nombre": "Begin Huerta (Alameda)",
+      "nombre": "Begin Huerta - Alameda",
       "lat": 39.4579001,
       "lng": -0.349868,
       "direccion": "Pg. de l'Albereda, 47, Camins al Grau, 46023 València, Valencia, España",
@@ -6118,41 +6284,41 @@
       "grupo_id": null,
       "barrio": "Camins al Grau",
       "etiquetas_extra": [
-        "Tipo romana"
+        "Menú del día"
       ],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
           "nombre": "Brunch",
-          "precio": "10-25€",
-          "valoracion": 1,
-          "comentario": null
-        },
-        {
-          "nombre": "Fusión Tapas",
-          "precio": "15-25€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         },
         {
-          "nombre": "Pizza",
+          "nombre": "Tapas",
           "precio": "20-35€",
-          "valoracion": 1,
+          "valoracion": 2,
+          "comentario": null
+        },
+        {
+          "nombre": "Pizza romana y otros tipos",
+          "precio": "20-35€",
+          "valoracion": 2,
           "comentario": null
         },
         {
           "nombre": "Saludables",
-          "precio": ">10€",
-          "valoracion": 1,
+          "precio": "20-35€",
+          "valoracion": 2,
           "comentario": null
         }
       ]
     },
     {
       "id": "351c7089-d12c-4c24-87b7-c04dc99f7328",
-      "nombre": "Begin Invernadero - Valencia",
+      "nombre": "Begin Invernadero - Algirós",
       "lat": 39.4746227,
       "lng": -0.3477796,
       "direccion": "Carrer de Ramon Llull, 1, Algirós, 46021 València, Valencia, España",
@@ -6160,7 +6326,49 @@
       "grupo_id": null,
       "barrio": "Algirós",
       "etiquetas_extra": [
-        "Tipo romana"
+        "Menú del día"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Brunch",
+          "precio": "10-20€",
+          "valoracion": 2,
+          "comentario": null
+        },
+        {
+          "nombre": "Tapas",
+          "precio": "20-35€",
+          "valoracion": 2,
+          "comentario": null
+        },
+        {
+          "nombre": "Pizza romana y otros tipos",
+          "precio": "20-35€",
+          "valoracion": 2,
+          "comentario": null
+        },
+        {
+          "nombre": "Saludables",
+          "precio": "20-35€",
+          "valoracion": 2,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "e9768280-f839-4640-b0d9-43dda6b6149b",
+      "nombre": "Begin Jardín Secreto - Colón",
+      "lat": 39.4693034,
+      "lng": -0.368701,
+      "direccion": "C. de Martínez Ferrando, 5, L'Eixample, 46004 València, Valencia, España",
+      "google_maps_url": "http://maps.google.com/?cid=1260710975629317162",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Menú del día"
       ],
       "resena_general": null,
       "instagram_url": null,
@@ -6168,65 +6376,25 @@
       "categorias": [
         {
           "nombre": "Brunch",
-          "precio": "0-15€",
-          "valoracion": 1,
-          "comentario": null
-        },
-        {
-          "nombre": "Fusión Tapas",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         },
         {
-          "nombre": "Pizza",
+          "nombre": "Tapas",
           "precio": "20-35€",
-          "valoracion": 1,
-          "comentario": null
-        },
-        {
-          "nombre": "Saludables",
-          "precio": ">10€",
-          "valoracion": 1,
-          "comentario": null
-        }
-      ]
-    },
-    {
-      "id": "e9768280-f839-4640-b0d9-43dda6b6149b",
-      "nombre": "Begin Jardín Secreto - Valencia",
-      "lat": 39.4693034,
-      "lng": -0.368701,
-      "direccion": "C. de Martínez Ferrando, 5, L'Eixample, 46004 València, Valencia, España",
-      "google_maps_url": "http://maps.google.com/?cid=1260710975629317162",
-      "grupo_id": null,
-      "barrio": "L'Eixample",
-      "etiquetas_extra": [],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
-      "categorias": [
-        {
-          "nombre": "Brunch",
-          "precio": "10-25€",
           "valoracion": 2,
           "comentario": null
         },
         {
-          "nombre": "Fusión Tapas",
-          "precio": "15-25€",
-          "valoracion": 2,
-          "comentario": null
-        },
-        {
-          "nombre": "Pizza",
+          "nombre": "Pizza romana y otros tipos",
           "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
         },
         {
           "nombre": "Saludables",
-          "precio": ">10€",
+          "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
         }
@@ -6234,7 +6402,7 @@
     },
     {
       "id": "e77b3952-fc74-4495-8721-6192aefa4a11",
-      "nombre": "Bastard Coffee & Kitchen",
+      "nombre": "Bastard Coffee & Kitchen - Algirós",
       "lat": 39.4754063,
       "lng": -0.3487989,
       "direccion": "Carrer de Leandro de Saralegui, nº 1, BAJO-IZDA, Algirós, 46021 València, Valencia, España",
@@ -6248,7 +6416,7 @@
       "categorias": [
         {
           "nombre": "Brunch",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -6256,7 +6424,7 @@
     },
     {
       "id": "51b7a1dc-3872-43e6-94da-585824e2ecc5",
-      "nombre": "Begin Origen - Valencia",
+      "nombre": "Begin Origen - Cortes Valencianas",
       "lat": 39.4940032,
       "lng": -0.4012072,
       "direccion": "Av. de les Corts Valencianes, 50, Benicalap, 46015 València, Valencia, España",
@@ -6264,33 +6432,33 @@
       "grupo_id": null,
       "barrio": "Benicalap",
       "etiquetas_extra": [
-        "Tipo romana"
+        "Menú del día"
       ],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
           "nombre": "Brunch",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         },
         {
-          "nombre": "Fusión Tapas",
-          "precio": "15-25€",
+          "nombre": "Tapas",
+          "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
         },
         {
-          "nombre": "Pizza",
+          "nombre": "Pizza romana y otros tipos",
           "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
         },
         {
           "nombre": "Saludables",
-          "precio": ">10€",
+          "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
         }
@@ -6298,44 +6466,50 @@
     },
     {
       "id": "08128ab8-256e-40bd-af20-c9915a58de3d",
-      "nombre": "Miss Sushi Cánovas",
+      "nombre": "Miss Sushi - Cánovas",
       "lat": 39.46806,
       "lng": -0.36518,
       "direccion": "Plaça de Cánovas del Castillo, 9, L'Eixample, 46005 València, Valencia, España",
       "google_maps_url": "http://maps.google.com/?cid=2242475553626308690",
       "grupo_id": null,
       "barrio": "L'Eixample",
-      "etiquetas_extra": [],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "etiquetas_extra": [
+        "Sin buffet",
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
-          "nombre": null,
-          "precio": null,
-          "valoracion": null,
+          "nombre": "Sushi",
+          "precio": "20-35€",
+          "valoracion": 1,
           "comentario": null
         }
       ]
     },
     {
       "id": "17658f50-1bab-4852-9407-5c6bba510d35",
-      "nombre": "Miss Sushi Alameda",
+      "nombre": "Miss Sushi - Alameda",
       "lat": 39.4593871,
       "lng": -0.3518587,
       "direccion": "Pg. de l'Albereda, 41, Camins al Grau, 46023 València, Valencia, España",
       "google_maps_url": "http://maps.google.com/?cid=4080113257761428805",
       "grupo_id": null,
       "barrio": "Camins al Grau",
-      "etiquetas_extra": [],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "etiquetas_extra": [
+        "Sin buffet",
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
-          "nombre": null,
-          "precio": null,
-          "valoracion": null,
+          "nombre": "Sushi",
+          "precio": "20-35€",
+          "valoracion": 1,
           "comentario": null
         }
       ]
@@ -6366,6 +6540,30 @@
       ]
     },
     {
+      "id": "6885ad30-f6da-4a08-b4a1-bdef9e26dd1a",
+      "nombre": "Ashita - Xátiva",
+      "lat": 39.4676453,
+      "lng": -0.3784605,
+      "direccion": "C/ de Xàtiva, 14, Extramurs, 46002 València, Valencia, España",
+      "google_maps_url": "http://maps.google.com/?cid=15486660668714884238",
+      "grupo_id": null,
+      "barrio": "Extramurs",
+      "etiquetas_extra": [
+        "Buffet"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Sushi Buffet",
+          "precio": "20-35€",
+          "valoracion": 1,
+          "comentario": null
+        }
+      ]
+    },
+    {
       "id": "7429c40c-1938-4822-bfa2-e978c7e19500",
       "nombre": "BASTARD Coffee & Kitchen - Mercado Colón",
       "lat": 39.4692506,
@@ -6375,13 +6573,13 @@
       "grupo_id": null,
       "barrio": "L'Eixample",
       "etiquetas_extra": [],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
           "nombre": "Brunch",
-          "precio": ">10€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -6397,13 +6595,13 @@
       "grupo_id": null,
       "barrio": "L'Eixample",
       "etiquetas_extra": [],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
           "nombre": "Brunch",
-          "precio": "10-25€",
+          "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
         }
@@ -6427,7 +6625,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "0-10€",
+          "precio": "0-5€",
           "valoracion": 2,
           "comentario": null
         },
@@ -6489,7 +6687,7 @@
     },
     {
       "id": "65d521d2-4573-40fe-ae9d-f109809090a1",
-      "nombre": "Restaurante Japonés - AOYAMA II",
+      "nombre": "AOYAMA II",
       "lat": 39.466702,
       "lng": -0.3658117,
       "direccion": "Carrer del Comte d'Altea, 40, L'Eixample, 46005 València, Valencia, España",
@@ -6497,15 +6695,16 @@
       "grupo_id": null,
       "barrio": "L'Eixample",
       "etiquetas_extra": [
-        "Buffet"
+        "Buffet",
+        "Take away"
       ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Sushi",
-          "precio": "0-30€",
+          "nombre": "Sushi Buffet",
+          "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
         }
@@ -6537,7 +6736,7 @@
     },
     {
       "id": "1e6f1113-c428-4259-aa5d-9fb3e84940ce",
-      "nombre": "Restaurante Japonés KOBE",
+      "nombre": "KOBE",
       "lat": 39.4644496,
       "lng": -0.3722544,
       "direccion": "Av. del Regne de València, 14, L'Eixample, 46005 València, Valencia, España",
@@ -6561,7 +6760,7 @@
     },
     {
       "id": "0db3278d-ebdb-400d-9eb1-2d821f2af0e1",
-      "nombre": "Ashita Restaurante Xuquer",
+      "nombre": "Ashita - Xúquer",
       "lat": 39.476459,
       "lng": -0.3508627,
       "direccion": "Pça. del Xúquer, 6, Algirós, 46021 València, Valencia, España",
@@ -6576,8 +6775,8 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Sushi",
-          "precio": "0-30€",
+          "nombre": "Sushi Buffet",
+          "precio": "20-35€",
           "valoracion": 1,
           "comentario": null
         }
@@ -6585,7 +6784,7 @@
     },
     {
       "id": "627ade85-990d-4bb5-9740-86ec73a18ba8",
-      "nombre": "Restaurante japonés UNSUSHI",
+      "nombre": "UNSUSHI",
       "lat": 39.47536,
       "lng": -0.38317,
       "direccion": "C/ de Murillo, 31, bajo izquierda, Ciutat Vella, 46001 València, Valencia, España",
@@ -6593,7 +6792,8 @@
       "grupo_id": null,
       "barrio": "Ciutat Vella",
       "etiquetas_extra": [
-        "Sin buffet"
+        "Sin buffet",
+        "Take away"
       ],
       "resena_general": null,
       "instagram_url": null,
@@ -6601,7 +6801,7 @@
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": "0-30€",
+          "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
         }
@@ -6609,7 +6809,7 @@
     },
     {
       "id": "4fe44e0a-5798-4da1-9cdd-a23db1c94df8",
-      "nombre": "Miss Sushi Cortes Valencianas",
+      "nombre": "Miss Sushi - Cortes Valencianas",
       "lat": 39.4921784,
       "lng": -0.4015113,
       "direccion": "Av. de les Corts Valencianes, 39, Campanar, 46015 València, Valencia, España",
@@ -6626,7 +6826,7 @@
       "categorias": [
         {
           "nombre": "Sushi",
-          "precio": "0-30€",
+          "precio": "20-35€",
           "valoracion": 1,
           "comentario": null
         }
@@ -6774,19 +6974,19 @@
         "Take away",
         "Tipo smash"
       ],
-      "resena_general": null,
+      "resena_general": "Solo take away",
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
         {
           "nombre": "Hamburguesa",
-          "precio": "0-4,5€",
+          "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
         },
         {
-          "nombre": "Tarta de queso",
-          "precio": "10-25€",
+          "nombre": "de Restaurante",
+          "precio": "0-5€",
           "valoracion": 4,
           "comentario": null
         }
@@ -6794,7 +6994,7 @@
     },
     {
       "id": "4f76dfe6-b035-4bff-824d-e3adda813abb",
-      "nombre": "EL TARANTIN CHIFLADO - Canovas",
+      "nombre": "EL TARANTIN CHIFLADO - Cánovas",
       "lat": 39.4648876,
       "lng": -0.3639862,
       "direccion": "Carrer de la Reina Na Germana, 29, L'Eixample, 46005 València, Valencia, España",
@@ -6819,7 +7019,7 @@
     },
     {
       "id": "334f1c53-c507-4d97-a00b-f3dffb602133",
-      "nombre": "Restaurante Vaqueta Gastro Mercat",
+      "nombre": "Vaqueta Gastro Mercat",
       "lat": 39.4731084,
       "lng": -0.3774709,
       "direccion": "C. de Sant Ferran, 22, Ciutat Vella, 46001 València, Valencia, España",
@@ -6864,49 +7064,12 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Fusión Tapas",
-          "precio": "10-25€",
+          "nombre": "Shawarma",
+          "precio": "10-20€",
           "valoracion": 5,
           "comentario": null
         }
       ]
-    },
-    {
-      "id": "301f0efc-52fc-4556-8844-c87b35270fdd",
-      "nombre": "Restaurante Hōchō",
-      "lat": 39.4674895,
-      "lng": -0.3595739,
-      "direccion": "Pg. de l'Albereda, 32, El Pla del Real, 46023 València, Valencia, España",
-      "google_maps_url": "https://maps.google.com/?cid=310833639009033940&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
-      "grupo_id": null,
-      "barrio": "El Pla del Real",
-      "etiquetas_extra": [],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
-      "categorias": [
-        {
-          "nombre": "Sushi",
-          "precio": "50-80€",
-          "valoracion": 5,
-          "comentario": ""
-        }
-      ]
-    },
-    {
-      "id": "f1c58d47-9db2-403a-8747-415654a31c87",
-      "nombre": "Restaurante Hōchō",
-      "lat": 39.4674895,
-      "lng": -0.3595739,
-      "direccion": "Pg. de l'Albereda, 32, El Pla del Real, 46023 València, Valencia, España",
-      "google_maps_url": "https://maps.google.com/?cid=310833639009033940&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
-      "grupo_id": null,
-      "barrio": "El Pla del Real",
-      "etiquetas_extra": [],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
-      "categorias": []
     },
     {
       "id": "351ae237-29b5-474b-8d28-cd8225b80ef1",
@@ -6962,7 +7125,7 @@
           "comentario": ""
         },
         {
-          "nombre": "Premium",
+          "nombre": "Esmorzar Premium",
           "precio": "10-20€",
           "valoracion": 5,
           "comentario": ""
@@ -7121,7 +7284,7 @@
     },
     {
       "id": "156a249e-46bd-45ea-a26a-557f160b0b52",
-      "nombre": "Restaurante copenhagen",
+      "nombre": "Copenhagen",
       "lat": 39.460775,
       "lng": -0.373545,
       "direccion": "Carrer del Literat Azorín, 8, L'Eixample, 46006 València, Valencia, España",
@@ -7138,20 +7301,20 @@
         {
           "nombre": "Vegetariano",
           "precio": "20-35€",
-          "valoracion": 5,
+          "valoracion": 4,
           "comentario": ""
         },
         {
           "nombre": "Saludables",
           "precio": "20-35€",
-          "valoracion": 5,
+          "valoracion": 4,
           "comentario": ""
         }
       ]
     },
     {
       "id": "70063671-dc56-413c-89e3-e1624ae218c3",
-      "nombre": "Restaurante Vuelve Carolina",
+      "nombre": "Vuelve Carolina",
       "lat": 39.4697744,
       "lng": -0.37452920000000006,
       "direccion": "C/ de Correus, 8, Ciutat Vella, 46002 València, Valencia, España",
@@ -7212,7 +7375,9 @@
       "google_maps_url": "https://maps.google.com/?cid=11746512312614206176&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
       "grupo_id": null,
       "barrio": "Ciutat Vella",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": "Hemos ido a Pizza Natura, @pizzanaturaa , un sitio bastante distinto a lo típico: pizzas saludables y sin gluten, con una masa hecha de mijo, quinoa y agua. La masa es fina, ligera y la verdad que está muy buena. Los toppings también muy cuidados. Además el trato por parte de Leo y Flor fue muy cercano que se agradece.\n\nA nosotros nos gustó bastante el concepto y cómo lo ejecutan.\n\n🍽️ Lo que probamos:\n\n🍠 Boniatos sin filtro – 9/10\nNos gustaron bastante, sobre todo la salsa de aguacate. Dulces por dentro, dorados por fuera y con varias salsas que funcionan muy bien.\n\n🍕 Menorquina – 9,5/10\nDe nuestras favoritas, pero mejor para compartir. Es bastante contundente y con sabores intensos (sobrasada, queso Mahón, miel…), te puede cansar si es para uno solo.\n\n🍕 Huevo trufado – 9/10\nMuy rica, la trufa le queda genial. Nosotros quizá le quitaríamos el tomate, pero en general muy top.\n\n🍰 Cheesecake de pistacho – 8/10\nLo único que no repetiríamos. Demasiado sabor a dátil, tapa bastante el resto.\n\n🥥 Coco lima – 9/10\nMuy rico, suave y bastante equilibrado.\n\n🍋 Lemon fresh – 9/10\nMuy refrescante, de los que apetecen siempre.\n\nEn resumen: sitio diferente, con una propuesta más healthy que funciona. Si buscas pizza sin gluten en Valencia, es una opción muy sólida. También tienen restaurante para comer en Madrid y Barcelona. ",
       "instagram_url": "https://www.instagram.com/reel/DYiDz-CKV6r/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==",
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7641687604370378006?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
@@ -7246,9 +7411,15 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Tradicional",
+          "nombre": "Esmorzar Tradicional",
           "precio": "5-10€",
           "valoracion": 5,
+          "comentario": ""
+        },
+        {
+          "nombre": "Tortilla de patatas",
+          "precio": "5-10€",
+          "valoracion": 2,
           "comentario": ""
         }
       ]
@@ -7265,7 +7436,7 @@
       "etiquetas_extra": [
         "Take away"
       ],
-      "resena_general": "Hemos ido a Norico - @norico.valencia , un restaurante bastante nuevo en Valencia de la mano de @norico.barcelona y @nori.spain que apuesta por un sushi fusión con un punto más premium. Nos llamó la atención porque, además de los clásicos, tienen platos diferentes y una presentación muy cuidada. También nos pareció una buena opción para pedir a domicilio o take away si buscáis algo un poco distinto al típico sushi.\n\n🍹 Matcha Yuzu Tonic – 9/10\nMuy equilibrado. El matcha se nota, pero el yuzu le aporta un toque cítrico que hace que sea una bebida muy fresca.\n\n🍸 Prn Star Martini 0.0 – 9/10\nNos sorprendió bastante. Muy conseguido para ser una versión sin alcohol.\n\n🍔 Sushi Burger de atún – 9/10\nUna propuesta divertida y con una relación calidad-precio muy buena. No sustituye a un buen roll, pero nos pareció una opción diferente y perfecta para compartir o pedir a domicilio.\n\n🥗 Poke Bowl de vieira – 8,5/10\nEsperábamos que la vieira tuviera un sabor un poco más intenso, pero el conjunto estaba muy equilibrado y se hacía muy agradable de comer.\n\n🍣 Roll Norico – 9,5/10\nNuestro favorito del día. Es bastante grande, el salmón tenía muy buena calidad y la salsa acompañaba sin tapar el sabor del pescado. Sin duda repetiríamos este roll.\n\nEn general nos pareció un sitio interesante si buscáis un restaurante de sushi en Valencia con propuestas algo diferentes a las habituales. Quizá no es el japonés más tradicional, pero precisamente ahí está su gracia. Si volviéramos, pediríamos otra vez el Roll Norico y probaríamos más especialidades de la carta.",
+      "resena_general": null,
       "instagram_url": "https://www.instagram.com/reel/DbEEVrFqRGu/?igsh=bm1scXA5Y3g0Nm1x",
       "tiktok_url": "https://vm.tiktok.com/ZN8JghWBY/",
       "categorias": [
@@ -7273,7 +7444,7 @@
           "nombre": "Sushi",
           "precio": "20-35€",
           "valoracion": 3,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -7297,7 +7468,7 @@
           "nombre": "Sushi",
           "precio": "20-35€",
           "valoracion": 3,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -7319,13 +7490,13 @@
           "nombre": "Tapas",
           "precio": "20-35€",
           "valoracion": 4,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
     {
       "id": "6556c0a4-70ac-4e39-a389-ca2a567deceb",
-      "nombre": "Restaurante Namúa Gastronomic",
+      "nombre": "Namúa Gastronomic",
       "lat": 39.4607872,
       "lng": -0.3349192,
       "direccion": "Av. del Port, 271, Poblats Marítims, 46011 València, Valencia, España",
@@ -7343,7 +7514,7 @@
           "nombre": "Tapas",
           "precio": "35-50€",
           "valoracion": 2,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -7357,8 +7528,7 @@
       "grupo_id": null,
       "barrio": "Ciutat Vella",
       "etiquetas_extra": [
-        "Take away",
-        "Sin reserva"
+        "Take away"
       ],
       "resena_general": null,
       "instagram_url": null,
@@ -7368,7 +7538,7 @@
           "nombre": "Focaccia",
           "precio": "5-10€",
           "valoracion": 4,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -7393,7 +7563,7 @@
           "nombre": "Focaccia",
           "precio": "5-10€",
           "valoracion": 4,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -7417,12 +7587,202 @@
           "nombre": "Pollo",
           "precio": "10-20€",
           "valoracion": 5,
-          "comentario": ""
+          "comentario": null
         },
         {
           "nombre": "Normal",
           "precio": "10-20€",
           "valoracion": 3,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "bc44fdff-937a-4be1-9d65-4f54c745a1cf",
+      "nombre": "Disidente Restaurante Vegetariano",
+      "lat": 39.4682746,
+      "lng": -0.3671006,
+      "direccion": "Carrer del Comte de Salvatierra, 41, L'Eixample, 46004 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=15075371936821770104&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Saludables",
+          "precio": "20-35€",
+          "valoracion": 3,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "aa1c23a1-00f8-4c72-93e7-44e64eb4db8d",
+      "nombre": "Mestiza",
+      "lat": 39.470874599999995,
+      "lng": -0.3282157,
+      "direccion": "C/ de la Reina, 186, Poblats Marítims, 46011 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=8751115662649421810&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Poblats Marítims",
+      "etiquetas_extra": [],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Vegetariano",
+          "precio": "20-35€",
+          "valoracion": 3,
+          "comentario": ""
+        },
+        {
+          "nombre": "Saludables",
+          "precio": "20-35€",
+          "valoracion": 3,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "286b116c-0e7e-4f52-9bb6-e31b1b1b870a",
+      "nombre": "Maruxiña, O New Furancho",
+      "lat": 39.4769849,
+      "lng": -0.3486922,
+      "direccion": "C. Poeta Artola, 29, bajo izqda, Algirós, 46021 Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=755734500296001687&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Algirós",
+      "etiquetas_extra": [],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Tapas",
+          "precio": "20-35€",
+          "valoracion": 3,
+          "comentario": ""
+        },
+        {
+          "nombre": "Tortilla de patatas",
+          "precio": "10-20€",
+          "valoracion": 4,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "21a87f66-ece5-4acc-9245-271bdabae1a6",
+      "nombre": "La Martinuca | Bar - Tortillería de Especialidad",
+      "lat": 39.4681009,
+      "lng": -0.3651928,
+      "direccion": "Plaça de Cánovas del Castillo, 10, L'Eixample, 46005 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=18103354698178045706&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Tortilla de patatas",
+          "precio": "10-20€",
+          "valoracion": 3,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "49f37cff-3b4f-4798-87c7-3cd9629ed7ff",
+      "nombre": "Pizcueta 14",
+      "lat": 39.4664271,
+      "lng": -0.3728353,
+      "direccion": "Carrer de Félix Pizcueta, 14, L'Eixample, 46004 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=4877457377813388522&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Tortilla de patatas",
+          "precio": "10-20€",
+          "valoracion": 2,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "8a942cd6-37c2-43eb-a256-6047512c81be",
+      "nombre": "Sibarita Mercabañal",
+      "lat": 39.472065400000005,
+      "lng": -0.3262099,
+      "direccion": "C/ d'Eugènia Viñes, 225, Poblats Marítims, 46011 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=11651529220531412909&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Poblats Marítims",
+      "etiquetas_extra": [],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Tortilla de patatas",
+          "precio": "10-20€",
+          "valoracion": 2,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "42dcd360-40cf-4c59-80c5-a2cd483880af",
+      "nombre": "Pez Tortilla",
+      "lat": 39.461758,
+      "lng": -0.372861,
+      "direccion": "C/ de Carles Cervera, 30, L'Eixample, 46006 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=3266631283568128824&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Tortilla de patatas",
+          "precio": "10-20€",
+          "valoracion": 2,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "440e72a5-3efe-4ecb-a5fb-35e3238135d8",
+      "nombre": "Bodega La Peseta",
+      "lat": 39.4615807,
+      "lng": -0.3343041,
+      "direccion": "C/ del Crist del Grau, 16, Poblats Marítims, 46011 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=7010388913134611579&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Poblats Marítims",
+      "etiquetas_extra": [],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Tortilla de patatas",
+          "precio": "10-20€",
+          "valoracion": 2,
           "comentario": ""
         }
       ]
