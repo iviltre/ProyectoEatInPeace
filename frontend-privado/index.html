@@ -346,6 +346,7 @@ let markers = {};
 let selectedId = null;
 let modoAñadir = false;
 let filtroCategorias = new Set();
+let filtroSinCategoria = false;
 let filtroPrecios = new Set();
 let filtroValoracionMin = null;
 let filtroProbado = null;
@@ -780,6 +781,13 @@ function pintarFiltros() {
   labelCat.textContent = 'Categoría';
   el.appendChild(labelCat);
 
+  const chipSinCat = document.createElement('div');
+  chipSinCat.className = 'chip' + (filtroSinCategoria ? ' active' : '');
+  chipSinCat.textContent = 'Sin categoría';
+  chipSinCat.style.cssText = 'display:inline-block; margin-bottom:6px; font-style:italic;';
+  chipSinCat.onclick = () => { filtroSinCategoria = !filtroSinCategoria; pintarFiltros(); renderList(); pintarMarcadores(); };
+  el.appendChild(chipSinCat);
+
   const grupoCat = document.createElement('div');
   grupoCat.style.cssText = 'margin-bottom:6px;';
 
@@ -1068,7 +1076,9 @@ function restaurantesFiltrados() {
   const q = normalizarTexto(document.getElementById('search').value);
   return restaurantes.filter(r => {
     const coincideNombre = normalizarTexto(r.nombre).includes(q);
-    const coincideCat = filtroCategorias.size === 0 || r.categorias.some(c => categoriaCoincideFiltro(c.nombre, filtroCategorias));
+    const coincideCat = filtroSinCategoria
+      ? (!r.categorias || r.categorias.length === 0 || r.categorias.some(c => !c.nombre))
+      : (filtroCategorias.size === 0 || r.categorias.some(c => categoriaCoincideFiltro(c.nombre, filtroCategorias)));
     const coincidePrecio = filtroPrecios.size === 0 || r.categorias.some(c => filtroPrecios.has(c.precio));
     const coincideVal = filtroValoracionMin === null || r.categorias.some(c => (c.valoracion || 0) >= filtroValoracionMin);
     const coincideProbado = !filtroProbado || (filtroProbado === 'si' ? r.probado : !r.probado);
