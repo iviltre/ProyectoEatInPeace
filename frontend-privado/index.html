@@ -315,7 +315,7 @@ async function obtenerDetallePlace(placeId) {
   const res = await fetch(`https://places.googleapis.com/v1/places/${placeId}`, {
     headers: {
       'X-Goog-Api-Key': GOOGLE_PLACES_API_KEY,
-      'X-Goog-FieldMask': 'location,formattedAddress,displayName,googleMapsUri,addressComponents'
+      'X-Goog-FieldMask': 'location,formattedAddress,displayName,googleMapsUri,addressComponents,takeout'
     }
   });
   const data = await res.json();
@@ -325,7 +325,8 @@ async function obtenerDetallePlace(placeId) {
     direccion: data.formattedAddress,
     nombre: (data.displayName && data.displayName.text) ? data.displayName.text : 'Nuevo restaurante',
     mapsUrl: data.googleMapsUri || null,
-    barrio: extraerBarrioDeComponentes(data.addressComponents) || extraerBarrioLocal(data.formattedAddress)
+    barrio: extraerBarrioDeComponentes(data.addressComponents) || extraerBarrioLocal(data.formattedAddress),
+    takeaway: data.takeout === true
   };
 }
 
@@ -614,11 +615,17 @@ function salirModoCaptura() {
   pintarMarcadores();
 }
 
+function colorMarcador(r) {
+  if (!r.probado) return '#9AA0A6'; // gris: no probado
+  if (!r.visible_publico) return '#7B88C4'; // azulado: probado pero no visible para seguidores
+  return colorParaValoracion(valoracionMostrada(r));
+}
+
 function circuloPara(r) {
   const seleccionado = r.id === selectedId;
   return {
     radius: seleccionado ? 11 : 7,
-    fillColor: r.probado ? colorParaValoracion(valoracionMostrada(r)) : '#9AA0A6',
+    fillColor: colorMarcador(r),
     color: seleccionado ? '#1a1a1a' : 'white',
     weight: seleccionado ? 3 : 2,
     fillOpacity: 1
@@ -1208,8 +1215,44 @@ async function confirmarSeleccionPlaces() {
   }
 }
 
+function distanciaMetros(lat1, lng1, lat2, lng2) {
+  const R = 6371000;
+  const rad = Math.PI / 180;
+  const dLat = (lat2 - lat1) * rad;
+  const dLng = (lng2 - lng1) * rad;
+  const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1 * rad) * Math.cos(lat2 * rad) * Math.sin(dLng / 2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+function posiblesDuplicados(nombre, lat, lng) {
+  const nombreNorm = normalizarTexto(nombre);
+  return restaurantes.filter(r => {
+    const rNorm = normalizarTexto(r.nombre);
+    const mismoNombre = rNorm === nombreNorm || rNorm.includes(nombreNorm) || nombreNorm.includes(rNorm);
+    const cerca = distanciaMetros(lat, lng, r.lat, r.lng) < 60; // menos de 60 metros
+    return mismoNombre || cerca;
+  });
+}
+
+// Avisa (sin bloquear) si el barrio que se acaba de guardar no existe todavía en ningún otro restaurante
+function avisarSiBarrioNuevo(barrio) {
+  if (!barrio) return;
+  const barrioNorm = normalizarTexto(barrio);
+  const yaExiste = restaurantes.some(r => normalizarTexto(r.barrio || '') === barrioNorm);
+  if (!yaExiste) {
+    alert(`Aviso: "${barrio}" es un barrio nuevo, no lo tenías puesto en ningún otro restaurante. Revisa que esté bien escrito.`);
+  }
+}
+
 async function guardarNuevoRestaurantePorPlaces() {
   const nombre = placesSeleccionado.nombre || 'Nuevo restaurante';
+
+  const duplicados = posiblesDuplicados(nombre, placesSeleccionado.lat, placesSeleccionado.lng);
+  if (duplicados.length) {
+    const lista = duplicados.map(d => `- ${d.nombre} (${d.direccion || 'sin dirección'})`).join('\n');
+    if (!confirm(`Ya tienes algo parecido guardado:\n${lista}\n\n¿Seguro que quieres añadirlo de todas formas?`)) return;
+  }
+
   try {
     const r = await fetch(`${API}/restaurantes`, {
       method: 'POST', headers: authHeaders(),
@@ -1217,11 +1260,13 @@ async function guardarNuevoRestaurantePorPlaces() {
         nombre, lat: placesSeleccionado.lat, lng: placesSeleccionado.lng,
         direccion: placesSeleccionado.direccion,
         google_maps_url: placesSeleccionado.mapsUrl || undefined,
-        barrio: placesSeleccionado.barrio || undefined
+        barrio: placesSeleccionado.barrio || undefined,
+        etiquetas_extra: placesSeleccionado.takeaway ? ['Take away'] : []
       })
     });
     const nuevo = await r.json();
     restaurantes.push(nuevo);
+    avisarSiBarrioNuevo(nuevo.barrio);
     pintarMarcadores();
     renderList();
     selectedId = nuevo.id;
@@ -1441,7 +1486,9 @@ function copiarResenaRestaurante() {
     instagram_url: r.instagram_url || '',
     tiktok_url: r.tiktok_url || '',
     categorias: (r.categorias || []).map(c => ({ nombre: c.nombre, precio: c.precio, valoracion: c.valoracion, comentario: c.comentario })),
-    etiquetas_extra: [...(r.etiquetas_extra || [])]
+    etiquetas_extra: [...(r.etiquetas_extra || [])],
+    probado: !!r.probado,
+    visible_publico: !!r.visible_publico
   };
   document.querySelectorAll(`[data-copiar-cat="restaurante"]`).forEach(btn => {
     btn.innerHTML = '✓';
@@ -1459,12 +1506,14 @@ async function pegarResenaRestaurante() {
   r.instagram_url = portapapelesRestaurante.instagram_url;
   r.tiktok_url = portapapelesRestaurante.tiktok_url;
   r.etiquetas_extra = [...portapapelesRestaurante.etiquetas_extra];
+  r.probado = portapapelesRestaurante.probado;
+  r.visible_publico = portapapelesRestaurante.probado ? portapapelesRestaurante.visible_publico : false;
 
   await fetch(`${API}/restaurantes/${r.id}`, {
     method: 'PUT', headers: authHeaders(),
     body: JSON.stringify({
       resena_general: r.resena_general, instagram_url: r.instagram_url, tiktok_url: r.tiktok_url,
-      etiquetas_extra: r.etiquetas_extra
+      etiquetas_extra: r.etiquetas_extra, probado: r.probado, visible_publico: r.visible_publico
     })
   });
 
@@ -1482,16 +1531,10 @@ async function pegarResenaRestaurante() {
     r.categorias.push(nueva);
   }
 
-  const seccion = document.getElementById('seccion-resena-general');
-  if (seccion) {
-    seccion.querySelector('.campo-resena-general').value = r.resena_general || '';
-    seccion.querySelector('.campo-instagram-general').value = r.instagram_url || '';
-    seccion.querySelector('.campo-tiktok-general').value = r.tiktok_url || '';
-  }
-  renderCategorias(r);
-  renderEtiquetasChips(r);
   renderList();
+  pintarMarcadores();
   await actualizarPendienteRevisar();
+  abrirDetalle(r.id); // refresco completo de la ficha, para que también se vean bien los interruptores de probado/visible
 }
 
 async function guardarCategoria(catId, campo, valor) {
@@ -1543,6 +1586,7 @@ async function borrarRestaurante() {
 async function guardarBarrioManual(valor) {
   const r = restaurantes.find(x => x.id === selectedId);
   if (!r) return;
+  if (valor && valor !== r.barrio) avisarSiBarrioNuevo(valor);
   r.barrio = valor;
   r.barrio_manual = true;
   await fetch(`${API}/restaurantes/${r.id}`, {
@@ -1578,8 +1622,14 @@ async function guardarDireccionSeleccionadaEdit() {
   }
 
   if (!r.barrio_manual && placesSeleccionado.barrio) {
+    if (placesSeleccionado.barrio !== r.barrio) avisarSiBarrioNuevo(placesSeleccionado.barrio);
     r.barrio = placesSeleccionado.barrio;
     cuerpo.barrio = placesSeleccionado.barrio;
+  }
+
+  if (placesSeleccionado.takeaway && !(r.etiquetas_extra || []).includes('Take away')) {
+    r.etiquetas_extra = [...(r.etiquetas_extra || []), 'Take away'];
+    cuerpo.etiquetas_extra = r.etiquetas_extra;
   }
 
   await fetch(`${API}/restaurantes/${r.id}`, {

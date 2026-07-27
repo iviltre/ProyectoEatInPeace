@@ -302,13 +302,13 @@ app.get('/api/restaurantes', async (req, res) => {
 });
 
 app.post('/api/restaurantes', requiereAuth, async (req, res) => {
-  const { nombre, lat, lng, direccion, google_maps_url, barrio } = req.body;
+  const { nombre, lat, lng, direccion, google_maps_url, barrio, etiquetas_extra } = req.body;
   const id = randomUUID();
   await db.execute({
     sql: `INSERT INTO restaurantes (id, nombre, lat, lng, direccion, google_maps_url,
             notas_generales, grupo_id, probado, pendiente_revisar, visible_publico, etiquetas_extra, barrio)
-          VALUES (?, ?, ?, ?, ?, ?, NULL, NULL, 0, 0, 1, '[]', ?)`,
-    args: [id, nombre || 'Nuevo restaurante', lat, lng, direccion || null, google_maps_url || null, barrio || null]
+          VALUES (?, ?, ?, ?, ?, ?, NULL, NULL, 0, 0, 1, ?, ?)`,
+    args: [id, nombre || 'Nuevo restaurante', lat, lng, direccion || null, google_maps_url || null, JSON.stringify(etiquetas_extra || []), barrio || null]
   });
   const { rows } = await db.execute({ sql: 'SELECT * FROM restaurantes WHERE id = ?', args: [id] });
   res.status(201).json(await construirRestaurante(rows[0], false));
