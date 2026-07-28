@@ -1088,7 +1088,7 @@ function restaurantesFiltrados() {
       ? (!r.categorias || r.categorias.length === 0 || r.categorias.some(c => !c.nombre))
       : (filtroCategorias.size === 0 || r.categorias.some(c => categoriaCoincideFiltro(c.nombre, filtroCategorias)));
     const coincidePrecio = filtroSinPrecio
-      ? (!r.categorias || r.categorias.length === 0 || r.categorias.some(c => !c.precio))
+      ? (!r.categorias || r.categorias.length === 0 || r.categorias.some(c => !c.precio || !PRECIOS_FIJOS.includes(c.precio)))
       : (filtroPrecios.size === 0 || r.categorias.some(c => filtroPrecios.has(c.precio)));
     const coincideVal = filtroValoracionMin === null || r.categorias.some(c => (c.valoracion || 0) >= filtroValoracionMin);
     const coincideProbado = !filtroProbado || (filtroProbado === 'si' ? r.probado : !r.probado);
