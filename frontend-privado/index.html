@@ -352,6 +352,7 @@ let filtroSinPrecio = false;
 let filtroValoracionMin = null;
 let filtroProbado = null;
 let filtroBarrios = new Set();
+let filtroSinBarrio = false;
 let filtroEtiquetas = new Set();
 let filtroZonaActivo = false;
 let filtroRevisar = false;
@@ -889,11 +890,19 @@ function pintarFiltros() {
   el.appendChild(filaZona);
 
   const barrios = new Set(restaurantes.map(r => r.barrio).filter(Boolean));
-  if (barrios.size) {
+  const haySinBarrio = restaurantes.some(r => !r.barrio);
+  if (barrios.size || haySinBarrio) {
     const labelBarrio = document.createElement('div');
     labelBarrio.className = 'filtro-label';
     labelBarrio.textContent = 'Barrio';
     el.appendChild(labelBarrio);
+
+    const chipSinBarrio = document.createElement('div');
+    chipSinBarrio.className = 'chip' + (filtroSinBarrio ? ' active' : '');
+    chipSinBarrio.textContent = 'Sin barrio';
+    chipSinBarrio.style.cssText = 'display:inline-block; margin-bottom:6px; font-style:italic;';
+    chipSinBarrio.onclick = () => { filtroSinBarrio = !filtroSinBarrio; pintarFiltros(); renderList(); pintarMarcadores(); };
+    el.appendChild(chipSinBarrio);
 
     const grupoBarrio = document.createElement('div');
     grupoBarrio.style.cssText = 'display:flex; flex-wrap:wrap; gap:6px;';
@@ -1092,7 +1101,7 @@ function restaurantesFiltrados() {
       : (filtroPrecios.size === 0 || r.categorias.some(c => filtroPrecios.has(c.precio)));
     const coincideVal = filtroValoracionMin === null || r.categorias.some(c => (c.valoracion || 0) >= filtroValoracionMin);
     const coincideProbado = !filtroProbado || (filtroProbado === 'si' ? r.probado : !r.probado);
-    const coincideBarrio = filtroBarrios.size === 0 || filtroBarrios.has(r.barrio);
+    const coincideBarrio = filtroSinBarrio ? !r.barrio : (filtroBarrios.size === 0 || filtroBarrios.has(r.barrio));
     const coincideZona = !filtroZonaActivo || !limitesZona || limitesZona.contains([r.lat, r.lng]);
     const coincideEtiquetas = filtroEtiquetas.size === 0 || (r.etiquetas_extra || []).some(e => filtroEtiquetas.has(e));
     const coincideRevisar = !filtroRevisar || r.pendiente_revisar;
