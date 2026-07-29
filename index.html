@@ -414,7 +414,7 @@ function pintarFiltros() {
   el.appendChild(buscadorCat);
 
   const grupoCat = document.createElement('div');
-  grupoCat.style.cssText = 'margin-bottom:6px;';
+  grupoCat.style.cssText = 'margin-bottom:6px; border-top:0.5px solid var(--border);';
 
   let arbolAMostrar = arbolCompletoPublico();
   if (!arbolAMostrar.length) {
@@ -447,7 +447,12 @@ function pintarFiltros() {
       grupoCat.appendChild(cont);
     }
   } else {
-    arbolAMostrar.forEach(nodo => grupoCat.appendChild(pintarRamaFiltroPublico(nodo)));
+    arbolAMostrar.forEach(nodo => {
+      const wrap = document.createElement('div');
+      wrap.style.cssText = 'border-bottom:0.5px solid var(--border); padding:2px 0;';
+      wrap.appendChild(pintarRamaFiltroPublico(nodo));
+      grupoCat.appendChild(wrap);
+    });
   }
   el.appendChild(grupoCat);
 

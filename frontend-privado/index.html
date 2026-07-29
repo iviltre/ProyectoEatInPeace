@@ -915,7 +915,7 @@ function pintarFiltros() {
   el.appendChild(chipSinCat);
 
   const grupoCat = document.createElement('div');
-  grupoCat.style.cssText = 'margin-bottom:6px;';
+  grupoCat.style.cssText = 'margin-bottom:6px; border-top:0.5px solid var(--border);';
 
   const textoBusqueda = normalizarTexto(filtroCategoriaTexto.trim());
 
@@ -940,7 +940,12 @@ function pintarFiltros() {
       grupoCat.appendChild(cont);
     }
   } else {
-    arbolCompleto().forEach(nodo => grupoCat.appendChild(pintarRamaFiltro(nodo)));
+    arbolCompleto().forEach(nodo => {
+      const wrap = document.createElement('div');
+      wrap.style.cssText = 'border-bottom:0.5px solid var(--border); padding:2px 0;';
+      wrap.appendChild(pintarRamaFiltro(nodo));
+      grupoCat.appendChild(wrap);
+    });
   }
   el.appendChild(grupoCat);
 
