@@ -1,12 +1,12 @@
 {
   "arbol": [
     {
-      "nombre": "Vegetariano",
+      "nombre": "Tapas y varios",
       "padre": null,
       "orden": 0
     },
     {
-      "nombre": "Asiatico",
+      "nombre": "Paella/arroces",
       "padre": null,
       "orden": 1
     },
@@ -16,7 +16,7 @@
       "orden": 2
     },
     {
-      "nombre": "Brunch",
+      "nombre": "Tortilla de patatas",
       "padre": null,
       "orden": 3
     },
@@ -31,27 +31,27 @@
       "orden": 5
     },
     {
-      "nombre": "Chino",
+      "nombre": "Coreano",
       "padre": "Asiatico",
       "orden": 6
     },
     {
-      "nombre": "Coreano",
+      "nombre": "Tailandes",
       "padre": "Asiatico",
       "orden": 7
     },
     {
-      "nombre": "Desayuno",
+      "nombre": "Carne",
       "padre": null,
       "orden": 8
     },
     {
-      "nombre": "Dulces",
+      "nombre": "Fusion",
       "padre": null,
       "orden": 9
     },
     {
-      "nombre": "Esmorzar",
+      "nombre": "Asiatico",
       "padre": null,
       "orden": 10
     },
@@ -61,12 +61,12 @@
       "orden": 11
     },
     {
-      "nombre": "Fusion",
+      "nombre": "Hamburguesa",
       "padre": null,
       "orden": 12
     },
     {
-      "nombre": "Hamburguesa",
+      "nombre": "Kebab y Shawarmas",
       "padre": null,
       "orden": 13
     },
@@ -91,7 +91,7 @@
       "orden": 17
     },
     {
-      "nombre": "Japones",
+      "nombre": "Vietnamita",
       "padre": "Asiatico",
       "orden": 18
     },
@@ -101,22 +101,22 @@
       "orden": 19
     },
     {
-      "nombre": "Kebab premium",
+      "nombre": "Kebab Premium",
       "padre": "Kebab",
       "orden": 20
     },
     {
-      "nombre": "Kebab tradicional",
+      "nombre": "Kebab Tradicional",
       "padre": "Kebab",
       "orden": 21
     },
     {
-      "nombre": "Kebab y Shawarmas",
+      "nombre": "Latino",
       "padre": null,
       "orden": 22
     },
     {
-      "nombre": "Latino",
+      "nombre": "Vegetariano",
       "padre": null,
       "orden": 23
     },
@@ -136,7 +136,7 @@
       "orden": 26
     },
     {
-      "nombre": "Normal",
+      "nombre": "Hamburguesa Normal",
       "padre": "Hamburguesa",
       "orden": 27
     },
@@ -146,7 +146,7 @@
       "orden": 28
     },
     {
-      "nombre": "Paella/arroces",
+      "nombre": "Saludables",
       "padre": null,
       "orden": 29
     },
@@ -166,17 +166,17 @@
       "orden": 32
     },
     {
-      "nombre": "Pizza napolitana",
+      "nombre": "Pizza Napolitana",
       "padre": "Pizza",
       "orden": 33
     },
     {
-      "nombre": "Pizza romana y otros tipos",
+      "nombre": "Pizza Romana y otros tipos",
       "padre": "Pizza",
       "orden": 34
     },
     {
-      "nombre": "Pollo",
+      "nombre": "Hamburguesa de Pollo",
       "padre": "Hamburguesa",
       "orden": 35
     },
@@ -196,7 +196,7 @@
       "orden": 38
     },
     {
-      "nombre": "Saludables",
+      "nombre": "Desayuno",
       "padre": null,
       "orden": 39
     },
@@ -206,7 +206,7 @@
       "orden": 40
     },
     {
-      "nombre": "Smash",
+      "nombre": "Hamburguesa Smash",
       "padre": "Hamburguesa",
       "orden": 41
     },
@@ -221,22 +221,22 @@
       "orden": 43
     },
     {
-      "nombre": "Tailandes",
+      "nombre": "Chino",
       "padre": "Asiatico",
       "orden": 44
     },
     {
-      "nombre": "Tapas",
+      "nombre": "Esmorzar",
       "padre": null,
       "orden": 45
     },
     {
-      "nombre": "Tarta de queso",
+      "nombre": "Açai",
       "padre": "Dulces",
       "orden": 46
     },
     {
-      "nombre": "Tortilla de patatas",
+      "nombre": "Brunch",
       "padre": null,
       "orden": 47
     },
@@ -266,17 +266,17 @@
       "orden": 52
     },
     {
-      "nombre": "Vietnamita",
+      "nombre": "Japones",
       "padre": "Asiatico",
       "orden": 53
     },
     {
-      "nombre": "Carne",
+      "nombre": "Dulces",
       "padre": null,
       "orden": 54
     },
     {
-      "nombre": "Açai",
+      "nombre": "Tarta de queso",
       "padre": "Dulces",
       "orden": 55
     }
@@ -479,7 +479,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Pizza romana y otros tipos",
+          "nombre": "Pizza Romana y otros tipos",
           "precio": "10-20€",
           "valoracion": 5,
           "comentario": null
@@ -534,7 +534,7 @@
           "comentario": null
         },
         {
-          "nombre": "Pizza romana y otros tipos",
+          "nombre": "Pizza Romana y otros tipos",
           "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
@@ -744,7 +744,7 @@
           "comentario": null
         },
         {
-          "nombre": "Normal",
+          "nombre": "Hamburguesa Normal",
           "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
@@ -817,7 +817,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Smash",
+          "nombre": "Hamburguesa Smash",
           "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
@@ -842,7 +842,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Smash",
+          "nombre": "Hamburguesa Smash",
           "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
@@ -866,7 +866,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "35-50€",
           "valoracion": 4,
           "comentario": null
@@ -963,7 +963,7 @@
       "tiktok_url": "",
       "categorias": [
         {
-          "nombre": "Pizza napolitana",
+          "nombre": "Pizza Napolitana",
           "precio": "10-20€",
           "valoracion": 4,
           "comentario": null
@@ -988,7 +988,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Pizza napolitana",
+          "nombre": "Pizza Napolitana",
           "precio": "10-20€",
           "valoracion": 4,
           "comentario": null
@@ -1013,7 +1013,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Pizza napolitana",
+          "nombre": "Pizza Napolitana",
           "precio": "10-20€",
           "valoracion": 4,
           "comentario": null
@@ -1073,7 +1073,7 @@
           "comentario": null
         },
         {
-          "nombre": "Pizza napolitana",
+          "nombre": "Pizza Napolitana",
           "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
@@ -1170,7 +1170,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Kebab tradicional",
+          "nombre": "Kebab Tradicional",
           "precio": "5-10€",
           "valoracion": 3,
           "comentario": null
@@ -1192,7 +1192,7 @@
       "tiktok_url": "https://vm.tiktok.com/ZN81w1bGx/",
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
@@ -1942,7 +1942,7 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7503179228997799190?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
@@ -2204,7 +2204,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
@@ -2226,7 +2226,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
@@ -2248,7 +2248,7 @@
       "tiktok_url": "",
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
@@ -2361,7 +2361,7 @@
           "comentario": null
         },
         {
-          "nombre": "Pizza romana y otros tipos",
+          "nombre": "Pizza Romana y otros tipos",
           "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
@@ -2461,7 +2461,7 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7606063826789764374?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
@@ -2491,7 +2491,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Kebab premium",
+          "nombre": "Kebab Premium",
           "precio": "5-10€",
           "valoracion": 4,
           "comentario": null
@@ -2515,7 +2515,7 @@
       "tiktok_url": "",
       "categorias": [
         {
-          "nombre": "Kebab premium",
+          "nombre": "Kebab Premium",
           "precio": "5-10€",
           "valoracion": 4,
           "comentario": null
@@ -2545,7 +2545,7 @@
           "comentario": null
         },
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
@@ -2850,7 +2850,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Normal",
+          "nombre": "Hamburguesa Normal",
           "precio": "20-35€",
           "valoracion": 5,
           "comentario": null
@@ -2872,7 +2872,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 5,
           "comentario": null
@@ -2970,7 +2970,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Smash",
+          "nombre": "Hamburguesa Smash",
           "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
@@ -2995,7 +2995,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Smash",
+          "nombre": "Hamburguesa Smash",
           "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
@@ -3019,7 +3019,7 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7500683084841504022?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "35-50€",
           "valoracion": 4,
           "comentario": null
@@ -3047,7 +3047,7 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7469516946237623574?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
@@ -3095,7 +3095,7 @@
       "tiktok_url": "https://vm.tiktok.com/ZN81wYKRg/",
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
@@ -3190,7 +3190,7 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/photo/7455420411145145632?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Smash",
+          "nombre": "Hamburguesa Smash",
           "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
@@ -3215,7 +3215,7 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/photo/7455420411145145632?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Smash",
+          "nombre": "Hamburguesa Smash",
           "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
@@ -3455,7 +3455,7 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7449116999046728992?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "35-50€",
           "valoracion": 3,
           "comentario": null
@@ -3485,7 +3485,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Kebab tradicional",
+          "nombre": "Kebab Tradicional",
           "precio": "0-5€",
           "valoracion": 3,
           "comentario": null
@@ -3565,7 +3565,7 @@
           "comentario": null
         },
         {
-          "nombre": "Pizza napolitana",
+          "nombre": "Pizza Napolitana",
           "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
@@ -3664,7 +3664,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Pizza napolitana",
+          "nombre": "Pizza Napolitana",
           "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
@@ -3689,7 +3689,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Pizza napolitana",
+          "nombre": "Pizza Napolitana",
           "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
@@ -3850,7 +3850,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Smash",
+          "nombre": "Hamburguesa Smash",
           "precio": "10-20€",
           "valoracion": 4,
           "comentario": null
@@ -3875,7 +3875,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Normal",
+          "nombre": "Hamburguesa Normal",
           "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
@@ -3900,7 +3900,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Smash",
+          "nombre": "Hamburguesa Smash",
           "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
@@ -3925,7 +3925,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Smash",
+          "nombre": "Hamburguesa Smash",
           "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
@@ -3950,7 +3950,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Normal",
+          "nombre": "Hamburguesa Normal",
           "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
@@ -3975,7 +3975,7 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7589744024748166422?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Normal",
+          "nombre": "Hamburguesa Normal",
           "precio": "20-35€",
           "valoracion": 5,
           "comentario": null
@@ -4000,7 +4000,7 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7589744024748166422?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Normal",
+          "nombre": "Hamburguesa Normal",
           "precio": "20-35€",
           "valoracion": 5,
           "comentario": null
@@ -4025,7 +4025,7 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7589744024748166422?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Normal",
+          "nombre": "Hamburguesa Normal",
           "precio": "20-35€",
           "valoracion": 5,
           "comentario": null
@@ -4049,7 +4049,7 @@
       "tiktok_url": "",
       "categorias": [
         {
-          "nombre": "Normal",
+          "nombre": "Hamburguesa Normal",
           "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
@@ -4073,7 +4073,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Normal",
+          "nombre": "Hamburguesa Normal",
           "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
@@ -4097,7 +4097,7 @@
       "tiktok_url": "",
       "categorias": [
         {
-          "nombre": "Normal",
+          "nombre": "Hamburguesa Normal",
           "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
@@ -4121,7 +4121,7 @@
       "tiktok_url": "",
       "categorias": [
         {
-          "nombre": "Normal",
+          "nombre": "Hamburguesa Normal",
           "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
@@ -4203,7 +4203,7 @@
       "tiktok_url": "https://vm.tiktok.com/ZN8J8LcK1/",
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "35-50€",
           "valoracion": 3,
           "comentario": null
@@ -4228,7 +4228,7 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/photo/7478418812140834070?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
@@ -4309,13 +4309,13 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "35-50€",
           "valoracion": 4,
           "comentario": null
         },
         {
-          "nombre": "Normal",
+          "nombre": "Hamburguesa Normal",
           "precio": "35-50€",
           "valoracion": 4,
           "comentario": null
@@ -4370,7 +4370,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "35-50€",
           "valoracion": 4,
           "comentario": null
@@ -4400,13 +4400,13 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Pizza romana y otros tipos",
+          "nombre": "Pizza Romana y otros tipos",
           "precio": "10-20€",
           "valoracion": 1,
           "comentario": null
         },
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "10-20€",
           "valoracion": 1,
           "comentario": null
@@ -4502,7 +4502,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
@@ -4530,7 +4530,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
@@ -4601,7 +4601,7 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7568141764087926038?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
@@ -4623,7 +4623,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "50-80€",
           "valoracion": 5,
           "comentario": null
@@ -4645,7 +4645,7 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/photo/7455694412048289056?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 5,
           "comentario": null
@@ -4670,7 +4670,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Pizza napolitana",
+          "nombre": "Pizza Napolitana",
           "precio": "10-20€",
           "valoracion": 1,
           "comentario": null
@@ -4742,7 +4742,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
@@ -4773,7 +4773,7 @@
           "comentario": null
         },
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
@@ -4880,7 +4880,7 @@
           "comentario": null
         },
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
@@ -4929,7 +4929,7 @@
       "tiktok_url": "",
       "categorias": [
         {
-          "nombre": "Normal",
+          "nombre": "Hamburguesa Normal",
           "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
@@ -4954,7 +4954,7 @@
       "tiktok_url": "",
       "categorias": [
         {
-          "nombre": "Normal",
+          "nombre": "Hamburguesa Normal",
           "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
@@ -4979,7 +4979,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Normal",
+          "nombre": "Hamburguesa Normal",
           "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
@@ -5004,7 +5004,7 @@
       "tiktok_url": "",
       "categorias": [
         {
-          "nombre": "Normal",
+          "nombre": "Hamburguesa Normal",
           "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
@@ -5094,7 +5094,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Pizza romana y otros tipos",
+          "nombre": "Pizza Romana y otros tipos",
           "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
@@ -5186,7 +5186,7 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/photo/7458015148788174113?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
@@ -5208,7 +5208,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
@@ -5257,7 +5257,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Normal",
+          "nombre": "Hamburguesa Normal",
           "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
@@ -5303,7 +5303,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "35-50€",
           "valoracion": 2,
           "comentario": null
@@ -5349,7 +5349,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "35-50€",
           "valoracion": 4,
           "comentario": null
@@ -5377,7 +5377,7 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7453201434490735904?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "35-50€",
           "valoracion": 5,
           "comentario": null
@@ -5399,7 +5399,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "50-80€",
           "valoracion": 5,
           "comentario": null
@@ -5423,7 +5423,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Pizza napolitana",
+          "nombre": "Pizza Napolitana",
           "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
@@ -5448,7 +5448,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Pizza napolitana",
+          "nombre": "Pizza Napolitana",
           "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
@@ -5516,7 +5516,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
@@ -5544,7 +5544,7 @@
       "tiktok_url": "",
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
@@ -5596,7 +5596,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
@@ -5620,7 +5620,7 @@
       "tiktok_url": "",
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
@@ -5644,7 +5644,7 @@
       "tiktok_url": "",
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
@@ -5668,7 +5668,7 @@
       "tiktok_url": "",
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
@@ -5692,7 +5692,7 @@
       "tiktok_url": "",
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
@@ -5716,7 +5716,7 @@
       "tiktok_url": "",
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
@@ -5738,7 +5738,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "35-50€",
           "valoracion": 4,
           "comentario": null
@@ -5763,7 +5763,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Smash",
+          "nombre": "Hamburguesa Smash",
           "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
@@ -5814,13 +5814,13 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Normal",
+          "nombre": "Hamburguesa Normal",
           "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
         },
         {
-          "nombre": "Smash",
+          "nombre": "Hamburguesa Smash",
           "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
@@ -5890,7 +5890,7 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7584540557989498134?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Pizza napolitana",
+          "nombre": "Pizza Napolitana",
           "precio": "20-35€",
           "valoracion": 5,
           "comentario": null
@@ -5912,7 +5912,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
@@ -5960,7 +5960,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "35-50€",
           "valoracion": 4,
           "comentario": null
@@ -5984,7 +5984,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Normal",
+          "nombre": "Hamburguesa Normal",
           "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
@@ -6009,7 +6009,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Normal",
+          "nombre": "Hamburguesa Normal",
           "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
@@ -6238,7 +6238,7 @@
       "tiktok_url": "https://vm.tiktok.com/ZN8J8j186/",
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "35-50€",
           "valoracion": 4,
           "comentario": null
@@ -6262,7 +6262,7 @@
       "tiktok_url": "https://vm.tiktok.com/ZN8J8uWKt/",
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
@@ -6292,13 +6292,13 @@
           "comentario": null
         },
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
         },
         {
-          "nombre": "Pizza romana y otros tipos",
+          "nombre": "Pizza Romana y otros tipos",
           "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
@@ -6334,13 +6334,13 @@
           "comentario": null
         },
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
         },
         {
-          "nombre": "Pizza romana y otros tipos",
+          "nombre": "Pizza Romana y otros tipos",
           "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
@@ -6376,13 +6376,13 @@
           "comentario": null
         },
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
         },
         {
-          "nombre": "Pizza romana y otros tipos",
+          "nombre": "Pizza Romana y otros tipos",
           "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
@@ -6418,13 +6418,13 @@
           "comentario": null
         },
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
         },
         {
-          "nombre": "Pizza romana y otros tipos",
+          "nombre": "Pizza Romana y otros tipos",
           "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
@@ -6482,13 +6482,13 @@
           "comentario": null
         },
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
         },
         {
-          "nombre": "Pizza romana y otros tipos",
+          "nombre": "Pizza Romana y otros tipos",
           "precio": "20-35€",
           "valoracion": 2,
           "comentario": null
@@ -6569,7 +6569,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Normal",
+          "nombre": "Hamburguesa Normal",
           "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
@@ -6989,7 +6989,7 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7459859683642199329?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 5,
           "comentario": null
@@ -7021,7 +7021,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Smash",
+          "nombre": "Hamburguesa Smash",
           "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
@@ -7052,7 +7052,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Normal",
+          "nombre": "Hamburguesa Normal",
           "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
@@ -7076,7 +7076,7 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7661705296213003542?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
@@ -7131,7 +7131,7 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7595328840033930518?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 5,
           "comentario": ""
@@ -7161,7 +7161,7 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7624889470008970518?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 5,
           "comentario": ""
@@ -7197,7 +7197,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Kebab premium",
+          "nombre": "Kebab Premium",
           "precio": "5-10€",
           "valoracion": 2,
           "comentario": ""
@@ -7371,7 +7371,7 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7554850087176998166?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "35-50€",
           "valoracion": 3,
           "comentario": ""
@@ -7425,7 +7425,7 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7641687604370378006?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Pizza romana y otros tipos",
+          "nombre": "Pizza Romana y otros tipos",
           "precio": "20-35€",
           "valoracion": 3,
           "comentario": ""
@@ -7529,7 +7529,7 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/photo/7472114713741053206?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 4,
           "comentario": null
@@ -7553,7 +7553,7 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/photo/7478045753743592726?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "35-50€",
           "valoracion": 2,
           "comentario": null
@@ -7626,13 +7626,13 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7448385614359055649?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Pollo",
+          "nombre": "Hamburguesa de Pollo",
           "precio": "10-20€",
           "valoracion": 5,
           "comentario": null
         },
         {
-          "nombre": "Normal",
+          "nombre": "Hamburguesa Normal",
           "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
@@ -7648,7 +7648,9 @@
       "google_maps_url": "https://maps.google.com/?cid=15075371936821770104&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
       "grupo_id": null,
       "barrio": "L'Eixample",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Take away"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
@@ -7656,6 +7658,18 @@
         {
           "nombre": "Saludables",
           "precio": "20-35€",
+          "valoracion": 3,
+          "comentario": null
+        },
+        {
+          "nombre": "Vegetariano",
+          "precio": "20-35€",
+          "valoracion": 4,
+          "comentario": null
+        },
+        {
+          "nombre": "de Restaurante",
+          "precio": "5-10€",
           "valoracion": 3,
           "comentario": null
         }
@@ -7704,7 +7718,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
@@ -7844,7 +7858,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "35-50€",
           "valoracion": 3,
           "comentario": null
@@ -7868,10 +7882,10 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Tapas",
+          "nombre": "Tapas y varios",
           "precio": "35-50€",
           "valoracion": 4,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -7895,7 +7909,7 @@
           "nombre": "Sushi",
           "precio": "20-35€",
           "valoracion": 1,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -7919,7 +7933,7 @@
           "nombre": "Sushi",
           "precio": "20-35€",
           "valoracion": 2,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -7943,7 +7957,7 @@
           "nombre": "Sushi",
           "precio": "10-20€",
           "valoracion": 2,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -7967,7 +7981,7 @@
           "nombre": "Sushi",
           "precio": "10-20€",
           "valoracion": 2,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -7991,7 +8005,7 @@
           "nombre": "Sushi Buffet",
           "precio": "35-50€",
           "valoracion": 2,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -8012,10 +8026,10 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Smash",
+          "nombre": "Hamburguesa Smash",
           "precio": "10-20€",
           "valoracion": 2,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -8036,16 +8050,16 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Normal",
+          "nombre": "Hamburguesa Normal",
           "precio": "10-20€",
           "valoracion": 2,
-          "comentario": ""
+          "comentario": null
         },
         {
           "nombre": "Saludables",
           "precio": "10-20€",
           "valoracion": 2,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -8066,10 +8080,10 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Normal",
+          "nombre": "Hamburguesa Normal",
           "precio": "10-20€",
           "valoracion": 1,
-          "comentario": ""
+          "comentario": null
         }
       ]
     }
