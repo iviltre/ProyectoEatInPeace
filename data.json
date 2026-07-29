@@ -251,12 +251,12 @@
       "orden": 49
     },
     {
-      "nombre": "de Restaurante",
+      "nombre": "Tarta de queso de Restaurante",
       "padre": "Tarta de queso",
       "orden": 50
     },
     {
-      "nombre": "de Sitio especializado",
+      "nombre": "Tarta de queso de Sitio especializado",
       "padre": "Tarta de queso",
       "orden": 51
     },
@@ -872,7 +872,7 @@
           "comentario": null
         },
         {
-          "nombre": "de Restaurante",
+          "nombre": "Tarta de queso de Restaurante",
           "precio": "5-10€",
           "valoracion": 5,
           "comentario": null
@@ -2467,7 +2467,7 @@
           "comentario": null
         },
         {
-          "nombre": "de Restaurante",
+          "nombre": "Tarta de queso de Restaurante",
           "precio": "5-10€",
           "valoracion": 4,
           "comentario": null
@@ -2945,7 +2945,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "de Sitio especializado",
+          "nombre": "Tarta de queso de Sitio especializado",
           "precio": "5-10€",
           "valoracion": 3,
           "comentario": null
@@ -3025,7 +3025,7 @@
           "comentario": null
         },
         {
-          "nombre": "de Restaurante",
+          "nombre": "Tarta de queso de Restaurante",
           "precio": "5-10€",
           "valoracion": 4,
           "comentario": null
@@ -3461,7 +3461,7 @@
           "comentario": null
         },
         {
-          "nombre": "de Restaurante",
+          "nombre": "Tarta de queso de Restaurante",
           "precio": "5-10€",
           "valoracion": 4,
           "comentario": null
@@ -4234,7 +4234,7 @@
           "comentario": null
         },
         {
-          "nombre": "de Restaurante",
+          "nombre": "Tarta de queso de Restaurante",
           "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
@@ -4259,7 +4259,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "de Sitio especializado",
+          "nombre": "Tarta de queso de Sitio especializado",
           "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
@@ -4284,7 +4284,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "de Sitio especializado",
+          "nombre": "Tarta de queso de Sitio especializado",
           "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
@@ -4321,7 +4321,7 @@
           "comentario": null
         },
         {
-          "nombre": "de Restaurante",
+          "nombre": "Tarta de queso de Restaurante",
           "precio": "5-10€",
           "valoracion": 4,
           "comentario": null
@@ -4346,7 +4346,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "de Sitio especializado",
+          "nombre": "Tarta de queso de Sitio especializado",
           "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
@@ -4376,7 +4376,7 @@
           "comentario": null
         },
         {
-          "nombre": "de Restaurante",
+          "nombre": "Tarta de queso de Restaurante",
           "precio": "5-10€",
           "valoracion": 4,
           "comentario": null
@@ -6995,7 +6995,7 @@
           "comentario": null
         },
         {
-          "nombre": "de Restaurante",
+          "nombre": "Tarta de queso de Restaurante",
           "precio": "5-10€",
           "valoracion": 5,
           "comentario": null
@@ -7027,7 +7027,7 @@
           "comentario": null
         },
         {
-          "nombre": "de Restaurante",
+          "nombre": "Tarta de queso de Restaurante",
           "precio": "0-5€",
           "valoracion": 4,
           "comentario": null
@@ -7137,7 +7137,7 @@
           "comentario": ""
         },
         {
-          "nombre": "de Restaurante",
+          "nombre": "Tarta de queso de Restaurante",
           "precio": "5-10€",
           "valoracion": 5,
           "comentario": ""
@@ -7173,7 +7173,7 @@
           "comentario": ""
         },
         {
-          "nombre": "de Restaurante",
+          "nombre": "Tarta de queso de Restaurante",
           "precio": "5-10€",
           "valoracion": 5,
           "comentario": ""
@@ -7668,7 +7668,7 @@
           "comentario": null
         },
         {
-          "nombre": "de Restaurante",
+          "nombre": "Tarta de queso de Restaurante",
           "precio": "5-10€",
           "valoracion": 3,
           "comentario": null
