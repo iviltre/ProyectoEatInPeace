@@ -445,7 +445,7 @@ function pintarFiltros() {
       grupoCat.appendChild(vacio);
     } else {
       const cont = document.createElement('div');
-      cont.style.cssText = 'display:flex; flex-wrap:wrap; gap:5px;';
+      cont.style.cssText = 'display:flex; flex-wrap:wrap; gap:5px; padding-top:6px;';
       coincidencias.forEach(n => {
         const chip = document.createElement('div');
         chip.className = 'chip' + (filtroCategorias.has(n.nombre) ? ' active' : '');
