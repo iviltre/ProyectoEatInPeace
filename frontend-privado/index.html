@@ -549,7 +549,7 @@ function pintarRamaFiltro(nodo) {
     const hijos = document.createElement('div');
     hijos.style.cssText = todasHojas
       ? 'display:flex; flex-wrap:wrap; gap:5px; padding:0 0 6px 20px;'
-      : 'padding:0 0 6px 20px; border-top:0.5px solid var(--border);';
+      : 'padding:6px 0 6px 20px; border-top:0.5px solid var(--border);';
     nodo.hijos.forEach(h => {
       if (h.hijos.length) {
         const subWrap = document.createElement('div');
@@ -906,7 +906,7 @@ function pintarFiltros() {
   buscadorCat.type = 'text';
   buscadorCat.placeholder = 'Buscar categoría';
   buscadorCat.value = filtroCategoriaTexto;
-  buscadorCat.style.cssText = 'width:100%; box-sizing:border-box; margin-bottom:8px;';
+  buscadorCat.style.cssText = 'width:100%; box-sizing:border-box; padding:9px 10px; border:1px solid var(--border); border-radius:6px; font-size:13px; font-family:inherit; margin-bottom:8px;';
   buscadorCat.oninput = (e) => { filtroCategoriaTexto = e.target.value; pintarFiltros(); };
   el.appendChild(buscadorCat);
 
