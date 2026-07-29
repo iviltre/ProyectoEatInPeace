@@ -363,9 +363,23 @@ const PRECIOS_FIJOS = ['0-5€', '5-10€', '10-20€', '20-35€', '35-50€', 
 
 let categoriasMaestroCache = [];
 
+// Normaliza recursivamente cualquier texto (nombre, reseña, etc.) a forma de
+// carácter único (NFC), para que letras con acento pegadas desde otros sitios
+// (que a veces llegan como letra + marca suelta) se muestren bien siempre.
+function normalizarUnicodeProfundo(valor) {
+  if (typeof valor === 'string') return valor.normalize('NFC');
+  if (Array.isArray(valor)) return valor.map(normalizarUnicodeProfundo);
+  if (valor && typeof valor === 'object') {
+    const copia = {};
+    for (const clave in valor) copia[clave] = normalizarUnicodeProfundo(valor[clave]);
+    return copia;
+  }
+  return valor;
+}
+
 async function cargarCategoriasMaestro() {
   const res = await fetch(`${API}/categorias-maestro`);
-  categoriasMaestroCache = await res.json();
+  categoriasMaestroCache = normalizarUnicodeProfundo(await res.json());
 }
 
 function categoriasMaestro() {
@@ -607,7 +621,7 @@ async function arrancar() {
 let etiquetasMaestroCache = [];
 async function cargarEtiquetasMaestro() {
   const res = await fetch(`${API}/etiquetas-maestro`);
-  etiquetasMaestroCache = await res.json();
+  etiquetasMaestroCache = normalizarUnicodeProfundo(await res.json());
 }
 
 // ---------- MAPA ----------
@@ -837,7 +851,7 @@ function pintarMarcadores() {
 // ---------- CARGAR DATOS ----------
 async function cargarRestaurantes() {
   const res = await fetch(`${API}/restaurantes`, { headers: authHeaders() });
-  restaurantes = await res.json();
+  restaurantes = normalizarUnicodeProfundo(await res.json());
   pintarFiltros();
   pintarMarcadores();
   renderList();

@@ -245,9 +245,24 @@ let categoriasArbol = [];
 let etiquetasMaestroCache = [];
 let filtroEtiquetas = new Set();
 
+// Normaliza recursivamente cualquier texto (nombre, reseña, etc.) a forma de
+// carácter único (NFC), para que letras con acento pegadas desde otros sitios
+// (que a veces llegan como letra + marca suelta) se muestren bien siempre.
+function normalizarUnicodeProfundo(valor) {
+  if (typeof valor === 'string') return valor.normalize('NFC');
+  if (Array.isArray(valor)) return valor.map(normalizarUnicodeProfundo);
+  if (valor && typeof valor === 'object') {
+    const copia = {};
+    for (const clave in valor) copia[clave] = normalizarUnicodeProfundo(valor[clave]);
+    return copia;
+  }
+  return valor;
+}
+
 async function cargar() {
   const res = await fetch('./data.json');
-  const datos = await res.json();
+  const datosCrudos = await res.json();
+  const datos = normalizarUnicodeProfundo(datosCrudos);
   if (Array.isArray(datos)) {
     // formato antiguo: solo la lista de restaurantes, sin árbol
     restaurantes = datos;
