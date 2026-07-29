@@ -549,10 +549,13 @@ function pintarRamaFiltro(nodo) {
     const hijos = document.createElement('div');
     hijos.style.cssText = todasHojas
       ? 'display:flex; flex-wrap:wrap; gap:5px; padding:0 0 6px 20px;'
-      : 'padding:0 0 6px 20px;';
+      : 'padding:0 0 6px 20px; border-top:0.5px solid var(--border);';
     nodo.hijos.forEach(h => {
       if (h.hijos.length) {
-        hijos.appendChild(pintarRamaFiltro(h));
+        const subWrap = document.createElement('div');
+        subWrap.style.cssText = 'border-bottom:0.5px solid var(--border); padding:2px 0;';
+        subWrap.appendChild(pintarRamaFiltro(h));
+        hijos.appendChild(subWrap);
       } else {
         const chip = document.createElement('div');
         chip.className = 'chip' + (filtroCategorias.has(h.nombre) ? ' active' : '');
