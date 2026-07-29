@@ -159,7 +159,7 @@
       <select id="orden" onchange="renderList()" style="width:100%; margin-top:8px; padding:8px; border:1px solid var(--border); border-radius:20px; font-size:12.5px; font-family:inherit;">
         <option value="nombre">Ordenar por nombre</option>
         <option value="precio">Ordenar por precio</option>
-        <option value="valoracion">Ordenar por valoración</option>
+        <option value="valoracion" selected>Ordenar por valoración</option>
       </select>
     </div>
     <div id="results-count"></div>
@@ -188,6 +188,8 @@ if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 window.scrollTo(0, 0);
 let restaurantes = [];
 let filtroCategorias = new Set();
+let categoriasExpandido = new Set();
+let filtroCategoriaTexto = '';
 let filtroPrecios = new Set();
 let filtroValoracionMin = null;
 let filtroBarrios = new Set();
@@ -283,6 +285,96 @@ function arbolCompletoPublico() {
   return construirArbolRecursivoPublico(null);
 }
 
+// Nombre corto para mostrar en los chips del filtro: si el hijo repite el nombre
+// del padre al principio, se quita esa parte repetida (el nombre real no cambia)
+function etiquetaCortaCategoriaPublico(nombre) {
+  const nodo = categoriasArbol.find(n => n.nombre === nombre);
+  if (nodo && nodo.padre && nombre.startsWith(nodo.padre)) {
+    let resto = nombre.slice(nodo.padre.length).trim();
+    resto = resto.replace(/^de\s+/i, '').trim();
+    if (resto) return resto;
+  }
+  return nombre;
+}
+
+function nombresRamaPublico(nodo) {
+  return [nodo.nombre, ...((nodo.hijos || []).flatMap(nombresRamaPublico))];
+}
+
+function contarRestaurantesEnRamaPublico(nodo) {
+  const nombres = new Set(nombresRamaPublico(nodo));
+  return restaurantes.filter(r => r.categorias && r.categorias.some(c => nombres.has(c.nombre))).length;
+}
+
+// Fila colapsable de una categoría dentro del filtro: chip + contador + hijos plegables
+function pintarRamaFiltroPublico(nodo) {
+  const cont = document.createElement('div');
+  cont.style.cssText = 'margin-bottom:2px;';
+
+  const fila = document.createElement('div');
+  fila.style.cssText = 'display:flex; align-items:center; justify-content:space-between; padding:5px 2px; cursor:pointer;';
+
+  const izq = document.createElement('div');
+  izq.style.cssText = 'display:flex; align-items:center; gap:6px;';
+
+  const hijos_ = nodo.hijos || [];
+  const expandible = hijos_.length > 0;
+  const expandido = categoriasExpandido.has(nodo.nombre);
+
+  const flecha = document.createElement('span');
+  flecha.textContent = expandible ? (expandido ? '▾' : '▸') : '';
+  flecha.style.cssText = 'font-size:11px; color:var(--text-muted); width:12px; display:inline-block; text-align:center;';
+  izq.appendChild(flecha);
+
+  const nombreChip = document.createElement('span');
+  nombreChip.textContent = nodo.nombre;
+  nombreChip.className = 'chip' + (filtroCategorias.has(nodo.nombre) ? ' active' : '');
+  nombreChip.style.cssText = 'display:inline-block; font-weight:' + (expandible ? '600' : '400') + ';';
+  nombreChip.onclick = (e) => {
+    e.stopPropagation();
+    filtroCategorias.has(nodo.nombre) ? filtroCategorias.delete(nodo.nombre) : filtroCategorias.add(nodo.nombre);
+    pintarFiltros(); renderList(); pintarMarcadores();
+  };
+  izq.appendChild(nombreChip);
+  fila.appendChild(izq);
+
+  const contador = document.createElement('span');
+  contador.textContent = contarRestaurantesEnRamaPublico(nodo);
+  contador.style.cssText = 'font-size:11px; color:var(--text-muted); flex-shrink:0; padding-left:6px;';
+  fila.appendChild(contador);
+
+  if (expandible) {
+    fila.onclick = () => {
+      categoriasExpandido.has(nodo.nombre) ? categoriasExpandido.delete(nodo.nombre) : categoriasExpandido.add(nodo.nombre);
+      pintarFiltros();
+    };
+  }
+  cont.appendChild(fila);
+
+  if (expandible && expandido) {
+    const todasHojas = hijos_.every(h => !h.hijos || h.hijos.length === 0);
+    const hijosEl = document.createElement('div');
+    hijosEl.style.cssText = todasHojas
+      ? 'display:flex; flex-wrap:wrap; gap:5px; padding:0 0 6px 20px;'
+      : 'padding:0 0 6px 20px;';
+    hijos_.forEach(h => {
+      if (h.hijos && h.hijos.length) {
+        hijosEl.appendChild(pintarRamaFiltroPublico(h));
+      } else {
+        const chip = document.createElement('div');
+        chip.className = 'chip' + (filtroCategorias.has(h.nombre) ? ' active' : '');
+        chip.textContent = etiquetaCortaCategoriaPublico(h.nombre);
+        chip.style.cssText = 'display:inline-block; font-size:11.5px;';
+        chip.onclick = () => { filtroCategorias.has(h.nombre) ? filtroCategorias.delete(h.nombre) : filtroCategorias.add(h.nombre); pintarFiltros(); renderList(); pintarMarcadores(); };
+        hijosEl.appendChild(chip);
+      }
+    });
+    cont.appendChild(hijosEl);
+  }
+
+  return cont;
+}
+
 function toggleFiltros() {
   const el = document.getElementById('filters');
   const abierto = el.style.display !== 'none';
@@ -299,6 +391,28 @@ function pintarFiltros() {
   labelCat.textContent = 'Categoría';
   el.appendChild(labelCat);
 
+  if (filtroCategorias.size > 0) {
+    const resumen = document.createElement('div');
+    resumen.style.cssText = 'display:flex; flex-wrap:wrap; gap:5px; margin-bottom:8px;';
+    [...filtroCategorias].forEach(nombre => {
+      const chip = document.createElement('div');
+      chip.className = 'chip active';
+      chip.style.cssText = 'display:inline-flex; align-items:center; gap:4px;';
+      chip.innerHTML = `${etiquetaCortaCategoriaPublico(nombre)} <span style="font-weight:600;">✕</span>`;
+      chip.onclick = () => { filtroCategorias.delete(nombre); pintarFiltros(); renderList(); pintarMarcadores(); };
+      resumen.appendChild(chip);
+    });
+    el.appendChild(resumen);
+  }
+
+  const buscadorCat = document.createElement('input');
+  buscadorCat.type = 'text';
+  buscadorCat.placeholder = 'Buscar categoría';
+  buscadorCat.value = filtroCategoriaTexto;
+  buscadorCat.style.cssText = 'width:100%; box-sizing:border-box; margin-bottom:8px;';
+  buscadorCat.oninput = (e) => { filtroCategoriaTexto = e.target.value; pintarFiltros(); };
+  el.appendChild(buscadorCat);
+
   const grupoCat = document.createElement('div');
   grupoCat.style.cssText = 'margin-bottom:6px;';
 
@@ -310,39 +424,31 @@ function pintarFiltros() {
     arbolAMostrar = [...cats].sort().map(nombre => ({ nombre, hijos: [] }));
   }
 
-  function pintarNodoFiltroPublico(nodo, contenedor, nivel) {
-    const rama = document.createElement('div');
-    rama.style.marginBottom = '3px';
+  const textoBusqueda = normalizarTexto(filtroCategoriaTexto.trim());
 
-    const chip = document.createElement('div');
-    chip.className = 'chip' + (filtroCategorias.has(nodo.nombre) ? ' active' : '');
-    chip.textContent = nodo.nombre;
-    if (nivel === 0) { chip.style.fontWeight = '600'; }
-    else { chip.style.fontSize = '11.5px'; }
-    chip.style.display = 'inline-block';
-    chip.onclick = () => { filtroCategorias.has(nodo.nombre) ? filtroCategorias.delete(nodo.nombre) : filtroCategorias.add(nodo.nombre); pintarFiltros(); renderList(); pintarMarcadores(); };
-    rama.appendChild(chip);
-
-    if (nodo.hijos && nodo.hijos.length) {
-      const todasHojas = nodo.hijos.every(h => !h.hijos || h.hijos.length === 0);
-      const sub = document.createElement('div');
-      sub.style.cssText = todasHojas
-        ? 'display:flex; flex-wrap:wrap; gap:5px; margin:3px 0 3px 10px; padding-left:8px; border-left:2px solid var(--border);'
-        : 'margin:3px 0 3px 10px; padding-left:8px; border-left:2px solid var(--border);';
-      nodo.hijos.forEach(h => pintarNodoFiltroPublico(h, sub, nivel + 1));
-      rama.appendChild(sub);
+  if (textoBusqueda) {
+    const coincidencias = categoriasArbol.filter(n => normalizarTexto(n.nombre).includes(textoBusqueda));
+    if (!coincidencias.length) {
+      const vacio = document.createElement('div');
+      vacio.style.cssText = 'font-size:12px; color:var(--text-muted); padding:4px 0;';
+      vacio.textContent = 'Sin resultados';
+      grupoCat.appendChild(vacio);
+    } else {
+      const cont = document.createElement('div');
+      cont.style.cssText = 'display:flex; flex-wrap:wrap; gap:5px;';
+      coincidencias.forEach(n => {
+        const chip = document.createElement('div');
+        chip.className = 'chip' + (filtroCategorias.has(n.nombre) ? ' active' : '');
+        chip.textContent = etiquetaCortaCategoriaPublico(n.nombre);
+        chip.style.display = 'inline-block';
+        chip.onclick = () => { filtroCategorias.has(n.nombre) ? filtroCategorias.delete(n.nombre) : filtroCategorias.add(n.nombre); pintarFiltros(); renderList(); pintarMarcadores(); };
+        cont.appendChild(chip);
+      });
+      grupoCat.appendChild(cont);
     }
-    contenedor.appendChild(rama);
+  } else {
+    arbolAMostrar.forEach(nodo => grupoCat.appendChild(pintarRamaFiltroPublico(nodo)));
   }
-
-  arbolAMostrar.forEach(nodo => {
-    const caja = document.createElement('div');
-    caja.style.cssText = (nodo.hijos && nodo.hijos.length)
-      ? 'border:1px solid var(--border); border-radius:8px; padding:6px; margin-bottom:6px;'
-      : 'margin-bottom:6px;';
-    pintarNodoFiltroPublico(nodo, caja, 0);
-    grupoCat.appendChild(caja);
-  });
   el.appendChild(grupoCat);
 
   const labelPrecio = document.createElement('div');
@@ -404,7 +510,7 @@ function pintarFiltros() {
 
     const grupoEtq = document.createElement('div');
     grupoEtq.style.cssText = 'display:flex; flex-wrap:wrap; gap:6px; margin-bottom:6px;';
-    etiquetasMaestroCache.forEach(nombre => {
+    etiquetasMaestroCache.slice().sort((a, b) => a.localeCompare(b)).forEach(nombre => {
       const chip = document.createElement('div');
       chip.className = 'chip' + (filtroEtiquetas.has(nombre) ? ' active' : '');
       chip.textContent = nombre;
