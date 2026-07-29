@@ -907,7 +907,14 @@ function pintarFiltros() {
   buscadorCat.placeholder = 'Buscar categoría';
   buscadorCat.value = filtroCategoriaTexto;
   buscadorCat.style.cssText = 'width:100%; box-sizing:border-box; padding:9px 10px; border:1px solid var(--border); border-radius:6px; font-size:13px; font-family:inherit; margin-bottom:8px;';
-  buscadorCat.oninput = (e) => { filtroCategoriaTexto = e.target.value; pintarFiltros(); };
+  buscadorCat.id = 'buscador-categoria-filtro';
+  buscadorCat.oninput = (e) => {
+    filtroCategoriaTexto = e.target.value;
+    const cursor = e.target.selectionStart;
+    pintarFiltros();
+    const nuevo = document.getElementById('buscador-categoria-filtro');
+    if (nuevo) { nuevo.focus(); nuevo.setSelectionRange(cursor, cursor); }
+  };
   el.appendChild(buscadorCat);
 
   const chipSinCat = document.createElement('div');
