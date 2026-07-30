@@ -364,7 +364,7 @@ async function obtenerDetallePlace(placeId) {
 // Busca el barrio en los datos estructurados que da Google (más fiable que adivinarlo del texto)
 function extraerBarrioDeComponentes(componentes) {
   if (!componentes) return null;
-  const tiposPreferidos = ['sublocality_level_1', 'sublocality', 'neighborhood'];
+  const tiposPreferidos = ['neighborhood', 'sublocality_level_1', 'sublocality'];
   for (const tipo of tiposPreferidos) {
     const encontrado = componentes.find(c => c.types && c.types.includes(tipo));
     if (encontrado) return encontrado.longText || encontrado.shortText;
