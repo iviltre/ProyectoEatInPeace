@@ -60,9 +60,11 @@
   #add-btn { margin-top: 10px; width: 100%; padding: 9px; background: var(--text); color: white; border: none; border-radius: 6px; font-size: 13px; cursor: pointer; }
   #publish-btn { margin-top: 8px; width: 100%; padding: 9px; background: var(--ok); color: white; border: none; border-radius: 6px; font-size: 13px; cursor: pointer; }
   #list { flex: 1; overflow-y: auto; }
-  .card { padding: 12px 16px; border-bottom: 1px solid var(--border); cursor: pointer; }
+  .card { padding: 12px 16px; border-bottom: 1px solid var(--border); cursor: pointer; position: relative; }
   .card:hover { background: #F5F4EF; }
   .card.selected { background: var(--accent-soft); }
+  .btn-guardar { position: absolute; top: 10px; right: 12px; background: none; border: none; cursor: pointer; color: var(--text-muted); padding: 4px; display: flex; }
+  .btn-guardar.activo { color: var(--accent); }
   .card .nombre { font-size: 13.5px; font-weight: 500; display:flex; justify-content:space-between; gap:8px; }
   .card .meta { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
   .badge { font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: 500; }
@@ -79,6 +81,8 @@
   #detail.open { transform: translateX(0); }
   #detail-header { padding: 18px 44px 12px 18px; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 20; background: var(--panel); }
   #detail-close { position: absolute; top: 14px; right: 14px; background: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border: none; font-size: 18px; cursor: pointer; color: var(--text-muted); z-index: 550; box-shadow: 0 1px 4px rgba(0,0,0,0.15); }
+  #detail-guardar { position: absolute; top: 14px; right: 52px; background: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border: none; cursor: pointer; color: var(--text-muted); z-index: 550; box-shadow: 0 1px 4px rgba(0,0,0,0.15); }
+  #detail-guardar.activo { color: var(--accent); }
   .editable { border: 1px solid transparent; border-radius: 5px; padding: 4px 6px; cursor: text; font-family: inherit; }
   .editable:hover { border-color: var(--border); }
   .editable:focus { outline: none; border-color: var(--accent); background: white; }
@@ -251,11 +255,38 @@ const ICONOS = {
   cerrar: '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>',
   rayo: '<polygon points="13 2 3 14 11 14 10 22 21 10 13 10 13 2"/>',
   copiar: '<rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>',
-  pegar: '<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>'
+  pegar: '<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>',
+  corazon: '<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.6Z"/>'
 };
 function icono(nombre, tam) {
   tam = tam || 14;
   return `<svg width="${tam}" height="${tam}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">${ICONOS[nombre]}</svg>`;
+}
+
+// ---------- GUARDADOS (marcador rápido personal, solo en este dispositivo) ----------
+let guardadosPrivado = new Set(JSON.parse(localStorage.getItem('eip_priv_guardados') || '[]'));
+let filtroSoloGuardados = false;
+
+function esGuardadoPrivado(id) {
+  return guardadosPrivado.has(id);
+}
+
+function iconoCorazon(activo, tam) {
+  tam = tam || 14;
+  return `<svg width="${tam}" height="${tam}" viewBox="0 0 24 24" fill="${activo ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">${ICONOS.corazon}</svg>`;
+}
+
+function toggleGuardadoPrivado(id, e) {
+  if (e) e.stopPropagation();
+  guardadosPrivado.has(id) ? guardadosPrivado.delete(id) : guardadosPrivado.add(id);
+  localStorage.setItem('eip_priv_guardados', JSON.stringify([...guardadosPrivado]));
+  renderList();
+  const btnDetalle = document.getElementById('detail-guardar');
+  if (btnDetalle) {
+    const activo = esGuardadoPrivado(id);
+    btnDetalle.innerHTML = iconoCorazon(activo, 18);
+    btnDetalle.className = 'btn-guardar-detalle' + (activo ? ' activo' : '');
+  }
 }
 
 // Los botones ya escritos en el HTML no pueden usar plantillas de JavaScript,
@@ -889,6 +920,12 @@ function pintarFiltros() {
   filaRevisar.querySelector('input').addEventListener('change', (e) => { filtroRevisar = e.target.checked; renderList(); pintarMarcadores(); });
   el.appendChild(filaRevisar);
 
+  const filaGuardados = document.createElement('div');
+  filaGuardados.style.cssText = 'display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; font-size:12.5px;';
+  filaGuardados.innerHTML = `<span style="display:flex; align-items:center; gap:6px;">${iconoCorazon(true, 14)} Solo guardados</span><label class="switch"><input type="checkbox" ${filtroSoloGuardados ? 'checked' : ''}><span class="slider"></span></label>`;
+  filaGuardados.querySelector('input').addEventListener('change', (e) => { filtroSoloGuardados = e.target.checked; renderList(); pintarMarcadores(); });
+  el.appendChild(filaGuardados);
+
   const labelCat = document.createElement('div');
   labelCat.className = 'filtro-label';
   labelCat.textContent = 'Categoría';
@@ -1250,7 +1287,8 @@ function restaurantesFiltrados() {
     const coincideZona = !filtroZonaActivo || !limitesZona || limitesZona.contains([r.lat, r.lng]);
     const coincideEtiquetas = filtroEtiquetas.size === 0 || (r.etiquetas_extra || []).some(e => filtroEtiquetas.has(e));
     const coincideRevisar = !filtroRevisar || r.pendiente_revisar;
-    return coincideNombre && coincideCat && coincidePrecio && coincideVal && coincideProbado && coincideBarrio && coincideZona && coincideEtiquetas && coincideRevisar;
+    const coincideGuardado = !filtroSoloGuardados || esGuardadoPrivado(r.id);
+    return coincideNombre && coincideCat && coincidePrecio && coincideVal && coincideProbado && coincideBarrio && coincideZona && coincideEtiquetas && coincideRevisar && coincideGuardado;
   });
 }
 
@@ -1265,10 +1303,12 @@ function renderList() {
     div.className = 'card' + (r.id === selectedId ? ' selected' : '');
     div.onclick = () => abrirDetalle(r.id);
     div.innerHTML = `
+      <button class="btn-guardar${esGuardadoPrivado(r.id) ? ' activo' : ''}">${iconoCorazon(esGuardadoPrivado(r.id), 15)}</button>
       <div class="nombre">${r.nombre || '(sin nombre)'} ${r.pendiente_revisar ? '<span class="badge revisar">revisar</span>' : ''}</div>
       <div class="meta" style="color:var(--text-muted); font-size:11.5px;">${r.direccion || ''}</div>
       <div class="meta">${cat.nombre || 'sin categoría'} ${cat.precio ? '· ' + cat.precio : ''} ${r.categorias.length > 1 ? `· +${r.categorias.length - 1} más` : ''}</div>
     `;
+    div.querySelector('.btn-guardar').addEventListener('click', (e) => toggleGuardadoPrivado(r.id, e));
     el.appendChild(div);
   });
 }
@@ -1404,7 +1444,7 @@ function posiblesDuplicados(nombre, lat, lng) {
     const rNorm = normalizarTexto(r.nombre);
     const mismoNombre = rNorm === nombreNorm || rNorm.includes(nombreNorm) || nombreNorm.includes(rNorm);
     const cerca = distanciaMetros(lat, lng, r.lat, r.lng) < 60; // menos de 60 metros
-    return mismoNombre || cerca;
+    return mismoNombre && cerca;
   });
 }
 
@@ -1465,6 +1505,7 @@ function abrirDetalle(id) {
   document.getElementById('detail').innerHTML = `
     <div id="detail-header">
       <button id="detail-close" onclick="cerrarDetalle()">${icono('cerrar', 16)}</button>
+      <button id="detail-guardar" class="btn-guardar-detalle${esGuardadoPrivado(r.id) ? ' activo' : ''}">${iconoCorazon(esGuardadoPrivado(r.id), 18)}</button>
       <div id="detail-nombre" class="editable" contenteditable onblur="guardarCampo('nombre', this.textContent).then(() => actualizarPendienteRevisar())">${r.nombre || ''}</div>
       <div style="display:flex; align-items:center; gap:2px;">
         <div id="detail-direccion" class="editable" contenteditable onblur="guardarDireccionTextoLibre(this.textContent).then(() => actualizarPendienteRevisar())" style="flex:1;">${r.direccion || 'Añadir dirección'}</div>
@@ -1527,6 +1568,7 @@ function abrirDetalle(id) {
   `;
   renderEtiquetasChips(r);
   renderCategorias(r);
+  document.getElementById('detail-guardar').addEventListener('click', (e) => toggleGuardadoPrivado(r.id, e));
   document.getElementById('detail').classList.add('open');
 }
 

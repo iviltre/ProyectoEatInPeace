@@ -68,8 +68,10 @@
   #results-count { font-size: 12px; color: var(--text-muted); padding: 10px 16px 0; }
   #list { flex: 1; overflow-y: auto; padding: 8px; }
 
-  .card { padding: 14px; border-radius: var(--radius); cursor: pointer; margin-bottom: 6px; }
+  .card { padding: 14px; border-radius: var(--radius); cursor: pointer; margin-bottom: 6px; position: relative; }
   .card:hover { background: #F5F1E9; }
+  .btn-guardar { position: absolute; top: 10px; right: 10px; background: none; border: none; cursor: pointer; color: var(--text-muted); padding: 4px; display: flex; }
+  .btn-guardar.activo { color: var(--accent); }
   .card .nombre { font-size: 15px; font-weight: 600; font-family: 'Fraunces', serif; }
   .card .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
   .tag { font-size: 11.5px; background: var(--clay-soft); color: var(--clay); padding: 3px 9px; border-radius: 20px; }
@@ -90,6 +92,8 @@
   }
   #detail-top-row { display: flex; align-items: center; justify-content: flex-end; position: sticky; top: 0; background: var(--panel); z-index: 5; }
   #detail-close { background: none; border: none; font-size: 20px; color: var(--text-muted); cursor: pointer; padding: 16px; flex-shrink: 0; }
+  #detail-guardar { background: none; border: none; cursor: pointer; color: var(--text-muted); padding: 16px 4px; flex-shrink: 0; display: flex; align-items: center; }
+  #detail-guardar.activo { color: var(--accent); }
   #detail-handle { display: none; flex: 1; }
   @media (max-width: 639px) {
     #detail-handle { display: flex; align-items: center; justify-content: center; height: 44px; touch-action: none; }
@@ -175,6 +179,7 @@
   <div id="detail">
     <div id="detail-top-row">
       <div id="detail-handle"></div>
+      <button id="detail-guardar"></button>
       <button id="detail-close" onclick="cerrarDetalle()">✕</button>
     </div>
     <div id="detail-body"></div>
@@ -187,6 +192,32 @@
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 window.scrollTo(0, 0);
 let restaurantes = [];
+
+// ---------- GUARDADOS (favorito personal de cada visitante, solo en su navegador) ----------
+let guardados = new Set(JSON.parse(localStorage.getItem('eip_guardados') || '[]'));
+let filtroSoloGuardados = false;
+
+function esGuardado(id) {
+  return guardados.has(id);
+}
+
+function iconoCorazon(activo, tam) {
+  tam = tam || 14;
+  return `<svg width="${tam}" height="${tam}" viewBox="0 0 24 24" fill="${activo ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.8 1-1a5.5 5.5 0 0 0 0-7.6Z"/></svg>`;
+}
+
+function toggleGuardado(id, e) {
+  if (e) e.stopPropagation();
+  guardados.has(id) ? guardados.delete(id) : guardados.add(id);
+  localStorage.setItem('eip_guardados', JSON.stringify([...guardados]));
+  renderList();
+  const btnDetalle = document.getElementById('detail-guardar');
+  if (btnDetalle) {
+    const activo = esGuardado(id);
+    btnDetalle.innerHTML = iconoCorazon(activo, 18);
+    btnDetalle.className = activo ? 'activo' : '';
+  }
+}
 let filtroCategorias = new Set();
 let categoriasExpandido = new Set();
 let filtroCategoriaTexto = '';
@@ -555,6 +586,12 @@ function pintarFiltros() {
   filaZona.innerHTML = `<span>Solo lo que se ve en el mapa</span><label class="switch"><input type="checkbox" ${filtroZonaActivo ? 'checked' : ''}><span class="slider"></span></label>`;
   filaZona.querySelector('input').addEventListener('change', (e) => toggleFiltroZona(e.target.checked));
   el.appendChild(filaZona);
+
+  const filaGuardados = document.createElement('div');
+  filaGuardados.style.cssText = 'display:flex; align-items:center; justify-content:space-between; margin-top:8px; font-size:12.5px;';
+  filaGuardados.innerHTML = `<span style="display:flex; align-items:center; gap:6px;">${iconoCorazon(true, 14)} Solo guardados</span><label class="switch"><input type="checkbox" ${filtroSoloGuardados ? 'checked' : ''}><span class="slider"></span></label>`;
+  filaGuardados.querySelector('input').addEventListener('change', (e) => { filtroSoloGuardados = e.target.checked; renderList(); pintarMarcadores(); });
+  el.appendChild(filaGuardados);
 }
 
 function normalizarTexto(s) {
@@ -570,7 +607,8 @@ function coincide(r) {
   const coincideBarrio = filtroBarrios.size === 0 || filtroBarrios.has(r.barrio);
   const coincideZona = !filtroZonaActivo || !limitesZona || limitesZona.contains([r.lat, r.lng]);
   const coincideEtiquetas = filtroEtiquetas.size === 0 || (r.etiquetas_extra || []).some(e => filtroEtiquetas.has(e));
-  return coincideNombre && coincideCat && coincidePrecio && coincideVal && coincideBarrio && coincideZona && coincideEtiquetas;
+  const coincideGuardado = !filtroSoloGuardados || esGuardado(r.id);
+  return coincideNombre && coincideCat && coincidePrecio && coincideVal && coincideBarrio && coincideZona && coincideEtiquetas && coincideGuardado;
 }
 
 function centrarConOffset(lat, lng, zoom, offsetXpx, offsetYpx) {
@@ -693,11 +731,13 @@ function renderList() {
     div.onclick = () => abrirDetalle(r.id);
     const mejorValoracion = valoracionMostrada(r);
     div.innerHTML = `
+      <button class="btn-guardar${esGuardado(r.id) ? ' activo' : ''}">${iconoCorazon(esGuardado(r.id), 15)}</button>
       <div class="nombre">${r.nombre}</div>
       <div style="color:var(--text-muted); font-size:11.5px; margin-top:2px;">${direccionCorta(r.direccion, r.barrio)}${r.barrio ? ` · <strong style="color:var(--text); font-weight:600;">${r.barrio}</strong>` : ''}</div>
       <div class="tags">${r.categorias.map(c => `<span class="tag">${c.nombre || ''}${c.precio ? ' · ' + c.precio : ''}</span>`).join('')}</div>
       ${mejorValoracion ? `<div class="stars-mini">${estrellas(mejorValoracion)}</div>` : ''}
     `;
+    div.querySelector('.btn-guardar').addEventListener('click', (e) => toggleGuardado(r.id, e));
     el.appendChild(div);
   });
 }
@@ -721,6 +761,10 @@ function abrirDetalle(id) {
   pintarMarcadores();
   if (window.innerWidth > 860) centrarConOffset(r.lat, r.lng, map.getZoom(), 210, 0);
   else centrarConOffset(r.lat, r.lng, map.getZoom(), 0, alturaPanelMovil / 2);
+  const btnGuardar = document.getElementById('detail-guardar');
+  btnGuardar.innerHTML = iconoCorazon(esGuardado(id), 18);
+  btnGuardar.className = esGuardado(id) ? 'activo' : '';
+  btnGuardar.onclick = (e) => toggleGuardado(id, e);
   document.getElementById('detail-body').innerHTML = `
     <h2>${r.nombre}</h2>
     <div class="direccion">${r.direccion || ''}${r.barrio ? ` · <strong style="color:var(--text); font-weight:600;">${r.barrio}</strong>` : ''}</div>
