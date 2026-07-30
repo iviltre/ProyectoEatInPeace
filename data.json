@@ -819,7 +819,7 @@
         {
           "nombre": "Hamburguesa Smash",
           "precio": "10-20€",
-          "valoracion": 3,
+          "valoracion": 2,
           "comentario": null
         }
       ]
@@ -3192,7 +3192,7 @@
         {
           "nombre": "Hamburguesa Smash",
           "precio": "10-20€",
-          "valoracion": 2,
+          "valoracion": 3,
           "comentario": null
         }
       ]
@@ -3217,7 +3217,7 @@
         {
           "nombre": "Hamburguesa Smash",
           "precio": "10-20€",
-          "valoracion": 2,
+          "valoracion": 3,
           "comentario": null
         }
       ]
@@ -3875,7 +3875,7 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Hamburguesa Normal",
+          "nombre": "Hamburguesa Smash",
           "precio": "10-20€",
           "valoracion": 2,
           "comentario": null
@@ -5765,7 +5765,7 @@
         {
           "nombre": "Hamburguesa Smash",
           "precio": "20-35€",
-          "valoracion": 2,
+          "valoracion": 3,
           "comentario": null
         }
       ]
@@ -6694,7 +6694,7 @@
         {
           "nombre": "Sushi Buffet",
           "precio": "20-35€",
-          "valoracion": 4,
+          "valoracion": 3,
           "comentario": null
         }
       ]
@@ -7634,8 +7634,14 @@
         {
           "nombre": "Hamburguesa Normal",
           "precio": "10-20€",
-          "valoracion": 3,
+          "valoracion": 2,
           "comentario": null
+        },
+        {
+          "nombre": "Hamburguesa Smash",
+          "precio": "10-20€",
+          "valoracion": 3,
+          "comentario": ""
         }
       ]
     },
@@ -8086,6 +8092,607 @@
           "comentario": null
         }
       ]
+    },
+    {
+      "id": "33c14472-0cc0-47d0-aec0-b0910a8481c3",
+      "nombre": "Delirium",
+      "lat": 39.4742275,
+      "lng": -0.3535635,
+      "direccion": "Carrer de la Ciutat de Mula, 19, El Pla del Real, 46021 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=16654648574360351778&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "El Pla del Real",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "BUFFET LIBRE DE HAMBURGUESAS",
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Hamburguesa Normal",
+          "precio": "10-20€",
+          "valoracion": 1,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "d11922c2-e2cf-4279-acb8-0c7c4f80b923",
+      "nombre": "DODI Clubar",
+      "lat": 39.4780681,
+      "lng": -0.35742609999999997,
+      "direccion": "Carrer de Gascó Oliag, 6, El Pla del Real, 46010 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=15169711528269796759&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "El Pla del Real",
+      "etiquetas_extra": [],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Hamburguesa Normal",
+          "precio": "10-20€",
+          "valoracion": 1,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "b223c475-d76d-4b23-b43f-0a773f3bb122",
+      "nombre": "Moflete by Joe Burger",
+      "lat": 39.478974099999995,
+      "lng": -0.3963064,
+      "direccion": "Carrer del Poeta Antonino Chocomeli, 1, Campanar, 46015 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=17746014441585864594&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Campanar",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Hamburguesa Normal",
+          "precio": "20-35€",
+          "valoracion": 3,
+          "comentario": ""
+        },
+        {
+          "nombre": "Hamburguesa Smash",
+          "precio": "20-35€",
+          "valoracion": 3,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "bb2d0146-c5f4-460e-8c3d-3ad49bf97b3d",
+      "nombre": "JOEY'S BURGER",
+      "lat": 39.4570661,
+      "lng": -0.3908432,
+      "direccion": "Carrer de Fontanars dels Alforins, 8, Patraix, 46007 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=16837502461224988734&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Patraix",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Hamburguesa Smash",
+          "precio": "10-20€",
+          "valoracion": 2,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "4cf18e3c-d7ac-4abc-8eb1-b126f55b9753",
+      "nombre": "VICIO",
+      "lat": 39.4652863,
+      "lng": -0.3658249,
+      "direccion": "Carrer de Borriana, 28, L'Eixample, 46005 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=11084735078509463020&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "Solo take away",
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Hamburguesa Smash",
+          "precio": "10-20€",
+          "valoracion": 2,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "bbc2612a-4cff-4be5-b29a-cb84f027733f",
+      "nombre": "GULA",
+      "lat": 39.4617756,
+      "lng": -0.3734858,
+      "direccion": "C/ de Cadis, 41, L'Eixample, 46004 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=299298159085780743&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Hamburguesa Smash",
+          "precio": "10-20€",
+          "valoracion": 1,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "18f72ea8-9f91-4564-bda0-74cbdd20752f",
+      "nombre": "Antiga",
+      "lat": 39.484885299999995,
+      "lng": -0.3606549,
+      "direccion": "C/ del Baró de San Petrillo, 7, Benimaclet, 46020 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=2612577867968731309&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Benimaclet",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Hamburguesa Normal",
+          "precio": "20-35€",
+          "valoracion": 3,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "0058f6aa-87ac-4acd-a74c-5c86e09fdec5",
+      "nombre": "The Black Turtle - Ruzafa",
+      "lat": 39.4607734,
+      "lng": -0.3744267,
+      "direccion": "Carrer de Sueca, 51, L'Eixample, 46006 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=626014557490981649&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away",
+        "Menú del día"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Hamburguesa Smash",
+          "precio": "10-20€",
+          "valoracion": 2,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "0785e069-a692-47d1-897b-fd5049bdabca",
+      "nombre": "The Black Turtle - Cirilo Amorós",
+      "lat": 39.4683233,
+      "lng": -0.3694132,
+      "direccion": "C/ de Ciril Amorós, 57, L'Eixample, 46004 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=7978568967914383912&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away",
+        "Menú del día"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Hamburguesa Smash",
+          "precio": "10-20€",
+          "valoracion": 2,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "e5cae9f9-6cc6-4cdb-9dc4-f69233392f80",
+      "nombre": "The Black Turtle - Alameda",
+      "lat": 39.4572235,
+      "lng": -0.3488331,
+      "direccion": "Pg. de l'Albereda, 49, Camins al Grau, 46023 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=8919246089217035996&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Camins al Grau",
+      "etiquetas_extra": [
+        "Take away",
+        "Menú del día"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Hamburguesa Smash",
+          "precio": "10-20€",
+          "valoracion": 2,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "f90fda1b-57a0-4e8c-9294-9b94c703a949",
+      "nombre": "The Black Turtle - Cortes Valencianas",
+      "lat": 39.4924201,
+      "lng": -0.4016175,
+      "direccion": "Av. de les Corts Valencianes, 41, Campanar, 46015 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=15368381809884486119&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Campanar",
+      "etiquetas_extra": [
+        "Take away",
+        "Menú del día"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Hamburguesa Smash",
+          "precio": "10-20€",
+          "valoracion": 2,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "0dce052f-415f-4cd2-858d-1490ac8ea406",
+      "nombre": "Goiko - Estació del Nord",
+      "lat": 39.4682222,
+      "lng": -0.3746917,
+      "direccion": "Carrer de Martínez Cubells, 4, Ciutat Vella, 46002 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=16612380248258683130&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Hamburguesa Smash",
+          "precio": "10-20€",
+          "valoracion": 1,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "c83dfff5-0df3-49a6-b778-eb09f85bba5c",
+      "nombre": "Goiko - Av. de França",
+      "lat": 39.4602629,
+      "lng": -0.35037429999999997,
+      "direccion": "Carrer d'Alfred Toran i Olmos, 7, Camins al Grau, 46023 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=2499546407421121481&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Camins al Grau",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Hamburguesa Smash",
+          "precio": "10-20€",
+          "valoracion": 1,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "c11e0c0a-fa74-45ac-8da1-1e2ec8cfd929",
+      "nombre": "Goiko - Av. de Aragó",
+      "lat": 39.4709412,
+      "lng": -0.3577062,
+      "direccion": "Av. d'Aragó, 26, El Pla del Real, 46021 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=13255349998934848507&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "El Pla del Real",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Hamburguesa Smash",
+          "precio": "10-20€",
+          "valoracion": 1,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "3ecff1f7-355b-4f60-9021-c85a9d3c3f0e",
+      "nombre": "Goiko - C. de la Pau",
+      "lat": 39.4735361,
+      "lng": -0.3736373,
+      "direccion": "C/ de la Pau, 9, Ciutat Vella, 46003 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=16646615348318596661&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Hamburguesa Smash",
+          "precio": "10-20€",
+          "valoracion": 1,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "001ace84-4afe-47ec-b11f-b3df6755d917",
+      "nombre": "ArteSana Gelat",
+      "lat": 39.467775800000005,
+      "lng": -0.3367987,
+      "direccion": "C/ de la Fusta, 61, Algirós, 46022 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=18376849892006770434&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Algirós",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Helados",
+          "precio": "0-5€",
+          "valoracion": 4,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "f7a03ceb-2643-463c-b60c-a976d82ce329",
+      "nombre": "Gelática Ice Concept",
+      "lat": 39.474336,
+      "lng": -0.3289639,
+      "direccion": "C/ de la Remunta, 11, Poblats Marítims, 46011 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=8610754881406688033&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Poblats Marítims",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Helados",
+          "precio": "0-5€",
+          "valoracion": 4,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "331319a8-4ed1-4d03-9ab2-c0c9f19dee8e",
+      "nombre": "Gelateria Véneta - Plaza de la Reina",
+      "lat": 39.4752766,
+      "lng": -0.3758393,
+      "direccion": "Calle Bordadores, 8, Ciutat Vella, 46001 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=4598233806244133550&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Helados",
+          "precio": "0-5€",
+          "valoracion": 4,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "3bbecbdc-16b1-4aec-a0f7-0b92413e4fe7",
+      "nombre": "Gelateria Véneta - Estació del Nord",
+      "lat": 39.468348299999995,
+      "lng": -0.3757604,
+      "direccion": "C/ de Ribera, 7, Ciutat Vella, 46002 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=17786464478807264647&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Helados",
+          "precio": "0-5€",
+          "valoracion": 4,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "54a2c5c8-6e61-4521-b643-104124d07559",
+      "nombre": "Antigua Lechería, Valencia",
+      "lat": 39.463014,
+      "lng": -0.3720228,
+      "direccion": "Plaça del Dr. Landete, 7, L'Eixample, 46006 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=9661699385227607933&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Helados",
+          "precio": "0-5€",
+          "valoracion": 4,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "10340c68-e7ec-46ba-a081-e906394ce54d",
+      "nombre": "PURO Heladeria y Cafe de especialidad",
+      "lat": 39.4746781,
+      "lng": -0.3750308,
+      "direccion": "Pça. de la Reina, 19, Ciutat Vella, 46003 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=8542136341825824430&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Helados",
+          "precio": "0-5€",
+          "valoracion": 4,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "7be3a6cd-9aa8-4b80-b82b-6fccc8830ed6",
+      "nombre": "P'amuRi Gelateria Siciliana",
+      "lat": 39.4746154,
+      "lng": -0.347342,
+      "direccion": "Carrer de Ramon Llull, C. Escultor Alfonso gabino, 2 Esquina, Algirós, 46021 Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=17907674410377461429&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Algirós",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Helados",
+          "precio": "0-5€",
+          "valoracion": 3,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "bb95cdae-1270-4186-aef7-6d523204bfd7",
+      "nombre": "Heladería Gelat del Mercat",
+      "lat": 39.462403599999995,
+      "lng": -0.3716936,
+      "direccion": "Pl. del Baró de Cortés, 2 Mercado de Ruzafa - Puestos Exteriores 44, 45, 46, Ensanche, 46006 Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=8380556799464096215&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Ensanche",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Dulces",
+          "precio": "0-5€",
+          "valoracion": 3,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "586a464b-eb97-4526-9b1e-cd0fb7616245",
+      "nombre": "Rocambolesc Valencia",
+      "lat": 39.4670938,
+      "lng": -0.3241999,
+      "direccion": "C/ d'Eugènia Viñes, 22, Poblats Marítims, 46011 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=2617240752685011643&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Poblats Marítims",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Helados",
+          "precio": "0-5€",
+          "valoracion": 3,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "b075f49c-523a-4daa-bc01-98b3c7033cf4",
+      "nombre": "Glasol - Reino",
+      "lat": 39.4641653,
+      "lng": -0.3710482,
+      "direccion": "Av. del Regne de València, 22, L'Eixample, 46005 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=6554050508884437865&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": []
     }
   ]
 }

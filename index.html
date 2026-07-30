@@ -435,6 +435,18 @@ function pintarFiltros() {
   const el = document.getElementById('filters');
   el.innerHTML = '';
 
+  const filaGuardados = document.createElement('div');
+  filaGuardados.style.cssText = 'display:flex; align-items:center; justify-content:space-between; font-size:12.5px; margin-bottom:8px;';
+  filaGuardados.innerHTML = `<span style="display:flex; align-items:center; gap:6px;">${iconoCorazon(true, 14)} Solo guardados</span><label class="switch"><input type="checkbox" ${filtroSoloGuardados ? 'checked' : ''}><span class="slider"></span></label>`;
+  filaGuardados.querySelector('input').addEventListener('change', (e) => { filtroSoloGuardados = e.target.checked; renderList(); pintarMarcadores(); });
+  el.appendChild(filaGuardados);
+
+  const filaZona = document.createElement('div');
+  filaZona.style.cssText = 'display:flex; align-items:center; justify-content:space-between; font-size:12.5px; margin-bottom:8px;';
+  filaZona.innerHTML = `<span>Solo lo que se ve en el mapa</span><label class="switch"><input type="checkbox" ${filtroZonaActivo ? 'checked' : ''}><span class="slider"></span></label>`;
+  filaZona.querySelector('input').addEventListener('change', (e) => toggleFiltroZona(e.target.checked));
+  el.appendChild(filaZona);
+
   const labelCat = document.createElement('div');
   labelCat.className = 'filtro-label';
   labelCat.textContent = 'Categoría';
@@ -580,18 +592,6 @@ function pintarFiltros() {
     });
     el.appendChild(grupoEtq);
   }
-
-  const filaZona = document.createElement('div');
-  filaZona.style.cssText = 'display:flex; align-items:center; justify-content:space-between; margin-top:8px; font-size:12.5px;';
-  filaZona.innerHTML = `<span>Solo lo que se ve en el mapa</span><label class="switch"><input type="checkbox" ${filtroZonaActivo ? 'checked' : ''}><span class="slider"></span></label>`;
-  filaZona.querySelector('input').addEventListener('change', (e) => toggleFiltroZona(e.target.checked));
-  el.appendChild(filaZona);
-
-  const filaGuardados = document.createElement('div');
-  filaGuardados.style.cssText = 'display:flex; align-items:center; justify-content:space-between; margin-top:8px; font-size:12.5px;';
-  filaGuardados.innerHTML = `<span style="display:flex; align-items:center; gap:6px;">${iconoCorazon(true, 14)} Solo guardados</span><label class="switch"><input type="checkbox" ${filtroSoloGuardados ? 'checked' : ''}><span class="slider"></span></label>`;
-  filaGuardados.querySelector('input').addEventListener('change', (e) => { filtroSoloGuardados = e.target.checked; renderList(); pintarMarcadores(); });
-  el.appendChild(filaGuardados);
 }
 
 function normalizarTexto(s) {
