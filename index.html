@@ -700,11 +700,7 @@ function ordenar(lista) {
       return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
     });
   } else if (criterio === 'valoracion') {
-    copia.sort((a, b) => {
-      const va = Math.max(...a.categorias.map(c => c.valoracion || 0), 0);
-      const vb = Math.max(...b.categorias.map(c => c.valoracion || 0), 0);
-      return vb - va;
-    });
+    copia.sort((a, b) => valoracionMostrada(b) - valoracionMostrada(a));
   }
   return copia;
 }
