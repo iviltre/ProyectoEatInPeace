@@ -637,7 +637,11 @@ function authHeaders() {
 async function arrancar() {
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app').style.display = 'flex';
-  initMap();
+  try {
+    initMap();
+  } catch (err) {
+    console.error('Error al crear el mapa, se sigue cargando el resto igualmente:', err);
+  }
   await cargarCategoriasMaestro();
   await cargarEtiquetasMaestro();
   await cargarRestaurantes();
@@ -760,8 +764,16 @@ function salirModoCaptura() {
   pintarMarcadores();
 }
 
+function algunaCategoriaProbadaRelevante(r) {
+  const relevantes = filtroCategorias.size === 0
+    ? r.categorias
+    : r.categorias.filter(c => filtroCategorias.has(c.nombre));
+  const lista = relevantes.length ? relevantes : r.categorias;
+  return lista.some(c => c.probado);
+}
+
 function colorMarcador(r) {
-  if (!r.probado) return '#4CAF50'; // verde: no probado
+  if (!algunaCategoriaProbadaRelevante(r)) return '#4CAF50'; // verde: (las categorías relevantes) sin probar
   if (!r.visible_publico) return '#7B88C4'; // azulado: probado pero no visible para seguidores
   return colorParaValoracion(valoracionMostrada(r));
 }
@@ -796,20 +808,28 @@ function cambiarAgrupado(agrupar) {
   pintarMarcadores();
 }
 
-async function cambiarProbado(marcado) {
-  const r = restaurantes.find(x => x.id === selectedId);
-  if (!r) return;
-  r.probado = marcado;
-  const cuerpo = { probado: marcado };
-  if (!marcado) {
-    r.visible_publico = false;
-    cuerpo.visible_publico = false;
+async function cambiarProbadoCategoria(catId, marcado) {
+  let r = null, cat = null;
+  for (const restaurante of restaurantes) {
+    const encontrada = (restaurante.categorias || []).find(c => c.id === catId);
+    if (encontrada) { r = restaurante; cat = encontrada; break; }
   }
-  await fetch(`${API}/restaurantes/${r.id}`, {
-    method: 'PUT', headers: authHeaders(), body: JSON.stringify(cuerpo)
+  if (!r || !cat) return;
+  cat.probado = marcado;
+  await fetch(`${API}/categorias/${catId}`, {
+    method: 'PUT', headers: authHeaders(),
+    body: JSON.stringify({ nombre: cat.nombre, precio: cat.precio, valoracion: cat.valoracion, comentario: cat.comentario, probado: cat.probado })
   });
-  abrirDetalle(r.id);
+  // Un restaurante sin ninguna categoría probada no puede quedar visible para seguidores
+  if (!r.categorias.some(c => c.probado) && r.visible_publico) {
+    r.visible_publico = false;
+    await fetch(`${API}/restaurantes/${r.id}`, {
+      method: 'PUT', headers: authHeaders(), body: JSON.stringify({ visible_publico: false })
+    });
+  }
+  if (r.id === selectedId) abrirDetalle(r.id);
   renderList();
+  pintarMarcadores();
 }
 
 async function actualizarPendienteRevisar() {
@@ -884,8 +904,12 @@ async function cargarRestaurantes() {
   const res = await fetch(`${API}/restaurantes`, { headers: authHeaders() });
   restaurantes = normalizarUnicodeProfundo(await res.json());
   pintarFiltros();
-  pintarMarcadores();
   renderList();
+  try {
+    pintarMarcadores();
+  } catch (err) {
+    console.error('Error al pintar el mapa, la lista se muestra igualmente:', err);
+  }
 }
 
 function mostrarTabMovil(tab) {
@@ -893,7 +917,12 @@ function mostrarTabMovil(tab) {
   document.getElementById('tab-mapa').classList.toggle('active', tab === 'mapa');
   document.getElementById('sidebar').classList.toggle('mobile-hidden', tab === 'mapa');
   document.getElementById('map').classList.toggle('mobile-visible', tab === 'mapa');
-  if (tab === 'mapa') setTimeout(() => map.invalidateSize(), 50);
+  if (tab === 'mapa') {
+    if (!map) {
+      try { initMap(); pintarMarcadores(); } catch (err) { console.error('Sigue sin poder crearse el mapa:', err); }
+    }
+    setTimeout(() => { if (map) map.invalidateSize(); }, 50);
+  }
 }
 
 function toggleFiltros() {
@@ -1282,7 +1311,7 @@ function restaurantesFiltrados() {
       ? (!r.categorias || r.categorias.length === 0 || r.categorias.some(c => !c.precio || !PRECIOS_FIJOS.includes(c.precio)))
       : (filtroPrecios.size === 0 || r.categorias.some(c => filtroPrecios.has(c.precio)));
     const coincideVal = filtroValoracionMin === null || r.categorias.some(c => (c.valoracion || 0) >= filtroValoracionMin);
-    const coincideProbado = !filtroProbado || (filtroProbado === 'si' ? r.probado : !r.probado);
+    const coincideProbado = !filtroProbado || (filtroProbado === 'si' ? algunaCategoriaProbadaRelevante(r) : !algunaCategoriaProbadaRelevante(r));
     const coincideBarrio = filtroSinBarrio ? !r.barrio : (filtroBarrios.size === 0 || filtroBarrios.has(r.barrio));
     const coincideZona = !filtroZonaActivo || !limitesZona || limitesZona.contains([r.lat, r.lng]);
     const coincideEtiquetas = filtroEtiquetas.size === 0 || (r.etiquetas_extra || []).some(e => filtroEtiquetas.has(e));
@@ -1516,18 +1545,14 @@ function abrirDetalle(id) {
 
     <div class="section">
       <div class="toggle-row">
-        <span>Probado</span>
-        <label class="switch"><input type="checkbox" id="chk-probado" ${r.probado ? 'checked' : ''} onchange="cambiarProbado(this.checked)"><span class="slider"></span></label>
-      </div>
-      <div class="toggle-row">
         <span>Visible para seguidores</span>
-        <label class="switch"><input type="checkbox" id="chk-visible" ${r.visible_publico ? 'checked' : ''} ${!r.probado ? 'disabled' : ''} onchange="guardarCampo('visible_publico', this.checked)"><span class="slider"></span></label>
+        <label class="switch"><input type="checkbox" id="chk-visible" ${r.visible_publico ? 'checked' : ''} ${!r.categorias.some(c => c.probado) ? 'disabled' : ''} onchange="guardarCampo('visible_publico', this.checked)"><span class="slider"></span></label>
       </div>
       <div class="toggle-row">
         <span>Pendiente de revisar</span>
         <label class="switch"><input id="detail-pendiente-toggle" type="checkbox" ${r.pendiente_revisar ? 'checked' : ''} onchange="guardarCampo('pendiente_revisar', this.checked)"><span class="slider"></span></label>
       </div>
-      ${!r.probado ? '<div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Un restaurante no probado no puede estar visible para seguidores.</div>' : ''}
+      ${!r.categorias.some(c => c.probado) ? '<div style="font-size:11px; color:var(--text-muted); margin-top:2px;">Ninguna categoría está probada todavía, así que no puede estar visible para seguidores. Marca "Probado" en al menos una categoría, más abajo.</div>' : ''}
     </div>
 
     <div class="section" id="seccion-resena-general">
@@ -1586,6 +1611,10 @@ function renderCategorias(r) {
           ${PRECIOS_FIJOS.map(p => `<option value="${p}" ${p === cat.precio ? 'selected' : ''}>${p}</option>`).join('')}
         </select>
         <button class="del-cat" onclick="borrarCategoria('${cat.id}')">Quitar</button>
+      </div>
+      <div class="toggle-row" style="margin:4px 0;">
+        <span style="font-size:12px;">Probado</span>
+        <label class="switch"><input type="checkbox" ${cat.probado ? 'checked' : ''} onchange="cambiarProbadoCategoria('${cat.id}', this.checked)"><span class="slider"></span></label>
       </div>
       <div class="stars" data-cat="${cat.id}">${[1,2,3,4,5].map(n => `<span class="${n <= (cat.valoracion||0) ? 'filled' : ''}" onclick="guardarCategoria('${cat.id}', 'valoracion', ${n})">★</span>`).join('')}</div>
       <input type="text" value="${(cat.comentario || '').replace(/"/g, '&quot;')}" placeholder="Comentario para esta categoría (opcional)" style="width:100%; margin-top:6px; font-size:12px;" onblur="guardarCategoria('${cat.id}', 'comentario', this.value)">
@@ -1697,9 +1726,8 @@ function copiarResenaRestaurante() {
     resena_general: r.resena_general || '',
     instagram_url: r.instagram_url || '',
     tiktok_url: r.tiktok_url || '',
-    categorias: (r.categorias || []).map(c => ({ nombre: c.nombre, precio: c.precio, valoracion: c.valoracion, comentario: c.comentario })),
+    categorias: (r.categorias || []).map(c => ({ nombre: c.nombre, precio: c.precio, valoracion: c.valoracion, comentario: c.comentario, probado: !!c.probado })),
     etiquetas_extra: [...(r.etiquetas_extra || [])],
-    probado: !!r.probado,
     visible_publico: !!r.visible_publico
   };
   document.querySelectorAll(`[data-copiar-cat="restaurante"]`).forEach(btn => {
@@ -1718,16 +1746,6 @@ async function pegarResenaRestaurante() {
   r.instagram_url = portapapelesRestaurante.instagram_url;
   r.tiktok_url = portapapelesRestaurante.tiktok_url;
   r.etiquetas_extra = [...portapapelesRestaurante.etiquetas_extra];
-  r.probado = portapapelesRestaurante.probado;
-  r.visible_publico = portapapelesRestaurante.probado ? portapapelesRestaurante.visible_publico : false;
-
-  await fetch(`${API}/restaurantes/${r.id}`, {
-    method: 'PUT', headers: authHeaders(),
-    body: JSON.stringify({
-      resena_general: r.resena_general, instagram_url: r.instagram_url, tiktok_url: r.tiktok_url,
-      etiquetas_extra: r.etiquetas_extra, probado: r.probado, visible_publico: r.visible_publico
-    })
-  });
 
   // Sustituimos las categorías: borramos las actuales y creamos copias de las copiadas
   for (const cat of (r.categorias || [])) {
@@ -1737,11 +1755,22 @@ async function pegarResenaRestaurante() {
   for (const catCopiada of portapapelesRestaurante.categorias) {
     const res = await fetch(`${API}/restaurantes/${r.id}/categorias`, {
       method: 'POST', headers: authHeaders(),
-      body: JSON.stringify({ nombre: catCopiada.nombre, precio: catCopiada.precio, valoracion: catCopiada.valoracion, comentario: catCopiada.comentario })
+      body: JSON.stringify({ nombre: catCopiada.nombre, precio: catCopiada.precio, valoracion: catCopiada.valoracion, comentario: catCopiada.comentario, probado: catCopiada.probado })
     });
     const nueva = await res.json();
     r.categorias.push(nueva);
   }
+
+  // Un restaurante sin ninguna categoría probada no puede quedar visible para seguidores
+  r.visible_publico = r.categorias.some(c => c.probado) ? portapapelesRestaurante.visible_publico : false;
+
+  await fetch(`${API}/restaurantes/${r.id}`, {
+    method: 'PUT', headers: authHeaders(),
+    body: JSON.stringify({
+      resena_general: r.resena_general, instagram_url: r.instagram_url, tiktok_url: r.tiktok_url,
+      etiquetas_extra: r.etiquetas_extra, visible_publico: r.visible_publico
+    })
+  });
 
   renderList();
   pintarMarcadores();
@@ -1759,7 +1788,7 @@ async function guardarCategoria(catId, campo, valor) {
   cat[campo] = valor;
   await fetch(`${API}/categorias/${catId}`, {
     method: 'PUT', headers: authHeaders(),
-    body: JSON.stringify({ nombre: cat.nombre, precio: cat.precio, valoracion: cat.valoracion, comentario: cat.comentario })
+    body: JSON.stringify({ nombre: cat.nombre, precio: cat.precio, valoracion: cat.valoracion, comentario: cat.comentario, probado: cat.probado })
   });
 
   if (campo === 'valoracion' && r.id === selectedId) renderCategorias(r); // solo hace falta redibujar para pintar las estrellas
@@ -1877,13 +1906,13 @@ async function guardarDireccionTextoLibre(nuevaDireccion) {
 // ---------- PUBLICAR PARA SEGUIDORES ----------
 function publicarCambios() {
   const publicos = restaurantes
-    .filter(r => r.visible_publico)
+    .filter(r => r.visible_publico && r.categorias.some(c => c.probado))
     .map(r => ({
       id: r.id, nombre: r.nombre, lat: r.lat, lng: r.lng,
       direccion: r.direccion, google_maps_url: r.google_maps_url,
       grupo_id: r.grupo_id, barrio: r.barrio, etiquetas_extra: r.etiquetas_extra || [],
       resena_general: r.resena_general, instagram_url: r.instagram_url, tiktok_url: r.tiktok_url,
-      categorias: r.categorias.map(c => ({ nombre: c.nombre, precio: c.precio, valoracion: c.valoracion, comentario: c.comentario }))
+      categorias: r.categorias.filter(c => c.probado).map(c => ({ nombre: c.nombre, precio: c.precio, valoracion: c.valoracion, comentario: c.comentario }))
     }));
   const paquete = { arbol: categoriasMaestro(), etiquetas: etiquetasMaestroCache, restaurantes: publicos };
   const blob = new Blob([JSON.stringify(paquete, null, 2)], { type: 'application/json' });

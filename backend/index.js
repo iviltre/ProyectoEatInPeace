@@ -41,6 +41,14 @@ async function prepararBaseDeDatos() {
   try { await db.execute(`ALTER TABLE categorias ADD COLUMN instagram_url TEXT`); } catch (e) {}
   try { await db.execute(`ALTER TABLE categorias ADD COLUMN subcategoria TEXT`); } catch (e) {}
   try { await db.execute(`ALTER TABLE categorias ADD COLUMN tiktok_url TEXT`); } catch (e) {}
+  try {
+    // 'probado' pasa de ser del restaurante entero a ser de cada categoría. Al añadir la
+    // columna (solo la primera vez), las categorías nuevas empiezan en 1 (probado) por
+    // defecto, y aquí migramos las que ya existían: si su restaurante tenía probado=0,
+    // sus categorías se quedan también en 0 para no dar por probado algo que no lo estaba.
+    await db.execute(`ALTER TABLE categorias ADD COLUMN probado INTEGER DEFAULT 1`);
+    await db.execute(`UPDATE categorias SET probado = 0 WHERE restaurante_id IN (SELECT id FROM restaurantes WHERE probado = 0)`);
+  } catch (e) {}
 
   const { rows } = await db.execute('SELECT COUNT(*) as total FROM restaurantes');
   if (rows[0].total > 0) {
@@ -252,14 +260,21 @@ async function construirRestaurante(fila, soloPublico) {
   const { rows: categorias } = await db.execute({
     sql: 'SELECT * FROM categorias WHERE restaurante_id = ?', args: [fila.id]
   });
+  let categoriasFinal = categorias.map(c => ({
+    id: c.id, nombre: c.nombre, precio: c.precio, valoracion: c.valoracion, comentario: c.resena, probado: !!c.probado
+  }));
+  if (soloPublico) {
+    // De cara a seguidores, cada categoría se enseña o no según si esa categoría en
+    // concreto está probada, sin importar las demás del mismo restaurante.
+    categoriasFinal = categoriasFinal.filter(c => c.probado);
+    if (!categoriasFinal.length) return null;
+  }
   const obj = {
     id: fila.id, nombre: fila.nombre, lat: fila.lat, lng: fila.lng,
     direccion: fila.direccion, google_maps_url: fila.google_maps_url, grupo_id: fila.grupo_id,
     barrio: fila.barrio, resena_general: fila.resena_general, instagram_url: fila.instagram_url, tiktok_url: fila.tiktok_url,
-    probado: !!fila.probado, etiquetas_extra: JSON.parse(fila.etiquetas_extra || '[]'),
-    categorias: categorias.map(c => ({
-      id: c.id, nombre: c.nombre, precio: c.precio, valoracion: c.valoracion, comentario: c.resena
-    })),
+    etiquetas_extra: JSON.parse(fila.etiquetas_extra || '[]'),
+    categorias: categoriasFinal,
   };
   if (!soloPublico) {
     obj.notas_generales = fila.notas_generales;
@@ -297,7 +312,7 @@ app.get('/api/restaurantes', async (req, res) => {
     ? await db.execute('SELECT * FROM restaurantes')
     : await db.execute('SELECT * FROM restaurantes WHERE visible_publico = 1');
 
-  const resultado = await Promise.all(rows.map(f => construirRestaurante(f, !esAdmin)));
+  const resultado = (await Promise.all(rows.map(f => construirRestaurante(f, !esAdmin)))).filter(Boolean);
   res.json(resultado);
 });
 
@@ -349,21 +364,22 @@ app.delete('/api/restaurantes/:id', requiereAuth, async (req, res) => {
 app.post('/api/restaurantes/:id/categorias', requiereAuth, async (req, res) => {
   const id = randomUUID();
   const { nombre, precio, valoracion, comentario } = req.body;
+  const probado = req.body.probado !== undefined ? (req.body.probado ? 1 : 0) : 1;
   await db.execute({
-    sql: `INSERT INTO categorias (id, restaurante_id, nombre, precio, valoracion, resena)
-          VALUES (?, ?, ?, ?, ?, ?)`,
-    args: [id, req.params.id, nombre, precio, valoracion, comentario || null]
+    sql: `INSERT INTO categorias (id, restaurante_id, nombre, precio, valoracion, resena, probado)
+          VALUES (?, ?, ?, ?, ?, ?, ?)`,
+    args: [id, req.params.id, nombre, precio, valoracion, comentario || null, probado]
   });
-  res.status(201).json({ id, nombre, precio, valoracion, comentario });
+  res.status(201).json({ id, nombre, precio, valoracion, comentario, probado: !!probado });
 });
 
 app.put('/api/categorias/:catId', requiereAuth, async (req, res) => {
-  const { nombre, precio, valoracion, comentario } = req.body;
+  const { nombre, precio, valoracion, comentario, probado } = req.body;
   await db.execute({
-    sql: `UPDATE categorias SET nombre=?, precio=?, valoracion=?, resena=? WHERE id=?`,
-    args: [nombre, precio, valoracion, comentario || null, req.params.catId]
+    sql: `UPDATE categorias SET nombre=?, precio=?, valoracion=?, resena=?, probado=? WHERE id=?`,
+    args: [nombre, precio, valoracion, comentario || null, probado ? 1 : 0, req.params.catId]
   });
-  res.json({ id: req.params.catId, nombre, precio, valoracion, comentario });
+  res.json({ id: req.params.catId, nombre, precio, valoracion, comentario, probado: !!probado });
 });
 
 app.delete('/api/categorias/:catId', requiereAuth, async (req, res) => {
