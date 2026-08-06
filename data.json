@@ -1687,7 +1687,7 @@
     },
     {
       "id": "c5b7daaa-f006-40c2-b1e1-03eb52d17752",
-      "nombre": "FAV COFFEE - Specialty Coffee and Brunch",
+      "nombre": "FAV COFFEE - Camins al Grau",
       "lat": 39.4643151,
       "lng": -0.3559679,
       "direccion": "C/ d'Andrés Mancebo, 40, Camins al Grau, 46023 València, Valencia, España",
@@ -1717,7 +1717,7 @@
     },
     {
       "id": "be9804da-0a6b-4f69-8c6e-5b14fac61083",
-      "nombre": "FAV COFFEE - Café de especialidad",
+      "nombre": "FAV COFFEE - Ciutat Vella",
       "lat": 39.4730033,
       "lng": -0.368647,
       "direccion": "C/ del Cronista Carreres, 1, Ciutat Vella, 46003 València, Valencia, España",
@@ -1860,7 +1860,7 @@
         {
           "nombre": "Brunch",
           "precio": "10-20€",
-          "valoracion": 2,
+          "valoracion": 3,
           "comentario": null
         },
         {
@@ -1921,6 +1921,12 @@
           "nombre": "Café",
           "precio": "0-5€",
           "valoracion": 1,
+          "comentario": null
+        },
+        {
+          "nombre": "Brunch",
+          "precio": "10-20€",
+          "valoracion": 2,
           "comentario": null
         }
       ]
@@ -2016,7 +2022,7 @@
         {
           "nombre": "Brunch",
           "precio": "10-20€",
-          "valoracion": 1,
+          "valoracion": 2,
           "comentario": null
         },
         {
@@ -2046,7 +2052,7 @@
         {
           "nombre": "Brunch",
           "precio": "10-20€",
-          "valoracion": 1,
+          "valoracion": 2,
           "comentario": null
         },
         {
@@ -2076,7 +2082,7 @@
         {
           "nombre": "Brunch",
           "precio": "10-20€",
-          "valoracion": 1,
+          "valoracion": 3,
           "comentario": null
         },
         {
@@ -2137,7 +2143,7 @@
     },
     {
       "id": "67ad1926-e494-4657-8215-5cc07708dec6",
-      "nombre": "Rutins Coffee Co",
+      "nombre": "Rutins Coffee Co - Cortes Valencianas",
       "lat": 39.4910556,
       "lng": -0.3988613,
       "direccion": "Av. de les Corts Valencianes, 18, Benicalap, 46015 València, Valencia, España",
@@ -2876,6 +2882,12 @@
           "precio": "20-35€",
           "valoracion": 5,
           "comentario": null
+        },
+        {
+          "nombre": "Tarta de queso de Restaurante",
+          "precio": "5-10€",
+          "valoracion": 4,
+          "comentario": null
         }
       ]
     },
@@ -3263,7 +3275,7 @@
         {
           "nombre": "Helados",
           "precio": "0-5€",
-          "valoracion": 2,
+          "valoracion": 3,
           "comentario": null
         }
       ]
@@ -3287,7 +3299,7 @@
         {
           "nombre": "Helados",
           "precio": "0-5€",
-          "valoracion": 2,
+          "valoracion": 3,
           "comentario": null
         }
       ]
@@ -3829,6 +3841,12 @@
           "precio": "0-5€",
           "valoracion": 1,
           "comentario": null
+        },
+        {
+          "nombre": "Brunch",
+          "precio": "10-20€",
+          "valoracion": 1,
+          "comentario": null
         }
       ]
     },
@@ -4177,7 +4195,7 @@
         {
           "nombre": "Café",
           "precio": "0-5€",
-          "valoracion": 1,
+          "valoracion": 2,
           "comentario": null
         },
         {
@@ -4524,7 +4542,9 @@
       "google_maps_url": "http://maps.google.com/?cid=2004215486746741814",
       "grupo_id": null,
       "barrio": "El Pla del Real",
-      "etiquetas_extra": [],
+      "etiquetas_extra": [
+        "Menú del día"
+      ],
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
@@ -4532,7 +4552,7 @@
         {
           "nombre": "Tapas y varios",
           "precio": "20-35€",
-          "valoracion": 4,
+          "valoracion": 5,
           "comentario": null
         }
       ]
@@ -5079,11 +5099,11 @@
     },
     {
       "id": "0ae7671a-2224-48ec-879e-dd1ba03bd983",
-      "nombre": "Michigan Detroit Pizza",
-      "lat": 39.4695524,
-      "lng": -0.3341351,
-      "direccion": "C/ de Joan Mercader, 16, Poblats Marítims, 46011 València, Valencia, España",
-      "google_maps_url": "http://maps.google.com/?cid=2173042566859191138",
+      "nombre": "Michigan Detroit Pizza - Módulo14",
+      "lat": 39.473769399999995,
+      "lng": -0.32446189999999997,
+      "direccion": "Paseo Marítimo, 14, Poblats Marítims, 46011 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=16170476355902680294&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
       "grupo_id": null,
       "barrio": "Poblats Marítims",
       "etiquetas_extra": [
@@ -5325,9 +5345,9 @@
       "tiktok_url": null,
       "categorias": [
         {
-          "nombre": "Fusión Tapas",
+          "nombre": "Tapas y varios",
           "precio": "20-35€",
-          "valoracion": 1,
+          "valoracion": 2,
           "comentario": null
         }
       ]
@@ -6984,9 +7004,9 @@
         "Restaurante",
         "Menú del día"
       ],
-      "resena_general": "",
-      "instagram_url": null,
-      "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7459859683642199329?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
+      "resena_general": "Hemos vuelto a Timoteo, un sitio al que ya habíamos ido y que nos gustó muchísimo. Esta vez aprovechamos para probar algunos platos nuevos y, como la primera vez, salimos bastante contentos.\n\n🍟 Bravas con mermelada de chorizo – 10/10\nHabían ganado un premio y teníamos que probarlas. La salsa es bastante dulce, pero está increíblemente buena y combina genial con las patatas. De las bravas que más nos han gustado últimamente.\n\n🍆 Berenjena a la llama – 10/10\nLa berenjena estaba muy rica, pero lo que más nos sorprendió fue la salsa. Brutal. Un plato que pediríamos otra vez sin pensarlo.\n\n🥪 Bikini trufado – 9,5/10\nLo pedimos también la otra vez y hemos repetido porque nos gustó muchísimo. Muy buena combinación y con ese toque de trufa que le queda genial.\n\n🍝 Canelón de carrillera – 8,5/10\nEstaba bueno, pero comparado con el resto de platos que probamos se nos quedó un poco por detrás.\n\n🍰 Tarta de queso – 100/10\nInnegociable pedirla. Para nosotros es una de las mejores tartas de queso de Valencia, junto con las de Ricard Camarena. Si vais, dejad hueco para el postre porque merece muchísimo la pena.\n\nY de nuestra visita anterior también probamos:\n\n🥩 Croqueta de cecina – 8,5/10\n🧀 Croqueta de sobrasada y queso azul – 9,25/10\n🥪 Brioche de carrillera – 8,75/10\n🥔 Ensaladilla rusa – 9,5/10\n\nEn general, Timoteo es de esos sitios a los que volveríamos porque la carta tiene bastante nivel y hay varios platos que tenemos claro que repetiríamos. Esta vez, para nosotros, las bravas, la berenjena y sobre todo la tarta de queso fueron los imprescindibles.",
+      "instagram_url": "https://www.instagram.com/reel/DbbUN_FKIHJ/?igsh=dTdrbDZlNDdpd3Zm",
+      "tiktok_url": "https://vm.tiktok.com/ZN8exUbfh/",
       "categorias": [
         {
           "nombre": "Tapas y varios",
@@ -7628,7 +7648,7 @@
         {
           "nombre": "Hamburguesa de Pollo",
           "precio": "10-20€",
-          "valoracion": 5,
+          "valoracion": 4,
           "comentario": null
         },
         {
@@ -7641,7 +7661,7 @@
           "nombre": "Hamburguesa Smash",
           "precio": "10-20€",
           "valoracion": 3,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -8113,7 +8133,7 @@
           "nombre": "Hamburguesa Normal",
           "precio": "10-20€",
           "valoracion": 1,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -8135,7 +8155,7 @@
           "nombre": "Hamburguesa Normal",
           "precio": "10-20€",
           "valoracion": 1,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -8159,13 +8179,13 @@
           "nombre": "Hamburguesa Normal",
           "precio": "20-35€",
           "valoracion": 3,
-          "comentario": ""
+          "comentario": null
         },
         {
           "nombre": "Hamburguesa Smash",
           "precio": "20-35€",
           "valoracion": 3,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -8189,7 +8209,7 @@
           "nombre": "Hamburguesa Smash",
           "precio": "10-20€",
           "valoracion": 2,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -8205,7 +8225,7 @@
       "etiquetas_extra": [
         "Take away"
       ],
-      "resena_general": "Solo take away",
+      "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
       "categorias": [
@@ -8213,7 +8233,7 @@
           "nombre": "Hamburguesa Smash",
           "precio": "10-20€",
           "valoracion": 2,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -8237,7 +8257,7 @@
           "nombre": "Hamburguesa Smash",
           "precio": "10-20€",
           "valoracion": 1,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -8261,7 +8281,7 @@
           "nombre": "Hamburguesa Normal",
           "precio": "20-35€",
           "valoracion": 3,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -8286,7 +8306,7 @@
           "nombre": "Hamburguesa Smash",
           "precio": "10-20€",
           "valoracion": 2,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -8311,7 +8331,7 @@
           "nombre": "Hamburguesa Smash",
           "precio": "10-20€",
           "valoracion": 2,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -8336,7 +8356,7 @@
           "nombre": "Hamburguesa Smash",
           "precio": "10-20€",
           "valoracion": 2,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -8361,7 +8381,7 @@
           "nombre": "Hamburguesa Smash",
           "precio": "10-20€",
           "valoracion": 2,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -8385,7 +8405,7 @@
           "nombre": "Hamburguesa Smash",
           "precio": "10-20€",
           "valoracion": 1,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -8409,7 +8429,7 @@
           "nombre": "Hamburguesa Smash",
           "precio": "10-20€",
           "valoracion": 1,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -8433,7 +8453,7 @@
           "nombre": "Hamburguesa Smash",
           "precio": "10-20€",
           "valoracion": 1,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -8457,7 +8477,7 @@
           "nombre": "Hamburguesa Smash",
           "precio": "10-20€",
           "valoracion": 1,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -8481,7 +8501,7 @@
           "nombre": "Helados",
           "precio": "0-5€",
           "valoracion": 4,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -8505,7 +8525,7 @@
           "nombre": "Helados",
           "precio": "0-5€",
           "valoracion": 4,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -8529,7 +8549,7 @@
           "nombre": "Helados",
           "precio": "0-5€",
           "valoracion": 4,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -8553,7 +8573,7 @@
           "nombre": "Helados",
           "precio": "0-5€",
           "valoracion": 4,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -8577,7 +8597,7 @@
           "nombre": "Helados",
           "precio": "0-5€",
           "valoracion": 4,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -8601,7 +8621,7 @@
           "nombre": "Helados",
           "precio": "0-5€",
           "valoracion": 4,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -8625,7 +8645,7 @@
           "nombre": "Helados",
           "precio": "0-5€",
           "valoracion": 3,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -8637,7 +8657,7 @@
       "direccion": "Pl. del Baró de Cortés, 2 Mercado de Ruzafa - Puestos Exteriores 44, 45, 46, Ensanche, 46006 Valencia, España",
       "google_maps_url": "https://maps.google.com/?cid=8380556799464096215&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
       "grupo_id": null,
-      "barrio": "Ensanche",
+      "barrio": "L'Eixample",
       "etiquetas_extra": [
         "Take away"
       ],
@@ -8649,7 +8669,7 @@
           "nombre": "Dulces",
           "precio": "0-5€",
           "valoracion": 3,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -8673,17 +8693,287 @@
           "nombre": "Helados",
           "precio": "0-5€",
           "valoracion": 3,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
     {
-      "id": "b075f49c-523a-4daa-bc01-98b3c7033cf4",
-      "nombre": "Glasol - Reino",
-      "lat": 39.4641653,
-      "lng": -0.3710482,
-      "direccion": "Av. del Regne de València, 22, L'Eixample, 46005 València, Valencia, España",
-      "google_maps_url": "https://maps.google.com/?cid=6554050508884437865&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "id": "a637e711-fe8b-4a92-8d6f-e8b15f44c399",
+      "nombre": "Valentino Gelato - Extramurs",
+      "lat": 39.4655595,
+      "lng": -0.3843322,
+      "direccion": "Calle jesus 48 bajo 3 Calle, C. Marqués de Zenete, 1, Extramurs, 46007 Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=8079924184271163631&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Extramurs",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Helados",
+          "precio": "0-5€",
+          "valoracion": 2,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "b5290bca-fc8e-48d9-82ae-630d66c3f9cb",
+      "nombre": "Valentino Gelato - Estació del Nord",
+      "lat": 39.4680655,
+      "lng": -0.3757366,
+      "direccion": "C/ de Ribera, 11, Ciutat Vella, 46002 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=7173476579881256142&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Helados",
+          "precio": "0-5€",
+          "valoracion": 2,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "59e9d5f5-5db5-4da8-8485-265f7ab53784",
+      "nombre": "Jijonenca - Jardines de Neptuno",
+      "lat": 39.4641546,
+      "lng": -0.3230957,
+      "direccion": "Passeig de Neptú, 26, Poblats Marítims, 46011 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=2859592340879160826&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Poblats Marítims",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Helados",
+          "precio": "0-5€",
+          "valoracion": 1,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "52e0cc06-e7ce-465a-821b-93405b78618b",
+      "nombre": "Jijonenca - Cabañal",
+      "lat": 39.4715931,
+      "lng": -0.3290982,
+      "direccion": "C/ del Pare Lluís Navarro, 307, Poblats Marítims, 46011 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=3251691277212937407&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Poblats Marítims",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Helados",
+          "precio": "0-5€",
+          "valoracion": 1,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "3054ad07-e8f6-466d-a858-21fbe085892c",
+      "nombre": "Jijonenca- Benimaclet",
+      "lat": 39.481331399999995,
+      "lng": -0.3570607,
+      "direccion": "Carrer de la Guàrdia Civil, 20, Benimaclet, 46020 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=18044842723204532044&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Benimaclet",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Helados",
+          "precio": "0-5€",
+          "valoracion": 1,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "ec5b908c-d4ac-4714-9c1a-307c9656289e",
+      "nombre": "Jijonenca - Quatre Carreres",
+      "lat": 39.4528586,
+      "lng": -0.3758186,
+      "direccion": "Carrer de Joaquín Benlloch, 39, Quatre Carreres, 46004 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=8296060777188335638&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Quatre Carreres",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Helados",
+          "precio": "0-5€",
+          "valoracion": 1,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "992f3667-22be-441c-9320-1bfc92d04f2a",
+      "nombre": "Heladería Llinares - Jesús",
+      "lat": 39.4496737,
+      "lng": -0.390981,
+      "direccion": "Av. del Primer de Maig, 46, Jesús, 46017 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=14433553016120364448&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Jesús",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Helados",
+          "precio": "0-5€",
+          "valoracion": 1,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "70c215c8-e913-4789-9a87-747132327445",
+      "nombre": "Heladería Llinares - Patraix",
+      "lat": 39.4602898,
+      "lng": -0.3941654,
+      "direccion": "Carrer de l'Humanista Mariner, 16, Patraix, 46018 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=3315696234557142904&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Patraix",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Helados",
+          "precio": "0-5€",
+          "valoracion": 1,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "e27d0ae1-fb88-4b08-92d5-f9f1114899b1",
+      "nombre": "Heladería Llinares - Av. del Cid",
+      "lat": 39.4664107,
+      "lng": -0.393175,
+      "direccion": "C/ de l'Arxiduc Carles, 17, Patraix, 46018 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=3028514561045269998&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Patraix",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Helados",
+          "precio": "0-5€",
+          "valoracion": 1,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "2dfdded2-4e14-44e4-9dc7-31a1ff62c986",
+      "nombre": "Heladería Llinares - Ciutat Vella",
+      "lat": 39.4739878,
+      "lng": -0.3759717,
+      "direccion": "Pça. de la Reina, 6, Ciutat Vella, 46001 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=2508997731642431016&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Helados",
+          "precio": "0-5€",
+          "valoracion": 1,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "6e796bb7-48f7-40a7-b457-175474c8c3f3",
+      "nombre": "Helados y Turrones Soler - Estació del Nord",
+      "lat": 39.4668736,
+      "lng": -0.3753872,
+      "direccion": "Passatge Dr. Serra, 2, L'Eixample, 46004 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=3109610743178325754&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Helados",
+          "precio": "0-5€",
+          "valoracion": 1,
+          "comentario": null
+        },
+        {
+          "nombre": "Horchata",
+          "precio": "0-5€",
+          "valoracion": 3,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "3b49b184-b104-4fab-92f4-3e601fecc3cf",
+      "nombre": "Helados y Turrones Soler - Ruzafa",
+      "lat": 39.4633571,
+      "lng": -0.3736801,
+      "direccion": "C/ de Sevilla, 21, L'Eixample, 46006 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=1082534459350650030&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
       "grupo_id": null,
       "barrio": "L'Eixample",
       "etiquetas_extra": [
@@ -8692,7 +8982,1127 @@
       "resena_general": null,
       "instagram_url": null,
       "tiktok_url": null,
-      "categorias": []
+      "categorias": [
+        {
+          "nombre": "Helados",
+          "precio": "0-5€",
+          "valoracion": 1,
+          "comentario": null
+        },
+        {
+          "nombre": "Horchata",
+          "precio": "0-5€",
+          "valoracion": 3,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "24daf38f-9eee-4286-9cf7-6a5fb90a96e0",
+      "nombre": "Bar Ricardo",
+      "lat": 39.476094,
+      "lng": -0.391505,
+      "direccion": "C/ del Doctor Zamenhof, 16, Extramurs, 46008 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=13955432079024987839&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Extramurs",
+      "etiquetas_extra": [],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Tapas y varios",
+          "precio": "35-50€",
+          "valoracion": 5,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "5a0482b1-dec6-4ce0-80c4-b7426bfc649b",
+      "nombre": "Gonzalez&Co Valencia",
+      "lat": 39.4708824,
+      "lng": -0.35775090000000004,
+      "direccion": "Av. d'Aragó, 24, El Pla del Real, 46021 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=13047963871625524743&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "El Pla del Real",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Mexicano",
+          "precio": "5-10€",
+          "valoracion": 2,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "3389cfac-8da3-4db4-9a09-02c57689d37f",
+      "nombre": "Restaurante Borja Azcutia",
+      "lat": 39.4654533,
+      "lng": -0.3685112,
+      "direccion": "C/ de l'Almirall Cadarso, 16, L'Eixample, 46005 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=3682097128312106322&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Tapas y varios",
+          "precio": "35-50€",
+          "valoracion": 2,
+          "comentario": null
+        },
+        {
+          "nombre": "Paella/arroces",
+          "precio": "35-50€",
+          "valoracion": 2,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "0a628d75-4223-4b57-bc82-653d68868597",
+      "nombre": "Federal Café",
+      "lat": 39.4717475,
+      "lng": -0.3753626,
+      "direccion": "C/ de l'Ambaixador Vich, 15, Ciutat Vella, 46002 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=10022028460945264674&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Brunch",
+          "precio": "10-20€",
+          "valoracion": 2,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "10cce1f3-ef4c-4327-95e0-09d45cb2ce8d",
+      "nombre": "La Más Bonita Ruzafa",
+      "lat": 39.4605422,
+      "lng": -0.3725178,
+      "direccion": "C/ de Cadis, 61, L'Eixample, 46006 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=1690376548252817878&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Brunch",
+          "precio": "10-20€",
+          "valoracion": 1,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "f8e31882-5070-4375-b22a-118390d98c5a",
+      "nombre": "Beverly Café",
+      "lat": 39.465748399999995,
+      "lng": -0.3710989,
+      "direccion": "Gran Via del Marqués del Túria, 18, L'Eixample, 46005 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=2982492866560593613&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Brunch",
+          "precio": "10-20€",
+          "valoracion": 1,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "1ba84410-fc96-4189-9da0-9b7778d35447",
+      "nombre": "Blackbird",
+      "lat": 39.461363899999995,
+      "lng": -0.3721615,
+      "direccion": "C/ de la Reina Na Maria, 7, L'Eixample, 46006 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=5551434550349824632&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Brunch",
+          "precio": "10-20€",
+          "valoracion": 1,
+          "comentario": null
+        },
+        {
+          "nombre": "Café",
+          "precio": "0-5€",
+          "valoracion": 2,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "4c775f61-3478-4307-9e04-127edef1f14d",
+      "nombre": "Casa Raíz",
+      "lat": 39.461937299999995,
+      "lng": -0.3697783,
+      "direccion": "C/ del Pintor Salvador Abril, 34, L'Eixample, 46005 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=12527791992153643839&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Café",
+          "precio": "0-5€",
+          "valoracion": 4,
+          "comentario": null
+        },
+        {
+          "nombre": "Matcha",
+          "precio": "0-5€",
+          "valoracion": 1,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "d0638798-f960-4f3f-8d31-f1a2b419010c",
+      "nombre": "BOSCON | Specialty Coffee Roasters & Brunch",
+      "lat": 39.4714841,
+      "lng": -0.3593654,
+      "direccion": "C/ de Finlàndia, 16, El Pla del Real, 46010 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=2678203858936740852&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "El Pla del Real",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Café",
+          "precio": "",
+          "valoracion": 4,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "1ff1068e-216f-498d-8280-cc7e9aea8d25",
+      "nombre": "Jenkin's - Módulo14",
+      "lat": 39.473769399999995,
+      "lng": -0.32446189999999997,
+      "direccion": "Paseo Marítimo, 14, Poblats Marítims, 46011 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=16170476355902680294&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Poblats Marítims",
+      "etiquetas_extra": [
+        "Take away",
+        "Tipo normal"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Hamburguesa Normal",
+          "precio": "20-35€",
+          "valoracion": 4,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "e179a876-753a-4f1b-9f0f-6e49e15807dc",
+      "nombre": "Rutins Coffee Co - Módulo14",
+      "lat": 39.473769399999995,
+      "lng": -0.32446189999999997,
+      "direccion": "Paseo Marítimo, 14, Poblats Marítims, 46011 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=16170476355902680294&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Poblats Marítims",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Café",
+          "precio": "0-5€",
+          "valoracion": 1,
+          "comentario": null
+        },
+        {
+          "nombre": "Matcha",
+          "precio": "0-5€",
+          "valoracion": 2,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "d53a6799-1a3a-4e6a-92e7-0767ca5dace0",
+      "nombre": "Cheeck's - Cedro",
+      "lat": 39.4737608,
+      "lng": -0.34509019999999996,
+      "direccion": "Pl. d'Hondures, 38, Algirós, 46022 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=5163555249653632846&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Algirós",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Hamburguesa de Pollo",
+          "precio": "10-20€",
+          "valoracion": 4,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "dfb610e1-2ccd-4a34-9df1-b764083b95ee",
+      "nombre": "Cheeck's - Módulo14",
+      "lat": 39.473769399999995,
+      "lng": -0.32446189999999997,
+      "direccion": "Paseo Marítimo, 14, Poblats Marítims, 46011 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=16170476355902680294&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Poblats Marítims",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Hamburguesa de Pollo",
+          "precio": "10-20€",
+          "valoracion": 4,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "94ebb109-c671-4530-bb6d-0bf304701abf",
+      "nombre": "Festinar",
+      "lat": 39.4659438,
+      "lng": -0.3283156,
+      "direccion": "C. del Dr. Lluch, 46, Poblats Marítims, 46011 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=9996275207580486641&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Poblats Marítims",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Pizza Romana y otros tipos",
+          "precio": "5-10€",
+          "valoracion": 2,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "87f4c483-a595-44b5-97c5-62104295e3f4",
+      "nombre": "La Finestra",
+      "lat": 39.4610542,
+      "lng": -0.3716992,
+      "direccion": "Carrer dels Vivons, 16, L'Eixample, 46006 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=15049447914254432163&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Pizza Romana y otros tipos",
+          "precio": "5-10€",
+          "valoracion": 2,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "2d2c7c59-2cc8-4a22-bdc2-fcb843391c54",
+      "nombre": "Del Poble - Obispo",
+      "lat": 39.4665355,
+      "lng": -0.3867879,
+      "direccion": "C/ de St. Josep de Calassanç, 2, Extramurs, 46008 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=2658417649851339794&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Extramurs",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Pizza Romana y otros tipos",
+          "precio": "10-20€",
+          "valoracion": 2,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "9c986838-33a6-4e7b-82bf-53ab5c2fb4ca",
+      "nombre": "Del Poble Pizzería - Ruzafa",
+      "lat": 39.461134699999995,
+      "lng": -0.3765681,
+      "direccion": "C. de Puerto Rico, 36, L'Eixample, 46006 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=11232845519902439458&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Pizza Romana y otros tipos",
+          "precio": "10-20€",
+          "valoracion": 2,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "9b981361-dc22-423f-8e9f-1777256f9be8",
+      "nombre": "Del Poble - Malilla",
+      "lat": 39.448080999999995,
+      "lng": -0.3799412,
+      "direccion": "Carr. de Malilla, 86, Quatre Carreres, 46026 Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=449005044255579221&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Quatre Carreres",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Pizza Romana y otros tipos",
+          "precio": "10-20€",
+          "valoracion": 2,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "9f145279-c666-441c-86a4-870ac6ac50f1",
+      "nombre": "Del Poble - Blasco Ibáñez",
+      "lat": 39.4737507,
+      "lng": -0.3487474,
+      "direccion": "Av. de Blasco Ibáñez, 108, Algirós, 46021 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=4626619323337465369&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Algirós",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Pizza Romana y otros tipos",
+          "precio": "10-20€",
+          "valoracion": 2,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "e55ab5e7-9dcb-4332-9b7b-49ed20fd511d",
+      "nombre": "Del Poble - Zaidía",
+      "lat": 39.4882553,
+      "lng": -0.3754838,
+      "direccion": "C/ de Sagunt, 127, La Saïdia, 46009 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=7236763532752646845&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "La Saïdia",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Pizza Romana y otros tipos",
+          "precio": "10-20€",
+          "valoracion": 2,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "0ed94a9b-2825-4132-baca-f596fb21a7e9",
+      "nombre": "Del Poble - Baleares",
+      "lat": 39.460249999999995,
+      "lng": -0.34626629999999997,
+      "direccion": "Av. de les Balears, 60, Camins al Grau, 46023 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=9926881679128859275&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Camins al Grau",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Pizza Romana y otros tipos",
+          "precio": "10-20€",
+          "valoracion": 2,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "3e42598d-2c49-4b40-835d-1a485a75e249",
+      "nombre": "Del Poble - Benimaclet",
+      "lat": 39.4853501,
+      "lng": -0.3633244,
+      "direccion": "C/ de Dolores Marqués, 2, Benimaclet, 46020 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=6994376681755905376&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Benimaclet",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Pizza Romana y otros tipos",
+          "precio": "10-20€",
+          "valoracion": 2,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "31c0e428-39dd-4847-8d49-fe921edc15dc",
+      "nombre": "La Piazza - Cortes Valencianas",
+      "lat": 39.491170800000006,
+      "lng": -0.4006944,
+      "direccion": "Av. de les Corts Valencianes, 37, Campanar, 46015 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=13212604578985763111&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Campanar",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Pizza Romana y otros tipos",
+          "precio": "10-20€",
+          "valoracion": 1,
+          "comentario": null
+        },
+        {
+          "nombre": "Pizza Romana y otros tipos",
+          "precio": "10-20€",
+          "valoracion": 1,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "27996d0e-603d-481c-929f-dc6707601e45",
+      "nombre": "La Piazza - Aragón",
+      "lat": 39.4724428,
+      "lng": -0.3580153,
+      "direccion": "Av. d'Aragó, 23, El Pla del Real, 46010 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=11946208169703556929&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "El Pla del Real",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Pizza Romana y otros tipos",
+          "precio": "10-20€",
+          "valoracion": 1,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "bfaf69de-ca7c-45ee-9d97-87fa975046ec",
+      "nombre": "La Piazza - Correos",
+      "lat": 39.4699482,
+      "lng": -0.37501930000000006,
+      "direccion": "C/ de Correus, 7, Ciutat Vella, 46002 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=8462853673997021168&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Pizza Romana y otros tipos",
+          "precio": "10-20€",
+          "valoracion": 1,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "88da3f42-f3f0-4874-9b44-cfafab855cbc",
+      "nombre": "La Piazza - Aqua",
+      "lat": 39.4570389,
+      "lng": -0.3456593,
+      "direccion": "Aqua Multiespacio, Carrer de Menorca, 19, Camins al Grau, 46023 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=948203537945851899&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Camins al Grau",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Pizza Romana y otros tipos",
+          "precio": "10-20€",
+          "valoracion": 1,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "ef6242fb-ff6d-4b6c-b5f8-e5f13da3871f",
+      "nombre": "Pizzamo",
+      "lat": 39.4753502,
+      "lng": -0.3627201,
+      "direccion": "Carrer de Misser Mascó, 28, El Pla del Real, 46010 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=13493651334485075433&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "El Pla del Real",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Pizza Napolitana",
+          "precio": "10-20€",
+          "valoracion": 3,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "6cb9c4bc-1134-41a8-bfea-d0423192cdc8",
+      "nombre": "A' Napule",
+      "lat": 39.4696825,
+      "lng": -0.35631599999999997,
+      "direccion": "Carrer de Vicent Sancho Tello, 19, El Pla del Real, 46021 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=14794987207763268720&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "El Pla del Real",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Pizza Napolitana",
+          "precio": "20-35€",
+          "valoracion": 3,
+          "comentario": null
+        },
+        {
+          "nombre": "Pasta",
+          "precio": "20-35€",
+          "valoracion": 2,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "c81aec68-42a4-4bab-ae21-16b3e38bd74f",
+      "nombre": "Paffuto - Aragón",
+      "lat": 39.4698594,
+      "lng": -0.35797829999999997,
+      "direccion": "Av. d'Aragó, 18, El Pla del Real, 46021 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=16277387629932275776&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "El Pla del Real",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Pizza Napolitana",
+          "precio": "10-20€",
+          "valoracion": 2,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "53bb14c3-0096-4868-b1c7-48b181b23565",
+      "nombre": "Paffuto - Cortes Valencias",
+      "lat": 39.4889493,
+      "lng": -0.3991311,
+      "direccion": "Av. de les Corts Valencianes, 17, Campanar, 46015 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=11441398853753960083&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Campanar",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Pizza Napolitana",
+          "precio": "10-20€",
+          "valoracion": 2,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "5cdda41f-9b2a-47c3-938b-8c5cde6cd97a",
+      "nombre": "Il Cortile - Cánovas",
+      "lat": 39.4659352,
+      "lng": -0.3652365,
+      "direccion": "Carrer de Borriana, 33, L'Eixample, 46005 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=2236841864017198931&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Pizza Romana y otros tipos",
+          "precio": "10-20€",
+          "valoracion": 3,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "886fa4c0-f1f8-4f16-8eba-a525fb1a98fa",
+      "nombre": "Il Cortile - Cortes Valencianas",
+      "lat": 39.4931065,
+      "lng": -0.4020547,
+      "direccion": "Av. de les Corts Valencianes, 43, Campanar, 46015 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=1870658926778304281&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Campanar",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Pizza Romana y otros tipos",
+          "precio": "10-20€",
+          "valoracion": 3,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "fa22a85a-1dc3-4e60-9b51-4f0dbdcbc9c0",
+      "nombre": "Pizzi - Ruzafa",
+      "lat": 39.4634297,
+      "lng": -0.3722779,
+      "direccion": "C. de Ruzafa, 58, Ensanche, 46004 Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=9470222072181854225&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Pizza Napolitana",
+          "precio": "5-10€",
+          "valoracion": 3,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "178afdb6-a42e-4858-97c2-fb49c8f414de",
+      "nombre": "Pizzi - Mercat Central",
+      "lat": 39.472851299999995,
+      "lng": -0.3775731,
+      "direccion": "C/ de les Carabasses, 3, Ciutat Vella, 46001 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=9164795597810099922&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Pizza Napolitana",
+          "precio": "5-10€",
+          "valoracion": 3,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "571df972-1047-41f9-984f-a3bc38fa2927",
+      "nombre": "Pizzi - Cánovas",
+      "lat": 39.4663697,
+      "lng": -0.3675503,
+      "direccion": "Carrer de Joaquín Costa, 12, L'Eixample, 46005 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=7086423174885094145&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Pizza Napolitana",
+          "precio": "5-10€",
+          "valoracion": 3,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "c2b98e61-f9cb-4b8c-a54b-8d24245fce62",
+      "nombre": "Pizzi Pizzería - Abastos",
+      "lat": 39.4663835,
+      "lng": -0.3857435,
+      "direccion": "C/ de Sant Francesc de Borja, 20, calle de ruzafa, 58, Extramurs, 46007 Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=10638427788394069350&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Extramurs",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Pizza Napolitana",
+          "precio": "5-10€",
+          "valoracion": 3,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "2331a37e-ef0a-4926-bfc4-99aef2475afb",
+      "nombre": "Spacca Napoli - Ruzafa",
+      "lat": 39.461241,
+      "lng": -0.3725366,
+      "direccion": "C/ de la Reina Na Maria, 3, bajo, L'Eixample, 46006 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=18428891313522188080&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Pizza Napolitana",
+          "precio": "10-20€",
+          "valoracion": 2,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "608c6c45-f0f4-4f68-896a-e2c7703340bd",
+      "nombre": "Spacca Napoli - Extramurs",
+      "lat": 39.4687255,
+      "lng": -0.3898517,
+      "direccion": "Carrer de l'Heroi Romeu, 12, Extramurs, 46008 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=2517154009015303131&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Extramurs",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Pizza Napolitana",
+          "precio": "10-20€",
+          "valoracion": 2,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "134a6c1b-8029-4272-9a16-581fc86a7d26",
+      "nombre": "SAVOYARDI",
+      "lat": 39.462893099999995,
+      "lng": -0.3678019,
+      "direccion": "C/ de Pere III el Gran, 36, L'Eixample, 46005 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=13444239280048892457&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Pizza Romana y otros tipos",
+          "precio": "10-20€",
+          "valoracion": 2,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "346bc1ad-f5da-4168-aae6-efd76b67086c",
+      "nombre": "Gino Banana",
+      "lat": 39.4619361,
+      "lng": -0.3740682,
+      "direccion": "C. de Puerto Rico, 3, L'Eixample, 46006 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=432692898538526268&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Pizza Romana y otros tipos",
+          "precio": "5-10€",
+          "valoracion": 2,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "6af95c8b-2d5c-42f5-83a2-837330d8a8d7",
+      "nombre": "Mamma Pazzo",
+      "lat": 39.4685783,
+      "lng": -0.3670936,
+      "direccion": "Carrer del Comte de Salvatierra, 37, L'Eixample, 46004 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=4279489721475078688&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Pizza Napolitana",
+          "precio": "20-35€",
+          "valoracion": 2,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "857ce33d-a26a-4344-9de7-c990633069d9",
+      "nombre": "Mamma Pizza",
+      "lat": 39.466245,
+      "lng": -0.3687839,
+      "direccion": "C/ de l'Almirall Cadarso, 8, L'Eixample, 46005 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=17259139258899076445&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Pizza Romana y otros tipos",
+          "precio": "5-10€",
+          "valoracion": 2,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "b03b67f7-9aa1-458c-b27f-3f4cd90f11da",
+      "nombre": "Lambrusquería - Conde Altea",
+      "lat": 39.466736399999995,
+      "lng": -0.3667258,
+      "direccion": "Carrer del Comte d'Altea, 31, L'Eixample, 46005 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=13510831087415505147&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Pizza Napolitana",
+          "precio": "20-35€",
+          "valoracion": 2,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "4a6ca8e6-df05-4a85-969f-1e158cf8f48c",
+      "nombre": "Lambrusquería - Caballeros",
+      "lat": 39.4765849,
+      "lng": -0.3777834,
+      "direccion": "C/ dels Cavallers, 27, Ciutat Vella, 46001 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=2068441235037862552&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Ciutat Vella",
+      "etiquetas_extra": [],
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
+      "categorias": [
+        {
+          "nombre": "Pizza Napolitana",
+          "precio": "20-35€",
+          "valoracion": 2,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "20f18c78-d07d-4c7b-9cc0-6d60c7590d86",
+      "nombre": "Marinetta Mia Pizza e Cucina",
+      "lat": 39.4741287,
+      "lng": -0.3749126,
+      "direccion": "C. del Mar, 3, Ciutat Vella, 46003 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=15046080359182543333&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Pizza Romana y otros tipos",
+          "precio": "20-35€",
+          "valoracion": 3,
+          "comentario": ""
+        }
+      ]
     }
   ]
 }
