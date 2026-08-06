@@ -99,6 +99,7 @@
   .switch input:checked + .slider:before { transform: translateX(16px); }
   .switch input:disabled + .slider { opacity: 0.5; cursor: not-allowed; }
   .cat-card { border: 1px solid var(--border); border-radius: 6px; padding: 10px; margin-bottom: 8px; }
+  .cat-card.sin-probar { background: #F3F2EE; }
   .cat-card-top { display: flex; gap: 8px; align-items: center; }
   .cat-card-top select { min-width: 0; }
   .cat-card input[type=text], .cat-card select, .cat-card textarea { border: 1px solid var(--border); border-radius: 5px; padding: 6px 8px; font-size: 13px; font-family: inherit; }
@@ -1598,7 +1599,7 @@ function renderCategorias(r) {
   el.innerHTML = '';
   r.categorias.forEach(cat => {
     const div = document.createElement('div');
-    div.className = 'cat-card';
+    div.className = 'cat-card' + (cat.probado ? '' : ' sin-probar');
     div.setAttribute('data-cat-id', cat.id);
     div.innerHTML = `
       <div class="cat-card-top">
@@ -1616,7 +1617,7 @@ function renderCategorias(r) {
         <span style="font-size:12px;">Probado</span>
         <label class="switch"><input type="checkbox" ${cat.probado ? 'checked' : ''} onchange="cambiarProbadoCategoria('${cat.id}', this.checked)"><span class="slider"></span></label>
       </div>
-      <div class="stars" data-cat="${cat.id}">${[1,2,3,4,5].map(n => `<span class="${n <= (cat.valoracion||0) ? 'filled' : ''}" onclick="guardarCategoria('${cat.id}', 'valoracion', ${n})">★</span>`).join('')}</div>
+      ${cat.probado ? `<div class="stars" data-cat="${cat.id}">${[1,2,3,4,5].map(n => `<span class="${n <= (cat.valoracion||0) ? 'filled' : ''}" onclick="guardarCategoria('${cat.id}', 'valoracion', ${n})">★</span>`).join('')}</div>` : ''}
       <input type="text" value="${(cat.comentario || '').replace(/"/g, '&quot;')}" placeholder="Comentario para esta categoría (opcional)" style="width:100%; margin-top:6px; font-size:12px;" onblur="guardarCategoria('${cat.id}', 'comentario', this.value)">
     `;
     el.appendChild(div);
