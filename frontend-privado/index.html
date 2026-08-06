@@ -498,7 +498,7 @@ function opcionesCategoriaPlanas() {
   const opciones = [];
   function recorrer(nodos, nivel) {
     nodos.forEach(nodo => {
-      opciones.push({ value: nodo.nombre, label: '—'.repeat(nivel) + (nivel ? ' ' : '') + nodo.nombre });
+      opciones.push({ value: nodo.nombre, label: nodo.nombre + (nivel ? ' ' + '—'.repeat(nivel) : '') });
       recorrer(nodo.hijos, nivel + 1);
     });
   }
