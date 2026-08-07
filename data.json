@@ -874,7 +874,7 @@
         {
           "nombre": "Tarta de queso de Restaurante",
           "precio": "5-10€",
-          "valoracion": 5,
+          "valoracion": 4,
           "comentario": null
         }
       ]
@@ -1099,7 +1099,7 @@
         {
           "nombre": "Café",
           "precio": "0-5€",
-          "valoracion": 3,
+          "valoracion": 4,
           "comentario": null
         }
       ]
@@ -2028,7 +2028,7 @@
         {
           "nombre": "Café",
           "precio": "0-5€",
-          "valoracion": 4,
+          "valoracion": 1,
           "comentario": null
         }
       ]
@@ -2058,7 +2058,7 @@
         {
           "nombre": "Café",
           "precio": "0-5€",
-          "valoracion": 4,
+          "valoracion": 1,
           "comentario": null
         }
       ]
@@ -2624,6 +2624,12 @@
       "categorias": [
         {
           "nombre": "Café",
+          "precio": "0-5€",
+          "valoracion": 4,
+          "comentario": null
+        },
+        {
+          "nombre": "Matcha",
           "precio": "0-5€",
           "valoracion": 5,
           "comentario": null
@@ -3206,6 +3212,12 @@
           "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
+        },
+        {
+          "nombre": "Tarta de queso de Restaurante",
+          "precio": "0-5€",
+          "valoracion": 2,
+          "comentario": null
         }
       ]
     },
@@ -3230,6 +3242,12 @@
           "nombre": "Hamburguesa Smash",
           "precio": "10-20€",
           "valoracion": 3,
+          "comentario": null
+        },
+        {
+          "nombre": "Tarta de queso de Restaurante",
+          "precio": "0-5€",
+          "valoracion": 2,
           "comentario": null
         }
       ]
@@ -3475,7 +3493,7 @@
         {
           "nombre": "Tarta de queso de Restaurante",
           "precio": "5-10€",
-          "valoracion": 4,
+          "valoracion": 3,
           "comentario": null
         }
       ]
@@ -3551,7 +3569,7 @@
         {
           "nombre": "Matcha",
           "precio": "0-5€",
-          "valoracion": 4,
+          "valoracion": 3,
           "comentario": null
         }
       ]
@@ -4201,7 +4219,7 @@
         {
           "nombre": "Matcha",
           "precio": "0-5€",
-          "valoracion": 1,
+          "valoracion": 2,
           "comentario": null
         }
       ]
@@ -4718,6 +4736,12 @@
           "precio": "5-10€",
           "valoracion": 3,
           "comentario": null
+        },
+        {
+          "nombre": "Tarta de queso de Sitio especializado",
+          "precio": "5-10€",
+          "valoracion": 2,
+          "comentario": null
         }
       ]
     },
@@ -4733,14 +4757,20 @@
       "etiquetas_extra": [
         "Take away"
       ],
-      "resena_general": null,
-      "instagram_url": null,
-      "tiktok_url": null,
+      "resena_general": "",
+      "instagram_url": "",
+      "tiktok_url": "",
       "categorias": [
         {
           "nombre": "Dulces",
           "precio": "5-10€",
           "valoracion": 3,
+          "comentario": null
+        },
+        {
+          "nombre": "Tarta de queso de Sitio especializado",
+          "precio": "5-10€",
+          "valoracion": 2,
           "comentario": null
         }
       ]
@@ -9168,7 +9198,7 @@
         {
           "nombre": "Café",
           "precio": "0-5€",
-          "valoracion": 2,
+          "valoracion": 1,
           "comentario": null
         }
       ]
@@ -9198,7 +9228,7 @@
         {
           "nombre": "Matcha",
           "precio": "0-5€",
-          "valoracion": 1,
+          "valoracion": 2,
           "comentario": null
         }
       ]
@@ -9221,7 +9251,7 @@
       "categorias": [
         {
           "nombre": "Café",
-          "precio": "",
+          "precio": "0-5€",
           "valoracion": 4,
           "comentario": null
         }
@@ -9914,7 +9944,7 @@
           "nombre": "Pizza Napolitana",
           "precio": "10-20€",
           "valoracion": 2,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -9938,7 +9968,7 @@
           "nombre": "Pizza Napolitana",
           "precio": "10-20€",
           "valoracion": 2,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -9962,7 +9992,7 @@
           "nombre": "Pizza Romana y otros tipos",
           "precio": "10-20€",
           "valoracion": 2,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -10008,7 +10038,7 @@
           "nombre": "Pizza Napolitana",
           "precio": "20-35€",
           "valoracion": 2,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -10032,7 +10062,7 @@
           "nombre": "Pizza Romana y otros tipos",
           "precio": "5-10€",
           "valoracion": 2,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -10054,7 +10084,7 @@
           "nombre": "Pizza Napolitana",
           "precio": "20-35€",
           "valoracion": 2,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -10076,7 +10106,7 @@
           "nombre": "Pizza Napolitana",
           "precio": "20-35€",
           "valoracion": 2,
-          "comentario": ""
+          "comentario": null
         }
       ]
     },
@@ -10100,7 +10130,79 @@
           "nombre": "Pizza Romana y otros tipos",
           "precio": "20-35€",
           "valoracion": 3,
-          "comentario": ""
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "438fc596-de1f-4fb7-bbce-12c0176662ba",
+      "nombre": "99 Cheesecake",
+      "lat": 39.469094,
+      "lng": -0.3742273,
+      "direccion": "C/ de Roger de Llòria, 14, Ciutat Vella, 46002 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=10793103931908037264&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Tarta de queso de Sitio especializado",
+          "precio": "0-5€",
+          "valoracion": 2,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "7fe8398c-ab73-49e5-9405-67153bf7eab2",
+      "nombre": "Ciriaco Cheesecake",
+      "lat": 39.4737702,
+      "lng": -0.3766976,
+      "direccion": "Pl. Redona, 10, Ciutat Vella, 46001 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=8500488808934020646&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Tarta de queso de Sitio especializado",
+          "precio": "5-10€",
+          "valoracion": 2,
+          "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "4eb3666f-0a8a-406d-8fe1-1419d96dcf66",
+      "nombre": "CLEM CAFE",
+      "lat": 39.4671581,
+      "lng": -0.3860023,
+      "direccion": "C/ de Conca, 40, Extramurs, 46007 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=340474023034260033&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Extramurs",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Café",
+          "precio": "0-5€",
+          "valoracion": 2,
+          "comentario": null
         }
       ]
     }
