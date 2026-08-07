@@ -496,13 +496,14 @@ function arbolCompleto() {
 // Lista plana de opciones para el desplegable de categoría del restaurante (indentada por nivel)
 function opcionesCategoriaPlanas() {
   const opciones = [];
-  function recorrer(nodos, nivel) {
+  function recorrer(nodos) {
     nodos.forEach(nodo => {
-      opciones.push({ value: nodo.nombre, label: nodo.nombre + (nivel ? ' ' + '—'.repeat(nivel) : '') });
-      recorrer(nodo.hijos, nivel + 1);
+      opciones.push({ value: nodo.nombre, label: nodo.nombre });
+      recorrer(nodo.hijos);
     });
   }
-  recorrer(arbolCompleto(), 0);
+  recorrer(arbolCompleto());
+  opciones.sort((a, b) => a.label.localeCompare(b.label, 'es'));
   return opciones;
 }
 
@@ -940,9 +941,41 @@ function toggleHerramientas() {
   document.getElementById('herramientas-flecha').style.transform = abierto ? 'rotate(0deg)' : 'rotate(180deg)';
 }
 
+function chipsFiltrosActivos() {
+  const activos = [];
+  if (filtroSinCategoria) activos.push({ label: 'Sin categoría', quitar: () => { filtroSinCategoria = false; } });
+  [...filtroCategorias].forEach(nombre => activos.push({ label: etiquetaCortaCategoria(nombre), quitar: () => filtroCategorias.delete(nombre) }));
+  if (filtroSinPrecio) activos.push({ label: 'Sin precio', quitar: () => { filtroSinPrecio = false; } });
+  [...filtroPrecios].forEach(p => activos.push({ label: p, quitar: () => filtroPrecios.delete(p) }));
+  if (filtroValoracionMin !== null) activos.push({ label: `≥ ${filtroValoracionMin}★`, quitar: () => { filtroValoracionMin = null; } });
+  if (filtroProbado) activos.push({ label: filtroProbado === 'si' ? 'Probado' : 'No probado', quitar: () => { filtroProbado = null; } });
+  if (filtroSinBarrio) activos.push({ label: 'Sin barrio', quitar: () => { filtroSinBarrio = false; } });
+  [...filtroBarrios].forEach(b => activos.push({ label: b, quitar: () => filtroBarrios.delete(b) }));
+  [...filtroEtiquetas].forEach(e => activos.push({ label: e, quitar: () => filtroEtiquetas.delete(e) }));
+  return activos;
+}
+
+function pintarResumenFiltrosActivos(el) {
+  const activos = chipsFiltrosActivos();
+  if (!activos.length) return;
+  const resumen = document.createElement('div');
+  resumen.style.cssText = 'display:flex; flex-wrap:wrap; gap:5px; margin-bottom:10px; padding-bottom:10px; border-bottom:1px solid var(--border);';
+  activos.forEach(a => {
+    const chip = document.createElement('div');
+    chip.className = 'chip active';
+    chip.style.cssText = 'display:inline-flex; align-items:center; gap:4px;';
+    chip.innerHTML = `${a.label} <span style="font-weight:600;">✕</span>`;
+    chip.onclick = () => { a.quitar(); pintarFiltros(); renderList(); pintarMarcadores(); };
+    resumen.appendChild(chip);
+  });
+  el.appendChild(resumen);
+}
+
 function pintarFiltros() {
   const el = document.getElementById('filters');
   el.innerHTML = '';
+
+  pintarResumenFiltrosActivos(el);
 
   const filaRevisar = document.createElement('div');
   filaRevisar.style.cssText = 'display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; font-size:12.5px;';
@@ -960,28 +993,6 @@ function pintarFiltros() {
   labelCat.className = 'filtro-label';
   labelCat.textContent = 'Categoría';
   el.appendChild(labelCat);
-
-  if (filtroCategorias.size > 0 || filtroSinCategoria) {
-    const resumen = document.createElement('div');
-    resumen.style.cssText = 'display:flex; flex-wrap:wrap; gap:5px; margin-bottom:8px;';
-    if (filtroSinCategoria) {
-      const chip = document.createElement('div');
-      chip.className = 'chip active';
-      chip.style.cssText = 'display:inline-flex; align-items:center; gap:4px; font-style:italic;';
-      chip.innerHTML = 'Sin categoría <span style="font-weight:600;">✕</span>';
-      chip.onclick = () => { filtroSinCategoria = false; pintarFiltros(); renderList(); pintarMarcadores(); };
-      resumen.appendChild(chip);
-    }
-    [...filtroCategorias].forEach(nombre => {
-      const chip = document.createElement('div');
-      chip.className = 'chip active';
-      chip.style.cssText = 'display:inline-flex; align-items:center; gap:4px;';
-      chip.innerHTML = `${etiquetaCortaCategoria(nombre)} <span style="font-weight:600;">✕</span>`;
-      chip.onclick = () => { filtroCategorias.delete(nombre); pintarFiltros(); renderList(); pintarMarcadores(); };
-      resumen.appendChild(chip);
-    });
-    el.appendChild(resumen);
-  }
 
   const buscadorCat = document.createElement('input');
   buscadorCat.type = 'text';
@@ -1301,6 +1312,12 @@ function normalizarTexto(s) {
   return (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\s+/g, '');
 }
 
+function categoriasRelevantesFiltro(r) {
+  if (filtroCategorias.size === 0) return r.categorias;
+  const relevantes = r.categorias.filter(c => categoriaCoincideFiltro(c.nombre, filtroCategorias));
+  return relevantes.length ? relevantes : r.categorias;
+}
+
 function restaurantesFiltrados() {
   const q = normalizarTexto(document.getElementById('search').value);
   return restaurantes.filter(r => {
@@ -1309,9 +1326,9 @@ function restaurantesFiltrados() {
       ? (!r.categorias || r.categorias.length === 0 || r.categorias.some(c => !c.nombre))
       : (filtroCategorias.size === 0 || r.categorias.some(c => categoriaCoincideFiltro(c.nombre, filtroCategorias)));
     const coincidePrecio = filtroSinPrecio
-      ? (!r.categorias || r.categorias.length === 0 || r.categorias.some(c => !c.precio || !PRECIOS_FIJOS.includes(c.precio)))
-      : (filtroPrecios.size === 0 || r.categorias.some(c => filtroPrecios.has(c.precio)));
-    const coincideVal = filtroValoracionMin === null || r.categorias.some(c => (c.valoracion || 0) >= filtroValoracionMin);
+      ? (!r.categorias || r.categorias.length === 0 || categoriasRelevantesFiltro(r).some(c => !c.precio || !PRECIOS_FIJOS.includes(c.precio)))
+      : (filtroPrecios.size === 0 || categoriasRelevantesFiltro(r).some(c => filtroPrecios.has(c.precio)));
+    const coincideVal = filtroValoracionMin === null || categoriasRelevantesFiltro(r).some(c => (c.valoracion || 0) >= filtroValoracionMin);
     const coincideProbado = !filtroProbado || (filtroProbado === 'si' ? algunaCategoriaProbadaRelevante(r) : !algunaCategoriaProbadaRelevante(r));
     const coincideBarrio = filtroSinBarrio ? !r.barrio : (filtroBarrios.size === 0 || filtroBarrios.has(r.barrio));
     const coincideZona = !filtroZonaActivo || !limitesZona || limitesZona.contains([r.lat, r.lng]);

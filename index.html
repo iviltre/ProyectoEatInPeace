@@ -431,9 +431,37 @@ function toggleFiltros() {
   document.getElementById('filtros-flecha').style.transform = abierto ? 'rotate(0deg)' : 'rotate(180deg)';
 }
 
+function chipsFiltrosActivos() {
+  const activos = [];
+  [...filtroCategorias].forEach(nombre => activos.push({ label: etiquetaCortaCategoriaPublico(nombre), quitar: () => filtroCategorias.delete(nombre) }));
+  [...filtroPrecios].forEach(p => activos.push({ label: p, quitar: () => filtroPrecios.delete(p) }));
+  if (filtroValoracionMin !== null) activos.push({ label: `≥ ${filtroValoracionMin}★`, quitar: () => { filtroValoracionMin = null; } });
+  [...filtroBarrios].forEach(b => activos.push({ label: b, quitar: () => filtroBarrios.delete(b) }));
+  [...filtroEtiquetas].forEach(e => activos.push({ label: e, quitar: () => filtroEtiquetas.delete(e) }));
+  return activos;
+}
+
+function pintarResumenFiltrosActivos(el) {
+  const activos = chipsFiltrosActivos();
+  if (!activos.length) return;
+  const resumen = document.createElement('div');
+  resumen.style.cssText = 'display:flex; flex-wrap:wrap; gap:5px; margin-bottom:10px; padding-bottom:10px; border-bottom:1px solid var(--border);';
+  activos.forEach(a => {
+    const chip = document.createElement('div');
+    chip.className = 'chip active';
+    chip.style.cssText = 'display:inline-flex; align-items:center; gap:4px;';
+    chip.innerHTML = `${a.label} <span style="font-weight:600;">✕</span>`;
+    chip.onclick = () => { a.quitar(); pintarFiltros(); renderList(); pintarMarcadores(); };
+    resumen.appendChild(chip);
+  });
+  el.appendChild(resumen);
+}
+
 function pintarFiltros() {
   const el = document.getElementById('filters');
   el.innerHTML = '';
+
+  pintarResumenFiltrosActivos(el);
 
   const filaGuardados = document.createElement('div');
   filaGuardados.style.cssText = 'display:flex; align-items:center; justify-content:space-between; font-size:12.5px; margin-bottom:8px;';
@@ -451,20 +479,6 @@ function pintarFiltros() {
   labelCat.className = 'filtro-label';
   labelCat.textContent = 'Categoría';
   el.appendChild(labelCat);
-
-  if (filtroCategorias.size > 0) {
-    const resumen = document.createElement('div');
-    resumen.style.cssText = 'display:flex; flex-wrap:wrap; gap:5px; margin-bottom:8px;';
-    [...filtroCategorias].forEach(nombre => {
-      const chip = document.createElement('div');
-      chip.className = 'chip active';
-      chip.style.cssText = 'display:inline-flex; align-items:center; gap:4px;';
-      chip.innerHTML = `${etiquetaCortaCategoriaPublico(nombre)} <span style="font-weight:600;">✕</span>`;
-      chip.onclick = () => { filtroCategorias.delete(nombre); pintarFiltros(); renderList(); pintarMarcadores(); };
-      resumen.appendChild(chip);
-    });
-    el.appendChild(resumen);
-  }
 
   const buscadorCat = document.createElement('input');
   buscadorCat.type = 'text';
@@ -598,12 +612,18 @@ function normalizarTexto(s) {
   return (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\s+/g, '');
 }
 
+function categoriasRelevantesFiltro(r) {
+  if (filtroCategorias.size === 0) return r.categorias;
+  const relevantes = r.categorias.filter(c => categoriaCoincideFiltro(c.nombre, filtroCategorias));
+  return relevantes.length ? relevantes : r.categorias;
+}
+
 function coincide(r) {
   const q = normalizarTexto(document.getElementById('search').value);
   const coincideNombre = normalizarTexto(r.nombre).includes(q);
   const coincideCat = filtroCategorias.size === 0 || r.categorias.some(c => categoriaCoincideFiltro(c.nombre, filtroCategorias));
-  const coincidePrecio = filtroPrecios.size === 0 || r.categorias.some(c => filtroPrecios.has(c.precio));
-  const coincideVal = filtroValoracionMin === null || r.categorias.some(c => (c.valoracion || 0) >= filtroValoracionMin);
+  const coincidePrecio = filtroPrecios.size === 0 || categoriasRelevantesFiltro(r).some(c => filtroPrecios.has(c.precio));
+  const coincideVal = filtroValoracionMin === null || categoriasRelevantesFiltro(r).some(c => (c.valoracion || 0) >= filtroValoracionMin);
   const coincideBarrio = filtroBarrios.size === 0 || filtroBarrios.has(r.barrio);
   const coincideZona = !filtroZonaActivo || !limitesZona || limitesZona.contains([r.lat, r.lng]);
   const coincideEtiquetas = filtroEtiquetas.size === 0 || (r.etiquetas_extra || []).some(e => filtroEtiquetas.has(e));
