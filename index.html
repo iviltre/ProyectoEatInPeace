@@ -776,11 +776,16 @@ function renderList() {
   });
 }
 
+let detalleAbiertoDesdeLista = true;
+
 function abrirDetalle(id) {
   const r = restaurantes.find(x => x.id === id);
   if (!r) return;
   selectedId = id;
-  if (window.innerWidth <= 860) mostrarTab('mapa');
+  if (window.innerWidth <= 860) {
+    detalleAbiertoDesdeLista = document.getElementById('tab-lista').classList.contains('active');
+    mostrarTab('mapa');
+  }
   const panelDetalle = document.getElementById('detail');
   let alturaPanelMovil = 0;
   if (window.innerWidth <= 860) {
@@ -826,7 +831,7 @@ function cerrarDetalle() {
   document.getElementById('detail-overlay').classList.remove('open');
   selectedId = null;
   pintarMarcadores();
-  if (window.innerWidth <= 860) mostrarTab('lista');
+  if (window.innerWidth <= 860 && detalleAbiertoDesdeLista) mostrarTab('lista');
 }
 
 function mostrarTab(tab) {
