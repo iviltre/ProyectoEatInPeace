@@ -46,12 +46,23 @@
   #login-box button { width: 100%; padding: 10px; background: var(--accent); color: white; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; }
   #login-error { color: var(--danger); font-size: 12px; margin-top: 8px; display: none; }
 
+  #loading-screen {
+    position: fixed; inset: 0; background: var(--bg);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; z-index: 998;
+  }
+  #loading-screen p { font-size: 13px; color: var(--text-muted); }
+  .spinner {
+    width: 30px; height: 30px; border: 3px solid var(--border); border-top-color: var(--accent);
+    border-radius: 50%; animation: girar 0.8s linear infinite;
+  }
+  @keyframes girar { to { transform: rotate(360deg); } }
+
   /* --- Sidebar --- */
   #sidebar { width: 380px; min-width: 380px; background: var(--panel); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
   #sidebar-header { padding: 16px; border-bottom: 1px solid var(--border); }
   #sidebar-header h1 { font-size: 15px; margin: 0 0 12px; display:flex; align-items:center; justify-content:space-between; }
   #sidebar-header h1 span.count { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--text-muted); font-weight: 400; }
-  #search { width: 100%; padding: 9px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; }
+  #search { width: 100%; padding: 9px 30px 9px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; box-sizing: border-box; }
   #filters { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
   .chip { padding: 5px 10px; border: 1px solid var(--border); border-radius: 20px; font-size: 12px; cursor: pointer; background: white; color: var(--text-muted); user-select: none; }
   .chip.active { background: var(--accent); border-color: var(--accent); color: white; }
@@ -147,6 +158,11 @@
   </div>
 </div>
 
+<div id="loading-screen" style="display:none;">
+  <div class="spinner"></div>
+  <p>Cargando restaurantes...</p>
+</div>
+
 <div id="app" style="display:none;">
   <div id="mobile-tabs" style="display:none;">
     <button id="tab-lista" class="active" onclick="mostrarTabMovil('lista')">Lista</button>
@@ -155,7 +171,10 @@
   <div id="sidebar">
     <div id="sidebar-header">
       <h1>Restaurantes <span class="count" id="count-label">0</span></h1>
-      <input id="search" placeholder="Buscar por nombre..." oninput="renderList(); pintarMarcadores();" />
+      <div id="search-wrap" style="position:relative;">
+        <input id="search" placeholder="Buscar por nombre..." oninput="onBuscarInput()" />
+        <button id="search-clear" onclick="limpiarBuscador()" style="display:none; position:absolute; top:50%; right:8px; transform:translateY(-50%); background:none; border:none; cursor:pointer; color:var(--text-muted); font-size:15px; padding:4px; line-height:0;">✕</button>
+      </div>
       <button onclick="toggleFiltros()" style="width:100%; text-align:left; background:none; border:none; padding:6px 0; font-size:12.5px; color:var(--text-muted); cursor:pointer; display:flex; justify-content:space-between; align-items:center;">Filtros <span id="filtros-flecha" style="font-size:19px; display:inline-block; transition:transform 0.15s ease;">▾</span></button>
       <div id="filters" style="display:none; max-height:38vh; overflow-y:auto;"></div>
       <button id="btn-gestionar-categorias" class="add-cat-btn" onclick="abrirGestionCategorias()" style="margin-top:4px; display:inline-flex; align-items:center; gap:6px;">Gestionar categorías</button>
@@ -639,14 +658,19 @@ function authHeaders() {
 async function arrancar() {
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app').style.display = 'flex';
+  document.getElementById('loading-screen').style.display = 'flex';
   try {
     initMap();
   } catch (err) {
     console.error('Error al crear el mapa, se sigue cargando el resto igualmente:', err);
   }
-  await cargarCategoriasMaestro();
-  await cargarEtiquetasMaestro();
-  await cargarRestaurantes();
+  try {
+    await cargarCategoriasMaestro();
+    await cargarEtiquetasMaestro();
+    await cargarRestaurantes();
+  } finally {
+    document.getElementById('loading-screen').style.display = 'none';
+  }
   setInterval(async () => {
     await cargarCategoriasMaestro();
     await cargarEtiquetasMaestro();
@@ -686,6 +710,11 @@ function toggleFiltroZona(marcado) {
 
 function colorParaValoracion(v) {
   const escala = ['#D8D4C4', '#F0B98A', '#DB8F5C', '#C06A3E', '#9A4B2E', '#7A2E22'];
+  return escala[Math.round(v)] || escala[0];
+}
+
+function colorAzulParaValoracion(v) {
+  const escala = ['#C7CBE8', '#AEB5E0', '#8F98D4', '#6E79C4', '#4F5AA8', '#383F80'];
   return escala[Math.round(v)] || escala[0];
 }
 
@@ -776,7 +805,7 @@ function algunaCategoriaProbadaRelevante(r) {
 
 function colorMarcador(r) {
   if (!algunaCategoriaProbadaRelevante(r)) return '#4CAF50'; // verde: (las categorías relevantes) sin probar
-  if (!r.visible_publico) return '#7B88C4'; // azulado: probado pero no visible para seguidores
+  if (!r.visible_publico) return colorAzulParaValoracion(valoracionMostrada(r)); // azules: probado pero no visible para seguidores
   return colorParaValoracion(valoracionMostrada(r));
 }
 
@@ -1318,6 +1347,21 @@ function categoriasRelevantesFiltro(r) {
   return relevantes.length ? relevantes : r.categorias;
 }
 
+function onBuscarInput() {
+  document.getElementById('search-clear').style.display = document.getElementById('search').value ? 'block' : 'none';
+  renderList();
+  pintarMarcadores();
+}
+
+function limpiarBuscador() {
+  const input = document.getElementById('search');
+  input.value = '';
+  input.focus();
+  document.getElementById('search-clear').style.display = 'none';
+  renderList();
+  pintarMarcadores();
+}
+
 function restaurantesFiltrados() {
   const q = normalizarTexto(document.getElementById('search').value);
   return restaurantes.filter(r => {
@@ -1522,8 +1566,12 @@ async function guardarNuevoRestaurantePorPlaces() {
       })
     });
     const nuevo = await r.json();
+    if (nuevo.barrio) {
+      avisarSiBarrioNuevo(nuevo.barrio); // antes de meterlo en la lista, para no compararlo consigo mismo
+    } else {
+      alert('Google no ha devuelto ningún barrio para esta dirección. Tendrás que ponerlo a mano — de momento el restaurante queda marcado como "pendiente de revisar".');
+    }
     restaurantes.push(nuevo);
-    avisarSiBarrioNuevo(nuevo.barrio);
     pintarMarcadores();
     renderList();
     selectedId = nuevo.id;
@@ -1557,6 +1605,7 @@ function abrirDetalle(id) {
         </button>
       </div>
       <input type="text" class="editable" value="${r.barrio || ''}" placeholder="Barrio (ej: Ruzafa, El Carmen...)" style="width:100%; font-size:12px; margin-top:4px;" onblur="guardarBarrioManual(this.value).then(() => actualizarPendienteRevisar())">
+      <button onclick="marcarFueraDeValencia()" style="width:100%; margin-top:6px; padding:6px; font-size:11.5px; border:1px solid var(--border); border-radius:6px; background:none; color:var(--text-muted); cursor:pointer;">Marcar como fuera de Valencia</button>
       <input type="text" class="editable" value="${r.google_maps_url || ''}" placeholder="Pegar enlace de Google Maps..." style="width:100%; font-size:12px; margin-top:4px; color:var(--accent);" onblur="guardarCampo('google_maps_url', this.value).then(() => actualizarPendienteRevisar())">
       ${r.google_maps_url ? `<a class="maps-link" href="${r.google_maps_url}" target="_blank">Abrir en Google Maps →</a>` : ''}
     </div>
@@ -1855,6 +1904,22 @@ async function guardarBarrioManual(valor) {
   renderList();
 }
 
+async function marcarFueraDeValencia() {
+  const r = restaurantes.find(x => x.id === selectedId);
+  if (!r) return;
+  r.barrio = 'Fuera de Valencia';
+  r.barrio_manual = true;
+  r.visible_publico = false;
+  await fetch(`${API}/restaurantes/${r.id}`, {
+    method: 'PUT', headers: authHeaders(),
+    body: JSON.stringify({ barrio: r.barrio, barrio_manual: true, visible_publico: false })
+  });
+  pintarFiltros();
+  renderList();
+  pintarMarcadores();
+  abrirDetalle(r.id);
+}
+
 function extraerBarrioLocal(direccion) {
   if (!direccion) return null;
   const partes = direccion.split(',').map(p => p.trim()).filter(Boolean);
@@ -1884,6 +1949,8 @@ async function guardarDireccionSeleccionadaEdit() {
     if (placesSeleccionado.barrio !== r.barrio) avisarSiBarrioNuevo(placesSeleccionado.barrio);
     r.barrio = placesSeleccionado.barrio;
     cuerpo.barrio = placesSeleccionado.barrio;
+  } else if (!r.barrio_manual && !placesSeleccionado.barrio) {
+    alert('Google no ha devuelto ningún barrio para esta dirección nueva. Tendrás que ponerlo a mano.');
   }
 
   if (placesSeleccionado.takeaway && !(r.etiquetas_extra || []).includes('Take away')) {
@@ -1944,6 +2011,25 @@ function publicarCambios() {
 
 // ---------- ARRANQUE ----------
 if (token) arrancar();
+
+// En móvil, deslizar el detalle hacia un lado lo cierra (como en muchas apps nativas)
+(function initSwipeCerrarDetalle() {
+  const detalle = document.getElementById('detail');
+  let inicioX = 0, inicioY = 0, activo = false;
+  detalle.addEventListener('touchstart', (e) => {
+    if (window.innerWidth > 860) return;
+    inicioX = e.touches[0].clientX;
+    inicioY = e.touches[0].clientY;
+    activo = true;
+  }, { passive: true });
+  detalle.addEventListener('touchend', (e) => {
+    if (!activo) return;
+    activo = false;
+    const dx = e.changedTouches[0].clientX - inicioX;
+    const dy = e.changedTouches[0].clientY - inicioY;
+    if (Math.abs(dx) > 70 && Math.abs(dx) > Math.abs(dy) * 1.5) cerrarDetalle();
+  }, { passive: true });
+})();
 
 function descargarBackup() {
   const blob = new Blob([JSON.stringify(restaurantes, null, 2)], { type: 'application/json' });

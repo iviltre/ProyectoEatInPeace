@@ -560,7 +560,7 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7485852157061778710?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Esmorzar",
+          "nombre": "Esmorzar Premium",
           "precio": "10-20€",
           "valoracion": 4,
           "comentario": null
@@ -2389,16 +2389,22 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7620192129045843222?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Helados",
-          "precio": "0-5€",
-          "valoracion": 2,
-          "comentario": null
-        },
-        {
           "nombre": "Horchata",
           "precio": "0-5€",
           "valoracion": 5,
           "comentario": null
+        },
+        {
+          "nombre": "Buñuelos",
+          "precio": "0-5€",
+          "valoracion": 3,
+          "comentario": ""
+        },
+        {
+          "nombre": "Helados",
+          "precio": "0-5€",
+          "valoracion": 2,
+          "comentario": ""
         }
       ]
     },
@@ -2545,7 +2551,7 @@
       "tiktok_url": "https://www.tiktok.com/@eatinpeace/video/7576764312392568066?is_from_webapp=1&sender_device=pc&web_id=7666897447436338691",
       "categorias": [
         {
-          "nombre": "Esmorzar",
+          "nombre": "Esmorzar Premium",
           "precio": "10-20€",
           "valoracion": 3,
           "comentario": null
@@ -4819,7 +4825,7 @@
         {
           "nombre": "Esmorzar Tradicional",
           "precio": "10-20€",
-          "valoracion": 2,
+          "valoracion": 3,
           "comentario": null
         },
         {
@@ -5240,6 +5246,12 @@
           "precio": "20-35€",
           "valoracion": 3,
           "comentario": null
+        },
+        {
+          "nombre": "Esmorzar Premium",
+          "precio": "10-20€",
+          "valoracion": 3,
+          "comentario": ""
         }
       ]
     },
@@ -5283,9 +5295,9 @@
       "categorias": [
         {
           "nombre": "Buñuelos",
-          "precio": "5-10€",
+          "precio": "0-5€",
           "valoracion": 3,
-          "comentario": null
+          "comentario": "Están mejor los churros"
         }
       ]
     },
@@ -5332,7 +5344,7 @@
       "categorias": [
         {
           "nombre": "Buñuelos",
-          "precio": "5-10€",
+          "precio": "0-5€",
           "valoracion": 5,
           "comentario": null
         }
@@ -10063,6 +10075,12 @@
           "precio": "5-10€",
           "valoracion": 2,
           "comentario": null
+        },
+        {
+          "nombre": "Focaccia",
+          "precio": "5-10€",
+          "valoracion": 3,
+          "comentario": ""
         }
       ]
     },
@@ -10203,6 +10221,478 @@
           "precio": "0-5€",
           "valoracion": 2,
           "comentario": null
+        }
+      ]
+    },
+    {
+      "id": "a2fd7d41-3079-4a32-b359-3cbb02e90879",
+      "nombre": "Los Toneles",
+      "lat": 39.46775290000001,
+      "lng": -0.3758096,
+      "direccion": "C/ de Ribera, 17, Ciutat Vella, 46002 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=15262638534827419422&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Esmorzar Tradicional",
+          "precio": "5-10€",
+          "valoracion": 3,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "74e7d991-9539-4f31-b9c3-8621ce37872f",
+      "nombre": "La Mesedora - Roig Arena",
+      "lat": 39.4490207,
+      "lng": -0.3648435,
+      "direccion": "C/ del Bomber Ramon Duart, 12, Quatre Carreres, 46013 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=18088558305514210642&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Quatre Carreres",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Esmorzar Premium",
+          "precio": "10-20€",
+          "valoracion": 2,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "c024f3cd-5bec-4033-bfaa-6584cd5af4c5",
+      "nombre": "Barrexat Bar",
+      "lat": 39.4885968,
+      "lng": -0.3907836,
+      "direccion": "C. del Doctor Nicasi Benlloch, 20, Benicalap, 46035 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=7390837986088994005&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Benicalap",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Esmorzar Premium",
+          "precio": "10-20€",
+          "valoracion": 2,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "514ca64b-b855-4cdd-bfce-25dcf3ccd90c",
+      "nombre": "Bajoqueta Bar",
+      "lat": 39.488747499999995,
+      "lng": -0.3989444,
+      "direccion": "Av. de les Corts Valencianes, 15, Campanar, 46015 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=9813166185084929445&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Campanar",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Tapas y varios",
+          "precio": "20-35€",
+          "valoracion": 3,
+          "comentario": ""
+        },
+        {
+          "nombre": "Esmorzar Premium",
+          "precio": "10-20€",
+          "valoracion": 3,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "87f92689-5640-4b31-949c-f4e6d061d44d",
+      "nombre": "Els Tonets del Carme - Bunyoleria",
+      "lat": 39.4772755,
+      "lng": -0.3806724,
+      "direccion": "C/ de St. Donís, 3, Ciutat Vella, 46003 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=13665424624843827590&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Buñuelos",
+          "precio": "0-5€",
+          "valoracion": 4,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "9264b42e-0da5-480e-9064-de688e489a05",
+      "nombre": "Bunyols Bienve",
+      "lat": 39.4641625,
+      "lng": -0.370839,
+      "direccion": "Av. del Regne de València, 24, L'Eixample, 46005 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=14543538235748000049&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Buñuelos",
+          "precio": "0-5€",
+          "valoracion": 4,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "af5af891-8cc3-4068-95de-d45977ffd50e",
+      "nombre": "HORCHATERIA FABIÁN",
+      "lat": 39.472052999999995,
+      "lng": -0.3759793,
+      "direccion": "C/ de Moratín, 1, Ciutat Vella, 46002 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=838521746144926815&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Buñuelos",
+          "precio": "0-5€",
+          "valoracion": 3,
+          "comentario": ""
+        },
+        {
+          "nombre": "Horchata",
+          "precio": "0-5€",
+          "valoracion": 3,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "8e214f9d-50b8-4d0e-9625-38eb41d514de",
+      "nombre": "Horchatería Santa Catalina",
+      "lat": 39.4738603,
+      "lng": -0.3762593,
+      "direccion": "Pl. de Santa Caterina, 6, Ciutat Vella, 46001 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=5216737490235874158&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Buñuelos",
+          "precio": "0-5€",
+          "valoracion": 2,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "7bf60c83-4b3b-41de-b50c-8a71c748f386",
+      "nombre": "Horchatería El Collado",
+      "lat": 39.474143000000005,
+      "lng": -0.3777448,
+      "direccion": "C/ d'Ercilla, 13, Ciutat Vella, 46001 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=3121580674359893528&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Buñuelos",
+          "precio": "0-5€",
+          "valoracion": 2,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "c88ee1eb-c78e-4387-81b6-c6207ff00d76",
+      "nombre": "Churrería Heladería Los Olivares",
+      "lat": 39.4671714,
+      "lng": -0.3312831,
+      "direccion": "C/ de Just Vilar, 17, Poblats Marítims, 46011 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=9784872318356168056&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Poblats Marítims",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Buñuelos",
+          "precio": "0-5€",
+          "valoracion": 2,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "99dd72c1-0625-42a4-ba9a-4bde837ef7bb",
+      "nombre": "È Pazzo Italian Focaccias and Spritz",
+      "lat": 39.4606302,
+      "lng": -0.3743559,
+      "direccion": "Carrer de Sueca, 51, L'Eixample, 46004 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=16697408688569337870&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Focaccia",
+          "precio": "5-10€",
+          "valoracion": 4,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "0f705a1d-7504-4e24-9d7b-6df6de62d98a",
+      "nombre": "Yummy Ramen Lanzhou Valencia 正宗蘭州牛肉麵",
+      "lat": 39.4676585,
+      "lng": -0.378899,
+      "direccion": "C/ del Convent de Jerusalem, 3, Extramurs, 46007 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=7450305024119958650&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Extramurs",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Ramen Chino",
+          "precio": "10-20€",
+          "valoracion": 4,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "1f26d1fe-0700-4bf3-8b68-9f17cea2693b",
+      "nombre": "M2M noodles",
+      "lat": 39.4843816,
+      "lng": -0.3632982,
+      "direccion": "Av. del Primat Reig, 121, El Pla del Real, 46020 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=14809907329017310522&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "El Pla del Real",
+      "etiquetas_extra": [],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Ramen Chino",
+          "precio": "10-20€",
+          "valoracion": 4,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "13617af3-b919-4fca-bfbf-10bbbeb338ef",
+      "nombre": "Seventeen BBQ & HOT POT 重庆十七门铁板和火锅",
+      "lat": 39.4678085,
+      "lng": -0.36524360000000006,
+      "direccion": "C. de Salamanca, 3, derecha, Ensanche, 46005 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=8281313892431520919&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Ramen Chino",
+          "precio": "20-35€",
+          "valoracion": 2,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "b2ac179f-7433-4ec9-aa26-b67413286050",
+      "nombre": "UDON - Ciutat Vella",
+      "lat": 39.4681103,
+      "lng": -0.3743757,
+      "direccion": "Carrer de Martínez Cubells, 8, Ciutat Vella, 46002 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=16151227698535669042&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Ciutat Vella",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Ramen Chino",
+          "precio": "10-20€",
+          "valoracion": 2,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "7318599d-ff0a-42b4-bcbc-c39cde4b5dd3",
+      "nombre": "UDON - Aqua",
+      "lat": 39.4567147,
+      "lng": -0.34586819999999996,
+      "direccion": "Carrer de Menorca, 19, Camins al Grau, 46023 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=6540386315300803406&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Camins al Grau",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Ramen Chino",
+          "precio": "10-20€",
+          "valoracion": 2,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "0faf731e-e486-416d-b0bc-824f61de1054",
+      "nombre": "JUU-NI",
+      "lat": 39.466733399999995,
+      "lng": -0.3723558,
+      "direccion": "C/ de Ciril Amorós, 24, L'Eixample, 46004 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=4942761769088373378&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Menú del día"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Sushi",
+          "precio": "20-35€",
+          "valoracion": 4,
+          "comentario": ""
+        },
+        {
+          "nombre": "Ramen Japones",
+          "precio": "20-35€",
+          "valoracion": 4,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "0bfcae92-61b8-4dee-a213-ea47e28da9de",
+      "nombre": "RYUKISHIN - Cánovas",
+      "lat": 39.466893899999995,
+      "lng": -0.3648183,
+      "direccion": "Carrer de Salamanca, 12, L'Eixample, 46005 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=16247673363448667769&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "L'Eixample",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Ramen Japones",
+          "precio": "20-35€",
+          "valoracion": 3,
+          "comentario": ""
+        }
+      ]
+    },
+    {
+      "id": "cd36005a-f282-49a2-bacb-96a1905b9b77",
+      "nombre": "RYUKISHIN - Cortes Valencianas",
+      "lat": 39.4932075,
+      "lng": -0.4006003,
+      "direccion": "Av. de les Corts Valencianes, 30, Benicalap, 46015 València, Valencia, España",
+      "google_maps_url": "https://maps.google.com/?cid=8771850187552213659&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYASAA",
+      "grupo_id": null,
+      "barrio": "Benicalap",
+      "etiquetas_extra": [
+        "Take away"
+      ],
+      "resena_general": null,
+      "instagram_url": null,
+      "tiktok_url": null,
+      "categorias": [
+        {
+          "nombre": "Ramen Japones",
+          "precio": "20-35€",
+          "valoracion": 3,
+          "comentario": ""
         }
       ]
     }

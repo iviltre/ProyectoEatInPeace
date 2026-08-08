@@ -53,7 +53,7 @@
   #layout { display: flex; height: calc(100vh - 57px); margin-top: 57px; position: relative; }
   #panel { width: 400px; min-width: 400px; min-height: 0; overflow: hidden; background: var(--panel); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
   #search-wrap { padding: 16px; border-bottom: 1px solid var(--border); }
-  #search { width: 100%; padding: 11px 14px; border: 1px solid var(--border); border-radius: 20px; font-size: 14px; font-family: inherit; }
+  #search { width: 100%; padding: 11px 36px 11px 14px; border: 1px solid var(--border); border-radius: 20px; font-size: 14px; font-family: inherit; box-sizing: border-box; }
   #filters { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
   .chip { padding: 6px 12px; border: 1px solid var(--border); border-radius: 20px; font-size: 12.5px; cursor: pointer; background: white; color: var(--text-muted); user-select: none; }
   .chip.active { background: var(--sage); border-color: var(--sage); color: white; }
@@ -157,7 +157,10 @@
 <div id="layout">
   <div id="panel">
     <div id="search-wrap">
-      <input id="search" placeholder="Buscar un restaurante..." oninput="renderList(); pintarMarcadores();" />
+      <div style="position:relative;">
+        <input id="search" placeholder="Buscar un restaurante..." oninput="onBuscarInput()" />
+        <button id="search-clear" onclick="limpiarBuscador()" style="display:none; position:absolute; top:50%; right:12px; transform:translateY(-50%); background:none; border:none; cursor:pointer; color:var(--text-muted); font-size:16px; padding:4px; line-height:0;">✕</button>
+      </div>
       <button onclick="toggleFiltros()" style="width:100%; text-align:left; background:none; border:none; padding:6px 0; font-size:12.5px; color:var(--text-muted); cursor:pointer; display:flex; justify-content:space-between; align-items:center; font-family:inherit;">Filtros <span id="filtros-flecha" style="font-size:19px; display:inline-block; transition:transform 0.15s ease;">▾</span></button>
       <div id="filters" style="display:none; max-height:35vh; overflow-y:auto;"></div>
       <select id="orden" onchange="renderList()" style="width:100%; margin-top:8px; padding:8px; border:1px solid var(--border); border-radius:20px; font-size:12.5px; font-family:inherit;">
@@ -618,6 +621,21 @@ function categoriasRelevantesFiltro(r) {
   return relevantes.length ? relevantes : r.categorias;
 }
 
+function onBuscarInput() {
+  document.getElementById('search-clear').style.display = document.getElementById('search').value ? 'block' : 'none';
+  renderList();
+  pintarMarcadores();
+}
+
+function limpiarBuscador() {
+  const input = document.getElementById('search');
+  input.value = '';
+  input.focus();
+  document.getElementById('search-clear').style.display = 'none';
+  renderList();
+  pintarMarcadores();
+}
+
 function coincide(r) {
   const q = normalizarTexto(document.getElementById('search').value);
   const coincideNombre = normalizarTexto(r.nombre).includes(q);
@@ -808,6 +826,7 @@ function cerrarDetalle() {
   document.getElementById('detail-overlay').classList.remove('open');
   selectedId = null;
   pintarMarcadores();
+  if (window.innerWidth <= 860) mostrarTab('lista');
 }
 
 function mostrarTab(tab) {
